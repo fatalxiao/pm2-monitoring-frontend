@@ -1,9 +1,9 @@
 module.exports = {
 
-    serverPort: '4002',
+    serverPort: '9617',
 
     proxyTable: {
-        '/dpe': 'http://localhost:4100'
+        '/pms': 'http://localhost:9616'
     }
 
 };
