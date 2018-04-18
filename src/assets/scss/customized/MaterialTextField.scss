@@ -1,0 +1,22 @@
+@import '../common.scss';
+
+.material-text-field {
+    background: transparent !important;
+
+    .text-field-placeholder,
+    .text-field-input {
+        font-size: inherit !important;
+    }
+
+    .text-field-right-icon {
+        .unit::after {
+            color: $theme-description;
+        }
+    }
+
+    &.focused {
+        .material-text-field-label {
+            color: $theme-highlight !important;
+        }
+    }
+}

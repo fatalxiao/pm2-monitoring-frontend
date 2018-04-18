@@ -1,0 +1,15 @@
+@import '../common.scss';
+
+.material-provider {
+    .material-provider-label {
+        display: inline-block;
+        color: $theme-label;
+        height: 16px;
+    }
+
+    &[disabled] {
+        .material-provider-label {
+            color: $theme-label-disabled;
+        }
+    }
+}

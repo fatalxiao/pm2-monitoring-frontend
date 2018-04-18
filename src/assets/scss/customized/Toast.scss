@@ -1,0 +1,57 @@
+@import '../common.scss';
+
+.portal {
+
+    .toaster.toaster-position-top {
+        top: 0;
+
+        .toast {
+            width: auto !important;
+            height: 40px;
+            color: #333 !important;
+            box-shadow: none;
+            box-sizing: border-box;
+            padding: 10px 32px 10px 48px;
+            opacity: .9;
+
+            & > * {
+                vertical-align: middle;
+            }
+
+            .toast-icon {
+                width: 16px;
+                height: 16px;
+                left: 16px;
+                line-height: 16px;
+                font-size: 14px !important;
+
+                &.success {
+                    color: $theme-success;
+                }
+                &.error {
+                    color: $theme-error;
+                }
+            }
+
+            &.theme-success {
+                background: $theme-success-bg;
+                border: 1px solid $theme-success-border;
+            }
+
+            &.theme-success:hover {
+                background: $theme-success-bg;
+                border: 1px solid $theme-success-border;
+            }
+
+            &.theme-error {
+                background: $theme-error-bg;
+                border: 1px solid $theme-error-border;
+            }
+
+            &.theme-error:hover {
+                background: $theme-error-bg;
+                border: 1px solid $theme-error-border;
+            }
+        }
+    }
+}

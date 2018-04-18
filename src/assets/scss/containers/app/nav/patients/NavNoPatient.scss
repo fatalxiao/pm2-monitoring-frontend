@@ -1,0 +1,23 @@
+@import '../../../../common.scss';
+
+.nav-no-patient {
+    text-align: center;
+    line-height: 24px;
+    flex-shrink: 0;
+
+    .add-patient-icon {
+        display: block;
+        font-size: 96px;
+        color: $theme-description;
+        cursor: pointer;
+    }
+
+    .add-patient-button {
+        color: $theme-highlight;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

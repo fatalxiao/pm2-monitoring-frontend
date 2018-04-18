@@ -1,0 +1,29 @@
+@import '../../../../common.scss';
+
+.nav-patient-popover-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $theme-secondary;
+
+    .icon-button.nav-patient-popover-item {
+        border-radius: $theme-border-radius;
+        width: 48px;
+        height: 48px;
+        font-size: 24px !important;
+        text-align: center;
+
+        &:hover {
+            background: transparentize(#000, .9);
+        }
+    }
+
+}
+
+.nav-patient-popover {
+
+    .popover-content {
+        max-height: 480px;
+        overflow-y: auto;
+    }
+}

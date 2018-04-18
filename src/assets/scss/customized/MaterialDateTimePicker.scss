@@ -1,0 +1,19 @@
+@import '../common.scss';
+
+.material-date-time-picker {
+
+    .material-date-picker-text-field-label {
+        color: $theme-field !important;
+    }
+
+    .text-field-input,
+    .text-field-placeholder {
+        font-size: 14px !important;
+    }
+
+    &.focused {
+        .material-date-picker-text-field-label {
+            color: $theme-highlight !important;
+        }
+    }
+}

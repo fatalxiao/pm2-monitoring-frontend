@@ -1,0 +1,22 @@
+@import '../../../../../common.scss';
+
+.observal-data-form {
+
+    .material-text-field,
+    .material-dropdown-select,
+    .material-provider,
+    .material-date-time-picker {
+        margin-bottom: 48px;
+    }
+
+    .duration-tag {
+        .display-field-content {
+            display: inline-block;
+            width: auto;
+            padding: 9px 12px;
+            background: $theme-field-bg-disabled;
+            color: $theme-label;
+            border-radius: $theme-border-radius;
+        }
+    }
+}

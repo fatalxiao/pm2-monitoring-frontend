@@ -1,0 +1,99 @@
+@import '../../../../common.scss';
+
+.nav-bar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+
+    .nav-bar-item {
+        width: 40px;
+        height: 40px;
+        color: inherit;
+        padding: 0;
+        margin-bottom: 8px;
+        text-align: center !important;
+        transition: background $theme-transition-duration ease-in-out;
+
+        .button-icon {
+            vertical-align: baseline;
+        }
+
+        &.nav-bar-logo-button {
+            width: 48px;
+            height: 48px;
+            font-size: 32px !important;
+            font-weight: 700;
+            margin-bottom: 16px;
+
+            .logo,
+            .logo-animated {
+                position: absolute;
+                left: 8px;
+                top: 8px;
+                width: 32px;
+                height: 32px;
+                background-size: 32px 32px;
+                transition: opacity $theme-transition-duration ease-in-out;
+            }
+
+            .logo {
+                background-image: url("../../../../../../assets/images/logo-white.png");
+            }
+
+            .logo-animated {
+                opacity: 0;
+                background-image: url("../../../../../../assets/images/logo-white-animated.png");
+                animation: logo-spin 1s linear infinite;
+            }
+
+            &:hover {
+                .logo {
+                    opacity: 0;
+                }
+
+                .logo-animated {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &.nav-bar-export-button {
+            font-size: 20px !important;
+        }
+
+        &.nav-bar-logo-button,
+        &.nav-bar-search-button {
+            z-index: 2;
+        }
+
+        &:hover {
+            color: inherit;
+            background: transparentize(#000, .9);
+        }
+    }
+
+    &.fold,
+    &.search-drawer-visible {
+
+        .nav-bar-logo-button {
+            .logo {
+                background-image: url("../../../../../../assets/images/logo.png");
+            }
+
+            .logo-animated {
+                background-image: url("../../../../../../assets/images/logo-animated.png");
+            }
+        }
+
+        .nav-bar-search-button {
+            color: $theme-primary;
+        }
+    }
+}
+
+@keyframes logo-spin {
+    to {
+        transform: rotate(360deg)
+    }
+}

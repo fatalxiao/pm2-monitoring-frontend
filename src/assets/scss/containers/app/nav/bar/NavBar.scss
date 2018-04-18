@@ -1,0 +1,39 @@
+@import '../../../../common.scss';
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 64px;
+    height: 100%;
+    padding: 16px 0;
+    color: #fff;
+    background: $theme-primary;
+    font-size: 24px;
+
+    .nav-patient-popover-wrapper {
+        position: relative;
+        left: -99999px;
+        transition: left 0s;
+    }
+
+    &.fold {
+        color: $theme-primary;
+        background: $theme-secondary;
+
+        .nav-patient-popover-wrapper {
+            left: 0;
+            transition: left 0s $theme-transition-duration;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 60%;
+                height: 1px;
+                margin: 8px auto 16px;
+                background: darken($theme-border, 4%);
+            }
+        }
+    }
+}

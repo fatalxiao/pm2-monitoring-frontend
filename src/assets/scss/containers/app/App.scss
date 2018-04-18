@@ -1,0 +1,34 @@
+@import '../../common.scss';
+
+.app {
+    display: flex;
+
+    .app-content {
+        flex: 1;
+        position: relative;
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 24px 48px 64px;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        .page-loading {
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .content-router-view {
+            @include float-fix;
+            min-height: 100%;
+        }
+
+        .app-content-modal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+}

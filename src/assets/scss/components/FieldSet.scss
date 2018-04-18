@@ -1,0 +1,16 @@
+@import '../common.scss';
+
+.field-set {
+    margin-top: 24px;
+    border-top: 1px solid $theme-border;
+
+    .field-set-title {
+        padding: 24px 0;
+        margin: 0;
+    }
+
+    .field-set-content {
+        box-sizing: border-box;
+        padding: 0 20px;
+    }
+}

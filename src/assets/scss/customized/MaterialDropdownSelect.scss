@@ -1,0 +1,11 @@
+@import '../common.scss';
+
+.material-dropdown-select {
+    background: transparent !important;
+
+    &.focused {
+        .material-dropdown-select-label {
+            color: $theme-highlight !important;
+        }
+    }
+}

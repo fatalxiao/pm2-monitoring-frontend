@@ -1,0 +1,183 @@
+@import "./common.scss";
+
+::selection {
+    color: #fff;
+    background: #8d98b3;
+}
+
+::-webkit-input-placeholder {
+    color: #c5c5c5;
+}
+
+:-moz-placeholder {
+    color: #c5c5c5;
+}
+
+::-moz-placeholder {
+    color: #c5c5c5;
+}
+
+:-ms-input-placeholder {
+    color: #c5c5c5;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #c5c5c5;
+}
+
+i, cite, em, var, address, dfn {
+    font-style: normal;
+}
+
+.icon {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+body {
+    font-family: "helvetica neue", "hiragino sans gb", "stheiti",
+    "microsoft yahei", \5FAE\8F6F\96C5\9ED1, tahoma, sans-serif !important;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    min-width: 1000px;
+    overflow: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.full-size {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100%;
+
+    body {
+        height: 100%;
+        min-width: 100% !important;
+
+        #app-container {
+            height: 100%;
+
+            .app-root {
+                height: 100%;
+            }
+        }
+    }
+}
+
+.hidden-input {
+    display: none;
+}
+
+[class^="unit-"], [class*=" unit-"] {
+    .icon-button.text-field-right-icon {
+        width: auto;
+    }
+}
+
+.unit-weeks {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "weeks";
+        }
+    }
+}
+
+.unit-days {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "days";
+        }
+    }
+}
+
+.unit-hours {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "hours";
+        }
+    }
+}
+
+.unit-minutes {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "minutes";
+        }
+    }
+}
+
+.unit-cm {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "cm";
+        }
+    }
+}
+
+.unit-kg {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "kg";
+        }
+    }
+}
+
+.unit-g {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "g";
+        }
+    }
+}
+
+.unit-ml {
+    .icon-button.text-field-right-icon {
+        .unit::after {
+            content: "ml";
+        }
+    }
+}
+
+.material-provider.material-text-field.hover-activated {
+
+    .material-provider-label-wrapper {
+        display: none;
+    }
+
+    .text-field {
+        border-bottom-color: transparent;
+    }
+
+    &:hover {
+        .text-field {
+            border-bottom-color: $theme-border;
+        }
+    }
+}
+
+.material-provider.material-dropdown-select.hover-activated {
+
+    .material-provider-label-wrapper {
+        display: none;
+    }
+
+    .dropdown-select {
+        border-bottom-color: transparent !important;
+    }
+
+    .dropdown-trigger-icon {
+        opacity: 0;
+    }
+
+    &:hover {
+
+        .dropdown-select {
+            border-bottom-color: $theme-border;
+        }
+
+        .dropdown-trigger-icon {
+            opacity: 1;
+        }
+    }
+}

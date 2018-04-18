@@ -1,0 +1,32 @@
+@import '../../../../common.scss';
+
+.nav-patient {
+    flex: 1;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 16px;
+    background: $theme-secondary;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+
+    &.no-patient {
+        justify-content: center;
+    }
+
+    &.collapsed {
+        justify-content: flex-start;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 64px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &.fold {
+        top: 160px+25px;
+        right: -99999px;
+        transition: top $theme-transition-duration ease-in-out, right 0s $theme-transition-duration;
+    }
+}

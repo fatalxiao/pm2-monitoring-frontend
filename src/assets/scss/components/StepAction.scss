@@ -1,0 +1,38 @@
+@import '../common.scss';
+
+.step-action {
+    @include float-fix;
+    position: relative;
+    width: 100%;
+    padding-top: 36px;
+    margin-top: 36px;
+
+    .previous-button {
+        float: left;
+        width: 120px;
+        height: 48px;
+        color: $theme-description;
+
+        &:hover {
+            color: $theme-field;
+        }
+    }
+
+    .continue-button {
+        float: right;
+        width: 180px;
+        height: 48px;
+        font-weight: 700;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 0;
+        display: block;
+        width: calc(100% + 48px);
+        height: 1px;
+        background: $theme-border;
+    }
+}

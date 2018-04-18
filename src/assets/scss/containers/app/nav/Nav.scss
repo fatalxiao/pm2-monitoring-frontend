@@ -1,0 +1,109 @@
+@import '../../../common.scss';
+
+.nav {
+    flex-grow: 0;
+    flex-shrink: 0;
+    transition: flex-basis $theme-transition-duration ease-in-out;
+
+    .nav-inner {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 90;
+        display: flex;
+        background: $theme-secondary;
+        transition: width $theme-transition-duration ease-in-out;
+
+        .nav-resize {
+            position: absolute;
+            right: -16px;
+            width: 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            cursor: ew-resize;
+            transition: opacity $theme-transition-duration ease-in-out;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: -1px;
+                width: 2px;
+                height: 100%;
+                background: $theme-highlight;
+            }
+
+            .nav-toggle {
+                box-sizing: border-box;
+                width: 16px;
+                height: 36px;
+                padding: 10px 7px;
+                cursor: pointer;
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: relative;
+                    display: block;
+                    width: 2px;
+                    height: 8px;
+                    background-color: $theme-highlight;
+                    border-radius: 16px;
+                    transition: transform $theme-transition-duration ease-in-out;
+                }
+
+                &::before {
+                    top: 1px;
+                    transform-origin: 1px 7px;
+                }
+
+                &::after {
+                    top: -1px;
+                    transform-origin: 1px 1px;
+                }
+
+                &:hover {
+
+                    &::before {
+                        transform: rotate(40deg);
+                    }
+                    &::after {
+                        transform: rotate(-40deg);
+                    }
+
+                    &.collapsed {
+                        &::before {
+                            transform: rotate(-40deg);
+                        }
+                        &::after {
+                            transform: rotate(40deg);
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    //&:hover {
+    //    .nav-resize {
+    //        right: -14px;
+    //        border-left: 2px solid $theme-highlight;
+    //        opacity: 1;
+    //    }
+    //}
+
+    &.dragging {
+        transition: none;
+
+        .nav-inner {
+            transition: none;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+@import '../../../../common.scss';
+
+.nav-title {
+    color: $theme-field-hover;
+    line-height: 36px;
+    margin-bottom: 40px;
+
+    .nav-title-crumbs-wrapper {
+
+        .nav-title-crumbs-icon {
+            display: inline-block;
+            width: 24px;
+            font-size: 18px;
+        }
+
+        .nav-title-crumbs {
+            display: inline-block;
+
+            .nav-title-crumb {
+                display: inline-block;
+                user-select: none;
+                cursor: default;
+                color: inherit;
+
+                &.nav-title-link {
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: color $theme-transition-duration ease-in-out;
+
+                    &:hover {
+                        color: $theme-field;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
