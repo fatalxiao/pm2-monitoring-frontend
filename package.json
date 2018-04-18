@@ -1,8 +1,8 @@
 {
-    "name": "dpe-frontend",
+    "name": "pm2-surveillance-frontend",
     "author": "liangxiaojun",
     "version": "1.0.0",
-    "description": "DPE ReactJs Front-end Project.",
+    "description": "PM2 Surveillance Front-end Project.",
     "main": "./src/index.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development node build/dev/server.js",
@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/fatalxiao/dpe-frontend"
+        "url": "https://github.com/fatalxiao/pm2-surveillance-frontend"
     },
     "keywords": [
         "dural-puncture-epidural",
@@ -25,7 +25,7 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/fatalxiao/dpe-frontend/issues"
+        "url": "https://github.com/fatalxiao/pm2-surveillance-frontend/issues"
     },
     "dependencies": {
         "alcedo-ui": "^2.22.6",
