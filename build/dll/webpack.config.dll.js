@@ -1,0 +1,54 @@
+const webpack = require('webpack'),
+    AssetsPlugin = require('assets-webpack-plugin'),
+    CompressionPlugin = require('compression-webpack-plugin'),
+
+    config = require('../config.js'),
+    utils = require('../utils.js'),
+
+    env = process.env.NODE_ENV,
+    library = '[name]_lib';
+
+module.exports = {
+
+    mode: 'production',
+
+    entry: {
+        'polyfill': ['babel-polyfill'],
+        'moment': ['moment'],
+        'react': ['react', 'react-dom', 'react-redux', 'react-router',
+            'react-router-config', 'react-router-dom', 'react-router-redux', 'redux',
+            'redux-thunk', 'react-tap-event-plugin', 'react-transition-group'],
+        'tools': ['classnames', 'history', 'js-cookie']
+    },
+
+    output: {
+        publicPath: './',
+        path: config[env].assetsRoot,
+        filename: utils.assetsSubPath('vendors/[name].[chunkhash].js', env),
+        library
+    },
+
+    plugins: [
+
+        new webpack.DllPlugin({
+            context: __dirname,
+            path: utils.assetsVendorsAbsolutePath('[name]-manifest.json', env),
+            name: library
+        }),
+
+        new AssetsPlugin({
+            path: config[env].assetsRoot,
+            filename: utils.assetsSubPath('vendors/vendors-assets.json', env)
+        }),
+
+        new CompressionPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(' + config.productionGzipExtensions.join('|') + ')$'),
+            threshold: 10240,
+            minRatio: 0.8
+        })
+
+    ]
+
+};
