@@ -14,7 +14,6 @@ import {DEFAULT_ROUTE} from 'src/config.routes';
 
 import 'assets/bootstrap/bootstrap-grid.min.css';
 import 'assets/font-awesome/css/fontawesome-all.min.css';
-import 'assets/icomoon/style.css';
 import 'scss/customized/index.scss';
 import 'scss/global.scss';
 import 'scss/containers/AppRoot.scss';
