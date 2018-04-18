@@ -1,12 +1,15 @@
 import config from 'src/config';
 import Api from 'apis/Api';
+import RequestManagement from 'apis/RequestManagement';
 
 export default {
-    getGroups(options) {
+
+    getProcesses(options) {
         Api.get({
             ...options,
-            url: `${config.appBaseUrl}/group/getGroups`,
+            url: `${config.appBaseUrl}/processes`,
             cancelable: false
         });
     }
+
 };
