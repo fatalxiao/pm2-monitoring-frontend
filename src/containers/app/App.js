@@ -7,7 +7,6 @@ import {renderRoutes} from 'react-router-config';
 import * as actions from 'reduxes/actions';
 
 import Nav from './nav/Nav';
-import NavTitle from './nav/title/NavTitle';
 import PageLoading from 'alcedo-ui/PageLoading';
 
 import Dom from 'vendors/Dom';
@@ -48,8 +47,6 @@ class App extends Component {
 
                     <PageLoading visible={$componentLoading}
                                  showStripes={false}/>
-
-                    <NavTitle/>
 
                     {renderRoutes(route.routes)}
 
