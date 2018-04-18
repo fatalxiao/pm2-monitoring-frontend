@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -20,14 +19,4 @@ class NavBarBottom extends Component {
     }
 }
 
-NavBarBottom.propTypes = {};
-
-function mapStateToProps(state, ownProps) {
-    return {};
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarBottom);
+export default connect(state => ({}), dispatch => bindActionCreators(actions, dispatch))(NavBarBottom);

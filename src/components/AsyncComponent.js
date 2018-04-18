@@ -30,7 +30,7 @@ function asyncComponent(getComponent, store) {
             }, 0);
         }
 
-        componentWillMount() {
+        componentDidMount() {
 
             if (!this.state.Component) {
 

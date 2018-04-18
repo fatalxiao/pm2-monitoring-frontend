@@ -91,16 +91,8 @@ EditPatient.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $form: state.patientInfo.form,
-        $steps: state.editPatient.steps,
-        $activatedStep: state.editPatient.activatedStep
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditPatient);
+export default connect(state => ({
+    $form: state.patientInfo.form,
+    $steps: state.editPatient.steps,
+    $activatedStep: state.editPatient.activatedStep
+}), dispatch => bindActionCreators(actions, dispatch))(EditPatient);

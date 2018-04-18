@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 
 import * as types from 'reduxes/actionTypes/index';
 import {STORAGE_NAME, MsgType} from 'vendors/AsyncMsgSeq';
@@ -12,7 +12,7 @@ const Type = {
         notifications: []
     },
     initialState = {
-        sequence: _.cloneDeep(DEFAULT_SEQUENCE)
+        sequence: cloneDeep(DEFAULT_SEQUENCE)
     };
 
 function flushStorage(sequence) {
@@ -29,7 +29,7 @@ function asyncMsgSeqReducer(state = initialState, action) {
 
         case types.ADD_SUCCESS_TOAST_ASYNC: {
 
-            const sequence = _.cloneDeep(state.sequence);
+            const sequence = cloneDeep(state.sequence);
             sequence[Type.TOAST].push({
                 type: MsgType.SUCCESS,
                 message: action.message
@@ -46,7 +46,7 @@ function asyncMsgSeqReducer(state = initialState, action) {
 
         case types.ADD_ERROR_TOAST_ASYNC: {
 
-            const sequence = _.cloneDeep(state.sequence);
+            const sequence = cloneDeep(state.sequence);
             sequence[Type.TOAST].push({
                 type: MsgType.ERROR,
                 message: action.message
@@ -63,7 +63,7 @@ function asyncMsgSeqReducer(state = initialState, action) {
 
         case types.ADD_INFO_NOTIFICATION_ASYNC: {
 
-            const sequence = _.cloneDeep(state.sequence);
+            const sequence = cloneDeep(state.sequence);
             sequence[Type.NOTIFICATION].push({
                 type: MsgType.INFO,
                 message: action.message
@@ -80,7 +80,7 @@ function asyncMsgSeqReducer(state = initialState, action) {
 
         case types.ADD_WARNING_NOTIFICATION_ASYNC: {
 
-            const sequence = _.cloneDeep(state.sequence);
+            const sequence = cloneDeep(state.sequence);
             sequence[Type.NOTIFICATION].push({
                 type: MsgType.WARNING,
                 message: action.message
@@ -97,7 +97,7 @@ function asyncMsgSeqReducer(state = initialState, action) {
 
         case types.CLEAR_ASYNC_MSG_SEQ: {
 
-            const sequence = _.cloneDeep(DEFAULT_SEQUENCE);
+            const sequence = cloneDeep(DEFAULT_SEQUENCE);
 
             clearStorage();
 

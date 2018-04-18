@@ -142,15 +142,7 @@ AddPatientDialog.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $groupList: state.group.list,
-        $form: state.patientBaseInfo.form
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddPatientDialog);
+export default connect(state => ({
+    $groupList: state.group.list,
+    $form: state.patientBaseInfo.form
+}), dispatch => bindActionCreators(actions, dispatch))(AddPatientDialog);

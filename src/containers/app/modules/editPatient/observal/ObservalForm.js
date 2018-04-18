@@ -399,14 +399,6 @@ ObservalForm.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $form: state.observal.form
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ObservalForm);
+export default connect(state => ({
+    $form: state.observal.form
+}), dispatch => bindActionCreators(actions, dispatch))(ObservalForm);

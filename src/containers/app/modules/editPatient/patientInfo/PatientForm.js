@@ -144,16 +144,6 @@ PatientForm.propTypes = {
 
 };
 
-PatientForm.defaultProps = {};
-
-function mapStateToProps(state, ownProps) {
-    return {
-        $form: state.patientInfo.form
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PatientForm);
+export default connect(state => ({
+    $form: state.patientInfo.form
+}), dispatch => bindActionCreators(actions, dispatch))(PatientForm);

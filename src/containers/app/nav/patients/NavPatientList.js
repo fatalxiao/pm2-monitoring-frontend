@@ -71,15 +71,7 @@ NavPatientList.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $groupList: state.group.list,
-        $patientList: state.patients.list
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavPatientList);
+export default connect(state => ({
+    $groupList: state.group.list,
+    $patientList: state.patients.list
+}), dispatch => bindActionCreators(actions, dispatch))(NavPatientList);

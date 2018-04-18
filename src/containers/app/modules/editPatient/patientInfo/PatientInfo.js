@@ -56,7 +56,7 @@ class PatientInfo extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         const {updatePatientStep} = this.props;
         updatePatientStep(0);
@@ -98,14 +98,6 @@ PatientInfo.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $getActionType: state.patientInfo.getActionType
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PatientInfo);
+export default connect(state => ({
+    $getActionType: state.patientInfo.getActionType
+}), dispatch => bindActionCreators(actions, dispatch))(PatientInfo);

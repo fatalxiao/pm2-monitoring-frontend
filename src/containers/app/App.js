@@ -9,7 +9,6 @@ import * as actions from 'reduxes/actions';
 import Nav from './nav/Nav';
 import NavTitle from './nav/title/NavTitle';
 import PageLoading from 'alcedo-ui/PageLoading';
-import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 import Dom from 'vendors/Dom';
 
@@ -18,26 +17,10 @@ import 'scss/containers/app/App.scss';
 class App extends Component {
 
     constructor(props) {
-
         super(props);
-
-        this.state = {
-            loadingId: 1
-        };
-
-        this.finishLoading = this::this.finishLoading;
-
     }
 
-    finishLoading() {
-        setTimeout(() => {
-            this.setState({
-                loadingId: ++this.state.loadingId
-            });
-        }, 250);
-    }
-
-    componentWillMount() {
+    componentDidMount() {
 
         const {getGroups, getSensoryBlocks, getPatients} = this.props;
 
@@ -53,8 +36,7 @@ class App extends Component {
 
     render() {
 
-        const {route, $componentLoading} = this.props,
-            {loadingId} = this.state;
+        const {route, $componentLoading} = this.props;
 
         return (
             <div className="app">
@@ -64,15 +46,8 @@ class App extends Component {
                 <div ref="appContent"
                      className="app-content">
 
-                    <ReactCSSTransitionGroup>
-                        {
-                            $componentLoading ?
-                                <PageLoading key={loadingId}
-                                             onRequestClose={this.finishLoading}/>
-                                :
-                                null
-                        }
-                    </ReactCSSTransitionGroup>
+                    <PageLoading visible={$componentLoading}
+                                 showStripes={false}/>
 
                     <NavTitle/>
 
@@ -96,14 +71,6 @@ App.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $componentLoading: state.loadComponent.loading
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(state => ({
+    $componentLoading: state.loadComponent.loading
+}), dispatch => bindActionCreators(actions, dispatch))(App);

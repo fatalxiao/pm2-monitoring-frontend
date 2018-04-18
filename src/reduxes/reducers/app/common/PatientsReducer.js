@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 
 import * as actionTypes from 'reduxes/actionTypes';
 
@@ -64,7 +64,7 @@ function patients(state = initialState, action) {
         }
         case actionTypes.UPDATE_PATIENT_NAME_SUCCESS: {
 
-            const list = _.cloneDeep(state.list);
+            const list = cloneDeep(state.list);
 
             list.find(item => item.id === action.id).name = action.name;
 
@@ -91,7 +91,7 @@ function patients(state = initialState, action) {
         }
         case actionTypes.UPDATE_PATIENT_GROUP_SUCCESS: {
 
-            const list = _.cloneDeep(state.list),
+            const list = cloneDeep(state.list),
                 item = list.find(item => item.id === action.id);
 
             item.group = action.group;
@@ -120,7 +120,7 @@ function patients(state = initialState, action) {
         }
         case actionTypes.ENABLE_PATIENT_SUCCESS: {
 
-            const list = _.cloneDeep(state.list);
+            const list = cloneDeep(state.list);
             list.find(item => item.id === action.id).status = 1;
 
             return {
@@ -146,7 +146,7 @@ function patients(state = initialState, action) {
         }
         case actionTypes.DISABLE_PATIENT_SUCCESS: {
 
-            const list = _.cloneDeep(state.list);
+            const list = cloneDeep(state.list);
             list.find(item => item.id === action.id).status = 0;
 
             return {

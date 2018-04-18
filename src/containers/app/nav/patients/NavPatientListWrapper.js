@@ -54,14 +54,6 @@ NavPatientListWrapper.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $patientList: state.patients.list
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavPatientListWrapper);
+export default connect(state => ({
+    $patientList: state.patients.list
+}), dispatch => bindActionCreators(actions, dispatch))(NavPatientListWrapper);

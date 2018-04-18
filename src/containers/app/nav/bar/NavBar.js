@@ -7,7 +7,7 @@ import NavPatientMenu from '../patients/NavPatientsPopover';
 
 import 'scss/containers/app/nav/bar/NavBar.scss';
 
-export default class NavBar extends Component {
+class NavBar extends Component {
 
     constructor(props) {
         super(props);
@@ -36,3 +36,5 @@ export default class NavBar extends Component {
 NavBar.propTypes = {
     isFold: PropTypes.bool
 };
+
+export default NavBar;

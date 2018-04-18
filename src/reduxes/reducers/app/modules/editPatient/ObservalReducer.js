@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 import * as actionTypes from 'reduxes/actionTypes/index';
 
 const DEFAULT_FORM = {
@@ -55,7 +55,7 @@ const DEFAULT_FORM = {
     },
     initialState = {
 
-        form: _.cloneDeep(DEFAULT_FORM),
+        form: cloneDeep(DEFAULT_FORM),
 
         getActionType: '',
         updateActionType: ''
@@ -68,13 +68,13 @@ function observal(state = initialState, action) {
         case actionTypes.RESET_PATIENT_DATA: {
             return {
                 ...state,
-                form: _.cloneDeep(DEFAULT_FORM)
+                form: cloneDeep(DEFAULT_FORM)
             };
         }
 
         case actionTypes.UPDATE_OBSERVAL_FIELD: {
 
-            const form = _.cloneDeep(state.form);
+            const form = cloneDeep(state.form);
             form[action.fieldName] = action.fieldValue;
 
             return {
@@ -93,7 +93,7 @@ function observal(state = initialState, action) {
         }
         case actionTypes.GET_OBSERVAL_SUCCESS: {
 
-            const form = action.responseData || _.cloneDeep(DEFAULT_FORM);
+            const form = action.responseData || cloneDeep(DEFAULT_FORM);
 
             if (form.durationOfFirstStageOfLabor && !isNaN(form.durationOfFirstStageOfLabor)) {
                 form.durationOfFirstStageOfLaborHours = ~~(form.durationOfFirstStageOfLabor / 60);

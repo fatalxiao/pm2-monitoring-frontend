@@ -8,7 +8,7 @@ import Valid from 'vendors/Valid';
 
 import 'scss/containers/app/nav/Nav.scss';
 
-export default class Nav extends Component {
+class Nav extends Component {
 
     constructor(props) {
 
@@ -169,3 +169,5 @@ export default class Nav extends Component {
         );
     }
 }
+
+export default Nav;

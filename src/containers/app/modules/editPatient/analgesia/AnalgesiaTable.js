@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 
 import * as actions from 'reduxes/actions/index';
 
@@ -39,7 +39,7 @@ class AnalgesiaTable extends Component {
 
     }
 
-    save = _.debounce(() => {
+    save = debounce(() => {
         const {patientId, createOrUpdateAnalgesiaData} = this.props;
         patientId && createOrUpdateAnalgesiaData(patientId, undefined, true);
     }, 250);
@@ -152,16 +152,8 @@ AnalgesiaTable.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $thoracicList: state.sensoryBlock.thoracicList,
-        $sacralList: state.sensoryBlock.sacralList,
-        $analgesiaData: state.analgesia.data
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AnalgesiaTable);
+export default connect(state => ({
+    $thoracicList: state.sensoryBlock.thoracicList,
+    $sacralList: state.sensoryBlock.sacralList,
+    $analgesiaData: state.analgesia.data
+}), dispatch => bindActionCreators(actions, dispatch))(AnalgesiaTable);

@@ -63,14 +63,6 @@ NavTitle.propTypes = {
     $state: PropTypes.object
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $state: state
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavTitle);
+export default connect(state => ({
+    $state: state
+}), dispatch => bindActionCreators(actions, dispatch))(NavTitle);

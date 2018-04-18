@@ -56,7 +56,7 @@ class AnalgesiaData extends Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         const {updatePatientStep} = this.props;
         updatePatientStep(1);
@@ -105,14 +105,6 @@ AnalgesiaData.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $getActionType: state.analgesia.getActionType
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AnalgesiaData);
+export default connect(state => ({
+    $getActionType: state.analgesia.getActionType
+}), dispatch => bindActionCreators(actions, dispatch))(AnalgesiaData);

@@ -55,7 +55,7 @@ class ObservalData extends Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         const {updatePatientStep} = this.props;
         updatePatientStep(2);
@@ -98,14 +98,6 @@ ObservalData.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $getActionType: state.observal.getActionType
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ObservalData);
+export default connect(state => ({
+    $getActionType: state.observal.getActionType
+}), dispatch => bindActionCreators(actions, dispatch))(ObservalData);

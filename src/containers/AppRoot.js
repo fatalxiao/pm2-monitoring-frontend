@@ -72,15 +72,7 @@ AppRoot.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $toastes: state.appToaster.toastes,
-        $notifiers: state.appNotifier.notifiers
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppRoot);
+export default connect(state => ({
+    $toastes: state.appToaster.toastes,
+    $notifiers: state.appNotifier.notifiers
+}), dispatch => bindActionCreators(actions, dispatch))(AppRoot);

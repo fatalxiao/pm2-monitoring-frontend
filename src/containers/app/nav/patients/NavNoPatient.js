@@ -62,12 +62,4 @@ NavNoPatient.propTypes = {
     routerPush: PropTypes.func
 };
 
-function mapStateToProps(state, ownProps) {
-    return {};
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavNoPatient);
+export default connect(state => ({}), dispatch => bindActionCreators(actions, dispatch))(NavNoPatient);

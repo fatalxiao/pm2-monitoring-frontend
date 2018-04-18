@@ -13,9 +13,7 @@ import 'scss/containers/app/modules/dashboard/Dashboard.scss';
 class Dashboard extends Component {
 
     constructor(props) {
-
         super(props);
-
     }
 
     getGroupData(patientList) {
@@ -75,14 +73,6 @@ Dashboard.propTypes = {
     $patientList: PropTypes.array
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        $patientList: state.patients.list
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(state => ({
+    $patientList: state.patients.list
+}), dispatch => bindActionCreators(actions, dispatch))(Dashboard);

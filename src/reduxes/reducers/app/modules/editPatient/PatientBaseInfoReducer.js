@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 import * as actionTypes from 'reduxes/actionTypes/index';
 
 const DEFAULT_FORM = {
@@ -8,7 +8,7 @@ const DEFAULT_FORM = {
     },
 
     initialState = {
-        form: _.cloneDeep(DEFAULT_FORM),
+        form: cloneDeep(DEFAULT_FORM),
         actionType: ''
     };
 
@@ -18,13 +18,13 @@ function patientBaseInfo(state = initialState, action) {
         case actionTypes.RESET_PATIENT_BASE_INFO: {
             return {
                 ...state,
-                form: _.cloneDeep(DEFAULT_FORM)
+                form: cloneDeep(DEFAULT_FORM)
             };
         }
 
         case actionTypes.UPDATE_PATIENT_BASE_INFO_FIELD: {
 
-            const form = _.cloneDeep(state.form);
+            const form = cloneDeep(state.form);
 
             form[action.fieldName] = action.fieldValue;
 

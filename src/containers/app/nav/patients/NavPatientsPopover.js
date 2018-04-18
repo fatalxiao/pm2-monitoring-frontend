@@ -82,12 +82,4 @@ NavPatientsPopover.propTypes = {
 
 };
 
-function mapStateToProps(state, ownProps) {
-    return {};
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavPatientsPopover);
+export default connect(state => ({}), dispatch => bindActionCreators(actions, dispatch))(NavPatientsPopover);

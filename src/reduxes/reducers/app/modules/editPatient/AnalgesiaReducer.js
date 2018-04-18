@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 import * as actionTypes from 'reduxes/actionTypes/index';
 
 const BASE_DATA = {
@@ -48,7 +48,7 @@ function analgesia(state = initialState, action) {
 
         case actionTypes.APPEND_TIME_POINT: {
 
-            const data = _.cloneDeep(state.data);
+            const data = cloneDeep(state.data);
             data.push({
                 ...BASE_DATA,
                 timePoint: data[data.length - 1].timePoint + 1.5 * 60
@@ -62,7 +62,7 @@ function analgesia(state = initialState, action) {
 
         case actionTypes.UPDATE_ANALGESIA_FIELD: {
 
-            const data = _.cloneDeep(state.data),
+            const data = cloneDeep(state.data),
                 updateItem = data.find(item => item.timePoint === action.timePoint);
 
             if (updateItem) {
