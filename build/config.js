@@ -12,7 +12,7 @@ module.exports = {
         index: path.resolve(__dirname, '../src/index.html'),
         assetsVirtualRoot: path.posix.join('/', 'static'),
         proxyTable: {
-            '/pms': 'http://localhost:9616'
+            '/pm': 'http://localhost:9616'
         }
     },
 
@@ -23,7 +23,7 @@ module.exports = {
         assetsDirectory: 'dist',
         assetsRoot: path.resolve(__dirname, '../dist'),
         proxyTable: {
-            '/pms': 'http://localhost:9616'
+            '/pm': 'http://localhost:9616'
         }
     }
 
