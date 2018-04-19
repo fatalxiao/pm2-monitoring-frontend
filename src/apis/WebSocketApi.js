@@ -29,7 +29,17 @@ function request({url, successCallback, failureCallback}) {
 
         };
 
-        ws.onopen = function () {
+        ws.onerror = () => {
+            ws.close();
+            console.log('onerror');
+        };
+
+        ws.onclose = () => {
+            ws.close();
+            console.log('onclose');
+        };
+
+        ws.onopen = () => {
             ws.send('');
         };
 
