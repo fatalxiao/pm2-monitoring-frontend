@@ -6,7 +6,7 @@ import appToaster from './common/ToasterReducer';
 import appNotifier from './common/NotifierReducer';
 import asyncMsgSeqReducer from './common/AsyncMsgSeqReducer';
 
-import process from './app/ProcessReducer';
+import process from './app/MonitoringReducer';
 
 const rootReducer = combineReducers({
 
