@@ -11,7 +11,22 @@ function request({url, successCallback, failureCallback}) {
         const ws = requestList[url] = new WebSocket(url);
 
         ws.onmessage = e => {
-            console.log(e.data);
+
+            try {
+
+                const response = JSON.parse(e.data);
+
+                if (parseInt(+response.code / 1000) === 2) {
+                    successCallback && successCallback(response, response.data);
+                } else {
+                    failureCallback && failureCallback(response, response.data);
+                }
+
+            } catch (e) {
+                failureCallback && failureCallback(response);
+                return;
+            }
+
         };
 
         ws.onopen = function () {

@@ -39,16 +39,18 @@ function ajax(method, {
             }
 
             try {
-                response = JSON.parse(response);
-            } catch (e) {
-                failureCallback && failureCallback(xhr);
-                return;
-            }
 
-            if (parseInt(+response.code / 1000) === 2) {
-                successCallback && successCallback(xhr, response, response.data);
-            } else {
-                failureCallback && failureCallback(xhr, response, response.data);
+                response = JSON.parse(response);
+
+                if (parseInt(+response.code / 1000) === 2) {
+                    successCallback && successCallback(xhr, response, response.data);
+                } else {
+                    failureCallback && failureCallback(xhr, response, response.data);
+                }
+
+            } catch (e) {
+                failureCallback && failureCallback(xhr, response);
+                return;
             }
 
         }
