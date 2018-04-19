@@ -13,7 +13,7 @@ export default store => dispatch => action => {
 
     const {
 
-            api, header, params, types, contentType,
+            api, header, params, types, contentType, isWebSocket,
 
             resMsgDisabled, successResMsgDisabled, failureResMsgDisabled,
 
@@ -44,55 +44,105 @@ export default store => dispatch => action => {
     // dispatch request action
     dispatch(actionWith({type: requestType}));
 
-    api({
-        header,
-        params: restParams,
-        contentType,
-        successCallback(xhr, response, responseData) {
+    if (isWebSocket) {
+        api({
+            successCallback(xhr, response, responseData) {
 
-            !resMsgDisabled && !successResMsgDisabled && addSuccessResMsg()(dispatch);
+                !resMsgDisabled && !successResMsgDisabled && addSuccessResMsg()(dispatch);
 
-            dispatch(actionWith({
-                type: successType,
-                responseData,
-                response,
-                xhr
-            }));
+                dispatch(actionWith({
+                    type: successType,
+                    responseData,
+                    response,
+                    xhr
+                }));
 
-            actionSuccessCallback && actionSuccessCallback(responseData, response, xhr);
-            paramsSuccessCallback && paramsSuccessCallback();
+                actionSuccessCallback && actionSuccessCallback(responseData, response, xhr);
+                paramsSuccessCallback && paramsSuccessCallback();
 
-        },
-        failureCallback(xhr, response, responseData) {
+            },
+            failureCallback(xhr, response, responseData) {
 
-            if (xhr[RequestManagement.CANCEL_FLAG] === true) {
-                actionCancelCallback && actionCancelCallback(xhr);
-                return;
-            }
-
-            if (!resMsgDisabled && !failureResMsgDisabled) {
-                if (xhr.status === 500) {
-                    addFailureResMsg()(dispatch);
-                } else {
-                    addFailureResMsg(responseData)(dispatch);
+                if (xhr[RequestManagement.CANCEL_FLAG] === true) {
+                    actionCancelCallback && actionCancelCallback(xhr);
+                    return;
                 }
+
+                if (!resMsgDisabled && !failureResMsgDisabled) {
+                    if (xhr.status === 500) {
+                        addFailureResMsg()(dispatch);
+                    } else {
+                        addFailureResMsg(responseData)(dispatch);
+                    }
+                }
+
+                dispatch(actionWith({
+                    type: failureType,
+                    responseData,
+                    response,
+                    xhr,
+                    error: response ?
+                        (responseData || response.message)
+                        :
+                        'Server or Network failure. Please try again later or contact your account manager.'
+                }));
+
+                actionFailureCallback && actionFailureCallback(responseData, response, xhr);
+                paramsFailureCallback && paramsFailureCallback();
+
             }
+        });
+    } else {
+        api({
+            header,
+            params: restParams,
+            contentType,
+            successCallback(xhr, response, responseData) {
 
-            dispatch(actionWith({
-                type: failureType,
-                responseData,
-                response,
-                xhr,
-                error: response ?
-                    (responseData || response.message)
-                    :
-                    'Server or Network failure. Please try again later or contact your account manager.'
-            }));
+                !resMsgDisabled && !successResMsgDisabled && addSuccessResMsg()(dispatch);
 
-            actionFailureCallback && actionFailureCallback(responseData, response, xhr);
-            paramsFailureCallback && paramsFailureCallback();
+                dispatch(actionWith({
+                    type: successType,
+                    responseData,
+                    response,
+                    xhr
+                }));
 
-        }
-    });
+                actionSuccessCallback && actionSuccessCallback(responseData, response, xhr);
+                paramsSuccessCallback && paramsSuccessCallback();
+
+            },
+            failureCallback(xhr, response, responseData) {
+
+                if (xhr[RequestManagement.CANCEL_FLAG] === true) {
+                    actionCancelCallback && actionCancelCallback(xhr);
+                    return;
+                }
+
+                if (!resMsgDisabled && !failureResMsgDisabled) {
+                    if (xhr.status === 500) {
+                        addFailureResMsg()(dispatch);
+                    } else {
+                        addFailureResMsg(responseData)(dispatch);
+                    }
+                }
+
+                dispatch(actionWith({
+                    type: failureType,
+                    responseData,
+                    response,
+                    xhr,
+                    error: response ?
+                        (responseData || response.message)
+                        :
+                        'Server or Network failure. Please try again later or contact your account manager.'
+                }));
+
+                actionFailureCallback && actionFailureCallback(responseData, response, xhr);
+                paramsFailureCallback && paramsFailureCallback();
+
+            }
+        });
+    }
 
 };

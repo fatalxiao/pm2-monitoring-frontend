@@ -10,6 +10,7 @@ export const getCurrentMonitoringData = () => dispatch => {
                 actionTypes.GET_CURRENT_MONITORING_DATA_FAILURE
             ],
             api: MonitoringApi.getCurrentMonitoringData,
+            isWebSocket: true,
             resMsgDisabled: true
         }
     });

@@ -19,26 +19,17 @@ import 'scss/containers/AppRoot.scss';
 class AppRoot extends Component {
 
     constructor(props) {
-
         super(props);
-
-        this.ws = new WebSocket('ws://localhost:9616/pm/monitoring');
-
     }
 
     componentDidMount() {
 
-        this.props.submitAsyncMsgSeq();
+        const {getCurrentMonitoringData} = this.props;
 
-        this.ws.onopen = e => {
-            console.log('Connection open ...');
-            this.ws.send('Hello WebSockets!');
-        };
-
-        this.ws.onmessage = e => {
-            console.log('Received Message: ' + e.data);
-            this.ws.close();
-        };
+        getCurrentMonitoringData();
+        setInterval(() => {
+            getCurrentMonitoringData();
+        }, 500);
 
     }
 

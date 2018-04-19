@@ -1,19 +1,24 @@
-import Api from 'apis/Api';
-import RequestManagement from 'apis/RequestManagement';
-import config from 'src/config';
+let ws;
 
 export default {
 
     getCurrentMonitoringData(options) {
 
-        const name = 'monitoring/getCurrentMonitoringData';
-        RequestManagement.cancelByName(name);
+        if (!ws) {
 
-        Api.get({
-            ...options,
-            name,
-            url: `${config.appBaseUrl}/monitoring`
-        });
+            ws = new WebSocket('ws://localhost:9616/pm/monitoring');
+
+            ws.onmessage = e => {
+                console.log(e.data);
+            };
+
+            ws.onopen = function () {
+                ws.send('getCurrentMonitoringData');
+            };
+
+        } else {
+            ws.send('getCurrentMonitoringData');
+        }
 
     }
 
