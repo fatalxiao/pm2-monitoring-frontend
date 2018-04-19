@@ -46,48 +46,37 @@ export default store => dispatch => action => {
 
     if (isWebSocket) {
         api({
-            successCallback(xhr, response, responseData) {
+            successCallback(response, responseData) {
 
                 !resMsgDisabled && !successResMsgDisabled && addSuccessResMsg()(dispatch);
 
                 dispatch(actionWith({
                     type: successType,
                     responseData,
-                    response,
-                    xhr
+                    response
                 }));
 
-                actionSuccessCallback && actionSuccessCallback(responseData, response, xhr);
+                actionSuccessCallback && actionSuccessCallback(responseData, response);
                 paramsSuccessCallback && paramsSuccessCallback();
 
             },
-            failureCallback(xhr, response, responseData) {
-
-                if (xhr[RequestManagement.CANCEL_FLAG] === true) {
-                    actionCancelCallback && actionCancelCallback(xhr);
-                    return;
-                }
+            failureCallback(response, responseData) {
 
                 if (!resMsgDisabled && !failureResMsgDisabled) {
-                    if (xhr.status === 500) {
-                        addFailureResMsg()(dispatch);
-                    } else {
-                        addFailureResMsg(responseData)(dispatch);
-                    }
+                    addFailureResMsg(responseData)(dispatch);
                 }
 
                 dispatch(actionWith({
                     type: failureType,
                     responseData,
                     response,
-                    xhr,
                     error: response ?
                         (responseData || response.message)
                         :
                         'Server or Network failure. Please try again later or contact your account manager.'
                 }));
 
-                actionFailureCallback && actionFailureCallback(responseData, response, xhr);
+                actionFailureCallback && actionFailureCallback(responseData, response);
                 paramsFailureCallback && paramsFailureCallback();
 
             }
