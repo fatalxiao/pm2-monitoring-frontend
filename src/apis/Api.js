@@ -2,7 +2,7 @@ import RequestManagement from './RequestManagement';
 
 function ajax(method, {
     name, url, params, formData, cancelable, header, contentType, isUpload,
-    successCallback, failureCallback, errorCallback
+    successCallback, failureCallback
 }) {
 
     const xhr = new XMLHttpRequest();

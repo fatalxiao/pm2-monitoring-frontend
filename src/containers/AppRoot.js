@@ -29,7 +29,7 @@ class AppRoot extends Component {
         getCurrentMonitoringData();
         setInterval(() => {
             getCurrentMonitoringData();
-        }, 500);
+        }, 1000);
 
     }
 

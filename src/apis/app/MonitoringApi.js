@@ -1,25 +1,12 @@
-let ws;
+import WebSocketApi from 'apis/WebSocketApi';
 
 export default {
 
     getCurrentMonitoringData(options) {
-
-        if (!ws) {
-
-            ws = new WebSocket('ws://localhost:9616/pm/monitoring');
-
-            ws.onmessage = e => {
-                console.log(e.data);
-            };
-
-            ws.onopen = function () {
-                ws.send('getCurrentMonitoringData');
-            };
-
-        } else {
-            ws.send('getCurrentMonitoringData');
-        }
-
+        WebSocketApi.request({
+            ...options,
+            url: 'ws://localhost:9616/pm/monitoring'
+        });
     }
 
 };
