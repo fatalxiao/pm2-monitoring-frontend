@@ -10,7 +10,7 @@ export const getCurrentMonitoringData = () => dispatch => {
                 actionTypes.GET_CURRENT_MONITORING_DATA_FAILURE
             ],
             api: MonitoringApi.getCurrentMonitoringData,
-            successResMsgDisabled: true
+            resMsgDisabled: true
         }
     });
 };

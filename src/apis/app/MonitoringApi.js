@@ -3,18 +3,16 @@ import RequestManagement from 'apis/RequestManagement';
 
 export default {
 
-    getCurrentMonitoringData() {
+    getCurrentMonitoringData(options) {
 
         const name = 'monitoring/getCurrentMonitoringData';
         RequestManagement.cancelByName(name);
 
-        if (options.params) {
-            Api.get({
-                ...options,
-                name,
-                url: `http://localhost:9615`
-            });
-        }
+        Api.get({
+            ...options,
+            name,
+            url: `http://localhost:9615`
+        });
 
     }
 
