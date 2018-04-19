@@ -1,5 +1,6 @@
 import Api from 'apis/Api';
 import RequestManagement from 'apis/RequestManagement';
+import config from 'src/config';
 
 export default {
 
@@ -11,7 +12,7 @@ export default {
         Api.get({
             ...options,
             name,
-            url: `http://localhost:9615`
+            url: `${config.appBaseUrl}/monitoring`
         });
 
     }
