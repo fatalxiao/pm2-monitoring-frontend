@@ -1,5 +1,4 @@
-const moment = require('moment'),
-    express = require('express'),
+const express = require('express'),
     proxyMiddleware = require('http-proxy-middleware'),
     history = require('connect-history-api-fallback'),
     opn = require('opn'),
@@ -45,9 +44,10 @@ app
 .use(compression())
 .use(history())
 .use(express.static(config[env].assetsRoot, {
-    setHeaders: res => {
-        res.setHeader('Cache-Control', 'max-age=2592000');
-        res.setHeader('Expires', `${moment().add(1, 'months').utc().format('ddd, DD MMM YYYY HH:mm:ss')} GTM`);
+    setHeaders: (res, path) => {
+        res.setHeader('Cache-Control', path.endsWith('index.html') ?
+            'no-cache, no-store, no_store, max-age=0, must-revalidate' : 'max-age=2592000'
+        );
     }
 }))
 .listen(port, err => {
