@@ -10,8 +10,6 @@ async function request({url, successCallback, failureCallback}) {
 
         ws.onmessage = e => {
 
-            console.log(e.data);
-
             try {
 
                 const response = JSON.parse(e.data);
