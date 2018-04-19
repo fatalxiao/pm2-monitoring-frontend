@@ -1,21 +1,16 @@
-const requestList = {};
+import wsrm from './WebSocketRequestManagement';
 
-function close(url) {
-    requestList[url].close();
-    delete requestList[url];
-}
-
-function request({url, successCallback, failureCallback}) {
+async function request({url, successCallback, failureCallback}) {
 
     if (!url) {
         return;
     }
 
-    if (!(url in requestList)) {
-
-        const ws = requestList[url] = new WebSocket(url);
+    const ws = await wsrm.get(url, ws => {
 
         ws.onmessage = e => {
+
+            console.log(e.data);
 
             try {
 
@@ -42,13 +37,9 @@ function request({url, successCallback, failureCallback}) {
             close(url);
         };
 
-        ws.onopen = () => {
-            ws.send('');
-        };
+    });
 
-    } else {
-        requestList[url].send('');
-    }
+    ws.send('');
 
 }
 

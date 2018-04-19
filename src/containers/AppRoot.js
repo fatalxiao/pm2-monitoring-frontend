@@ -27,10 +27,15 @@ class AppRoot extends Component {
         const {getCurrentMonitoringData} = this.props;
 
         getCurrentMonitoringData();
-        setInterval(() => {
+        this.monitoringId = setInterval(() => {
             getCurrentMonitoringData();
         }, 1000);
 
+    }
+
+    componentWillUnmount() {
+
+        clearInterval(this.monitoringId);
     }
 
     render() {

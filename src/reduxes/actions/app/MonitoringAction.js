@@ -15,3 +15,7 @@ export const getCurrentMonitoringData = () => dispatch => {
         }
     });
 };
+
+export const closeMonitoring = () => dispatch => {
+    MonitoringApi.closeMonitoring();
+};
