@@ -1,5 +1,10 @@
 const requestList = {};
 
+function close(url) {
+    requestList[url].close();
+    delete requestList[url];
+}
+
 function request({url, successCallback, failureCallback}) {
 
     if (!url) {
@@ -30,13 +35,11 @@ function request({url, successCallback, failureCallback}) {
         };
 
         ws.onerror = () => {
-            ws.close();
-            console.log('onerror');
+            close(url);
         };
 
         ws.onclose = () => {
-            ws.close();
-            console.log('onclose');
+            close(url);
         };
 
         ws.onopen = () => {
