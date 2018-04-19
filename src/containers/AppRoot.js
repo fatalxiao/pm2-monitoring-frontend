@@ -9,6 +9,7 @@ import * as actions from 'reduxes/actions';
 
 import Toaster from 'alcedo-ui/Toaster';
 import Notifier from 'alcedo-ui/Notifier';
+import App from 'containers/app/App';
 
 import {DEFAULT_ROUTE} from 'src/config.routes';
 
@@ -43,6 +44,8 @@ class AppRoot extends Component {
                           position={Notifier.Position.TOP_RIGHT}
                           onNotificationPop={clearNotifier}
                           duration={8000}/>
+
+                <App/>
 
                 {renderRoutes(route.routes)}
 
