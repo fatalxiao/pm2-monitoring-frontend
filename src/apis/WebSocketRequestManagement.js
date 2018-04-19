@@ -2,17 +2,20 @@ const requests = {};
 
 function add(url, initCallback) {
 
-    const ws = requests[url] = new WebSocket(url);
-
-    initCallback && initCallback(ws);
-
     return new Promise((resolve, reject) => {
+
+        const ws = requests[url] = new WebSocket(url);
+
         ws.onopen = () => {
             resolve(ws);
         };
+
         ws.onerror = () => {
             reject(ws);
         };
+
+        initCallback && initCallback(ws);
+
     });
 
 }
