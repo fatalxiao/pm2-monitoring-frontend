@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ProcessApi from 'apis/app/common/ProcessApi';
+import ProcessApi from 'apis/app/ProcessApi';
 
 export const getProcesses = () => dispatch => {
     return dispatch({

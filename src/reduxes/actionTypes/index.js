@@ -5,4 +5,4 @@ export * from './common/CommonActionType';
 export * from './common/LoadComponentActionType';
 export * from './common/AsyncMsgSeqActionType';
 
-export * from './app/common/ProcessActionType';
+export * from './app/ProcessActionType';

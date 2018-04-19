@@ -4,4 +4,4 @@ export * from './common/ResMsgAction';
 export * from './common/RouterAction';
 export * from './common/AsyncMsgSeqAction';
 
-export * from './app/common/ProcessAction';
+export * from './app/ProcessAction';
