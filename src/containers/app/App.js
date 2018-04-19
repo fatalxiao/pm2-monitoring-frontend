@@ -15,9 +15,9 @@ class App extends Component {
 
     componentDidMount() {
 
-        // const {getCurrentMonitoringData} = this.props;
-        //
-        // getCurrentMonitoringData();
+        const {getCurrentMonitoringData} = this.props;
+
+        getCurrentMonitoringData();
         // setInterval(() => {
         //     getCurrentMonitoringData();
         // }, 500);

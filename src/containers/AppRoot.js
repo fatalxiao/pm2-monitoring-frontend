@@ -49,13 +49,6 @@ class AppRoot extends Component {
 
                 {renderRoutes(route.routes)}
 
-                {
-                    location.pathname === '/' ?
-                        <Redirect from="/" to={DEFAULT_ROUTE}/>
-                        :
-                        null
-                }
-
             </div>
         );
     }
