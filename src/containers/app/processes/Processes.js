@@ -55,7 +55,7 @@ class Processes extends Component {
                     result = {
                         name: data.name,
                         pm_id: data.pm_id,
-                        pid: data.pm_id
+                        pid: data.pid
                     };
 
                 if (data.pm2_env) {
@@ -78,8 +78,6 @@ class Processes extends Component {
 
         const {data} = this.state;
 
-        console.log(data);
-
         return (
             <Table className="processes"
                    data={data}
@@ -92,9 +90,7 @@ class Processes extends Component {
                                    {rowData.name}
                                </a>
                                :
-                               <a>
-                                   {rowData.name}
-                               </a>
+                               rowData.name
                    }, {
                        header: 'ID',
                        renderer: 'pm_id'
