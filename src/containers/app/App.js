@@ -5,6 +5,8 @@ import {bindActionCreators} from 'redux';
 
 import * as actions from 'reduxes/actions';
 
+import Processes from './processes/Processes';
+
 import 'scss/containers/app/App.scss';
 
 class App extends Component {
@@ -20,6 +22,8 @@ class App extends Component {
     render() {
         return (
             <div className="app">
+
+                <Processes/>
 
             </div>
         );
