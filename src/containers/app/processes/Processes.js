@@ -28,11 +28,12 @@ class Processes extends Component {
             return [];
         }
 
-        if (!$monitoringData || !$monitoringData.processes || !$monitoringData.processes.length < 1) {
+        if (!$monitoringData || !$monitoringData.processes || $monitoringData.processes.length < 1) {
             return $processes;
         }
 
-        return $processes.map(item => $monitoringData.processes.find(p => p.name === item.name));
+        return $processes
+        .map(item => $monitoringData.processes.find(p => p.name === item.name));
 
     }
 
