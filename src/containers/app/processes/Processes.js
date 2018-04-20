@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import isEqual from 'lodash/isEqual';
 
 import * as actions from 'reduxes/actions';
 
@@ -28,45 +29,7 @@ class Processes extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-
-        const {data} = this.state,
-            {data: nextData} = nextState;
-
-        if (data.length !== nextData.length) {
-            return true;
-        }
-
-        for (let process of data) {
-
-            const nextProcess = nextData.find(p => p.name === process.name);
-
-            if (
-                // pm id
-                process.pm_id !== nextProcess.pm_id
-
-                // pid
-                || process.pid !== nextProcess.pid
-
-                // monit
-                || (!process.monit && nextProcess.monit) || (process.monit && !nextProcess.monit)
-                || (process.monit && nextProcess.monit
-                && (process.monit.cpu !== nextProcess.monit.cpu
-                    || process.monit.memory !== nextProcess.monit.memory))
-
-                // env
-                || (!process.pm2_env && nextProcess.pm2_env) || (process.pm2_env && !nextProcess.pm2_env)
-                || (process.pm2_env && nextProcess.pm2_env
-                && (process.pm2_env.status !== nextProcess.pm2_env.status
-                    || process.pm2_env.restart_time !== nextProcess.pm2_env.restart_time))
-
-            ) {
-                return true;
-            }
-
-        }
-
-        return false;
-
+        return !isEqual(this.state.data, nextState.data);
     }
 
     static getDerivedStateFromProps(nextProps) {
@@ -86,7 +49,27 @@ class Processes extends Component {
         }
 
         return {
-            data: $processes.map(item => $monitoringData.processes.find(p => p.name === item.name))
+            data: $processes.map(item => {
+
+                const data = $monitoringData.processes.find(p => p.name === item.name),
+                    result = {
+                        name: data.name,
+                        pm_id: data.pm_id,
+                        pid: data.pm_id
+                    };
+
+                if (data.pm2_env) {
+                    result.status = data.pm2_env.status || '';
+                }
+
+                if (data.monit) {
+                    result.cpu = data.monit.cpu || 0;
+                    result.memory = data.monit.memory ? (data.monit.memory / 1000000).toFixed(1) : 0;
+                }
+
+                return result;
+
+            })
         };
 
     }
@@ -120,13 +103,13 @@ class Processes extends Component {
                        renderer: 'pid'
                    }, {
                        header: 'Status',
-                       renderer: rowData => rowData.pm2_env ? rowData.pm2_env.status : ''
+                       renderer: rowData => rowData.status
                    }, {
                        header: 'CPU',
-                       renderer: rowData => rowData.monit ? `${rowData.monit.cpu}%` : '0%'
+                       renderer: rowData => `${rowData.cpu}%`
                    }, {
                        header: 'MEM',
-                       renderer: rowData => rowData.monit ? `${(rowData.monit.memory / 1000000).toFixed(1)} MB` : '0 MB'
+                       renderer: rowData => `${rowData.memory} MB`
                    }]}/>
         );
     }
