@@ -17,13 +17,15 @@ class Processes extends Component {
 
     render() {
         return (
-            <Table className="processes">
-
-            </Table>
+            <Table className="processes"/>
         );
     }
 }
 
-Processes.propTypes = {};
+Processes.propTypes = {
+    $processes: PropTypes.array
+};
 
-export default connect(state => ({}), dispatch => bindActionCreators(actions, dispatch))(Processes);
+export default connect(state => ({
+    $processes: state.processes.list
+}), dispatch => bindActionCreators(actions, dispatch))(Processes);

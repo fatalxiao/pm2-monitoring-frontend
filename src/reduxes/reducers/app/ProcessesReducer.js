@@ -5,7 +5,7 @@ const initialState = {
     getActionType: ''
 };
 
-function process(state = initialState, action) {
+function processes(state = initialState, action) {
     switch (action.type) {
 
         // get patient list
@@ -36,4 +36,4 @@ function process(state = initialState, action) {
     }
 }
 
-export default process;
+export default processes;
