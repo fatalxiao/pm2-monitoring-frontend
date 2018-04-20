@@ -15,25 +15,11 @@ class Processes extends Component {
 
         super(props);
 
-        this.formatData = ::this.formatData;
+        this.state = {
+            data: []
+        };
+
         this.nameTouchTapHandler = ::this.nameTouchTapHandler;
-
-    }
-
-    formatData() {
-
-        const {$monitoringData, $processes} = this.props;
-
-        if (!$processes || $processes.length < 1) {
-            return [];
-        }
-
-        if (!$monitoringData || !$monitoringData.processes || $monitoringData.processes.length < 1) {
-            return $processes;
-        }
-
-        return $processes
-        .map(item => $monitoringData.processes.find(p => p.name === item.name));
 
     }
 
@@ -41,10 +27,79 @@ class Processes extends Component {
         this.props.$routerPush(`/process/${process.pm_id}`);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+
+        const {data} = this.state,
+            {data: nextData} = nextState;
+
+        if (data.length !== nextData.length) {
+            return true;
+        }
+
+        for (let process of data) {
+
+            const nextProcess = nextData.find(p => p.name === process.name);
+
+            if (
+                // pm id
+                process.pm_id !== nextProcess.pm_id
+
+                // pid
+                || process.pid !== nextProcess.pid
+
+                // monit
+                || (!process.monit && nextProcess.monit) || (process.monit && !nextProcess.monit)
+                || (process.monit && nextProcess.monit
+                && (process.monit.cpu !== nextProcess.monit.cpu
+                    || process.monit.memory !== nextProcess.monit.memory))
+
+                // env
+                || (!process.pm2_env && nextProcess.pm2_env) || (process.pm2_env && !nextProcess.pm2_env)
+                || (process.pm2_env && nextProcess.pm2_env
+                && (process.pm2_env.status !== nextProcess.pm2_env.status
+                    || process.pm2_env.restart_time !== nextProcess.pm2_env.restart_time))
+
+            ) {
+                return true;
+            }
+
+        }
+
+        return false;
+
+    }
+
+    static getDerivedStateFromProps(nextProps) {
+
+        const {$monitoringData, $processes} = nextProps;
+
+        if (!$processes || $processes.length < 1) {
+            return {
+                data: []
+            };
+        }
+
+        if (!$monitoringData || !$monitoringData.processes || $monitoringData.processes.length < 1) {
+            return {
+                data: $processes
+            };
+        }
+
+        return {
+            data: $processes.map(item => $monitoringData.processes.find(p => p.name === item.name))
+        };
+
+    }
+
     render() {
+
+        const {data} = this.state;
+
+        console.log(data);
+
         return (
             <Table className="processes"
-                   data={this.formatData()}
+                   data={data}
                    columns={[{
                        header: 'Name',
                        renderer: rowData =>
@@ -54,7 +109,24 @@ class Processes extends Component {
                                    {rowData.name}
                                </a>
                                :
-                               rowData.name
+                               <a>
+                                   {rowData.name}
+                               </a>
+                   }, {
+                       header: 'ID',
+                       renderer: 'pm_id'
+                   }, {
+                       header: 'PID',
+                       renderer: 'pid'
+                   }, {
+                       header: 'Status',
+                       renderer: rowData => rowData.pm2_env ? rowData.pm2_env.status : ''
+                   }, {
+                       header: 'CPU',
+                       renderer: rowData => rowData.monit ? `${rowData.monit.cpu}%` : '0%'
+                   }, {
+                       header: 'MEM',
+                       renderer: rowData => rowData.monit ? `${(rowData.monit.memory / 1000000).toFixed(1)} MB` : '0 MB'
                    }]}/>
         );
     }

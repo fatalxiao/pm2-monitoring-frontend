@@ -12,7 +12,6 @@ function process(state = initialState, action) {
         case actionTypes.GET_CURRENT_MONITORING_DATA_REQUEST: {
             return {
                 ...state,
-                data: null,
                 getActionType: actionTypes.GET_CURRENT_MONITORING_DATA_REQUEST
             };
         }
@@ -26,7 +25,6 @@ function process(state = initialState, action) {
         case actionTypes.GET_CURRENT_MONITORING_DATA_FAILURE: {
             return {
                 ...state,
-                data: null,
                 getActionType: actionTypes.GET_CURRENT_MONITORING_DATA_FAILURE
             };
         }
