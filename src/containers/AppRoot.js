@@ -24,12 +24,14 @@ class AppRoot extends Component {
 
     componentDidMount() {
 
-        const {$getCurrentMonitoringData} = this.props;
+        const {$getCurrentMonitoringData, $getProcesses} = this.props;
 
         $getCurrentMonitoringData();
         this.monitoringId = setInterval(() => {
             $getCurrentMonitoringData();
         }, 1000);
+
+        $getProcesses();
 
     }
 
