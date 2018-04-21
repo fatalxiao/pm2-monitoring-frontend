@@ -24,36 +24,36 @@ class AppRoot extends Component {
 
     componentDidMount() {
 
-        const {$getCurrentMonitoringData, $getProcesses} = this.props;
+        const {getCurrentMonitoringDataotifier, getProcesses} = this.props;
 
-        $getCurrentMonitoringData();
+        getCurrentMonitoringDataotifier();
         this.monitoringId = setInterval(() => {
-            $getCurrentMonitoringData();
+            getCurrentMonitoringDataotifier();
         }, 1000);
 
-        $getProcesses();
+        getProcesses();
 
     }
 
     componentWillUnmount() {
         clearInterval(this.monitoringId);
-        this.props.$closeMonitoring();
+        this.props.closeMonitoring();
     }
 
     render() {
 
-        const {$toastes, $notifiers, route, $clearToaste, $clearNotifier} = this.props;
+        const {toastes, notifiers, route, clearToaste, clearNotifier} = this.props;
 
         return (
             <div className="app-root">
 
-                <Toaster toasts={$toastes}
+                <Toaster toasts={toastes}
                          position={Toaster.Position.TOP}
-                         onToastPop={$clearToaste}/>
+                         onToastPop={clearToaste}/>
 
-                <Notifier notifications={$notifiers}
+                <Notifier notifications={notifiers}
                           position={Notifier.Position.TOP_RIGHT}
-                          onNotificationPop={$clearNotifier}
+                          onNotificationPop={clearNotifier}
                           duration={8000}/>
 
                 <App/>
@@ -68,23 +68,23 @@ class AppRoot extends Component {
 
 AppRoot.propTypes = {
 
-    $toastes: PropTypes.array,
-    $notifiers: PropTypes.array,
+    toastes: PropTypes.array,
+    notifiers: PropTypes.array,
 
-    $clearToaste: PropTypes.func,
-    $clearNotifier: PropTypes.func,
-    $getCurrentMonitoringData: PropTypes.func,
-    $getProcesses: PropTypes.func
+    clearToaste: PropTypes.func,
+    clearNotifier: PropTypes.func,
+    getCurrentMonitoringDataotifier: PropTypes.func,
+    getProcesses: PropTypes.func
 
 };
 
 export default connect(state => ({
-    $toastes: state.appToaster.toastes,
-    $notifiers: state.appNotifier.notifiers
+    toastes: state.appToaster.toastes,
+    notifiers: state.appNotifier.notifiers
 }), dispatch => bindActionCreators({
-    $clearToaste: actions.clearToaste,
-    $clearNotifier: actions.clearNotifier,
-    $getCurrentMonitoringData: actions.getCurrentMonitoringData,
-    $closeMonitoring: actions.closeMonitoring,
-    $getProcesses: actions.getProcesses
+    clearToaste: actions.clearToaste,
+    clearNotifier: actions.clearNotifier,
+    getCurrentMonitoringDataotifier: actions.getCurrentMonitoringData,
+    closeMonitoring: actions.closeMonitoring,
+    getProcesses: actions.getProcesses
 }, dispatch))(AppRoot);
