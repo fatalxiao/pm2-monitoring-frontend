@@ -25,7 +25,7 @@ class Processes extends Component {
     }
 
     nameTouchTapHandler(process) {
-        this.props.$routerPush(`/process/${process.pm_id}`);
+        this.props.routerPush(`/process/${process.pm_id}`);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -34,24 +34,24 @@ class Processes extends Component {
 
     static getDerivedStateFromProps(nextProps) {
 
-        const {$monitoringData, $processes} = nextProps;
+        const {monitoringData, processes} = nextProps;
 
-        if (!$processes || $processes.length < 1) {
+        if (!processes || processes.length < 1) {
             return {
                 data: []
             };
         }
 
-        if (!$monitoringData || !$monitoringData.processes || $monitoringData.processes.length < 1) {
+        if (!monitoringData || !monitoringData.processes || monitoringData.processes.length < 1) {
             return {
-                data: $processes
+                data: processes
             };
         }
 
         return {
-            data: $processes.map(item => {
+            data: processes.map(item => {
 
-                const data = $monitoringData.processes.find(p => p.name === item.name),
+                const data = monitoringData.processes.find(p => p.name === item.name),
                     result = {
                         name: data.name,
                         pm_id: data.pm_id,
@@ -113,16 +113,16 @@ class Processes extends Component {
 
 Processes.propTypes = {
 
-    $monitoringData: PropTypes.object,
-    $processes: PropTypes.array,
+    monitoringData: PropTypes.object,
+    processes: PropTypes.array,
 
-    $routerPush: PropTypes.func
+    routerPush: PropTypes.func
 
 };
 
 export default connect(state => ({
-    $monitoringData: state.monitoring.data,
-    $processes: state.processes.list
+    monitoringData: state.monitoring.data,
+    processes: state.processes.list
 }), dispatch => bindActionCreators({
-    $routerPush: actions.routerPush
+    routerPush: actions.routerPush
 }, dispatch))(Processes);
