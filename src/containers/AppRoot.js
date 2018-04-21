@@ -36,8 +36,8 @@ class AppRoot extends Component {
     }
 
     componentWillUnmount() {
-
         clearInterval(this.monitoringId);
+        this.props.$closeMonitoring();
     }
 
     render() {
@@ -85,5 +85,6 @@ export default connect(state => ({
     $clearToaste: actions.clearToaste,
     $clearNotifier: actions.clearNotifier,
     $getCurrentMonitoringData: actions.getCurrentMonitoringData,
+    $closeMonitoring: actions.closeMonitoring,
     $getProcesses: actions.getProcesses
 }, dispatch))(AppRoot);
