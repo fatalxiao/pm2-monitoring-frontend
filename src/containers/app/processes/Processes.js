@@ -53,16 +53,16 @@ class Processes extends Component {
 
                 const data = monitoringData.processes.find(p => p.name === item.name),
                     result = {
-                        name: data.name,
-                        pm_id: data.pm_id,
-                        pid: data.pid
+                        name: data ? data.name : item.name,
+                        pm_id: data ? data.pm_id : '',
+                        pid: data ? data.pid : ''
                     };
 
-                if (data.pm2_env) {
+                if (data && data.pm2_env) {
                     result.status = data.pm2_env.status || '';
                 }
 
-                if (data.monit) {
+                if (data && data.monit) {
                     result.cpu = data.monit.cpu || 0;
                     result.memory = data.monit.memory ? (data.monit.memory / 1000000).toFixed(1) : 0;
                 }
@@ -102,11 +102,12 @@ class Processes extends Component {
                        renderer: rowData => rowData.status
                    }, {
                        header: 'CPU',
-                       renderer: rowData => `${rowData.cpu}%`
+                       renderer: rowData => !isNaN(rowData.cpu) ? `${rowData.cpu}%` : ''
                    }, {
                        header: 'MEM',
-                       renderer: rowData => `${rowData.memory} MB`
-                   }]}/>
+                       renderer: rowData => !isNaN(rowData.memory) ? `${rowData.memory} MB` : ''
+                   }]}
+                   idProp="name"/>
         );
     }
 }
