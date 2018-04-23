@@ -29,14 +29,18 @@ class UploadDialog extends Component {
     }
 
     fileChangeHandler(e) {
+
+        const fileInput = e.target;
+
         this.setState({
-            fileName: /^.*\\(.+?)(\.[^\.]*)?$/.exec(e.target.value)[1]
+            fileName: /^.*\\(.+?)(\.[^\.]*)?$/.exec(fileInput.value)[1]
         }, () => {
             const {data} = this.props;
             if (data && data.name) {
-                this.props.uploadProcessPackage(data.name, this.refs.form);
+                this.props.uploadProcessPackage(data.name, fileInput.files[0]);
             }
         });
+
     }
 
     render() {
