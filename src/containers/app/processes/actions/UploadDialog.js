@@ -32,6 +32,10 @@ class UploadDialog extends Component {
 
         const fileInput = e.target;
 
+        if (!fileInput.value) {
+            return
+        }
+
         this.setState({
             fileName: /^.*\\(.+?)(\.[^\.]*)?$/.exec(fileInput.value)[1]
         }, () => {
