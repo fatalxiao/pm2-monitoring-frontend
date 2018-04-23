@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ProcessApi from 'apis/app/ProcessApi';
+import ProcessesApi from 'apis/app/ProcessesApi';
 
 export const getProcesses = () => dispatch => {
     return dispatch({
@@ -9,7 +9,7 @@ export const getProcesses = () => dispatch => {
                 actionTypes.GET_PROCESSES_SUCCESS,
                 actionTypes.GET_PROCESSES_FAILURE
             ],
-            api: ProcessApi.getProcesses,
+            api: ProcessesApi.getProcesses,
             successResMsgDisabled: true
         }
     });
