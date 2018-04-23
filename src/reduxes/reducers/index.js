@@ -7,6 +7,7 @@ import appNotifier from './common/NotifierReducer';
 
 import monitoring from './app/MonitoringReducer';
 import processes from './app/ProcessesReducer';
+import process from './app/ProcessReducer';
 
 const rootReducer = combineReducers({
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 
     monitoring,
     processes,
+    process,
 
     router: routerReducer
 

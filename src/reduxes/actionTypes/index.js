@@ -5,4 +5,5 @@ export * from './common/CommonActionType';
 export * from './common/LoadComponentActionType';
 
 export * from './app/MonitoringActionType';
+export * from './app/ProcessActionType';
 export * from './app/ProcessesActionType';

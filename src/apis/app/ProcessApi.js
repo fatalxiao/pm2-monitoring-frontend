@@ -1,14 +1,11 @@
-import config from 'src/config';
-import Api from 'apis/Api';
-import RequestManagement from 'apis/RequestManagement';
+import WebSocketApi from '../WebSocketApi';
 
 export default {
 
-    getProcesses(options) {
-        Api.get({
+    uploadProcessPackage(options) {
+        WebSocketApi.request({
             ...options,
-            url: `${config.appBaseUrl}/processes`,
-            cancelable: false
+            url: 'ws://localhost:9616/pm/monitoring'
         });
     }
 
