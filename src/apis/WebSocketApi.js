@@ -28,11 +28,12 @@ async function request({url, message, successCallback, failureCallback}) {
         };
 
         ws.onerror = () => {
-            close(url);
+            ws.close(url);
         };
 
         ws.onclose = () => {
-            close(url);
+            wsrm.remove(url);
+            ws.close(url);
         };
 
     });

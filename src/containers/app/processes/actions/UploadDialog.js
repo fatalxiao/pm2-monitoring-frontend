@@ -62,7 +62,8 @@ class UploadDialog extends Component {
 
                 <div>{fileName}</div>
 
-                <form ref="form">
+                <form ref="form"
+                      encType="multipart/form-data">
                     <input key={uploadFileKey}
                            ref="uploadFile"
                            className="invisible-input"

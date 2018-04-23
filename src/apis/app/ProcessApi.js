@@ -1,5 +1,4 @@
 import Api from '../Api';
-import WebSocketApi from '../WebSocketApi';
 import config from '../../config';
 
 export default {
