@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from 'reduxes/actions';
 
 import IconButton from 'alcedo-ui/IconButton';
-import Dialog from 'alcedo-ui/Dialog';
+import UploadDialog from './UploadDialog';
 
 class UploadIcon extends Component {
 
@@ -45,10 +45,8 @@ class UploadIcon extends Component {
                 <IconButton iconCls="fas fa-upload"
                             onTouchTap={this.showDialog}/>
 
-                <Dialog visible={dialogVisible}
-                        onRequestClose={this.hideDialog}>
-
-                </Dialog>
+                <UploadDialog visible={dialogVisible}
+                              onRequestClose={this.hideDialog}/>
 
             </Fragment>
         );
