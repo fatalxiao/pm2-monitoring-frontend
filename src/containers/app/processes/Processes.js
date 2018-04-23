@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -7,6 +7,7 @@ import isEqual from 'lodash/isEqual';
 import * as actions from 'reduxes/actions';
 
 import Table from 'alcedo-ui/Table';
+import UploadIcon from './actions/UploadIcon';
 
 import 'scss/containers/app/processes/Processes.scss';
 
@@ -106,6 +107,11 @@ class Processes extends Component {
                    }, {
                        header: 'MEM',
                        renderer: rowData => !isNaN(rowData.memory) ? `${rowData.memory} MB` : ''
+                   }, {
+                       renderer: rowData =>
+                           <Fragment>
+                               <UploadIcon/>
+                           </Fragment>
                    }]}
                    idProp="name"/>
         );
