@@ -46,6 +46,7 @@ export default store => dispatch => action => {
 
     if (isWebSocket) {
         api({
+            params: restParams,
             successCallback(response, responseData) {
 
                 !resMsgDisabled && !successResMsgDisabled && addSuccessResMsg()(dispatch);

@@ -1,7 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ProcessApi from 'apis/app/ProcessApi';
 
-export const uploadProcessPackage = () => dispatch => {
+export const uploadProcessPackage = (processName, formData) => dispatch => {
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
@@ -10,6 +10,10 @@ export const uploadProcessPackage = () => dispatch => {
                 actionTypes.UPLOAD_PROCESS_PACKAGE_FAILURE
             ],
             api: ProcessApi.uploadProcessPackage,
+            params: {
+                processName,
+                formData
+            },
             isWebSocket: true,
             successResMsgDisabled: true
         }

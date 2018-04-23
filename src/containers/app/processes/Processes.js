@@ -110,7 +110,7 @@ class Processes extends Component {
                    }, {
                        renderer: rowData =>
                            <Fragment>
-                               <UploadIcon/>
+                               <UploadIcon data={rowData}/>
                            </Fragment>
                    }]}
                    idProp="name"/>

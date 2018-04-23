@@ -1,6 +1,6 @@
 import wsrm from './WebSocketRequestManagement';
 
-async function request({url, successCallback, failureCallback}) {
+async function request({url, message, successCallback, failureCallback}) {
 
     if (!url) {
         return;
@@ -37,7 +37,7 @@ async function request({url, successCallback, failureCallback}) {
 
     });
 
-    ws.send('');
+    ws.send(message);
 
 }
 

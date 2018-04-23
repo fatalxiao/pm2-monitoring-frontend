@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import * as actions from 'reduxes/actions';
+
 import Dialog from 'alcedo-ui/Dialog';
 import RaisedButton from 'alcedo-ui/RaisedButton';
 
@@ -29,6 +31,11 @@ class UploadDialog extends Component {
     fileChangeHandler(e) {
         this.setState({
             fileName: /^.*\\(.+?)(\.[^\.]*)?$/.exec(e.target.value)[1]
+        }, () => {
+            const {data} = this.props;
+            if (data && data.name) {
+                this.props.uploadProcessPackage(data.name, this.refs.form);
+            }
         });
     }
 
@@ -41,21 +48,22 @@ class UploadDialog extends Component {
             <Dialog visible={visible}
                     title="Upload Package"
                     onRequestClose={onRequestClose}>
-                <form>
 
-                    <RaisedButton value="Select Package File"
-                                  onTouchTap={this.selectFile}/>
+                <RaisedButton value="Select Package File"
+                              onTouchTap={this.selectFile}/>
 
-                    <div>{fileName}</div>
+                <div>{fileName}</div>
 
+                <form ref="form">
                     <input key={uploadFileKey}
                            ref="uploadFile"
                            className="invisible-input"
+                           name="file"
                            type="file"
                            accept="aplication/zip"
                            onChange={this.fileChangeHandler}/>
-
                 </form>
+
             </Dialog>
         );
     }
@@ -64,9 +72,13 @@ class UploadDialog extends Component {
 UploadDialog.propTypes = {
 
     visible: PropTypes.bool,
+    data: PropTypes.object,
 
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    uploadProcessPackage: PropTypes.func
 
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(UploadDialog);
+export default connect(state => ({}), dispatch => bindActionCreators({
+    uploadProcessPackage: actions.uploadProcessPackage
+}, dispatch))(UploadDialog);

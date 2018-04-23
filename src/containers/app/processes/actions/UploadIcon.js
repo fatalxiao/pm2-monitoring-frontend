@@ -37,7 +37,8 @@ class UploadIcon extends Component {
 
     render() {
 
-        const {dialogVisible} = this.state;
+        const {data} = this.props,
+            {dialogVisible} = this.state;
 
         return (
             <Fragment>
@@ -46,6 +47,7 @@ class UploadIcon extends Component {
                             onTouchTap={this.showDialog}/>
 
                 <UploadDialog visible={dialogVisible}
+                              data={data}
                               onRequestClose={this.hideDialog}/>
 
             </Fragment>
@@ -54,7 +56,11 @@ class UploadIcon extends Component {
 }
 
 UploadIcon.propTypes = {
+
+    data: PropTypes.object,
+
     routerPush: PropTypes.func
+
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
