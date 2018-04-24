@@ -21,11 +21,17 @@ function add(url, initCallback) {
 }
 
 async function get(url, initCallback) {
-    return requests[url] ? requests[url] : await add(url, initCallback);
+
+    if (requests[url]) {
+        return requests[url];
+    }
+
+    return requests[url] = await add(url, initCallback);
+
 }
 
 function remove(url) {
-    requests[url].close();
+    requests[url] && requests[url].close();
     delete requests[url];
 }
 

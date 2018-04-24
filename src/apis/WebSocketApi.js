@@ -1,6 +1,6 @@
 import wsrm from './WebSocketRequestManagement';
 
-async function request({url, message, successCallback, failureCallback}) {
+async function request({url, message, autoClose, successCallback, failureCallback}) {
 
     if (!url) {
         return;
@@ -9,6 +9,8 @@ async function request({url, message, successCallback, failureCallback}) {
     const ws = await wsrm.get(url, ws => {
 
         ws.onmessage = e => {
+
+            autoClose && wsrm.remove(url);
 
             try {
 
@@ -28,17 +30,16 @@ async function request({url, message, successCallback, failureCallback}) {
         };
 
         ws.onerror = () => {
-            ws.close(url);
+
         };
 
         ws.onclose = () => {
             wsrm.remove(url);
-            ws.close(url);
         };
 
     });
 
-    ws.send(message);
+    ws.send(message || '');
 
 }
 

@@ -1,7 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ProcessApi from 'apis/app/ProcessApi';
 
-export const uploadProcessPackage = (processName, formData) => dispatch => {
+export const uploadProcessPackage = (processName, file) => dispatch => {
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
@@ -12,7 +12,7 @@ export const uploadProcessPackage = (processName, formData) => dispatch => {
             api: ProcessApi.uploadProcessPackage,
             params: {
                 processName,
-                formData
+                file
             },
             successResMsgDisabled: true
         }

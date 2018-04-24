@@ -30,7 +30,7 @@ class UploadDialog extends Component {
 
     fileChangeHandler(e) {
 
-        const {value} = e.target;
+        const {value, files} = e.target;
 
         if (!value) {
             return;
@@ -39,9 +39,9 @@ class UploadDialog extends Component {
         this.setState({
             fileName: /^.*\\(.+?)(\.[^\.]*)?$/.exec(value)[1]
         }, () => {
-            const {data} = this.props;
+            const {data, uploadProcessPackage} = this.props;
             if (data && data.name) {
-                this.props.uploadProcessPackage(data.name, this.refs.form);
+                uploadProcessPackage(data.name, files[0]);
             }
         });
 
@@ -62,16 +62,13 @@ class UploadDialog extends Component {
 
                 <div>{fileName}</div>
 
-                <form ref="form"
-                      encType="multipart/form-data">
-                    <input key={uploadFileKey}
-                           ref="uploadFile"
-                           className="invisible-input"
-                           name="file"
-                           type="file"
-                           accept="aplication/zip"
-                           onChange={this.fileChangeHandler}/>
-                </form>
+                <input key={uploadFileKey}
+                       ref="uploadFile"
+                       className="invisible-input"
+                       name="file"
+                       type="file"
+                       accept="aplication/zip"
+                       onChange={this.fileChangeHandler}/>
 
             </Dialog>
         );
