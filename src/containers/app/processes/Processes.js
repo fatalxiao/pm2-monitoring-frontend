@@ -43,7 +43,7 @@ class Processes extends Component {
             };
         }
 
-        if (!monitoringData || !monitoringData.processes || monitoringData.processes.length < 1) {
+        if (!monitoringData || monitoringData.length < 1) {
             return {
                 data: processes
             };
@@ -52,7 +52,7 @@ class Processes extends Component {
         return {
             data: processes.map(item => {
 
-                const data = monitoringData.processes.find(p => p.name === item.name),
+                const data = monitoringData.find(p => p.name === item.name),
                     result = {
                         name: data ? data.name : item.name,
                         pm_id: data ? data.pm_id : '',
