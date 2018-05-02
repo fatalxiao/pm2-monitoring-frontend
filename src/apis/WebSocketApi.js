@@ -29,10 +29,6 @@ async function request({url, message, autoClose, successCallback, failureCallbac
 
         };
 
-        ws.onerror = () => {
-
-        };
-
         ws.onclose = () => {
             wsrm.remove(url);
         };
