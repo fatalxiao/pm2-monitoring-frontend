@@ -1,4 +1,6 @@
 const path = require('path'),
+
+    HappyPack = require('happypack'),
     autoprefixer = require('autoprefixer'),
 
     config = require('./config.js'),
@@ -41,25 +43,32 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
+
             'src': resolve('src'),
             'apis': resolve('src/apis'),
             'assets': resolve('src/assets'),
             'scss': resolve('src/assets/scss'),
             'images': resolve('src/assets/images'),
+            'messages': resolve('src/assets/messages'),
             'stylesheets': resolve('src/assets/stylesheets'),
             'containers': resolve('src/containers'),
             'components': resolve('src/components'),
             'customized': resolve('src/customized'),
             'reduxes': resolve('src/reduxes'),
-            'vendors': resolve('src/vendors')
+            'statics': resolve('src/statics'),
+            'vendors': resolve('src/vendors'),
+
+            'feedManager': resolve('src/assets/scss/containers/app/modules/feedManager'),
+            'biddingBudget': resolve('src/assets/scss/containers/app/modules/biddingBudget')
+
         }
     },
 
     module: {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader',
-            include: [resolve('src'), resolve('node_modules/xml-name-validator/lib/xml-name-validator.js')]
+            use: 'happypack/loader?id=js',
+            include: [resolve('src')]
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
@@ -76,11 +85,37 @@ module.exports = {
             }
         }, {
             test: /\.scss$/,
-            use: [...cssLoaderConfig, 'sass-loader']
+            use: [...cssLoaderConfig, 'fast-sass-loader']
         }, {
             test: /\.css$/,
             use: cssLoaderConfig
+        }, {
+            test: /\.md/,
+            use: 'happypack/loader?id=md'
         }]
-    }
+    },
+
+    plugins: [
+        new HappyPack({
+            id: 'js',
+            loaders: [{
+                loader: 'babel-loader?cacheDirectory=true'
+            }],
+            threads: 4,
+            verbose: false
+        }),
+        new HappyPack({
+            id: 'md',
+            loaders: [{
+                loader: 'js-markdown-loader',
+                options: {
+                    fullInfo: true,
+                    dialect: 'DERBY'
+                }
+            }],
+            threads: 4,
+            verbose: false
+        })
+    ]
 
 };
