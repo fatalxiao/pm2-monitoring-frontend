@@ -1,23 +1,19 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
+import device from './common/DeviceReducer';
 import loadComponent from './common/LoadComponentReducer';
 import appToaster from './common/ToasterReducer';
 import appNotifier from './common/NotifierReducer';
-
-import monitoring from './app/MonitoringReducer';
-import processes from './app/ProcessesReducer';
-import process from './app/ProcessReducer';
+import routeParam from './common/RouteParamReducer';
 
 const rootReducer = combineReducers({
 
+    device,
     loadComponent,
     appToaster,
     appNotifier,
-
-    monitoring,
-    processes,
-    process,
+    routeParam,
 
     router: routerReducer
 
