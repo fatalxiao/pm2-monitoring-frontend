@@ -74,7 +74,7 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlPlugin({
             filename: config[env].index,
             template: './src/index.html',
-            favicon: './src/assets/images/favicon.ico',
+            // favicon: './src/assets/images/favicon.ico',
             inject: true,
             minify: {
                 removeComments: true,
@@ -94,10 +94,11 @@ module.exports = merge(baseWebpackConfig, {
         }),
 
         new CompressionPlugin({
-            asset: '[path].gz[query]',
-            algorithm: 'gzip',
             test: new RegExp('\\.(' + config.productionGzipExtensions.join('|') + ')$'),
-            threshold: 10240,
+            cache: true,
+            filename: '[path].gz[query]',
+            algorithm: 'gzip',
+            threshold: 1,
             minRatio: 0.8
         })
 

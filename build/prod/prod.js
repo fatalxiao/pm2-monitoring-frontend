@@ -1,25 +1,21 @@
 const fs = require('fs'),
-    ora = require('ora'),
-    chalk = require('chalk'),
     webpack = require('webpack'),
     archiver = require('archiver'),
     crypto = require('crypto'),
+    log = require('friendly-errors-webpack-plugin/src/output'),
 
     config = require('../config.js'),
     webpackConfig = require('./webpack.config.prod.js'),
     {fsExistsSync, copyRecursionSync, rmRecursionSync} = require('../utils.js'),
 
     env = process.env.NODE_ENV,
-    name = `dpe-frontend`,
+    name = env === 'production' ? 'dplatform-click-web' : `dplatform-click-web-${env}`,
     path = `./${name}`,
-    zipPath = `./${name}.zip`,
-    spinner = ora('building for production...');
+    zipPath = `./${name}.zip`;
 
-spinner.start();
+log.title('info', 'WAIT', 'Building Production...');
 
 webpack(webpackConfig, (err, stats) => {
-
-    spinner.stop();
 
     if (err) {
         throw err;
@@ -48,14 +44,14 @@ webpack(webpackConfig, (err, stats) => {
 
     // copy files
     copyRecursionSync(config[env].rootDirectory, path, ['node_modules', '.DS_Store']);
-    copyRecursionSync('./release', path);
+    copyRecursionSync('./release/server', path);
+    copyRecursionSync('./release/shell', path);
 
     // make archive
     const output = fs.createWriteStream(zipPath),
         archive = archiver('zip', {zlib: {level: 9}});
-    output.on('close', () => {
 
-        console.log(chalk.cyan('Archive: ' + archive.pointer() + ' total bytes'));
+    output.on('close', () => {
 
         // remove temp dir
         if (fsExistsSync(path)) {
@@ -65,10 +61,14 @@ webpack(webpackConfig, (err, stats) => {
         // calculate SHA-256 Hash
         const rs = fs.createReadStream(zipPath),
             hash = crypto.createHash('sha256');
+
         rs.on('data', hash.update.bind(hash));
         rs.on('end', function () {
-            console.log('SHA-256 Hash: ', hash.digest('hex'));
-            console.log(chalk.cyan('Build complete.'));
+            log.title('success', 'DONE', [
+                'Build Production complete',
+                `Archive: ${archive.pointer()} total bytes`,
+                `SHA-256 Hash: ${hash.digest('hex')}`
+            ].join('\n       '));
         });
 
     });
