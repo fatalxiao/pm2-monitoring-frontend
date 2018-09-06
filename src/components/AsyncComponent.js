@@ -1,52 +1,58 @@
 import React, {Component} from 'react';
 
-import * as types from 'reduxes/actionTypes/index';
+import * as types from 'reduxes/actionTypes';
 
 function asyncComponent(getComponent, store) {
 
     return class AsyncComponent extends Component {
-
-        static Component = null;
 
         constructor(props) {
 
             super(props);
 
             this.state = {
-                Component: AsyncComponent.Component
+                Component: null
             };
 
         }
 
-        loadStartCallback() {
-            store && setTimeout(() => {
-                store.dispatch({type: types.LOAD_COMPONENT_START});
-            }, 0);
-        }
+        loadStartCallback = () => {
+            setTimeout(() => store.dispatch({type: types.LOAD_COMPONENT_START}), 0);
+        };
 
-        loadCompleteCallback() {
-            store && setTimeout(() => {
-                store.dispatch({type: types.LOAD_COMPONENT_COMPLETE});
-            }, 0);
-        }
+        loadCompleteCallback = () => {
+            setTimeout(() => store.dispatch({type: types.LOAD_COMPONENT_COMPLETE}), 0);
+        };
 
-        componentDidMount() {
+        loadComponent = callback => {
 
-            if (!this.state.Component) {
-
-                this.loadStartCallback();
-
-                getComponent().then(({default: Component}) => {
-                    AsyncComponent.Component = Component;
-                    this.setState({
-                        Component
-                    }, () => {
-                        this.loadCompleteCallback();
-                    });
+            /**
+             * 使用 babel-plugin-transform-import-sync 加快开发环境编译速度
+             */
+            if (process.env.NODE_ENV === 'development') {
+                this.setState({
+                    Component: getComponent()
+                }, () => {
+                    callback && callback();
                 });
-
+                return;
             }
 
+            getComponent().then(component => {
+                this.setState({
+                    Component: component.default || component
+                }, () => {
+                    callback && callback();
+                });
+            });
+
+        };
+
+        componentDidMount() {
+            if (!this.state.Component) {
+                this.loadStartCallback();
+                this.loadComponent(this.loadCompleteCallback);
+            }
         }
 
         render() {
