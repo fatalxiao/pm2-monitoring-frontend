@@ -1,9 +1,21 @@
-/**
- * @file Valid vendor
- * @author liangxiaojun(liangxiaojun@derbysoft.com)
- */
+import trim from 'lodash/trim';
 
-import isArray from 'lodash/isArray';
+function downloadMessageValid(innerText) {
+    if (!innerText) {
+        return true;
+    }
+
+    try {
+        let json = JSON.parse(innerText);
+
+        if (json && json.code && !(json.code.toString().startsWith('2'))) {
+            return false;
+        }
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
 
 function range(value, min, max) {
     max !== undefined && (value = value > max ? max : value);
@@ -11,138 +23,49 @@ function range(value, min, max) {
     return value;
 }
 
-function isChrome() {
-    return /chrome/i.test(navigator.userAgent);
+function isPromise(obj) {
+    Object.prototype.toString.call(obj) === '[object Promise]';
 }
 
-function isMac() {
-    return /macintosh|mac os x/i.test(navigator.userAgent);
+function isValidName(value) {
+    return /^[A-Za-z0-9\ \-\_]*$/.test(trim(value));
 }
 
-function isWindows() {
-    return /windows|win32/i.test(navigator.userAgent);
+function isValidReportName(value) {
+    value = trim(value);
+    return !!value && value.length > 0 && value.length <= 128 && isValidName(value);
 };
 
-function isNumber(value) {
-    return !Number.isNaN(value);
+function isValidEmail(value) {
+    return /^([a-zA-Z0-9]+[\_\|\.\-]+)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[\_\|\.\-]+)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
+    .test(trim(value));
+};
+
+function isDerbyUser(email) {
+    return /\@derbysoft\.(com|net)$/i.test(email);
 }
 
-function isInteger(value) {
-    return Number.isInteger(value);
-}
+function isValidReport(profile) {
 
-function isPositiveInteger(value) {
-    return isInteger(value) && value > 0;
-}
-
-function isNonnegativeInteger(value) {
-    return isInteger(value) && value >= 0;
-}
-
-function isNegativeInteger(value) {
-    return isInteger(value) && value < 0;
-}
-
-function isNonpositiveInteger(value) {
-    return isInteger(value) && value <= 0;
-}
-
-function isOdd(value) {
-    return isInteger(value) && value % 2 === 1;
-}
-
-function isEven(value) {
-    return isInteger(value) && value % 2 === 0;
-}
-
-function isInRange(value, min, max) {
-    return isNumber(value) && isNumber(min) && isNumber(max) && value >= min && value <= max;
-}
-
-function isEmail(value) {
-    return /^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/.test(value);
-}
-
-function isUrl(value) {
-    return /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+$/.test(value);
-}
-
-function isDate(v) {
-    return ({}).toString.call(v) === '[object Date]';
-}
-
-function isEmptyObject(obj) {
-    try {
-        for (let key in obj) {
-            return false;
-        }
-    } catch (e) {
-        return true;
-    }
-}
-
-function isPerCent(perCent) {
-    return isNumber(perCent) && perCent >= 0 && perCent <= 1;
-}
-
-function isDeg(deg) {
-    return isNumber(deg) && deg >= 0 && deg <= 360;
-}
-
-function isRGB(rgb) {
-    return rgb && isArray(rgb) && rgb.length === 3
-        && rgb.filter(item => isInteger(item) && item >= 0 && item <= 255).length === 3;
-}
-
-function isHSB(hsb) {
-    return hsb && isArray(hsb) && hsb.length === 3
-        && isDeg(hsb[0]) && isInRange(hsb[1], 0, 1) && isInRange(hsb[2], 0, 1);
-}
-
-function isHex(hex, hasHash) {
-
-    if (!hex) {
+    if (!profile || !profile.email) {
         return false;
     }
 
-    if ((!hasHash && hex.length !== 6) || (hasHash && hex.length !== 7)) {
+    if (location.pathname.startsWith('/report') && !isDerbyUser(profile.email)) {
         return false;
     }
 
-    if (hasHash && hex[0] !== '#') {
-        return false;
-    }
-
-    function fn(i) {
-        const j = hasHash ? 1 : 0;
-        return isInRange(parseInt(hex.slice(i + j, i + j + 2), 16), 0, 255);
-    }
-
-    return fn(0) && fn(2) && fn(4);
+    return true;
 
 }
 
 export default {
+    downloadMessageValid,
     range,
-    isChrome,
-    isMac,
-    isWindows,
-    isNumber,
-    isInteger,
-    isPositiveInteger,
-    isNonnegativeInteger,
-    isNegativeInteger,
-    isNonpositiveInteger,
-    isOdd,
-    isEven,
-    isInRange,
-    isEmail,
-    isUrl,
-    isDate,
-    isEmptyObject,
-    isPerCent,
-    isDeg,
-    isRGB,
-    isHSB,
-    isHex
+    isPromise,
+    isValidName,
+    isValidReportName,
+    isValidEmail,
+    isDerbyUser,
+    isValidReport
 };

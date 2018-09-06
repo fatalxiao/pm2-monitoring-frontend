@@ -1,7 +1,9 @@
 import moment from 'moment';
+import FloatCal from './FloatCal';
 
-import DEFAULT_MENU from 'src/config.menu';
-import Valid from './Valid';
+function isDate(v) {
+    return ({}).toString.call(v) === '[object Date]';
+}
 
 function getOffset(el) {
 
@@ -111,7 +113,7 @@ function preOrderTraverse(node, callback, deep = 0, parentNode = null) {
 
 const rootSymbol = null;
 
-function getActivatedMenu(menu = DEFAULT_MENU, value = location.pathname) {
+function getActivatedMenu(menu, value = location.pathname) {
 
     let activatedMenu, activatedMenuParent;
 
@@ -179,27 +181,100 @@ function macthObjectByValue(data, value, valueField) {
     }
 }
 
-function days2weeksDays(days) {
-
-    if (!days || !Valid.isInteger(days)) {
-        return {
-            weeks: 0,
-            days: 0
-        };
+function matchBidValue(rule, value) {
+    if (rule.value === 'Increase by') {
+        return FloatCal.add(1, (FloatCal.div(value, 100)));
+    } else {
+        return FloatCal.sub(1, (FloatCal.div(value, 100)));
     }
-
-    return {
-        weeks: ~~(days / 7),
-        days: days % 7
-    };
 
 }
 
-function formatString(value) {
-    return value === null || value === undefined ? '' : value;
+function bingMatchBidValue(rule, value) {
+    if (value === '') {
+        return null;
+    }
+    if (rule.value === 'Increase by') {
+        return FloatCal.add(1, (FloatCal.div(value, 100)));
+    } else {
+        return FloatCal.sub(1, (FloatCal.div(value, 100)));
+    }
+
+}
+
+function matchBidValueRule(value) {
+    if (value >= 1 || (!value && value !== 0)) {
+        return {label: 'Increase by', value: 'Increase by'};
+    } else {
+        return {label: 'Decrease by', value: 'Decrease by'};
+    }
+}
+
+function bingMatchBidValueToView(value) {
+    if (value >= 1) {
+        return FloatCal.mul((FloatCal.sub(value, 1)), 100).toString();
+    } else if (!value && value !== 0) {
+        return '';
+    } else {
+        return FloatCal.mul((FloatCal.sub(1, value)), 100).toString();
+    }
+}
+
+function matchBidValueToView(value) {
+    if (value > 1) {
+        return FloatCal.mul((FloatCal.sub(value, 1)), 100);
+    } else if (value == 1 || (!value && value !== 0)) {
+        return '';
+    } else {
+        return FloatCal.mul((FloatCal.sub(1, value)), 100);
+    }
+}
+
+function ucfirst(str) {
+    var str = str.toLowerCase();
+    str = str.replace(/\b\w+\b/g, function (word) {
+        return word.substring(0, 1).toUpperCase() + word.substring(1);
+    });
+    return str;
+}
+
+function getValueByValueField(data, valueField = 'value', displayField = 'text') {
+
+    if (!data) {
+        return;
+    }
+
+    if (typeof data === 'object') {
+        return data[valueField] || data[displayField];
+    }
+
+    return data;
+
+}
+
+function treeFind(node, callback) {
+
+    if (!node || !callback) {
+        return;
+    }
+
+    if (callback(node)) {
+        return node;
+    }
+
+    if (node.children && node.children.length > 0) {
+        for (let child of node.children) {
+            const result = treeFind(child, callback);
+            if (result) {
+                return result;
+            }
+        }
+    }
+
 }
 
 export default {
+    isDate,
     getOffset,
     isEnableLocalStorage,
     isEnableSessionStorage,
@@ -214,6 +289,12 @@ export default {
     resetAriCurrencyValue,
     recoverAriValue,
     macthObjectByValue,
-    days2weeksDays,
-    formatString
+    matchBidValue,
+    matchBidValueRule,
+    matchBidValueToView,
+    ucfirst,
+    getValueByValueField,
+    bingMatchBidValue,
+    bingMatchBidValueToView,
+    treeFind
 };
