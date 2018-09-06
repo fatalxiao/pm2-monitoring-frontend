@@ -2,7 +2,6 @@ export * from './common/ToasterAction';
 export * from './common/NotifierAction';
 export * from './common/ResMsgAction';
 export * from './common/RouterAction';
-
-export * from './app/MonitoringAction';
-export * from './app/ProcessAction';
-export * from './app/ProcessesAction';
+export * from './common/DeviceAction';
+export * from './common/RouteParamAction';
+export * from './common/LoadComponentAction';

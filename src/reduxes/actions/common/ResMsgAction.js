@@ -4,10 +4,10 @@ import {addWarningNotifier} from 'reduxes/actions/common/NotifierAction';
 const DEFAULT_ERROR_MSG = 'Server or Network failure. Please try again later or contact your account manager.';
 
 export const addSuccessResMsg = () => dispatch => {
-    addSuccessToaste('Successfully')(dispatch);
+    addSuccessToaste('Successful')(dispatch);
 };
 
 export const addFailureResMsg = msg => dispatch => {
-    addErrorToaste('Failure')(dispatch);
-    addWarningNotifier(msg && typeof msg === 'string' ? msg : DEFAULT_ERROR_MSG)(dispatch);
+    addErrorToaste('Failed')(dispatch);
+    addWarningNotifier(msg || DEFAULT_ERROR_MSG)(dispatch);
 };
