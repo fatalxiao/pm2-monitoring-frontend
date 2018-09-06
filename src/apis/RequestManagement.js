@@ -9,7 +9,10 @@ function add(item) {
 function cancelByName(name) {
     requests = requests.filter(item => {
         if (item && item.name && item.name === name) {
-            item.xhr && item.xhr.abort();
+            if (item.xhr) {
+                item.xhr[CANCEL_FLAG] = true;
+                item.xhr.abort();
+            }
             return false;
         } else {
             return true;
@@ -33,6 +36,7 @@ function cancelOthersByName(name) {
 
 function cancelAll() {
     for (let item of requests) {
+        item.xhr[CANCEL_FLAG] = true;
         item.xhr.abort();
     }
     requests.length = 0;
