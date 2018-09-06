@@ -2,12 +2,16 @@ import RequestManagement from './RequestManagement';
 
 function ajax(method, {
     name, url, params, formData, cancelable, header, contentType, isUpload,
-    successCallback, failureCallback
+    successCallback, failureCallback, errorCallback
 }) {
 
     const xhr = new XMLHttpRequest();
 
     xhr.open(method, url, true);
+
+    // xhr.setRequestHeader('Cache-Control', 'no-cache, must-revalidate');
+    // xhr.setRequestHeader('expires', 'Thu, 01 Jan 1970 00:00:01 GMT');
+    xhr.setRequestHeader('If-Modified-Since', '0');
 
     let body;
     if (params) {
@@ -39,18 +43,16 @@ function ajax(method, {
             }
 
             try {
-
                 response = JSON.parse(response);
-
-                if (parseInt(+response.code / 1000) === 2) {
-                    successCallback && successCallback(xhr, response, response.data);
-                } else {
-                    failureCallback && failureCallback(xhr, response, response.data);
-                }
-
             } catch (e) {
-                failureCallback && failureCallback(xhr, response);
+                failureCallback && failureCallback(xhr);
                 return;
+            }
+
+            if (parseInt(+response.code / 1000) === 2) {
+                successCallback && successCallback(xhr, response, response.data);
+            } else {
+                failureCallback && failureCallback(xhr, response, response.data);
             }
 
         }
