@@ -1,3 +1,1 @@
-export default {
-    CLIENT_ERROR: 4000
-};
+export default {};

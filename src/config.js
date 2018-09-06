@@ -5,7 +5,6 @@ export default {
     /**
      * Api base url prefix
      */
-    baseUrl: 'http://localhost:9616',
-    appBaseUrl: '/pm'
+    baseUrl: 'http://localhost:9616'
 
 };
