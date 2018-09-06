@@ -1,8 +1,10 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {routerMiddleware} from 'react-router-redux';
+
 import rootReducer from 'reduxes/reducers';
-import ApiMiddleware from 'reduxes/middlewares/ApiMiddleware';
+
+import Api from 'reduxes/middlewares/ApiMiddleware';
 
 function configureStore(history) {
 
@@ -10,14 +12,14 @@ function configureStore(history) {
         rootReducer,
         applyMiddleware(
             thunk,
-            ApiMiddleware,
+            Api,
             routerMiddleware(history)
         )
     );
 
     if (module.hot) {
         module.hot.accept('reduxes/reducers', () => {
-            const nextRootReducer = require('reduxes/reducers/index').default;
+            const nextRootReducer = require('reduxes/reducers').default;
             store.replaceReducer(nextRootReducer);
         });
     }
