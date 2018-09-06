@@ -17,6 +17,10 @@ module.exports = merge(baseWebpackConfig, {
 
     devtool: '#cheap-module-eval-source-map',
 
+    optimization: {
+        noEmitOnErrors: true
+    },
+
     plugins: [
 
         new webpack.DefinePlugin({
@@ -27,12 +31,10 @@ module.exports = merge(baseWebpackConfig, {
 
         new webpack.HotModuleReplacementPlugin(),
 
-        new webpack.NoEmitOnErrorsPlugin(),
-
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
-            favicon: './src/assets/images/favicon.ico',
+            // favicon: './src/assets/images/favicon.ico',
             inject: true,
             chunksSortMode: 'none'
         }),

@@ -2,6 +2,7 @@ const opn = require('opn'),
     webpack = require('webpack'),
     proxyMiddleware = require('http-proxy-middleware'),
     history = require('connect-history-api-fallback'),
+    log = require('friendly-errors-webpack-plugin/src/output'),
 
     config = require('../config.js'),
     utils = require('../utils.js'),
@@ -23,15 +24,14 @@ const opn = require('opn'),
     }),
 
     hotMiddleware = require('webpack-hot-middleware')(compiler, {
-        log: console.log
+        log: false
     });
 
-compiler.plugin('compilation', compilation => {
-    compilation.plugin('html-webpack-plugin-after-emit', () => {
-        hotMiddleware.publish({action: 'reload'});
-    });
+compiler.hooks.compilation.tap('html-webpack-plugin-after-emit', () => {
+    hotMiddleware.publish({action: 'reload'});
 });
 
+// build proxies
 Object.keys(proxyTable).forEach(context => {
 
     let options = proxyTable[context];
@@ -39,15 +39,18 @@ Object.keys(proxyTable).forEach(context => {
     if (typeof options === 'string') {
         options = {
             target: options,
-            changeOrigin: true
+            changeOrigin: true,
+            logLevel: 'error'
         };
     }
 
-    options.onProxyReq = (proxyReq, req, res) => {
+    options.onProxyReq = (proxyReq, req) => {
 
+        // add ip to header
         const ip = utils.getClientIp(req);
         ip && proxyReq.setHeader('ip', utils.ipParse(ip));
 
+        // add token to header when token in url query
         if (req.headers && !req.headers.token && req.query && req.query.token) {
             proxyReq.setHeader('token', req.query.token);
         }
@@ -65,13 +68,13 @@ app
 .use(config.development.assetsVirtualRoot, express.static('./static'));
 
 devMiddleware.waitUntilValid(() => {
-    console.log('> Listening at ' + uri + '\n');
+    log.title('success', 'DONE', `Listening At ${uri} `);
 });
 
 module.exports = app.listen(port, err => {
 
     if (err) {
-        return console.log(err);
+        return console.error(err);
     }
 
     opn(uri);
