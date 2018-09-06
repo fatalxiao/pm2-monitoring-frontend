@@ -1,6 +1,18 @@
 @import '~alcedo-ui/Theme/default.scss';
 
-// theme
+$theme-color-transition-percent: 8%;
+
+$theme-primary: #004771;
+$theme-highlight: #06789d;
+$theme-field: #333;
+$theme-nav: #fff;
+$theme-border: #ddd;
+$theme-label: #999;
+$theme-field-error: #d81919;
+
+$theme-dark-grey: #f4f4f4;
+$theme-light-grey: #fafafa;
+
 $theme-info: #2db7f5;
 $theme-success: #87d068;
 $theme-warning: #fa0;
@@ -13,17 +25,35 @@ $theme-info-bg: #eaf8fe;
 $theme-info-border: #c6ebfb;
 $theme-warning-bg: #fff7e6;
 $theme-warning-border: #f7dfad;
-$theme-label: lighten($theme-field, 16%);
-$theme-label-disabled: grayscale(lighten($theme-label, 32%));
 
 // z-index
-$root-loading-z-index: 99;
-$nav-menu-z-index: 90;
-$nav-bar-z-index: 80;
+$toast-z-index: 99;
+$dialog-z-index: 95;
+$menu-z-index: 94;
+$nav-z-index: 93;
 
 // size
 $minWidth: 320px;
 $appMenuPortableWidth: .8;
+
+@mixin invisible {
+    position: absolute;
+    font: inherit;
+    background: transparent;
+    z-index: -1;
+    opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    width: 0;
+    height: 0;
+    cursor: none;
+    pointer-events: none;
+    white-space: nowrap;
+}
 
 @mixin float-fix {
     &::before, &::after {

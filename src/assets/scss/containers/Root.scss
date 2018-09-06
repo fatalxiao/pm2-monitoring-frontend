@@ -1,8 +1,6 @@
 @import '../common.scss';
 
-.app-root {
-    min-width: $minWidth;
-    overflow-x: hidden;
+.root {
     transition: none;
     color: $theme-field;
     background: #fff;
@@ -13,7 +11,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: $root-loading-z-index;
+        z-index: $toast-z-index;
         background: $theme-secondary;
 
         i {

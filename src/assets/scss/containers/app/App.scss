@@ -1,5 +1,38 @@
 @import '../../common.scss';
 
 .app {
+    .app-content {
+        position: relative;
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 152px 0 50px 248px;
+        transition: padding-left $theme-transition-duration ease-in-out;
 
+        .page-loading {
+            position: fixed;
+            left: 0;
+
+            .page-loading-highlight {
+                background: #90ddff !important;
+            }
+        }
+
+        .module-loading {
+            margin-top: 100px;
+        }
+
+        .app-content-modal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    &.nav-menu-collapsed {
+        .app-content {
+            padding-left: 48px;
+        }
+    }
 }
