@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
-import * as actions from 'reduxes/actions';
-
 import IconButton from 'alcedo-ui/IconButton';
-
-import Util from 'vendors/Util';
+import Form from './CreateForm';
 
 import 'scss/containers/app/nav/create/CreateButton.scss';
 
@@ -30,9 +24,6 @@ class CreateButton extends Component {
         });
     };
 
-    componentDidMount() {
-    }
-
     render() {
 
         const {avtivated} = this.state,
@@ -50,11 +41,11 @@ class CreateButton extends Component {
                             iconCls="icon-plus"
                             onClick={this.toggle}/>
 
+                <Form avtivated={avtivated}/>
+
             </div>
         );
     }
 }
 
-CreateButton.propTypes = {};
-
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(CreateButton);
+export default CreateButton;
