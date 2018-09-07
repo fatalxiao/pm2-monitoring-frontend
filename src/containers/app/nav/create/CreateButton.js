@@ -9,7 +9,7 @@ import RaisedButton from 'alcedo-ui/RaisedButton';
 
 import 'scss/containers/app/nav/create/CreateButton.scss';
 
-class Actions extends Component {
+class CreateButton extends Component {
 
     constructor(props) {
         super(props);
@@ -24,6 +24,6 @@ class Actions extends Component {
     }
 }
 
-Actions.propTypes = {};
+CreateButton.propTypes = {};
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Actions);
+export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(CreateButton);
