@@ -42,12 +42,13 @@ class CreateButton extends Component {
             });
 
         return (
-            <div className={className}
-                 onClick={this.toggle}>
+            <div className={className}>
 
                 <div className="create-button-bg"></div>
 
-                <IconButton iconCls=""/>
+                <IconButton className="create-button"
+                            iconCls="fas fa-plus"
+                            onClick={this.toggle}/>
 
             </div>
         );
