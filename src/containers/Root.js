@@ -16,6 +16,7 @@ import {DEFAULT_ROUTE} from 'src/config.routes';
 import Event from 'vendors/Event';
 
 import 'assets/font-awesome/css/fontawesome-all.min.css';
+import 'assets/icomoon/style.css';
 import 'scss/global.scss';
 import 'scss/containers/Root.scss';
 
