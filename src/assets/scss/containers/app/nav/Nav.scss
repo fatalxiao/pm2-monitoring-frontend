@@ -1,21 +1,11 @@
 @import '../../../common.scss';
 
-.nav-wrapper {
-    flex-basis: 120px;
-    flex-grow: 0;
-    flex-shrink: 0;
-
-    .nav {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 120px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-shrink: 0;
-        padding: 32px 0;
-        z-index: $nav-z-index;
-    }
+.nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 100vh;
+    padding: 32px;
+    z-index: $nav-z-index;
 }
