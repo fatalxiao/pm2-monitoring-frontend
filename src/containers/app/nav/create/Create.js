@@ -7,7 +7,7 @@ import * as actions from 'reduxes/actions';
 
 import CreateButton from './CreateButton';
 
-class Actions extends Component {
+class Create extends Component {
 
     constructor(props) {
         super(props);
@@ -22,6 +22,6 @@ class Actions extends Component {
     }
 }
 
-Actions.propTypes = {};
+Create.propTypes = {};
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Actions);
+export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Create);
