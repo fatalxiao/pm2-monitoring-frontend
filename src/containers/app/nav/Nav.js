@@ -18,11 +18,9 @@ class Nav extends Component {
 
     render() {
         return (
-            <div className="nav-wrapper">
                 <div className="nav">
                     <CreateButton/>
                 </div>
-            </div>
         );
     }
 }

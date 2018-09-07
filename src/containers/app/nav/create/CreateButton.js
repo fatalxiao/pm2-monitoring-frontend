@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
+import IconButton from 'alcedo-ui/IconButton';
+
 import Util from 'vendors/Util';
 
 import 'scss/containers/app/nav/create/CreateButton.scss';
@@ -16,59 +18,36 @@ class CreateButton extends Component {
 
         super(props);
 
-        this.defaultSize = 56;
-
         this.state = {
-            avtivated: false,
-            size: this.defaultSize
+            avtivated: false
         };
 
     }
 
     toggle = () => {
-
-        if (this.state.avtivated || !this.buttonEl) {
-            return;
-        }
-
-        const pointer = Util.getElCenterPoint(this.buttonEl);
-
-        if (!pointer) {
-            return;
-        }
-
-        const {x, y} = pointer,
-            windowWidth = window.innerWidth,
-            windowHeight = window.innerHeight;
-
         this.setState({
-            avtivated: true,
-            size: Util.getDiag(windowWidth, windowHeight)
+            avtivated: !this.state.avtivated
         });
-
     };
 
     componentDidMount() {
-        this.buttonEl = this.refs.button;
     }
 
     render() {
 
-        const {avtivated, size} = this.state,
+        const {avtivated} = this.state,
 
-            className = classNames('create-button', {
+            className = classNames('create-button-wrapper', {
                 avtivated
-            }),
-            style = {
-                width: size,
-                height: size
-            };
+            });
 
         return (
-            <div ref="button"
-                 className={className}
-                 style={style}
+            <div className={className}
                  onClick={this.toggle}>
+
+                <div className="create-button-bg"></div>
+
+                <IconButton iconCls=""/>
 
             </div>
         );
