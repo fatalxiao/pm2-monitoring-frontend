@@ -7,6 +7,7 @@ import {renderRoutes} from 'react-router-config';
 import * as actions from 'reduxes/actions';
 
 import PageLoading from 'alcedo-ui/PageLoading';
+import Nav from './nav/Nav';
 
 import Dom from 'vendors/Dom';
 
@@ -29,14 +30,14 @@ class App extends Component {
         return (
             <div className="app">
 
+                <PageLoading visible={componentLoading}
+                             showStripes={false}/>
+
+                <Nav/>
+
                 <div ref="appContent"
                      className="app-content">
-
-                    <PageLoading visible={componentLoading}
-                                 showStripes={false}/>
-
                     {renderRoutes(route.routes)}
-
                 </div>
 
             </div>

@@ -1,0 +1,17 @@
+@import '../../../common.scss';
+
+.nav-wrapper {
+    flex-basis: 120px;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 120px;
+        height: 100vh;
+        z-index: 90;
+        display: flex;
+    }
+}

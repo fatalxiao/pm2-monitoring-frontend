@@ -1,12 +1,10 @@
 @import '../../common.scss';
 
 .app {
+    display: flex;
+
     .app-content {
-        position: relative;
-        box-sizing: border-box;
-        min-height: 100vh;
-        padding: 152px 0 50px 248px;
-        transition: padding-left $theme-transition-duration ease-in-out;
+        flex: 1;
 
         .page-loading {
             position: fixed;
@@ -27,12 +25,6 @@
             right: 0;
             top: 0;
             bottom: 0;
-        }
-    }
-
-    &.nav-menu-collapsed {
-        .app-content {
-            padding-left: 48px;
         }
     }
 }
