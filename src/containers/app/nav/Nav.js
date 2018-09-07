@@ -6,7 +6,7 @@ import {renderRoutes} from 'react-router-config';
 
 import * as actions from 'reduxes/actions';
 
-import Create from './create/Create';
+import CreateButton from './create/CreateButton';
 
 import 'scss/containers/app/nav/Nav.scss';
 
@@ -20,7 +20,7 @@ class Nav extends Component {
         return (
             <div className="nav-wrapper">
                 <div className="nav">
-                    <Create/>
+                    <CreateButton/>
                 </div>
             </div>
         );

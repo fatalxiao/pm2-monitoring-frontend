@@ -5,8 +5,6 @@ import {bindActionCreators} from 'redux';
 
 import * as actions from 'reduxes/actions';
 
-import RaisedButton from 'alcedo-ui/RaisedButton';
-
 import 'scss/containers/app/nav/create/CreateButton.scss';
 
 class CreateButton extends Component {
@@ -17,9 +15,9 @@ class CreateButton extends Component {
 
     render() {
         return (
-            <RaisedButton className="create-button">
+            <div className="create-button">
 
-            </RaisedButton>
+            </div>
         );
     }
 }

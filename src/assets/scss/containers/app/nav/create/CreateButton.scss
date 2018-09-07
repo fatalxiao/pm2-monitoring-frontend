@@ -1,5 +1,10 @@
 @import '../../../../common.scss';
 
 .create-button {
-
+    position: relative;
+    width: 56px;
+    height: 56px;
+    background: $theme-highlight;
+    border-radius: 50%;
+    cursor: pointer;
 }
