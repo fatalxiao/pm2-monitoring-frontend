@@ -7,7 +7,7 @@ module.exports = {
     productionGzipExtensions: ['js', 'css'],
 
     development: {
-        port: 3010,
+        port: 9617,
         srcRoot: path.resolve(__dirname, '../src'),
         index: path.resolve(__dirname, '../src/index.html'),
         assetsVirtualRoot: path.posix.join('/', 'static'),
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     testing: {
-        port: 3011,
+        port: 9617,
         index: path.resolve(__dirname, '../dist/dist-test/dist/index.html'),
         rootDirectory: 'dist/dist-test',
         assetsDirectory: 'dist/dist-test/dist',
@@ -30,41 +30,8 @@ module.exports = {
         }
     },
 
-    'testing-report': {
-        port: 3011,
-        index: path.resolve(__dirname, '../dist/dist-test-report/dist/index.html'),
-        rootDirectory: 'dist/dist-test-report',
-        assetsDirectory: 'dist/dist-test-report/dist',
-        assetsRoot: path.resolve(__dirname, '../dist/dist-test-report/dist'),
-        proxyTable: {
-            '/dplatform-cloud-gateway': 'https://testapi.travelrtd.com'
-        }
-    },
-
-    'testing-bing': {
-        port: 3011,
-        index: path.resolve(__dirname, '../dist/dist-test-bing/dist/index.html'),
-        rootDirectory: 'dist/dist-test-bing',
-        assetsDirectory: 'dist/dist-test-bing/dist',
-        assetsRoot: path.resolve(__dirname, '../dist/dist-test-bing/dist'),
-        proxyTable: {
-            '/dplatform-cloud-gateway': 'https://testapi.travelrtd.com'
-        }
-    },
-
-    demo: {
-        port: 3012,
-        index: path.resolve(__dirname, '../dist/dist-demo/dist/index.html'),
-        rootDirectory: 'dist/dist-demo',
-        assetsDirectory: 'dist/dist-demo/dist',
-        assetsRoot: path.resolve(__dirname, '../dist/dist-demo/dist'),
-        proxyTable: {
-            '/dplatform-cloud-gateway': 'http://35.165.139.55'
-        }
-    },
-
     production: {
-        port: 3013,
+        port: 9617,
         index: path.resolve(__dirname, '../dist/dist-prod/dist/index.html'),
         rootDirectory: 'dist/dist-prod',
         assetsDirectory: 'dist/dist-prod/dist',
