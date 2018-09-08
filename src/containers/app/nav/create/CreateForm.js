@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
+import TextField from 'alcedo-ui/TextField';
+
 import 'scss/containers/app/nav/create/CreateForm.scss';
 
 class CreateForm extends Component {
@@ -25,7 +27,12 @@ class CreateForm extends Component {
         return (
             <div className={className}>
 
-                <div className="form-title">Create </div>
+                <div className="form-title">Create App</div>
+
+                <label className="form-label">
+                    App Name
+                    <TextField className="form-field"/>
+                </label>
 
             </div>
         );
