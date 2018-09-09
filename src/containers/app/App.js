@@ -8,6 +8,7 @@ import * as actions from 'reduxes/actions';
 
 import PageLoading from 'alcedo-ui/PageLoading';
 import Nav from './nav/Nav';
+import Processes from './processes/Processes';
 
 import Dom from 'vendors/Dom';
 
@@ -35,8 +36,9 @@ class App extends Component {
 
                 <Nav/>
 
-                <div ref="appContent"
-                     className="app-content">
+                <Processes/>
+
+                <div className="app-content">
                     {renderRoutes(route.routes)}
                 </div>
 
