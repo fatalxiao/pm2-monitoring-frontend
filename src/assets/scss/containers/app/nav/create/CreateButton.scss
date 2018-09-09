@@ -22,7 +22,7 @@
         height: 100%;
         font-size: 40px;
         color: #fff !important;
-        transition: transform $theme-transition-duration ease-out;
+        transition: transform $theme-transition-duration ease-in-out;
     }
 
     &.avtivated {
@@ -35,7 +35,7 @@
 
         .create-button {
             transform: rotate(225deg);
-            transition: transform $theme-transition-duration ease-in;
+            transition: transform $theme-transition-duration ease-in-out;
         }
     }
 
