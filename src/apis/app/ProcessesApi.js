@@ -1,13 +1,12 @@
 import config from 'src/config';
-import Api from 'apis/Api';
+import WebSocketApi from 'apis/WebSocketApi';
 
 export default {
 
     getProcesses(options) {
-        Api.get({
+        WebSocketApi.request({
             ...options,
-            url: `${config.appBaseUrl}/processes`,
-            cancelable: false
+            url: `${config.baseWsUrl}/processes`
         });
     }
 
