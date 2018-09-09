@@ -5,7 +5,6 @@ import device from './common/DeviceReducer';
 import loadComponent from './common/LoadComponentReducer';
 import appToaster from './common/ToasterReducer';
 import appNotifier from './common/NotifierReducer';
-import routeParam from './common/RouteParamReducer';
 
 const rootReducer = combineReducers({
 
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
     loadComponent,
     appToaster,
     appNotifier,
-    routeParam,
 
     router: routerReducer
 
