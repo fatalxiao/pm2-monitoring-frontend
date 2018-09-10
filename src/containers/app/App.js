@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {renderRoutes} from 'react-router-config';
+import {Redirect} from 'react-router-dom';
 
 import * as actions from 'reduxes/actions';
 
 import PageLoading from 'alcedo-ui/PageLoading';
 import Nav from './nav/Nav';
-import Processes from './processes/Processes';
 
 import Dom from 'vendors/Dom';
 
@@ -36,10 +36,17 @@ class App extends Component {
 
                 <Nav/>
 
-                <Processes/>
-
                 <div className="app-content">
+
                     {renderRoutes(route.routes)}
+
+                    {
+                        location.pathname === '/app' ?
+                            <Redirect from="/app" to="/app/processes"/>
+                            :
+                            null
+                    }
+
                 </div>
 
             </div>
