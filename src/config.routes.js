@@ -6,7 +6,11 @@ export function configureRoutes(store) {
         component: ac(() => import('containers/Root'), store),
         routes: [{
             path: '/app',
-            component: ac(() => import('containers/app/App'), store)
+            component: ac(() => import('containers/app/App'), store),
+            routes: [{
+                path: '/app/processes',
+                component: ac(() => import('containers/app/processes/Processes'), store)
+            }]
         }]
     }];
 }
