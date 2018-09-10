@@ -43,7 +43,7 @@ class Processes extends Component {
         return (
             <div className="processes">
 
-                <h1>Processes</h1>
+                <h1 className="processes-title">Processes</h1>
 
                 {
                     data && data.map((item, index) =>
