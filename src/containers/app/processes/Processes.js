@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {renderRoutes} from 'react-router-config';
 
 import * as actions from 'reduxes/actions';
+
+import Process from './Process';
 
 import 'scss/containers/app/processes/Processes.scss';
 
@@ -38,17 +39,28 @@ class Processes extends Component {
     render() {
 
         const {data} = this.props;
-        console.log(data);
 
         return (
             <div className="processes">
+
+                <h1>Processes</h1>
+
+                {
+                    data && data.map((item, index) =>
+                        <Process key={index}
+                                 data={item}/>
+                    )
+                }
 
             </div>
         );
     }
 }
 
-Processes.propTypes = {};
+Processes.propTypes = {
+    data: PropTypes.array,
+    getProcesses: PropTypes.func
+};
 
 export default connect(state => ({
     data: state.processes.data
