@@ -27,10 +27,10 @@ class CreateForm extends Component {
         return (
             <div className={className}>
 
-                <div className="form-title">Create Process</div>
+                <div className="form-title">Create App</div>
 
                 <label className="form-label">
-                    Process Name
+                    App Name
                     <TextField className="form-field"/>
                 </label>
 
