@@ -1,8 +1,10 @@
 @import '../../../common.scss';
 
 .processes {
+    padding-right: 24px;
+
     .processes-title {
         line-height: 32px;
-        margin: 0 0 32px 0;
+        margin: 32px 0;
     }
 }

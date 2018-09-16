@@ -45,12 +45,17 @@ class Processes extends Component {
 
                 <h1 className="processes-title">Apps</h1>
 
-                {
-                    data && data.map((item, index) =>
-                        <Process key={index}
-                                 data={item}/>
-                    )
-                }
+                <div className="row">
+                    {
+                        data && data.map((item, index) =>
+                            item ?
+                                <Process key={index}
+                                         data={item}/>
+                                :
+                                null
+                        )
+                    }
+                </div>
 
             </div>
         );
