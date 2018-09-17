@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
+import Calculation from 'vendors/Calaulation';
+
 import 'scss/containers/app/processes/Process.scss';
 
 class Process extends Component {
@@ -27,19 +29,14 @@ class Process extends Component {
 
                 <div className="process-name">{data.name}</div>
 
-                {
-                    activated ?
-                        <div className="process-monit">
-                            <div className="process-monit-cpu">
-                                {`CPU: ${data.monit ? data.monit.cpu : 0}`}
-                            </div>
-                            <div className="process-monit-memory">
-                                {`Memory: ${data.monit ? data.monit.memory : 0}`}
-                            </div>
-                        </div>
-                        :
-                        null
-                }
+                <div className="process-monit">
+                    <div className="process-monit-cpu">
+                        {`CPU: ${activated && data.monit ? Calculation.formatCPU(data.monit.cpu) : '--'}`}
+                    </div>
+                    <div className="process-monit-memory">
+                        {`Memory: ${activated && data.monit ? Calculation.formatMemory(data.monit.memory) : '--'}`}
+                    </div>
+                </div>
 
             </div>
         );
