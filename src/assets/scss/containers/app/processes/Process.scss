@@ -1,0 +1,61 @@
+@import '../../../common.scss';
+
+.process {
+    float: left;
+    box-sizing: border-box;
+    height: 120px;
+    background: #fff;
+    border: 1px solid $theme-border;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 15px;
+    color: $theme-label;
+    background: transparentize(#fff, .5);
+    cursor: pointer;
+    transition: box-shadow $theme-transition-duration ease-in-out;
+
+    .process-name {
+        height: 70px;
+        line-height: 32px;
+        font-size: 16px;
+    }
+
+    .process-monit {
+        @include float-fix;
+        height: 32px;
+        line-height: 32px;
+        font-size: 12px;
+
+        .process-monit-cpu,
+        .process-monit-memory {
+            position: relative;
+            float: left;
+            width: 50%;
+        }
+
+        //.process-monit-memory::before {
+        //    content: "";
+        //    position: absolute;
+        //    left: -8px;
+        //    top: 8px;
+        //    display: block;
+        //    width: 1px;
+        //    height: 16px;
+        //    background: transparentize($theme-border, .5);
+        //}
+    }
+
+    &.activated {
+        border-color: $theme-highlight;
+        background: #fff;
+
+        .process-name {
+            color: $theme-highlight;
+        }
+    }
+
+    &:hover {
+        @include shadow(4);
+    }
+
+}

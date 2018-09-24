@@ -1,0 +1,65 @@
+@import "./common.scss";
+
+::selection {
+    color: #fff;
+    background: #8d98b3;
+}
+
+::-webkit-input-placeholder {
+    color: #c5c5c5;
+}
+
+:-moz-placeholder {
+    color: #c5c5c5;
+}
+
+::-moz-placeholder {
+    color: #c5c5c5;
+}
+
+:-ms-input-placeholder {
+    color: #c5c5c5;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #c5c5c5;
+}
+
+.icon {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+textarea {
+    font-family: 'helvetica neue', 'hiragino sans gb', 'stheiti',
+    'microsoft yahei', \5FAE\8F6F\96C5\9ED1, tahoma, sans-serif;
+}
+
+// remove firefox button dashed outline
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none
+}
+
+body {
+    font-family: "OpenSans", "helvetica neue", "hiragino sans gb", "stheiti",
+    "microsoft yahei", \5FAE\8F6F\96C5\9ED1, tahoma, sans-serif !important;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    overflow: auto;
+    background: #f4f6f7;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hidden-input {
+    display: none;
+}
+
+.invisible-input {
+    @include invisible;
+}

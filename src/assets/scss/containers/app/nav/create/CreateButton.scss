@@ -1,0 +1,42 @@
+@import '../../../../common.scss';
+
+.create-button-wrapper {
+    position: relative;
+    width: 56px;
+    height: 56px;
+
+    .create-button-bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: $theme-highlight;
+        cursor: pointer;
+        transition: transform $theme-transition-duration ease-out;
+    }
+
+    .create-button {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 40px;
+        color: #fff !important;
+        transition: transform $theme-transition-duration ease-in-out;
+    }
+
+    &.avtivated {
+
+        .create-button-bg {
+            transform: scale(100);
+            cursor: default;
+            transition: transform $theme-transition-duration ease-in;
+        }
+
+        .create-button {
+            transform: rotate(225deg);
+            transition: transform $theme-transition-duration ease-in-out;
+        }
+    }
+
+}

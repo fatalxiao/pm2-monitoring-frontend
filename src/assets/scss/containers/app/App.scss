@@ -1,0 +1,29 @@
+@import '../../common.scss';
+
+.app {
+
+    .app-content {
+        padding: 32px 0 0 120px;
+
+        .module-loading {
+            margin-top: 100px;
+        }
+
+        .app-content-modal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    .page-loading {
+        position: fixed;
+        left: 0;
+
+        .page-loading-highlight {
+            background: #90ddff !important;
+        }
+    }
+}
