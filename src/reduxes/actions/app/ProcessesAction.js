@@ -1,7 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ProcessesApi from 'apis/app/ProcessesApi';
 
-export const getProcesses = () => dispatch => {
+export const getProcesses = callback => dispatch => {
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
@@ -11,7 +11,10 @@ export const getProcesses = () => dispatch => {
             ],
             api: ProcessesApi.getProcesses,
             isWebSocket: true,
-            resMsgDisabled: true
+            resMsgDisabled: true,
+            successCallback(...args) {
+                callback && callback(...args);
+            }
         }
     });
 };
