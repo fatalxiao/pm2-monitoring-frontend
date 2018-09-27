@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import eventsOn from 'dom-helpers/events/on';
+import eventsOff from 'dom-helpers/events/off';
 
 import * as actions from 'reduxes/actions';
 
 import Process from './Process';
 
 import 'scss/containers/app/processes/Processes.scss';
+import debounce from 'lodash/debounce';
 
 class Processes extends Component {
 
@@ -52,6 +55,16 @@ class Processes extends Component {
 
     };
 
+    updateProcessesStyles = (data = this.props.data) => {
+        this.setState({
+            styles: this.getStyles(data)
+        });
+    };
+
+    resizeHandler = debounce(() => {
+        this.updateProcessesStyles();
+    }, 250);
+
     run = () => {
 
         const {getProcesses} = this.props;
@@ -59,9 +72,7 @@ class Processes extends Component {
         if (getProcesses) {
             getProcesses(responseData => {
                 if (responseData && responseData.length !== this.state.styles.length) {
-                    this.setState({
-                        styles: this.getStyles(responseData)
-                    });
+                    this.updateProcessesStyles(responseData);
                 }
             });
             this.runTimeoutId = setTimeout(() => {
@@ -72,7 +83,15 @@ class Processes extends Component {
     };
 
     componentDidMount() {
+
+        eventsOn(window, 'resize', this.resizeHandler);
+
         this.run();
+
+    }
+
+    componentWillUnmount() {
+        eventsOff(window, 'resize', this.resizeHandler);
     }
 
     render() {
