@@ -13,6 +13,7 @@
     background: transparentize(#fff, .5);
     cursor: pointer;
     transition: box-shadow $theme-transition-duration ease-in-out,
+    width $theme-transition-duration ease-in-out,
     transform $theme-transition-duration ease-in-out;
 
     .process-name {
