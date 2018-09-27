@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import debounce from 'lodash/debounce';
 import eventsOn from 'dom-helpers/events/on';
 import eventsOff from 'dom-helpers/events/off';
 
@@ -10,7 +11,6 @@ import * as actions from 'reduxes/actions';
 import Process from './Process';
 
 import 'scss/containers/app/processes/Processes.scss';
-import debounce from 'lodash/debounce';
 
 class Processes extends Component {
 
@@ -21,7 +21,7 @@ class Processes extends Component {
         this.runTimeoutId = null;
         this.processMinWidth = 240;
         this.processHeight = 120;
-        this.separatorSize = 16;
+        this.separatorSize = 24;
 
         this.state = {
             styles: []
@@ -35,16 +35,16 @@ class Processes extends Component {
             return [];
         }
 
-        const wrapperWidth = window.innerWidth - 120,
+        const wrapperWidth = this.wrapperEl.offsetWidth,
             totalCol = Math.floor(wrapperWidth / this.processMinWidth),
-            width = (wrapperWidth - (totalCol + 1) * this.separatorSize) / totalCol;
+            width = (wrapperWidth - (totalCol - 1) * this.separatorSize) / totalCol;
 
         return data.map((item, index) => {
 
             const col = index % totalCol,
                 row = Math.floor(index / totalCol),
-                x = this.separatorSize * (col + 1) + width * col,
-                y = this.separatorSize * (row + 1) + this.processHeight * row;
+                x = (this.separatorSize + width) * col,
+                y = (this.separatorSize + this.processHeight) * row;
 
             return {
                 width,
@@ -84,6 +84,7 @@ class Processes extends Component {
 
     componentDidMount() {
 
+        this.wrapperEl = this.refs.wrapper;
         eventsOn(window, 'resize', this.resizeHandler);
 
         this.run();
@@ -104,7 +105,8 @@ class Processes extends Component {
 
                 <h1 className="processes-title">Apps</h1>
 
-                <div className="process-wrapper">
+                <div ref="wrapper"
+                     className="process-wrapper">
                     {
                         data && data.map((item, index) => item ?
                             <Process key={index}
