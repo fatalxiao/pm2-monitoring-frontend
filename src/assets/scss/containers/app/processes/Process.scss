@@ -9,7 +9,7 @@
     border: 1px solid $theme-border;
     border-radius: 4px;
     padding: 8px 16px;
-    color: $theme-label;
+    color: lighten($theme-label, 8%);
     background: transparentize(#fff, .5);
     cursor: pointer;
     transition: box-shadow $theme-transition-duration ease-in-out,
@@ -33,17 +33,6 @@
             float: left;
             width: 50%;
         }
-
-        //.process-monit-memory::before {
-        //    content: "";
-        //    position: absolute;
-        //    left: -8px;
-        //    top: 8px;
-        //    display: block;
-        //    width: 1px;
-        //    height: 16px;
-        //    background: transparentize($theme-border, .5);
-        //}
     }
 
     &.activated {
@@ -58,5 +47,4 @@
     &:hover {
         @include shadow(4);
     }
-
 }
