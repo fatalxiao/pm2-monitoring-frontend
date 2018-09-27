@@ -24,7 +24,8 @@ class Processes extends Component {
         this.separatorSize = 24;
 
         this.state = {
-            styles: []
+            wrapperStyle: null,
+            processStyle: []
         };
 
     }
@@ -37,33 +38,40 @@ class Processes extends Component {
 
         const wrapperWidth = this.wrapperEl.offsetWidth,
             totalCol = Math.floor(wrapperWidth / this.processMinWidth),
+            totalRow = Math.ceil(data.length / totalCol),
             width = (wrapperWidth - (totalCol - 1) * this.separatorSize) / totalCol;
 
-        return data.map((item, index) => {
+        return {
+            wrapperStyle: {
+                height: totalRow * this.processHeight + (totalRow - 1) * this.separatorSize
+            },
+            processStyle: data.map((item, index) => {
 
-            const col = index % totalCol,
-                row = Math.floor(index / totalCol),
-                x = (this.separatorSize + width) * col,
-                y = (this.separatorSize + this.processHeight) * row;
+                const col = index % totalCol,
+                    row = Math.floor(index / totalCol),
+                    x = (width + this.separatorSize) * col,
+                    y = (this.processHeight + this.separatorSize) * row;
 
-            return {
-                width,
-                height: this.processHeight,
-                transform: `translate(${x}px, ${y}px)`
-            };
-        });
+                return {
+                    width,
+                    height: this.processHeight,
+                    transform: `translate(${x}px, ${y}px)`
+                };
+
+            })
+        };
 
     };
 
     updateProcessesStyles = (data = this.props.data) => {
         this.setState({
-            styles: this.getStyles(data)
+            ...this.getStyles(data)
         });
     };
 
     resizeHandler = debounce(() => {
         this.updateProcessesStyles();
-    }, 250);
+    }, 350);
 
     run = () => {
 
@@ -71,7 +79,7 @@ class Processes extends Component {
 
         if (getProcesses) {
             getProcesses(responseData => {
-                if (responseData && responseData.length !== this.state.styles.length) {
+                if (responseData && responseData.length !== this.state.processStyle.length) {
                     this.updateProcessesStyles(responseData);
                 }
             });
@@ -98,7 +106,7 @@ class Processes extends Component {
     render() {
 
         const {data} = this.props,
-            {styles} = this.state;
+            {wrapperStyle, processStyle} = this.state;
 
         return (
             <div className="processes">
@@ -106,11 +114,12 @@ class Processes extends Component {
                 <h1 className="processes-title">Apps</h1>
 
                 <div ref="wrapper"
-                     className="process-wrapper">
+                     className="process-wrapper"
+                     style={wrapperStyle}>
                     {
                         data && data.map((item, index) => item ?
                             <Process key={index}
-                                     style={styles && styles[index]}
+                                     style={processStyle && processStyle[index]}
                                      data={item}/>
                             :
                             null
