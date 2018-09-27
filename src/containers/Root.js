@@ -16,7 +16,6 @@ import Notifier from 'alcedo-ui/Notifier';
 import Config from 'src/config';
 import {DEFAULT_ROUTE} from 'src/config.routes';
 
-import 'assets/bootstrap/bootstrap.min.css';
 import 'assets/font-awesome/css/fontawesome-all.min.css';
 import 'assets/icomoon/style.css';
 import 'scss/global.scss';
