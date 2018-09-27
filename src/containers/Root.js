@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {renderRoutes} from 'react-router-config';
 import {Redirect} from 'react-router-dom';
+import debounce from 'lodash/debounce';
+import eventsOn from 'dom-helpers/events/on';
+import eventsOff from 'dom-helpers/events/off';
 
 import * as actions from 'reduxes/actions';
 
@@ -12,8 +15,6 @@ import Notifier from 'alcedo-ui/Notifier';
 
 import Config from 'src/config';
 import {DEFAULT_ROUTE} from 'src/config.routes';
-
-import Event from 'vendors/Event';
 
 import 'assets/bootstrap/bootstrap.min.css';
 import 'assets/font-awesome/css/fontawesome-all.min.css';
@@ -27,19 +28,19 @@ class Root extends Component {
         super(props);
     }
 
-    resizeHandler = () => {
+    resizeHandler = debounce(() => {
         window.innerWidth >= Config.desktopMinWidth ?
             (!this.props.isDesktop && this.props.switchToDesktop())
             :
             (this.props.isDesktop && this.props.switchToMobile());
-    };
+    }, 250);
 
     componentDidMount() {
-        Event.addEvent(window, 'resize', this.resizeHandler);
+        eventsOn(window, 'resize', this.resizeHandler);
     }
 
     componentWillUnmount() {
-        Event.removeEvent(window, 'resize', this.resizeHandler);
+        eventsOff(window, 'resize', this.resizeHandler);
     }
 
     render() {
