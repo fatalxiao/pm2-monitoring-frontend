@@ -1,18 +1,19 @@
 @import '../../../common.scss';
 
 .process {
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
     box-sizing: border-box;
-    height: 120px;
     background: #fff;
     border: 1px solid $theme-border;
     border-radius: 4px;
     padding: 8px 16px;
-    margin: 15px;
     color: $theme-label;
     background: transparentize(#fff, .5);
     cursor: pointer;
-    transition: box-shadow $theme-transition-duration ease-in-out;
+    transition: box-shadow $theme-transition-duration ease-in-out,
+    transform $theme-transition-duration ease-in-out;
 
     .process-name {
         height: 70px;
