@@ -18,14 +18,15 @@ class Process extends Component {
 
     render() {
 
-        const {data} = this.props,
+        const {style, data} = this.props,
             activated = 'pm_id' in data,
-            processClassName = classNames('col-lg-3 col-md-6 col-sm-6 col-xs-12 process', {
+            processClassName = classNames('process', {
                 activated
             });
 
         return (
-            <div className={processClassName}>
+            <div className={processClassName}
+                 style={style}>
 
                 <div className="process-name">{data.name}</div>
 
@@ -44,6 +45,7 @@ class Process extends Component {
 }
 
 Process.propTypes = {
+    style: PropTypes.object,
     data: PropTypes.object
 };
 
