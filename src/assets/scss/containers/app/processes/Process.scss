@@ -8,25 +8,28 @@
     background: #fff;
     border: 1px solid $theme-border;
     border-radius: 4px;
-    padding: 8px 16px;
     color: lighten($theme-label, 8%);
-    background: transparentize(#fff, .5);
+    background: #fafbfb;
     cursor: pointer;
     transition-property: width, box-shadow, opacity, transform;
     transition-duration: $theme-transition-duration;
     transition-timing-function: ease-in-out;
 
     .process-name {
+        box-sizing: border-box;
         height: 70px;
         line-height: 32px;
         font-size: 16px;
+        padding: 8px 16px;
     }
 
     .process-monit {
         @include float-fix;
+        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         font-size: 12px;
+        padding: 0 16px;
 
         .process-monit-cpu,
         .process-monit-memory {
@@ -50,6 +53,7 @@
     }
 
     &:hover {
-        box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px, transparentize($theme-shadow, .98) 0px 15px 20px;
+        box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px,
+        transparentize($theme-shadow, .98) 0px 15px 20px;
     }
 }
