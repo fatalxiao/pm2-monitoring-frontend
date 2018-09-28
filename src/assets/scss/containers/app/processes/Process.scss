@@ -18,7 +18,7 @@
 
     .process-name {
         box-sizing: border-box;
-        height: 53px;
+        height: 45px;
         line-height: 32px;
         font-size: 16px;
         padding: 8px 16px;
@@ -41,17 +41,18 @@
 
     .process-actions {
         @include float-fix;
-        height: 32px;
-        line-height: 32px;
+        height: 40px;
+        line-height: 40px;
         border-top: 1px solid $theme-border;
 
         .process-action {
             float: left;
             width: 33.333333%;
-            height: 32px;
+            height: 40px;
             border-radius: 0;
             color: $theme-label;
             padding: 0;
+            font-size: 16px;
 
             .button-icon {
                 margin: 0;

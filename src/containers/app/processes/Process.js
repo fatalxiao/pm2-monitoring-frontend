@@ -43,7 +43,11 @@ class Process extends Component {
 
                 <div className="process-actions">
                     <FlatButton className="process-action"
+                                iconCls="icon-upload-to-cloud"/>
+                    <FlatButton className="process-action"
                                 iconCls={`icon-controller-${activated ? 'stop' : 'play'}`}/>
+                    <FlatButton className="process-action"
+                                iconCls="icon-cycle"/>
                 </div>
 
             </div>
