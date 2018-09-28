@@ -12,9 +12,9 @@
     color: lighten($theme-label, 8%);
     background: transparentize(#fff, .5);
     cursor: pointer;
-    transition: box-shadow $theme-transition-duration ease-in-out,
-    width $theme-transition-duration ease-in-out,
-    transform $theme-transition-duration ease-in-out;
+    transition-property: width, box-shadow, opacity, transform;
+    transition-duration: $theme-transition-duration;
+    transition-timing-function: ease-in-out;
 
     .process-name {
         height: 70px;
@@ -36,6 +36,10 @@
         }
     }
 
+    &.init {
+        opacity: 0;
+    }
+
     &.activated {
         border-color: $theme-highlight;
         background: #fff;
@@ -46,6 +50,6 @@
     }
 
     &:hover {
-        @include shadow(4);
+        box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px, transparentize($theme-shadow, .98) 0px 15px 20px;
     }
 }
