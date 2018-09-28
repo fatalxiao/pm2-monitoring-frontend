@@ -10,6 +10,7 @@
     border-radius: 4px;
     color: lighten($theme-label, 8%);
     background: #fafbfb;
+    overflow: hidden;
     cursor: pointer;
     transition-property: width, box-shadow, opacity, transform;
     transition-duration: $theme-transition-duration;
@@ -17,7 +18,7 @@
 
     .process-name {
         box-sizing: border-box;
-        height: 70px;
+        height: 53px;
         line-height: 32px;
         font-size: 16px;
         padding: 8px 16px;
@@ -25,7 +26,6 @@
 
     .process-monit {
         @include float-fix;
-        box-sizing: border-box;
         height: 32px;
         line-height: 32px;
         font-size: 12px;
@@ -36,6 +36,30 @@
             position: relative;
             float: left;
             width: 50%;
+        }
+    }
+
+    .process-actions {
+        @include float-fix;
+        height: 32px;
+        line-height: 32px;
+        border-top: 1px solid $theme-border;
+
+        .process-action {
+            float: left;
+            width: 33.333333%;
+            height: 32px;
+            border-radius: 0;
+            color: $theme-label;
+            padding: 0;
+
+            .button-icon {
+                margin: 0;
+            }
+
+            &:hover .button-icon {
+                color: $theme-highlight;
+            }
         }
     }
 

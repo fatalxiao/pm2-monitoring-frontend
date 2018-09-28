@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
+import FlatButton from 'alcedo-ui/FlatButton';
+
 import Calculation from 'vendors/Calaulation';
 
 import 'scss/containers/app/processes/Process.scss';
@@ -37,6 +39,11 @@ class Process extends Component {
                     <div className="process-monit-memory">
                         {`Memory: ${activated && data.monit ? Calculation.formatMemory(data.monit.memory) : '--'}`}
                     </div>
+                </div>
+
+                <div className="process-actions">
+                    <FlatButton className="process-action"
+                                iconCls={`icon-controller-${activated ? 'stop' : 'play'}`}/>
                 </div>
 
             </div>
