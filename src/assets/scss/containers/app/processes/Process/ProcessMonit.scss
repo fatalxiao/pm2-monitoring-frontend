@@ -2,15 +2,59 @@
 
 .process-monit {
     @include float-fix;
-    height: 32px;
-    line-height: 32px;
+    height: 64px;
     font-size: 12px;
-    padding: 0 16px;
+    padding-bottom: 8px;
+    color: $theme-label;
 
     .process-monit-cpu,
     .process-monit-memory {
         position: relative;
         float: left;
         width: 50%;
+
+        .process-monit-title {
+            text-align: center;
+            line-height: 24px;
+        }
+
+        .process-monit-value {
+            position: relative;
+            text-align: center;
+            font-size: 24px;
+            height: 40px;
+            line-height: 40px;
+
+            .process-monit-unit {
+                position: absolute;
+                font-size: 12px;
+                line-height: 32px;
+                margin-left: 8px;
+                color: $theme-label;
+            }
+        }
+    }
+
+    .process-monit-cpu {
+        position: relative;
+
+        .process-monit-value.activated {
+            color: $theme-success;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 18%;
+            right: 0;
+            display: block;
+            width: 1px;
+            height: 64%;
+            background: $theme-border;
+        }
+    }
+
+    .process-monit-memory .process-monit-value.activated {
+        color: #908bc3;
     }
 }

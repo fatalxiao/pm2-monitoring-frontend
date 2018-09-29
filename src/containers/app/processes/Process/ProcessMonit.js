@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import classNames from 'classnames';
 
 import Calculation from 'vendors/Calaulation';
 
@@ -30,10 +31,22 @@ class ProcessMonit extends Component {
         return (
             <div className="process-monit">
                 <div className="process-monit-cpu">
-                    {`CPU: ${cpu}`}
+                    <div className="process-monit-title">CPU</div>
+                    <div className={classNames('process-monit-value', {
+                        activated: status === 'activated'
+                    })}>
+                        {cpu}
+                        <span className="process-monit-unit">%</span>
+                    </div>
                 </div>
                 <div className="process-monit-memory">
-                    {`Memory: ${memory}`}
+                    <div className="process-monit-title">Memory</div>
+                    <div className={classNames('process-monit-value', {
+                        activated: status === 'activated'
+                    })}>
+                        {memory}
+                        <span className="process-monit-unit">MB</span>
+                    </div>
                 </div>
             </div>
         );
