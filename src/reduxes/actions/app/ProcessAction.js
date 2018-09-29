@@ -44,3 +44,69 @@ export const pauseProcess = processId => dispatch => {
     });
 
 };
+
+export const restartProcess = processId => dispatch => {
+
+    if (processId == undefined) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.RESTART_PROCESS_REQUEST,
+                actionTypes.RESTART_PROCESS_SUCCESS,
+                actionTypes.RESTART_PROCESS_FAILURE
+            ],
+            api: ProcessApi.restartProcess,
+            params: {
+                processId
+            }
+        }
+    });
+
+};
+
+export const stopProcess = processId => dispatch => {
+
+    if (processId == undefined) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.STOP_PROCESS_REQUEST,
+                actionTypes.STOP_PROCESS_SUCCESS,
+                actionTypes.STOP_PROCESS_FAILURE
+            ],
+            api: ProcessApi.stopProcess,
+            params: {
+                processId
+            }
+        }
+    });
+
+};
+
+export const reloadProcess = processId => dispatch => {
+
+    if (processId == undefined) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.RELOAD_PROCESS_REQUEST,
+                actionTypes.RELOAD_PROCESS_SUCCESS,
+                actionTypes.RELOAD_PROCESS_FAILURE
+            ],
+            api: ProcessApi.reloadProcess,
+            params: {
+                processId
+            }
+        }
+    });
+
+};
