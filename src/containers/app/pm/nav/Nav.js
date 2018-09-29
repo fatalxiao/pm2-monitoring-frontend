@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {renderRoutes} from 'react-router-config';
 
-import * as actions from 'reduxes/actions';
+import * as actions from 'reduxes/actions/index';
 
 import CreateButton from './create/CreateButton';
 
-import 'scss/containers/app/nav/Nav.scss';
+import 'scss/containers/app/pm/nav/Nav.scss';
 
 class Nav extends Component {
 
