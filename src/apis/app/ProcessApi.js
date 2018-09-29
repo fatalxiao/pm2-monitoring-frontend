@@ -29,7 +29,6 @@ export default {
     startProcess(options) {
         Api.put({
             ...options,
-            name,
             url: `${config.baseUrl}/process/start/${options.params.processName}`
         });
     },
@@ -37,7 +36,6 @@ export default {
     pauseProcess(options) {
         Api.put({
             ...options,
-            name,
             url: `${config.baseUrl}/process/pause/${options.params.processId}`
         });
     },
@@ -45,7 +43,6 @@ export default {
     restartProcess(options) {
         Api.put({
             ...options,
-            name,
             url: `${config.baseUrl}/process/restart/${options.params.processId}`
         });
     },
@@ -53,7 +50,6 @@ export default {
     stopProcess(options) {
         Api.put({
             ...options,
-            name,
             url: `${config.baseUrl}/pm/process/stop/${options.params.processId}`
         });
     },
@@ -61,7 +57,6 @@ export default {
     reloadProcess(options) {
         Api.put({
             ...options,
-            name,
             url: `${config.baseUrl}/process/reload/${options.params.processId}`
         });
     }
