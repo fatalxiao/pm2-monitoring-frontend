@@ -37,7 +37,6 @@ class Process extends Component {
         const {style, data} = this.props,
 
             status = this.mapStatus(data.status),
-            activated = status === 'activated',
 
             processClassName = classNames('process', status);
 
@@ -52,10 +51,10 @@ class Process extends Component {
 
                 <div className="process-monit">
                     <div className="process-monit-cpu">
-                        {`CPU: ${activated && data.monit ? Calculation.formatCPU(data.monit.cpu) : '--'}`}
+                        {`CPU: ${status === 'activated' && data.monit ? Calculation.formatCPU(data.monit.cpu) : '--'}`}
                     </div>
                     <div className="process-monit-memory">
-                        {`Memory: ${activated && data.monit ? Calculation.formatMemory(data.monit.memory) : '--'}`}
+                        {`Memory: ${status === 'activated' && data.monit ? Calculation.formatMemory(data.monit.memory) : '--'}`}
                     </div>
                 </div>
 
@@ -64,7 +63,7 @@ class Process extends Component {
                                 iconCls="icon-upload-to-cloud"
                                 tip="Upload"/>
                     <FlatButton className="process-action"
-                                iconCls={`icon-controller-${activated ? 'paus' : 'play'}`}
+                                iconCls={`icon-controller-${status === 'activated' ? 'paus' : 'play'}`}
                                 tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}/>
                     <FlatButton className="process-action"
                                 iconCls="icon-cycle"

@@ -101,7 +101,14 @@
     &.paused {
         .process-status {
             color: #fff;
-            background: $theme-success;
+            background: $theme-warning;
+        }
+    }
+
+    &.errored {
+        .process-status {
+            color: #fff;
+            background: $theme-error;
         }
     }
 
