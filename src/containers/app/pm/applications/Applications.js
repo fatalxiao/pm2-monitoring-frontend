@@ -8,11 +8,11 @@ import eventsOff from 'dom-helpers/events/off';
 
 import * as actions from 'reduxes/actions';
 
-import Process from './Process/Process';
+import Application from './application/Application';
 
-import 'scss/containers/app/processes/Processes.scss';
+import 'scss/containers/app/pm/applications/Applications.scss';
 
-class Processes extends Component {
+class Applications extends Component {
 
     constructor(props) {
 
@@ -102,18 +102,18 @@ class Processes extends Component {
             {wrapperStyle, processStyle} = this.state;
 
         return (
-            <div className="processes">
+            <div className="applications">
 
-                <h1 className="processes-title">Applications</h1>
+                <h1 className="applications-title">Applications</h1>
 
                 <div ref="wrapper"
-                     className="process-wrapper"
+                     className="applications-wrapper"
                      style={wrapperStyle}>
                     {
                         data && data.map((item, index) => item ?
-                            <Process key={index}
-                                     style={processStyle && processStyle[index]}
-                                     data={item}/>
+                            <Application key={index}
+                                         style={processStyle && processStyle[index]}
+                                         data={item}/>
                             :
                             null
                         )
@@ -125,7 +125,7 @@ class Processes extends Component {
     }
 }
 
-Processes.propTypes = {
+Applications.propTypes = {
     data: PropTypes.array,
     runGetProcessesInterval: PropTypes.func
 };
@@ -134,4 +134,4 @@ export default connect(state => ({
     data: state.processes.data
 }), dispatch => bindActionCreators({
     runGetProcessesInterval: actions.runGetProcessesInterval
-}, dispatch))(Processes);
+}, dispatch))(Applications);
