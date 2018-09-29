@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import * as actions from 'reduxes/actions';
+
 import FlatButton from 'alcedo-ui/FlatButton';
 
 import 'scss/containers/app/processes/Process/ProcessActions.scss';
@@ -13,9 +15,17 @@ class ProcessActions extends Component {
         super(props);
     }
 
+    startPause = () => {
+
+        const {data, pauseProcess} = this.props;
+
+        data && pauseProcess && pauseProcess(data.pm_id);
+
+    };
+
     render() {
 
-        const {data, status} = this.props;
+        const {status} = this.props;
 
         return (
             <div className="process-actions">
@@ -24,9 +34,10 @@ class ProcessActions extends Component {
                             tip="Upload"/>
                 <FlatButton className="process-action"
                             iconCls={`icon-controller-${status === 'activated' ? 'paus' : 'play'}`}
-                            tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}/>
+                            tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}
+                            onClick={this.startPause}/>
                 <FlatButton className="process-action"
-                            iconCls="icon-cycle"
+                            iconCls="icon-cw"
                             tip="Restart"/>
                 <FlatButton className="process-action"
                             iconCls="icon-controller-stop"
@@ -37,8 +48,14 @@ class ProcessActions extends Component {
 }
 
 ProcessActions.propTypes = {
+
     data: PropTypes.object,
-    status: PropTypes.string
+    status: PropTypes.string,
+
+    pauseProcess: PropTypes.func
+
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ProcessActions);
+export default connect(state => ({}), dispatch => bindActionCreators({
+    pauseProcess: actions.pauseProcess
+}, dispatch))(ProcessActions);
