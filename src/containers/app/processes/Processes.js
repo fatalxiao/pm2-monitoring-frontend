@@ -18,7 +18,6 @@ class Processes extends Component {
 
         super(props);
 
-        this.runTimeoutId = null;
         this.processMinWidth = 280;
         this.processHeight = 160;
         this.separatorSize = 24;
@@ -74,20 +73,12 @@ class Processes extends Component {
     }, 350);
 
     run = () => {
-
-        const {getProcesses} = this.props;
-
-        if (getProcesses) {
-            getProcesses(responseData => {
-                if (responseData && responseData.length !== this.state.processStyle.length) {
-                    this.updateProcessesStyles(responseData);
-                }
-            });
-            this.runTimeoutId = setTimeout(() => {
-                this.run();
-            }, 5000);
-        }
-
+        const {runGetProcessesInterval} = this.props;
+        runGetProcessesInterval && runGetProcessesInterval(responseData => {
+            if (responseData && responseData.length !== this.state.processStyle.length) {
+                this.updateProcessesStyles(responseData);
+            }
+        });
     };
 
     componentDidMount() {
@@ -134,11 +125,11 @@ class Processes extends Component {
 
 Processes.propTypes = {
     data: PropTypes.array,
-    getProcesses: PropTypes.func
+    runGetProcessesInterval: PropTypes.func
 };
 
 export default connect(state => ({
     data: state.processes.data
 }), dispatch => bindActionCreators({
-    getProcesses: actions.getProcesses
+    runGetProcessesInterval: actions.runGetProcessesInterval
 }, dispatch))(Processes);
