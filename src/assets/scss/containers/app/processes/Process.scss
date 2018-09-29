@@ -25,7 +25,7 @@
         .process-name {
             float: left;
             line-height: 32px;
-            font-size: 16px;
+            font-size: 18px;
             color: $theme-field;
         }
 
@@ -62,7 +62,7 @@
 
         & > .tip-provider {
             float: left;
-            width: 33.333333%;
+            width: 25%;
 
             .trigger-wrapper {
                 width: 100%;

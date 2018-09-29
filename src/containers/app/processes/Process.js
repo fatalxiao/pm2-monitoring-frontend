@@ -64,11 +64,14 @@ class Process extends Component {
                                 iconCls="icon-upload-to-cloud"
                                 tip="Upload"/>
                     <FlatButton className="process-action"
-                                iconCls={`icon-controller-${activated ? 'stop' : 'play'}`}
-                                tip={activated ? 'Stop' : 'Start'}/>
+                                iconCls={`icon-controller-${activated ? 'paus' : 'play'}`}
+                                tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}/>
                     <FlatButton className="process-action"
                                 iconCls="icon-cycle"
-                                tip="Flush"/>
+                                tip="Reload"/>
+                    <FlatButton className="process-action"
+                                iconCls="icon-controller-stop"
+                                tip="Stop"/>
                 </div>
 
             </div>
