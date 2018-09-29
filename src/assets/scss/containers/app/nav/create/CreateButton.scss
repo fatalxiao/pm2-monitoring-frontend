@@ -11,7 +11,8 @@
         border-radius: 50%;
         background: $theme-highlight;
         cursor: pointer;
-        transition: transform $theme-transition-duration ease-out;
+        animation-duration: $theme-transition-duration*3;
+        animation-name: bounceIn;
     }
 
     .create-button {
@@ -28,9 +29,10 @@
     &.avtivated {
 
         .create-button-bg {
-            transform: scale(100);
             cursor: default;
-            transition: transform $theme-transition-duration ease-in;
+            transform: scale3d(100, 100, 100);
+            transition: transform $theme-transition-duration*2 ease-in;
+            animation: none;
         }
 
         .create-button {
@@ -39,4 +41,34 @@
         }
     }
 
+}
+
+@keyframes bounceIn {
+    from,
+    40%,
+    60%,
+    70%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    0% {
+        transform: scale3d(100, 100, 100);
+    }
+
+    40% {
+        transform: scale3d(0.8, 0.8, 0.8);
+    }
+
+    60% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    80% {
+        transform: scale3d(0.95, 0.95, 0.95);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
 }
