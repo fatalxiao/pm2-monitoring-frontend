@@ -19,8 +19,8 @@ class Processes extends Component {
         super(props);
 
         this.runTimeoutId = null;
-        this.processMinWidth = 240;
-        this.processHeight = 120;
+        this.processMinWidth = 280;
+        this.processHeight = 160;
         this.separatorSize = 24;
 
         this.state = {
