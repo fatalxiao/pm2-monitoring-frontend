@@ -17,9 +17,17 @@ class ProcessActions extends Component {
 
     startPause = () => {
 
-        const {data, pauseProcess} = this.props;
+        const {data, status, startProcess, pauseProcess} = this.props;
 
-        data && pauseProcess && pauseProcess(data.pm_id);
+        if (!data) {
+            return;
+        }
+
+        if (status === 'activated') {
+            pauseProcess && pauseProcess(data.pm_id);
+        } else {
+            startProcess && startProcess(data.name);
+        }
 
     };
 
@@ -52,10 +60,12 @@ ProcessActions.propTypes = {
     data: PropTypes.object,
     status: PropTypes.string,
 
+    startProcess: PropTypes.func,
     pauseProcess: PropTypes.func
 
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
+    startProcess: actions.startProcess,
     pauseProcess: actions.pauseProcess
 }, dispatch))(ProcessActions);
