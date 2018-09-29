@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
-import * as actions from 'reduxes/actions';
+import * as actions from 'reduxes/actions/index';
 
 import TextField from 'alcedo-ui/TextField';
 
-import 'scss/containers/app/nav/create/CreateForm.scss';
+import 'scss/containers/app/pm/nav/create/CreateForm.scss';
 
 class CreateForm extends Component {
 
