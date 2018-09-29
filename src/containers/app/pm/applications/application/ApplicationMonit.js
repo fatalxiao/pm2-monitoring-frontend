@@ -6,9 +6,9 @@ import classNames from 'classnames';
 
 import Calculation from 'vendors/Calaulation';
 
-import 'scss/containers/app/processes/Process/ProcessMonit.scss';
+import 'scss/containers/app/pm/applications/application/ApplicationMonit.scss';
 
-class ProcessMonit extends Component {
+class ApplicationMonit extends Component {
 
     constructor(props) {
         super(props);
@@ -29,23 +29,23 @@ class ProcessMonit extends Component {
                 '--';
 
         return (
-            <div className="process-monit">
-                <div className="process-monit-cpu">
-                    <div className="process-monit-title">CPU</div>
-                    <div className={classNames('process-monit-value', {
+            <div className="application-monit">
+                <div className="application-monit-cpu">
+                    <div className="application-monit-title">CPU</div>
+                    <div className={classNames('application-monit-value', {
                         activated: status === 'activated'
                     })}>
                         {cpu}
-                        <span className="process-monit-unit">%</span>
+                        <span className="application-monit-unit">%</span>
                     </div>
                 </div>
-                <div className="process-monit-memory">
-                    <div className="process-monit-title">Memory</div>
-                    <div className={classNames('process-monit-value', {
+                <div className="application-monit-memory">
+                    <div className="application-monit-title">Memory</div>
+                    <div className={classNames('application-monit-value', {
                         activated: status === 'activated'
                     })}>
                         {memory}
-                        <span className="process-monit-unit">MB</span>
+                        <span className="application-monit-unit">MB</span>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,9 @@ class ProcessMonit extends Component {
     }
 }
 
-ProcessMonit.propTypes = {
+ApplicationMonit.propTypes = {
     data: PropTypes.object,
     status: PropTypes.string
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ProcessMonit);
+export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ApplicationMonit);

@@ -1,6 +1,6 @@
-@import '../../../../common.scss';
+@import '../../../../../common.scss';
 
-.process-monit {
+.application-monit {
     @include float-fix;
     position: relative;
     height: 64px;
@@ -8,25 +8,25 @@
     padding: 8px 0;
     color: $theme-label;
 
-    .process-monit-cpu,
-    .process-monit-memory {
+    .application-monit-cpu,
+    .application-monit-memory {
         position: relative;
         float: left;
         width: 50%;
 
-        .process-monit-title {
+        .application-monit-title {
             text-align: center;
             line-height: 24px;
         }
 
-        .process-monit-value {
+        .application-monit-value {
             position: relative;
             text-align: center;
             font-size: 24px;
             height: 40px;
             line-height: 40px;
 
-            .process-monit-unit {
+            .application-monit-unit {
                 position: absolute;
                 font-size: 12px;
                 line-height: 32px;
@@ -36,10 +36,10 @@
         }
     }
 
-    .process-monit-cpu {
+    .application-monit-cpu {
         position: relative;
 
-        .process-monit-value.activated {
+        .application-monit-value.activated {
             color: $theme-highlight;
         }
 
@@ -55,7 +55,7 @@
         }
     }
 
-    .process-monit-memory .process-monit-value.activated {
+    .application-monit-memory .application-monit-value.activated {
         color: $theme-purple;
     }
 
