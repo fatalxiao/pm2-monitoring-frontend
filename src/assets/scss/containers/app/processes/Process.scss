@@ -18,9 +18,8 @@
 
     .process-header {
         @include float-fix;
-        box-sizing: border-box;
-        height: 85px;
-        padding: 8px 16px;
+        height: 32px;
+        padding: 8px 16px 0;
 
         .process-name {
             float: left;
@@ -37,6 +36,15 @@
             padding: 0 16px;
             border-radius: 12px;
         }
+    }
+
+    .process-desc {
+        height: 35px;
+        line-height: 16px;
+        padding: 0 24px;
+        margin: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .process-monit {

@@ -49,6 +49,8 @@ class Process extends Component {
                     <div className="process-status">{startCase(status)}</div>
                 </div>
 
+                <div className="process-desc">{data.description}</div>
+
                 <div className="process-monit">
                     <div className="process-monit-cpu">
                         {`CPU: ${status === 'activated' && data.monit ? Calculation.formatCPU(data.monit.cpu) : '--'}`}
