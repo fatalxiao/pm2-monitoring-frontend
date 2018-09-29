@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
+import startCase from 'lodash/startCase';
 
 import * as actions from 'reduxes/actions';
 
@@ -18,19 +19,36 @@ class Process extends Component {
         super(props);
     }
 
+    mapStatus = status => {
+        switch (status) {
+            case 'online':
+                return 'activated';
+            case 'stopped':
+                return 'paused';
+            case 'errored':
+                return 'errored';
+            default:
+                return 'stopped';
+        }
+    };
+
     render() {
 
         const {style, data} = this.props,
-            activated = 'pm_id' in data,
-            processClassName = classNames('process', {
-                activated
-            });
+
+            status = this.mapStatus(data.status),
+            activated = status === 'activated',
+
+            processClassName = classNames('process', status);
 
         return (
             <div className={processClassName}
                  style={style}>
 
-                <div className="process-name">{data.name}</div>
+                <div className="process-header">
+                    <div className="process-name">{data.name}</div>
+                    <div className="process-status">{startCase(status)}</div>
+                </div>
 
                 <div className="process-monit">
                     <div className="process-monit-cpu">

@@ -16,12 +16,27 @@
     transition-duration: $theme-transition-duration;
     transition-timing-function: ease-in-out;
 
-    .process-name {
+    .process-header {
+        @include float-fix;
         box-sizing: border-box;
-        height: 45px;
-        line-height: 32px;
-        font-size: 16px;
+        height: 85px;
         padding: 8px 16px;
+
+        .process-name {
+            float: left;
+            line-height: 32px;
+            font-size: 16px;
+            color: $theme-field;
+        }
+
+        .process-status {
+            float: right;
+            height: 24px;
+            line-height: 24px;
+            margin: 4px 0;
+            padding: 0 16px;
+            border-radius: 12px;
+        }
     }
 
     .process-monit {
@@ -77,13 +92,34 @@
     }
 
     &.activated {
-        border-color: $theme-highlight;
-        background: #fff;
-
-        .process-name {
-            color: $theme-highlight;
+        .process-status {
+            color: #fff;
+            background: $theme-success;
         }
     }
+
+    &.paused {
+        .process-status {
+            color: #fff;
+            background: $theme-success;
+        }
+    }
+
+    &.stopped {
+        .process-status {
+            color: #fff;
+            background: $theme-border;
+        }
+    }
+
+    //&.activated {
+    //    border-color: $theme-highlight;
+    //    background: #fff;
+    //
+    //    .process-name {
+    //        color: $theme-highlight;
+    //    }
+    //}
 
     &:hover {
         box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px,
