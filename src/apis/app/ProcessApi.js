@@ -24,6 +24,22 @@ export default {
         //     cancelable: false
         // });
 
+    },
+
+    startProcess(options) {
+        Api.put({
+            ...options,
+            name,
+            url: `${config.reportBaseUrl}/pm/process/start/${options.params.processName}`
+        });
+    },
+
+    pauseProcess(options) {
+        Api.put({
+            ...options,
+            name,
+            url: `${config.reportBaseUrl}/pm/process/stop/${options.params.processId}`
+        });
     }
 
 };
