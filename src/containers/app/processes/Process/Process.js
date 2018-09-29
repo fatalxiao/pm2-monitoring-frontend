@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
-import startCase from 'lodash/startCase';
 
-import * as actions from 'reduxes/actions';
-
-import ProcessMonit from './ProcessMonit';
+import ProcessInfo from './ProcessInfo';
 import ProcessActions from './ProcessActions';
-
-import Calculation from 'vendors/Calaulation';
 
 import 'scss/containers/app/processes/Process/Process.scss';
 
@@ -45,15 +40,8 @@ class Process extends Component {
             <div className={processClassName}
                  style={style}>
 
-                <div className="process-header">
-                    <div className="process-name">{data.name}</div>
-                    <div className="process-status">{startCase(status)}</div>
-                </div>
-
-                <div className="process-desc">{data.description}</div>
-
-                <ProcessMonit data={data}
-                              status={status}/>
+                <ProcessInfo data={data}
+                             status={status}/>
 
                 <ProcessActions data={data}
                                 status={status}/>
