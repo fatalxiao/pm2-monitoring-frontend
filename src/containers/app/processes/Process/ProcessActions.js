@@ -13,19 +13,6 @@ class ProcessActions extends Component {
         super(props);
     }
 
-    mapStatus = status => {
-        switch (status) {
-            case 'online':
-                return 'activated';
-            case 'stopped':
-                return 'paused';
-            case 'errored':
-                return 'errored';
-            default:
-                return 'stopped';
-        }
-    };
-
     render() {
 
         const {data, status} = this.props;
