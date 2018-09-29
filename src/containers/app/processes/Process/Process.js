@@ -7,11 +7,11 @@ import startCase from 'lodash/startCase';
 
 import * as actions from 'reduxes/actions';
 
-import FlatButton from 'alcedo-ui/FlatButton';
+import ProcessActions from './ProcessActions';
 
 import Calculation from 'vendors/Calaulation';
 
-import 'scss/containers/app/processes/Process.scss';
+import 'scss/containers/app/processes/Process/Process.scss';
 
 class Process extends Component {
 
@@ -60,20 +60,8 @@ class Process extends Component {
                     </div>
                 </div>
 
-                <div className="process-actions">
-                    <FlatButton className="process-action"
-                                iconCls="icon-upload-to-cloud"
-                                tip="Upload"/>
-                    <FlatButton className="process-action"
-                                iconCls={`icon-controller-${status === 'activated' ? 'paus' : 'play'}`}
-                                tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}/>
-                    <FlatButton className="process-action"
-                                iconCls="icon-cycle"
-                                tip="Reload"/>
-                    <FlatButton className="process-action"
-                                iconCls="icon-controller-stop"
-                                tip="Stop"/>
-                </div>
+                <ProcessActions data={data}
+                                status={status}/>
 
             </div>
         );
