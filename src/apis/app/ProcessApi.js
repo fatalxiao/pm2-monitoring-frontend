@@ -40,6 +40,30 @@ export default {
             name,
             url: `${config.reportBaseUrl}/pm/process/stop/${options.params.processId}`
         });
+    },
+
+    restartProcess(options) {
+        Api.put({
+            ...options,
+            name,
+            url: `${config.reportBaseUrl}/pm/process/restart/${options.params.processId}`
+        });
+    },
+
+    stopProcess(options) {
+        Api.put({
+            ...options,
+            name,
+            url: `${config.reportBaseUrl}/pm/process/delete/${options.params.processId}`
+        });
+    },
+
+    reloadProcess(options) {
+        Api.put({
+            ...options,
+            name,
+            url: `${config.reportBaseUrl}/pm/process/reload/${options.params.processId}`
+        });
     }
 
 };
