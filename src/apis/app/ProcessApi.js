@@ -11,7 +11,7 @@ export default {
         reader.onload = e => {
             WebSocketApi.request({
                 ...options,
-                url: `ws://localhost:9616/pm/process/upload/${options.params.processName}`,
+                url: `${baseWsUrl}/process/upload/${options.params.processName}`,
                 message: e.target.result,
                 autoClose: true
             });
@@ -24,6 +24,41 @@ export default {
         //     cancelable: false
         // });
 
+    },
+
+    startProcess(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/process/start/${options.params.processName}`
+        });
+    },
+
+    pauseProcess(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/process/pause/${options.params.processId}`
+        });
+    },
+
+    restartProcess(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/process/restart/${options.params.processId}`
+        });
+    },
+
+    stopProcess(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/process/stop/${options.params.processId}`
+        });
+    },
+
+    reloadProcess(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/process/reload/${options.params.processId}`
+        });
     }
 
 };

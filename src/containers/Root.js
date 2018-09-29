@@ -10,12 +10,8 @@ import * as actions from 'reduxes/actions';
 import Toaster from 'alcedo-ui/Toaster';
 import Notifier from 'alcedo-ui/Notifier';
 
-import Config from 'src/config';
 import {DEFAULT_ROUTE} from 'src/config.routes';
 
-import Event from 'vendors/Event';
-
-import 'assets/bootstrap/bootstrap.min.css';
 import 'assets/font-awesome/css/fontawesome-all.min.css';
 import 'assets/icomoon/style.css';
 import 'scss/global.scss';
@@ -25,21 +21,6 @@ class Root extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    resizeHandler = () => {
-        window.innerWidth >= Config.desktopMinWidth ?
-            (!this.props.isDesktop && this.props.switchToDesktop())
-            :
-            (this.props.isDesktop && this.props.switchToMobile());
-    };
-
-    componentDidMount() {
-        Event.addEvent(window, 'resize', this.resizeHandler);
-    }
-
-    componentWillUnmount() {
-        Event.removeEvent(window, 'resize', this.resizeHandler);
     }
 
     render() {
@@ -55,7 +36,6 @@ class Root extends Component {
                 <Toaster toasts={toastes}
                          position={Toaster.Position.TOP}
                          onToastPop={clearToaste}/>
-
 
                 <Notifier notifications={notifiers}
                           position={Notifier.Position.TOP_RIGHT}
@@ -81,26 +61,20 @@ Root.propTypes = {
     route: PropTypes.object,
     location: PropTypes.object,
 
-    isDesktop: PropTypes.bool,
     toastes: PropTypes.array,
     notifiers: PropTypes.array,
 
     routerReplace: PropTypes.func,
     clearToaste: PropTypes.func,
-    clearNotifier: PropTypes.func,
-    switchToDesktop: PropTypes.func,
-    switchToMobile: PropTypes.func
+    clearNotifier: PropTypes.func
 
 };
 
 export default connect(state => ({
-    isDesktop: state.device.isDesktop,
     toastes: state.appToaster.toastes,
     notifiers: state.appNotifier.notifiers
 }), dispatch => bindActionCreators({
     routerReplace: actions.routerReplace,
     clearToaste: actions.clearToaste,
-    clearNotifier: actions.clearNotifier,
-    switchToDesktop: actions.switchToDesktop,
-    switchToMobile: actions.switchToMobile
+    clearNotifier: actions.clearNotifier
 }, dispatch))(Root);

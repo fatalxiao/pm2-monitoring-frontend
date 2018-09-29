@@ -15,3 +15,18 @@ export const getProcesses = () => dispatch => {
         }
     });
 };
+
+let getProcessesIntervalId = null;
+export const runGetProcessesInterval = (interval = 5000) => dispatch => {
+
+    if (getProcessesIntervalId) {
+        clearTimeout(getProcessesIntervalId);
+    }
+
+    getProcesses()(dispatch);
+
+    getProcessesIntervalId = setTimeout(() => {
+        runGetProcessesInterval(interval)(dispatch);
+    }, interval);
+
+};

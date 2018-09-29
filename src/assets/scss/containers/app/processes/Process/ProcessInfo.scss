@@ -1,0 +1,37 @@
+@import '../../../../common.scss';
+
+.process-info {
+    background: #fafcfd;
+
+    .process-header {
+        @include float-fix;
+        height: 32px;
+        padding: 8px 16px 0;
+
+        .process-name {
+            float: left;
+            line-height: 32px;
+            font-size: 18px;
+            color: $theme-field;
+        }
+
+        .process-status {
+            float: right;
+            height: 24px;
+            line-height: 24px;
+            margin: 4px 0;
+            padding: 0 16px;
+            border-radius: 12px;
+        }
+    }
+
+    .process-desc {
+        height: 37px;
+        line-height: 24px;
+        padding: 0 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: $theme-label;
+    }
+}
