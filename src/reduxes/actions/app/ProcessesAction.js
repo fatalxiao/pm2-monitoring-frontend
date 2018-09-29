@@ -1,7 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ProcessesApi from 'apis/app/ProcessesApi';
 
-export const getProcesses = callback => dispatch => {
+export const getProcesses = () => dispatch => {
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
@@ -11,27 +11,22 @@ export const getProcesses = callback => dispatch => {
             ],
             api: ProcessesApi.getProcesses,
             isWebSocket: true,
-            resMsgDisabled: true,
-            successCallback(...args) {
-                callback && callback(...args);
-            }
+            resMsgDisabled: true
         }
     });
 };
 
 let getProcessesIntervalId = null;
-export const runGetProcessesInterval = (callback, interval = 5000) => dispatch => {
+export const runGetProcessesInterval = (interval = 5000) => dispatch => {
 
     if (getProcessesIntervalId) {
         clearTimeout(getProcessesIntervalId);
     }
 
-    getProcesses((...args) => {
-        callback && callback(...args);
-    })(dispatch);
+    getProcesses()(dispatch);
 
     getProcessesIntervalId = setTimeout(() => {
-        runGetProcessesInterval(callback, interval)(dispatch);
+        runGetProcessesInterval(interval)(dispatch);
     }, interval);
 
 };
