@@ -1,0 +1,16 @@
+@import '../../../../common.scss';
+
+.process-monit {
+    @include float-fix;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    padding: 0 16px;
+
+    .process-monit-cpu,
+    .process-monit-memory {
+        position: relative;
+        float: left;
+        width: 50%;
+    }
+}
