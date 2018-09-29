@@ -38,7 +38,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.baseUrl}/process/stop/${options.params.processId}`
+            url: `${config.baseUrl}/process/pause/${options.params.processId}`
         });
     },
 
@@ -54,7 +54,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.baseUrl}/pm/process/delete/${options.params.processId}`
+            url: `${config.baseUrl}/pm/process/stop/${options.params.processId}`
         });
     },
 
