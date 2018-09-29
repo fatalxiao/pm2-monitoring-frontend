@@ -102,7 +102,7 @@ class Processes extends Component {
         return (
             <div className="processes">
 
-                <h1 className="processes-title">Apps</h1>
+                <h1 className="processes-title">Applications</h1>
 
                 <div ref="wrapper"
                      className="process-wrapper"
