@@ -11,7 +11,7 @@ export default {
         reader.onload = e => {
             WebSocketApi.request({
                 ...options,
-                url: `ws://localhost:9616/pm/process/upload/${options.params.processName}`,
+                url: `${baseWsUrl}/process/upload/${options.params.processName}`,
                 message: e.target.result,
                 autoClose: true
             });
@@ -30,7 +30,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.reportBaseUrl}/pm/process/start/${options.params.processName}`
+            url: `${config.baseUrl}/process/start/${options.params.processName}`
         });
     },
 
@@ -38,7 +38,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.reportBaseUrl}/pm/process/stop/${options.params.processId}`
+            url: `${config.baseUrl}/process/stop/${options.params.processId}`
         });
     },
 
@@ -46,7 +46,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.reportBaseUrl}/pm/process/restart/${options.params.processId}`
+            url: `${config.baseUrl}/process/restart/${options.params.processId}`
         });
     },
 
@@ -54,7 +54,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.reportBaseUrl}/pm/process/delete/${options.params.processId}`
+            url: `${config.baseUrl}/pm/process/delete/${options.params.processId}`
         });
     },
 
@@ -62,7 +62,7 @@ export default {
         Api.put({
             ...options,
             name,
-            url: `${config.reportBaseUrl}/pm/process/reload/${options.params.processId}`
+            url: `${config.baseUrl}/process/reload/${options.params.processId}`
         });
     }
 
