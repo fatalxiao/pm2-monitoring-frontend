@@ -74,11 +74,7 @@ class Processes extends Component {
 
     run = () => {
         const {runGetProcessesInterval} = this.props;
-        runGetProcessesInterval && runGetProcessesInterval(responseData => {
-            if (responseData && responseData.length !== this.state.processStyle.length) {
-                this.updateProcessesStyles(responseData);
-            }
-        });
+        runGetProcessesInterval && runGetProcessesInterval();
     };
 
     componentDidMount() {
@@ -88,6 +84,12 @@ class Processes extends Component {
 
         this.run();
 
+    }
+
+    componentDidUpdate() {
+        if (this.props.data && this.props.data.length !== this.state.processStyle.length) {
+            this.updateProcessesStyles();
+        }
     }
 
     componentWillUnmount() {
