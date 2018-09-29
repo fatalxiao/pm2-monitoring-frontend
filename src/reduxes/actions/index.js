@@ -6,3 +6,4 @@ export * from './common/DeviceAction';
 export * from './common/LoadComponentAction';
 
 export * from './app/ProcessesAction';
+export * from './app/ProcessAction';
