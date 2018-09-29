@@ -15,7 +15,7 @@ module.exports = {
         assetsDirectory: 'dist/dist-dev/dist',
         assetsRoot: path.resolve(__dirname, '../dist/dist-dev/dist'),
         proxyTable: {
-            '/dplatform-cloud-gateway': 'http://10.200.159.15:10000'
+            '/pm': 'http://localhost:9616'
         }
     },
 
@@ -26,7 +26,7 @@ module.exports = {
         assetsDirectory: 'dist/dist-test/dist',
         assetsRoot: path.resolve(__dirname, '../dist/dist-test/dist'),
         proxyTable: {
-            '/dplatform-cloud-gateway': 'https://testapi.travelrtd.com'
+            '/pm': 'http://localhost:9616'
         }
     },
 
@@ -37,7 +37,7 @@ module.exports = {
         assetsDirectory: 'dist/dist-prod/dist',
         assetsRoot: path.resolve(__dirname, '../dist/dist-prod/dist'),
         proxyTable: {
-            '/dplatform-cloud-gateway': 'http://api.travelrtd.com'
+            '/pm': 'http://localhost:9616'
         }
     }
 
