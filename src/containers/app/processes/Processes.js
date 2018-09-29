@@ -8,7 +8,7 @@ import eventsOff from 'dom-helpers/events/off';
 
 import * as actions from 'reduxes/actions';
 
-import Process from './Process';
+import Process from './Process/Process';
 
 import 'scss/containers/app/processes/Processes.scss';
 
