@@ -27,7 +27,7 @@ class ProcessActions extends Component {
                             tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}/>
                 <FlatButton className="process-action"
                             iconCls="icon-cycle"
-                            tip="Reload"/>
+                            tip="Restart"/>
                 <FlatButton className="process-action"
                             iconCls="icon-controller-stop"
                             tip="Stop"/>
