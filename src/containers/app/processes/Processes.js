@@ -19,7 +19,7 @@ class Processes extends Component {
         super(props);
 
         this.processMinWidth = 280;
-        this.processHeight = 160;
+        this.processHeight = 200;
         this.separatorSize = 24;
 
         this.state = {
