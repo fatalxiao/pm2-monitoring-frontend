@@ -50,7 +50,7 @@ export default {
     stopProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/pm/process/stop/${options.params.processId}`
+            url: `${config.baseUrl}/process/stop/${options.params.processId}`
         });
     },
 
