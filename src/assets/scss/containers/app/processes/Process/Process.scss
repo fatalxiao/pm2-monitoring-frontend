@@ -8,7 +8,6 @@
     background: #fff;
     border: 1px solid $theme-border;
     border-radius: 4px;
-    color: lighten($theme-label, 8%);
     background: #fafbfb;
     overflow: hidden;
     cursor: pointer;
@@ -45,21 +44,7 @@
         margin: 5px 0;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    .process-monit {
-        @include float-fix;
-        height: 32px;
-        line-height: 32px;
-        font-size: 12px;
-        padding: 0 16px;
-
-        .process-monit-cpu,
-        .process-monit-memory {
-            position: relative;
-            float: left;
-            width: 50%;
-        }
+        color: $theme-label;
     }
 
     &.init {

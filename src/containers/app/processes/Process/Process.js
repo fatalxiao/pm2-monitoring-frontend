@@ -7,6 +7,7 @@ import startCase from 'lodash/startCase';
 
 import * as actions from 'reduxes/actions';
 
+import ProcessMonit from './ProcessMonit';
 import ProcessActions from './ProcessActions';
 
 import Calculation from 'vendors/Calaulation';
@@ -51,14 +52,8 @@ class Process extends Component {
 
                 <div className="process-desc">{data.description}</div>
 
-                <div className="process-monit">
-                    <div className="process-monit-cpu">
-                        {`CPU: ${status === 'activated' && data.monit ? Calculation.formatCPU(data.monit.cpu) : '--'}`}
-                    </div>
-                    <div className="process-monit-memory">
-                        {`Memory: ${status === 'activated' && data.monit ? Calculation.formatMemory(data.monit.memory) : '--'}`}
-                    </div>
-                </div>
+                <ProcessMonit data={data}
+                              status={status}/>
 
                 <ProcessActions data={data}
                                 status={status}/>
