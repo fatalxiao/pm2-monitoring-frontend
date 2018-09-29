@@ -1,5 +1,6 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ProcessApi from 'apis/app/ProcessApi';
+import {runGetProcessesInterval} from './ProcessesAction';
 
 export const startProcess = processName => dispatch => {
 
@@ -17,6 +18,9 @@ export const startProcess = processName => dispatch => {
             api: ProcessApi.startProcess,
             params: {
                 processName
+            },
+            successCallback() {
+                runGetProcessesInterval()(dispatch);
             }
         }
     });
@@ -39,6 +43,9 @@ export const pauseProcess = processId => dispatch => {
             api: ProcessApi.pauseProcess,
             params: {
                 processId
+            },
+            successCallback() {
+                runGetProcessesInterval()(dispatch);
             }
         }
     });
@@ -61,6 +68,9 @@ export const restartProcess = processId => dispatch => {
             api: ProcessApi.restartProcess,
             params: {
                 processId
+            },
+            successCallback() {
+                runGetProcessesInterval()(dispatch);
             }
         }
     });
@@ -83,6 +93,9 @@ export const stopProcess = processId => dispatch => {
             api: ProcessApi.stopProcess,
             params: {
                 processId
+            },
+            successCallback() {
+                runGetProcessesInterval()(dispatch);
             }
         }
     });
@@ -105,6 +118,9 @@ export const reloadProcess = processId => dispatch => {
             api: ProcessApi.reloadProcess,
             params: {
                 processId
+            },
+            successCallback() {
+                runGetProcessesInterval()(dispatch);
             }
         }
     });
