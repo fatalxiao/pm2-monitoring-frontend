@@ -7,9 +7,9 @@ import * as actions from 'reduxes/actions';
 
 import FlatButton from 'alcedo-ui/FlatButton';
 
-import 'scss/containers/app/processes/Process/ProcessActions.scss';
+import 'scss/containers/app/pm/applications/application/ApplicationCtrls.scss';
 
-class ProcessActions extends Component {
+class ApplicationCtrls extends Component {
 
     constructor(props) {
         super(props);
@@ -60,19 +60,19 @@ class ProcessActions extends Component {
         const {status} = this.props;
 
         return (
-            <div className="process-actions">
-                <FlatButton className="process-action"
+            <div className="application-ctrls">
+                <FlatButton className="application-ctrl"
                             iconCls="icon-upload-to-cloud"
                             tip="Upload"/>
-                <FlatButton className="process-action"
+                <FlatButton className="application-ctrl"
                             iconCls={`icon-controller-${status === 'activated' ? 'paus' : 'play'}`}
                             tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}
                             onClick={this.startPause}/>
-                <FlatButton className="process-action"
+                <FlatButton className="application-ctrl"
                             iconCls="icon-cw"
                             tip="Restart"
                             onClick={this.restart}/>
-                <FlatButton className="process-action"
+                <FlatButton className="application-ctrl"
                             iconCls="icon-controller-stop"
                             tip="Stop"
                             onClick={this.stop}/>
@@ -81,7 +81,7 @@ class ProcessActions extends Component {
     }
 }
 
-ProcessActions.propTypes = {
+ApplicationCtrls.propTypes = {
 
     data: PropTypes.object,
     status: PropTypes.string,
@@ -98,4 +98,4 @@ export default connect(state => ({}), dispatch => bindActionCreators({
     pauseProcess: actions.pauseProcess,
     restartProcess: actions.restartProcess,
     stopProcess: actions.stopProcess
-}, dispatch))(ProcessActions);
+}, dispatch))(ApplicationCtrls);
