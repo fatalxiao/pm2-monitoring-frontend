@@ -1,0 +1,36 @@
+@import '../../../../common.scss';
+
+.process-info {
+
+    .process-header {
+        @include float-fix;
+        height: 32px;
+        padding: 8px 16px 0;
+
+        .process-name {
+            float: left;
+            line-height: 32px;
+            font-size: 18px;
+            color: $theme-field;
+        }
+
+        .process-status {
+            float: right;
+            height: 24px;
+            line-height: 24px;
+            margin: 4px 0;
+            padding: 0 16px;
+            border-radius: 12px;
+        }
+    }
+
+    .process-desc {
+        height: 35px;
+        line-height: 16px;
+        padding: 0 24px;
+        margin: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $theme-label;
+    }
+}
