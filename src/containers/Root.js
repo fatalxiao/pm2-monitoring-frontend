@@ -4,16 +4,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {renderRoutes} from 'react-router-config';
 import {Redirect} from 'react-router-dom';
-import debounce from 'lodash/debounce';
-import eventsOn from 'dom-helpers/events/on';
-import eventsOff from 'dom-helpers/events/off';
 
 import * as actions from 'reduxes/actions';
 
 import Toaster from 'alcedo-ui/Toaster';
 import Notifier from 'alcedo-ui/Notifier';
 
-import Config from 'src/config';
 import {DEFAULT_ROUTE} from 'src/config.routes';
 
 import 'assets/font-awesome/css/fontawesome-all.min.css';
@@ -25,21 +21,6 @@ class Root extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    resizeHandler = debounce(() => {
-        window.innerWidth >= Config.desktopMinWidth ?
-            (!this.props.isDesktop && this.props.switchToDesktop())
-            :
-            (this.props.isDesktop && this.props.switchToMobile());
-    }, 250);
-
-    componentDidMount() {
-        eventsOn(window, 'resize', this.resizeHandler);
-    }
-
-    componentWillUnmount() {
-        eventsOff(window, 'resize', this.resizeHandler);
     }
 
     render() {
@@ -81,26 +62,20 @@ Root.propTypes = {
     route: PropTypes.object,
     location: PropTypes.object,
 
-    isDesktop: PropTypes.bool,
     toastes: PropTypes.array,
     notifiers: PropTypes.array,
 
     routerReplace: PropTypes.func,
     clearToaste: PropTypes.func,
-    clearNotifier: PropTypes.func,
-    switchToDesktop: PropTypes.func,
-    switchToMobile: PropTypes.func
+    clearNotifier: PropTypes.func
 
 };
 
 export default connect(state => ({
-    isDesktop: state.device.isDesktop,
     toastes: state.appToaster.toastes,
     notifiers: state.appNotifier.notifiers
 }), dispatch => bindActionCreators({
     routerReplace: actions.routerReplace,
     clearToaste: actions.clearToaste,
-    clearNotifier: actions.clearNotifier,
-    switchToDesktop: actions.switchToDesktop,
-    switchToMobile: actions.switchToMobile
+    clearNotifier: actions.clearNotifier
 }, dispatch))(Root);
