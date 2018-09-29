@@ -1,6 +1,6 @@
-@import '../../../../common.scss';
+@import '../../../../../common.scss';
 
-.process {
+.application {
     position: absolute;
     left: 0;
     top: 0;
@@ -15,28 +15,28 @@
     transition-timing-function: ease-in-out;
 
     &.activated {
-        .process-status {
+        .application-status {
             color: #fff;
             background: $theme-success;
         }
     }
 
     &.paused {
-        .process-status {
+        .application-status {
             color: #fff;
             background: $theme-warning;
         }
     }
 
     &.errored {
-        .process-status {
+        .application-status {
             color: #fff;
             background: $theme-error;
         }
     }
 
     &.stopped {
-        .process-status {
+        .application-status {
             color: #fff;
             background: $theme-border;
         }

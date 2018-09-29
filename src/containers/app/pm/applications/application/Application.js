@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
-import ProcessInfo from './ProcessInfo';
-import ProcessActions from './ProcessActions';
+import ApplicationInfo from './ApplicationInfo';
+import ApplicationCtrls from './ApplicationCtrls';
 
-import 'scss/containers/app/processes/Process/Process.scss';
+import 'scss/containers/app/pm/applications/application/Application.scss';
 
-class Process extends Component {
+class Application extends Component {
 
     constructor(props) {
         super(props);
@@ -34,26 +34,26 @@ class Process extends Component {
 
             status = this.mapStatus(data.status),
 
-            processClassName = classNames('process', status);
+            className = classNames('application', status);
 
         return (
-            <div className={processClassName}
+            <div className={className}
                  style={style}>
 
-                <ProcessInfo data={data}
-                             status={status}/>
+                <ApplicationInfo data={data}
+                                 status={status}/>
 
-                <ProcessActions data={data}
-                                status={status}/>
+                <ApplicationCtrls data={data}
+                                  status={status}/>
 
             </div>
         );
     }
 }
 
-Process.propTypes = {
+Application.propTypes = {
     style: PropTypes.object,
     data: PropTypes.object
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Process);
+export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Application);
