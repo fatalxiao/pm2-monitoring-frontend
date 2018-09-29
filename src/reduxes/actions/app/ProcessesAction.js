@@ -18,3 +18,20 @@ export const getProcesses = callback => dispatch => {
         }
     });
 };
+
+let getProcessesIntervalId = null;
+export const runGetProcessesInterval = (callback, interval = 5000) => dispatch => {
+
+    if (getProcessesIntervalId) {
+        clearTimeout(getProcessesIntervalId);
+    }
+
+    getProcesses((...args) => {
+        callback && callback(...args);
+    })(dispatch);
+
+    getProcessesIntervalId = setTimeout(() => {
+        runGetProcessesInterval(callback, interval)(dispatch);
+    }, interval);
+
+};
