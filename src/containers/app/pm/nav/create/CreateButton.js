@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import IconButton from 'alcedo-ui/IconButton';
 import Form from './CreateForm';
 
-import 'scss/containers/app/nav/create/CreateButton.scss';
+import 'scss/containers/app/pm/nav/create/CreateButton.scss';
 
 class CreateButton extends Component {
 
