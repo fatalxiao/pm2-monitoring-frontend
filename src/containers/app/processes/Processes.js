@@ -37,7 +37,7 @@ class Processes extends Component {
         }
 
         const wrapperWidth = this.wrapperEl.offsetWidth,
-            totalCol = Math.floor(wrapperWidth / this.processMinWidth),
+            totalCol = Math.max(Math.floor(wrapperWidth / this.processMinWidth), 1),
             totalRow = Math.ceil(data.length / totalCol),
             width = (wrapperWidth - (totalCol - 1) * this.separatorSize) / totalCol;
 
