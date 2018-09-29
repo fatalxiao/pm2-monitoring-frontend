@@ -31,6 +31,30 @@ class ProcessActions extends Component {
 
     };
 
+    restart = () => {
+
+        const {data, restartProcess} = this.props;
+
+        if (!data) {
+            return;
+        }
+
+        restartProcess && restartProcess(data.pm_id);
+
+    };
+
+    stop = () => {
+
+        const {data, stopProcess} = this.props;
+
+        if (!data) {
+            return;
+        }
+
+        stopProcess && stopProcess(data.pm_id);
+
+    };
+
     render() {
 
         const {status} = this.props;
@@ -46,10 +70,12 @@ class ProcessActions extends Component {
                             onClick={this.startPause}/>
                 <FlatButton className="process-action"
                             iconCls="icon-cw"
-                            tip="Restart"/>
+                            tip="Restart"
+                            onClick={this.restart}/>
                 <FlatButton className="process-action"
                             iconCls="icon-controller-stop"
-                            tip="Stop"/>
+                            tip="Stop"
+                            onClick={this.stop}/>
             </div>
         );
     }
@@ -61,11 +87,15 @@ ProcessActions.propTypes = {
     status: PropTypes.string,
 
     startProcess: PropTypes.func,
-    pauseProcess: PropTypes.func
+    pauseProcess: PropTypes.func,
+    restartProcess: PropTypes.func,
+    stopProcess: PropTypes.func
 
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
     startProcess: actions.startProcess,
-    pauseProcess: actions.pauseProcess
+    pauseProcess: actions.pauseProcess,
+    restartProcess: actions.restartProcess,
+    stopProcess: actions.stopProcess
 }, dispatch))(ProcessActions);
