@@ -2,6 +2,7 @@
 
 $theme-color-transition-percent: 8%;
 
+$theme-bg: #f4f6f7;
 $theme-field: #555;
 $theme-nav: #fff;
 $theme-border: #e7e7e7;
@@ -26,7 +27,8 @@ $theme-warning-border: #f7dfad;
 $theme-purple: #908bc3;
 
 // z-index
-$toast-z-index: 99;
+$app-loading-z-index: 99;
+$toast-z-index: 98;
 $dialog-z-index: 95;
 $menu-z-index: 94;
 $nav-z-index: 93;
