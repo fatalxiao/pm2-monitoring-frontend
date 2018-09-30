@@ -28,12 +28,14 @@ class PM extends Component {
 
         const {init, getApplicationsActionType} = this.props,
 
-            loadClassName = classNames('loading-wrapper', {
+            loadWrapperClassName = classNames('loading-wrapper', {
                 activated: init && (
                     getApplicationsActionType === actionTypes.GET_APPLICATIONS_REQUEST
                     || getApplicationsActionType === actionTypes.GET_APPLICATIONS_FAILURE
                 )
-            });
+            }),
+
+            loadClassName = classNames('loading');
 
         return (
             <div className="pm">
@@ -41,8 +43,8 @@ class PM extends Component {
                 <Nav/>
                 <Applications/>
 
-                <div className={loadClassName}>
-                    <CircularLoading/>
+                <div className={loadWrapperClassName}>
+                    <CircularLoading className={loadClassName}/>
                 </div>
 
             </div>
