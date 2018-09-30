@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions/index';
 
-import TextField from 'alcedo-ui/TextField';
+import TextField from 'alcedo-ui/MaterialTextField';
 
 import 'scss/containers/app/pm/nav/create/CreateForm.scss';
 
@@ -20,20 +20,22 @@ class CreateForm extends Component {
 
         const {avtivated} = this.props,
 
-            className = classNames('create-form', {
+            className = classNames('create-form-wrapper', {
                 avtivated
             });
 
         return (
             <div className={className}>
+                <div className="create-form">
 
-                <div className="form-title">Create App</div>
+                    <div className="form-title">Create Application</div>
 
-                <label className="form-label">
-                    App Name
-                    <TextField className="form-field"/>
-                </label>
+                    <TextField className="form-field"
+                               label="Application Name"
+                               isLabelAnimate={false}
+                               placeholder="new-application"/>
 
+                </div>
             </div>
         );
     }
