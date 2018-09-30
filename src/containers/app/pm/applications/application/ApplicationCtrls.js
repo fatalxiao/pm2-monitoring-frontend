@@ -17,41 +17,41 @@ class ApplicationCtrls extends Component {
 
     startPause = () => {
 
-        const {data, status, startProcess, pauseProcess} = this.props;
+        const {data, status, startApplication, pauseApplication} = this.props;
 
         if (!data) {
             return;
         }
 
         if (status === 'activated') {
-            pauseProcess && pauseProcess(data.pm_id);
+            pauseApplication && pauseApplication(data.pm_id);
         } else {
-            startProcess && startProcess(data.name);
+            startApplication && startApplication(data.name);
         }
 
     };
 
     restart = () => {
 
-        const {data, restartProcess} = this.props;
+        const {data, restartApplication} = this.props;
 
         if (!data) {
             return;
         }
 
-        restartProcess && restartProcess(data.pm_id);
+        restartApplication && restartApplication(data.pm_id);
 
     };
 
     stop = () => {
 
-        const {data, stopProcess} = this.props;
+        const {data, stopApplication} = this.props;
 
         if (!data) {
             return;
         }
 
-        stopProcess && stopProcess(data.pm_id);
+        stopApplication && stopApplication(data.pm_id);
 
     };
 
@@ -86,16 +86,16 @@ ApplicationCtrls.propTypes = {
     data: PropTypes.object,
     status: PropTypes.string,
 
-    startProcess: PropTypes.func,
-    pauseProcess: PropTypes.func,
-    restartProcess: PropTypes.func,
-    stopProcess: PropTypes.func
+    startApplication: PropTypes.func,
+    pauseApplication: PropTypes.func,
+    restartApplication: PropTypes.func,
+    stopApplication: PropTypes.func
 
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
-    startProcess: actions.startProcess,
-    pauseProcess: actions.pauseProcess,
-    restartProcess: actions.restartProcess,
-    stopProcess: actions.stopProcess
+    startApplication: actions.startApplication,
+    pauseApplication: actions.pauseApplication,
+    restartApplication: actions.restartApplication,
+    stopApplication: actions.stopApplication
 }, dispatch))(ApplicationCtrls);
