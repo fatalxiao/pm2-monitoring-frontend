@@ -11,7 +11,7 @@ export default {
         reader.onload = e => {
             WebSocketApi.request({
                 ...options,
-                url: `${baseWsUrl}/process/upload/${options.params.processName}`,
+                url: `${baseWsUrl}/application/upload/${options.params.processName}`,
                 message: e.target.result,
                 autoClose: true
             });
@@ -19,45 +19,45 @@ export default {
 
         // Api.postForm({
         //     ...options,
-        //     url: `${config.appBaseUrl}/process/upload/${options.params.processName}`,
+        //     url: `${config.appBaseUrl}/application/upload/${options.params.processName}`,
         //     formData: options.params.formData,
         //     cancelable: false
         // });
 
     },
 
-    startProcess(options) {
+    startApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/process/start/${options.params.processName}`
+            url: `${config.baseUrl}/application/start/${options.params.applicationName}`
         });
     },
 
-    pauseProcess(options) {
+    pauseApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/process/pause/${options.params.processId}`
+            url: `${config.baseUrl}/application/pause/${options.params.processId}`
         });
     },
 
-    restartProcess(options) {
+    restartApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/process/restart/${options.params.processId}`
+            url: `${config.baseUrl}/application/restart/${options.params.processId}`
         });
     },
 
-    stopProcess(options) {
+    stopApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/process/stop/${options.params.processId}`
+            url: `${config.baseUrl}/application/stop/${options.params.processId}`
         });
     },
 
-    reloadProcess(options) {
+    reloadApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/process/reload/${options.params.processId}`
+            url: `${config.baseUrl}/application/reload/${options.params.processId}`
         });
     }
 
