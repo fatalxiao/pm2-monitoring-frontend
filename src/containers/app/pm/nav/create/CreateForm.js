@@ -8,6 +8,7 @@ import * as actions from 'reduxes/actions';
 
 import TextField from 'alcedo-ui/MaterialTextField';
 import TextArea from 'alcedo-ui/MaterialTextArea';
+import Accordion from 'alcedo-ui/Accordion';
 
 import 'scss/containers/app/pm/nav/create/CreateForm.scss';
 
@@ -43,11 +44,27 @@ class CreateForm extends Component {
                               clearButtonVisible={false}
                               autoHeight={true}/>
 
-                    <TextField className="form-field"
-                               label="Script"
-                               isLabelAnimate={false}
-                               placeholder="server.js"
-                               clearButtonVisible={false}/>
+                    <Accordion className="create-form-advance"
+                               title="Advance"
+                               collapseIcon="icon-chevron-thin-down">
+                        <div className="create-form-advance-content">
+                            <TextField className="form-field"
+                                       label="Script"
+                                       isLabelAnimate={false}
+                                       placeholder="server.js"
+                                       clearButtonVisible={false}/>
+                            <TextField className="form-field"
+                                       label="Environment"
+                                       isLabelAnimate={false}
+                                       placeholder="development"
+                                       clearButtonVisible={false}/>
+                            <TextField className="form-field"
+                                       label="Production Environment"
+                                       isLabelAnimate={false}
+                                       placeholder="production"
+                                       clearButtonVisible={false}/>
+                        </div>
+                    </Accordion>
 
                 </div>
             </div>
