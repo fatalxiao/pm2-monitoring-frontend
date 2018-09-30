@@ -17,8 +17,8 @@ class PM extends Component {
     }
 
     componentDidMount() {
-        const {runGetProcessesInterval} = this.props;
-        runGetProcessesInterval && runGetProcessesInterval();
+        const {runGetApplicationsInterval} = this.props;
+        runGetApplicationsInterval && runGetApplicationsInterval();
     }
 
     render() {
@@ -32,9 +32,9 @@ class PM extends Component {
 }
 
 PM.propTypes = {
-    runGetProcessesInterval: PropTypes.func
+    runGetApplicationsInterval: PropTypes.func
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
-    runGetProcessesInterval: actions.runGetProcessesInterval
+    runGetApplicationsInterval: actions.runGetApplicationsInterval
 }, dispatch))(PM);
