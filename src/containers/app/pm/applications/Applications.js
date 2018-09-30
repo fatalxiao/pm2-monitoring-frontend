@@ -18,13 +18,13 @@ class Applications extends Component {
 
         super(props);
 
-        this.processMinWidth = 280;
-        this.processHeight = 200;
+        this.applicationMinWidth = 280;
+        this.applicationHeight = 200;
         this.separatorSize = 24;
 
         this.state = {
             wrapperStyle: null,
-            processStyle: []
+            applicationStyle: []
         };
 
     }
@@ -36,24 +36,24 @@ class Applications extends Component {
         }
 
         const wrapperWidth = this.wrapperEl.offsetWidth,
-            totalCol = Math.max(Math.floor(wrapperWidth / this.processMinWidth), 1),
+            totalCol = Math.max(Math.floor(wrapperWidth / this.applicationMinWidth), 1),
             totalRow = Math.ceil(data.length / totalCol),
             width = (wrapperWidth - (totalCol - 1) * this.separatorSize) / totalCol;
 
         return {
             wrapperStyle: {
-                height: totalRow * this.processHeight + (totalRow - 1) * this.separatorSize
+                height: totalRow * this.applicationHeight + (totalRow - 1) * this.separatorSize
             },
-            processStyle: data.map((item, index) => {
+            applicationStyle: data.map((item, index) => {
 
                 const col = index % totalCol,
                     row = Math.floor(index / totalCol),
                     x = (width + this.separatorSize) * col,
-                    y = (this.processHeight + this.separatorSize) * row;
+                    y = (this.applicationHeight + this.separatorSize) * row;
 
                 return {
                     width,
-                    height: this.processHeight,
+                    height: this.applicationHeight,
                     transform: `translate(${x}px, ${y}px)`
                 };
 
@@ -62,33 +62,24 @@ class Applications extends Component {
 
     };
 
-    updateProcessesStyles = (data = this.props.data) => {
+    updateStyles = (data = this.props.data) => {
         this.setState({
             ...this.getStyles(data)
         });
     };
 
     resizeHandler = debounce(() => {
-        this.updateProcessesStyles();
+        this.updateStyles();
     }, 350);
 
-    run = () => {
-        const {runGetProcessesInterval} = this.props;
-        runGetProcessesInterval && runGetProcessesInterval();
-    };
-
     componentDidMount() {
-
         this.wrapperEl = this.refs.wrapper;
         eventsOn(window, 'resize', this.resizeHandler);
-
-        this.run();
-
     }
 
     componentDidUpdate() {
-        if (this.props.data && this.props.data.length !== this.state.processStyle.length) {
-            this.updateProcessesStyles();
+        if (this.props.data && this.props.data.length !== this.state.applicationStyle.length) {
+            this.updateStyles();
         }
     }
 
@@ -99,7 +90,7 @@ class Applications extends Component {
     render() {
 
         const {data} = this.props,
-            {wrapperStyle, processStyle} = this.state;
+            {wrapperStyle, applicationStyle} = this.state;
 
         return (
             <div className="applications">
@@ -112,7 +103,7 @@ class Applications extends Component {
                     {
                         data && data.map((item, index) => item ?
                             <Application key={index}
-                                         style={processStyle && processStyle[index]}
+                                         style={applicationStyle && applicationStyle[index]}
                                          data={item}/>
                             :
                             null
@@ -127,11 +118,11 @@ class Applications extends Component {
 
 Applications.propTypes = {
     data: PropTypes.array,
-    runGetProcessesInterval: PropTypes.func
+    runGetApplicationsInterval: PropTypes.func
 };
 
 export default connect(state => ({
-    data: state.processes.data
+    data: state.applications.data
 }), dispatch => bindActionCreators({
-    runGetProcessesInterval: actions.runGetProcessesInterval
+    runGetApplicationsInterval: actions.runGetApplicationsInterval
 }, dispatch))(Applications);
