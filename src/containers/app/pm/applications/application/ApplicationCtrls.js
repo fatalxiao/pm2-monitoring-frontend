@@ -17,14 +17,14 @@ class ApplicationCtrls extends Component {
 
     startPause = () => {
 
-        const {data, status, startApplication, pauseApplication} = this.props;
+        const {data, status, startApplication, stopApplication} = this.props;
 
         if (!data) {
             return;
         }
 
-        if (status === 'activated') {
-            pauseApplication && pauseApplication(data.pm_id);
+        if (status === 'online') {
+            stopApplication && stopApplication(data.pm_id);
         } else {
             startApplication && startApplication(data.name);
         }
@@ -45,13 +45,13 @@ class ApplicationCtrls extends Component {
 
     stop = () => {
 
-        const {data, stopApplication} = this.props;
+        const {data, deleteApplication} = this.props;
 
         if (!data) {
             return;
         }
 
-        stopApplication && stopApplication(data.pm_id);
+        deleteApplication && deleteApplication(data.pm_id);
 
     };
 
@@ -65,8 +65,8 @@ class ApplicationCtrls extends Component {
                             iconCls="icon-upload-to-cloud"
                             tip="Upload"/>
                 <FlatButton className="application-ctrl"
-                            iconCls={`icon-controller-${status === 'activated' ? 'paus' : 'play'}`}
-                            tip={status === 'activated' ? 'Pause' : (status === 'stopped' ? 'Start' : 'Continue')}
+                            iconCls={`icon-controller-${status === 'online' ? 'paus' : 'play'}`}
+                            tip={status === 'online' ? 'Pause' : (status === 'offline' ? 'Start' : 'Continue')}
                             onClick={this.startPause}/>
                 <FlatButton className="application-ctrl"
                             iconCls="icon-cw"
@@ -87,15 +87,15 @@ ApplicationCtrls.propTypes = {
     status: PropTypes.string,
 
     startApplication: PropTypes.func,
-    pauseApplication: PropTypes.func,
+    stopApplication: PropTypes.func,
     restartApplication: PropTypes.func,
-    stopApplication: PropTypes.func
+    deleteApplication: PropTypes.func
 
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
     startApplication: actions.startApplication,
-    pauseApplication: actions.pauseApplication,
+    stopApplication: actions.stopApplication,
     restartApplication: actions.restartApplication,
-    stopApplication: actions.stopApplication
+    deleteApplication: actions.deleteApplication
 }, dispatch))(ApplicationCtrls);
