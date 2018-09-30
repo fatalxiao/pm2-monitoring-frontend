@@ -1,6 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 
 const initialState = {
+    init: true,
     data: null,
     actionType: ''
 };
@@ -18,6 +19,7 @@ function applications(state = initialState, action) {
         case actionTypes.GET_APPLICATIONS_SUCCESS: {
             return {
                 ...state,
+                init: false,
                 data: action.responseData,
                 actionType: actionTypes.GET_APPLICATIONS_SUCCESS
             };
