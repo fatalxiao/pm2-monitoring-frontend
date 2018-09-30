@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {renderRoutes} from 'react-router-config';
-
-import * as actions from 'reduxes/actions/index';
 
 import CreateButton from './create/CreateButton';
 
@@ -18,9 +14,9 @@ class Nav extends Component {
 
     render() {
         return (
-                <div className="nav">
-                    <CreateButton/>
-                </div>
+            <div className="nav">
+                <CreateButton/>
+            </div>
         );
     }
 }
