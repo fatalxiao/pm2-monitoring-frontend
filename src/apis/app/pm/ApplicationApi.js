@@ -1,6 +1,6 @@
-import Api from '../Api';
-import WebSocketApi from '../WebSocketApi';
-import config from '../../config';
+import Api from '../../Api';
+import WebSocketApi from '../../WebSocketApi';
+import config from '../../../config';
 
 export default {
 
@@ -33,10 +33,10 @@ export default {
         });
     },
 
-    pauseApplication(options) {
+    stopApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/pause/${options.params.processId}`
+            url: `${config.baseUrl}/application/stop/${options.params.processId}`
         });
     },
 
@@ -47,10 +47,10 @@ export default {
         });
     },
 
-    stopApplication(options) {
+    deleteApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/stop/${options.params.processId}`
+            url: `${config.baseUrl}/application/delete/${options.params.processId}`
         });
     },
 
