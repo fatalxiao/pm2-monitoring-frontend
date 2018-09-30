@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ProcessApi from 'apis/app/ApplicationApi';
+import ProcessApi from 'apis/app/pm/ApplicationApi';
 import {runGetApplicationsInterval} from './ApplicationsAction';
 
 export const startApplication = applicationName => dispatch => {
@@ -27,7 +27,7 @@ export const startApplication = applicationName => dispatch => {
 
 };
 
-export const pauseApplication = processId => dispatch => {
+export const stopApplication = processId => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -40,7 +40,7 @@ export const pauseApplication = processId => dispatch => {
                 actionTypes.PAUSE_APPLICATION_SUCCESS,
                 actionTypes.PAUSE_APPLICATION_FAILURE
             ],
-            api: ProcessApi.pauseApplication,
+            api: ProcessApi.stopApplication,
             params: {
                 processId
             },
@@ -77,7 +77,7 @@ export const restartApplication = processId => dispatch => {
 
 };
 
-export const stopApplication = processId => dispatch => {
+export const deleteApplication = processId => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -90,7 +90,7 @@ export const stopApplication = processId => dispatch => {
                 actionTypes.STOP_APPLICATION_SUCCESS,
                 actionTypes.STOP_APPLICATION_FAILURE
             ],
-            api: ProcessApi.stopApplication,
+            api: ProcessApi.deleteApplication,
             params: {
                 processId
             },
