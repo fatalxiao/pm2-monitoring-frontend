@@ -18,12 +18,12 @@ class ApplicationMonit extends Component {
 
         const {data, status} = this.props,
 
-            cpu = status === 'activated' && data.monit ?
+            cpu = status === 'online' && data.monit ?
                 Calculation.formatCPU(data.monit.cpu)
                 :
                 '--',
 
-            memory = status === 'activated' && data.monit ?
+            memory = status === 'online' && data.monit ?
                 Calculation.formatMemory(data.monit.memory)
                 :
                 '--';
@@ -33,7 +33,7 @@ class ApplicationMonit extends Component {
                 <div className="application-monit-cpu">
                     <div className="application-monit-title">CPU</div>
                     <div className={classNames('application-monit-value', {
-                        activated: status === 'activated'
+                        activated: status === 'online'
                     })}>
                         {cpu}
                         <span className="application-monit-unit">%</span>
@@ -42,7 +42,7 @@ class ApplicationMonit extends Component {
                 <div className="application-monit-memory">
                     <div className="application-monit-title">Memory</div>
                     <div className={classNames('application-monit-value', {
-                        activated: status === 'activated'
+                        activated: status === 'online'
                     })}>
                         {memory}
                         <span className="application-monit-unit">MB</span>
