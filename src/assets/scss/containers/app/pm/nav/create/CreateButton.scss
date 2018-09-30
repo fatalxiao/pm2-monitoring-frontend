@@ -24,6 +24,7 @@
         font-size: 40px;
         color: #fff !important;
         transition: transform $theme-transition-duration ease-in-out;
+        z-index: 1;
     }
 
     &.avtivated {

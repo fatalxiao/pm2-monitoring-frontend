@@ -37,11 +37,11 @@ class CreateButton extends Component {
 
                 <div className="create-button-bg"></div>
 
+                <Form avtivated={avtivated}/>
+
                 <IconButton className="create-button"
                             iconCls="icon-plus"
                             onClick={this.toggle}/>
-
-                <Form avtivated={avtivated}/>
 
             </div>
         );
