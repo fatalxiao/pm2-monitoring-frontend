@@ -3,10 +3,10 @@ import WebSocketApi from 'apis/WebSocketApi';
 
 export default {
 
-    getProcesses(options) {
+    getApplications(options) {
         WebSocketApi.request({
             ...options,
-            url: `${config.baseWsUrl}/processes`
+            url: `${config.baseWsUrl}/applications`
         });
     }
 
