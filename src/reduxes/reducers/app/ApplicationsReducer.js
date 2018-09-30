@@ -5,27 +5,27 @@ const initialState = {
     actionType: ''
 };
 
-function processes(state = initialState, action) {
+function applications(state = initialState, action) {
     switch (action.type) {
 
         // get patient list
-        case actionTypes.GET_PROCESSES_REQUEST: {
+        case actionTypes.GET_APPLICATIONS_REQUEST: {
             return {
                 ...state,
-                actionType: actionTypes.GET_PROCESSES_REQUEST
+                actionType: actionTypes.GET_APPLICATIONS_REQUEST
             };
         }
-        case actionTypes.GET_PROCESSES_SUCCESS: {
+        case actionTypes.GET_APPLICATIONS_SUCCESS: {
             return {
                 ...state,
                 data: action.responseData,
-                actionType: actionTypes.GET_PROCESSES_SUCCESS
+                actionType: actionTypes.GET_APPLICATIONS_SUCCESS
             };
         }
-        case actionTypes.GET_PROCESSES_FAILURE: {
+        case actionTypes.GET_APPLICATIONS_FAILURE: {
             return {
                 ...state,
-                actionType: actionTypes.GET_PROCESSES_FAILURE
+                actionType: actionTypes.GET_APPLICATIONS_FAILURE
             };
         }
 
@@ -35,4 +35,4 @@ function processes(state = initialState, action) {
     }
 }
 
-export default processes;
+export default applications;
