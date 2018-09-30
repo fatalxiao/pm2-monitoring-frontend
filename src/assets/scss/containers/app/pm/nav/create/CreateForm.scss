@@ -31,21 +31,24 @@
 
         .form-field {
             width: 100%;
-            height: 72px;
             border: none;
             background: transparent;
+            margin-bottom: 24px;
 
             .material-provider-label {
                 line-height: 24px;
                 color: transparentize(#fff, .24);
             }
 
-            .text-field {
-                height: 48px;
+            .text-field,
+            .text-area {
                 border-bottom-color: transparentize(#fff, .64);
 
                 .text-field-input,
-                .text-field-placeholder {
+                .text-field-placeholder,
+                .text-area-input {
+                    width: 100%;
+                    height: 100%;
                     font-size: 24px;
                     color: #fff;
                 }
@@ -53,31 +56,30 @@
                 .text-field-placeholder {
                     color: transparentize(#fff, .64);
                 }
-
-                .clear-icon {
-                    color: transparentize(#fff, .24);
-                    font-size: 16px;
-                }
             }
 
-            .material-field-separator-hover,
+            .material-field-separator-hover {
+                display: none;
+            }
             .material-field-separator-focus {
                 background: transparentize(#fff, .24);
             }
 
-            //.text-field-input,
-            //.clear-icon {
-            //    font-size: 24px;
-            //    color: #fff;
-            //}
-            //
-            //.text-field-input {
-            //    padding: 16px 56px 16px 16px !important;
-            //}
-            //
-            //.clear-icon {
-            //    width: 56px;
-            //}
+            &.material-text-field {
+                height: 72px;
+
+                .text-field {
+                    height: 48px;
+                }
+            }
+
+            &.material-text-area {
+                min-height: 72px;
+
+                .text-area .text-area-input {
+                    height: 48px;
+                }
+            }
         }
     }
 
