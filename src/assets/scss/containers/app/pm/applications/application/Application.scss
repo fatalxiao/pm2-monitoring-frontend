@@ -14,14 +14,14 @@
     transition-duration: $theme-transition-duration;
     transition-timing-function: ease-in-out;
 
-    &.activated {
+    &.online {
         .application-status {
             color: #fff;
             background: $theme-success;
         }
     }
 
-    &.paused {
+    &.stop {
         .application-status {
             color: #fff;
             background: $theme-warning;
@@ -35,7 +35,7 @@
         }
     }
 
-    &.stopped {
+    &.offline {
         .application-status {
             color: #fff;
             background: $theme-border;

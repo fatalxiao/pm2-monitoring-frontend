@@ -15,25 +15,10 @@ class Application extends Component {
         super(props);
     }
 
-    mapStatus = status => {
-        switch (status) {
-            case 'online':
-                return 'activated';
-            case 'stopped':
-                return 'paused';
-            case 'errored':
-                return 'errored';
-            default:
-                return 'stopped';
-        }
-    };
-
     render() {
 
         const {style, data} = this.props,
-
-            status = this.mapStatus(data.status),
-
+            status = data.status || 'offline',
             className = classNames('application', status);
 
         return (
@@ -48,6 +33,7 @@ class Application extends Component {
 
             </div>
         );
+
     }
 }
 
