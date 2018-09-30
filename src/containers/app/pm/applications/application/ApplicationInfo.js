@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import startCase from 'lodash/startCase';
 
-import ProcessMonit from './ApplicationMonit';
+import ApplicationMonit from './ApplicationMonit';
 
 import 'scss/containers/app/pm/applications/application/ApplicationInfo.scss';
 
@@ -28,8 +28,8 @@ class ApplicationInfo extends Component {
 
                 <div className="application-desc">{data.description}</div>
 
-                <ProcessMonit data={data}
-                              status={status}/>
+                <ApplicationMonit data={data}
+                                  status={status}/>
 
             </div>
         );
