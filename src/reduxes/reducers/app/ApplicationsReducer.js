@@ -9,7 +9,7 @@ const initialState = {
 function applications(state = initialState, action) {
     switch (action.type) {
 
-        // get patient list
+        // get application list
         case actionTypes.GET_APPLICATIONS_REQUEST: {
             return {
                 ...state,
