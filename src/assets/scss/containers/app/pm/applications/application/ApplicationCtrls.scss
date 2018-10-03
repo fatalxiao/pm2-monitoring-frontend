@@ -2,6 +2,7 @@
 
 .application-ctrls {
     @include float-fix;
+    position: relative;
     height: 40px;
     line-height: 40px;
     border-top: 1px solid $theme-border;
@@ -30,5 +31,9 @@
                 }
             }
         }
+    }
+
+    .application-loading {
+        position: absolute;
     }
 }

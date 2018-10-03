@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from 'reduxes/actions';
 
 import FlatButton from 'alcedo-ui/FlatButton';
+import PageLoading from 'alcedo-ui/PageLoading';
 
 import 'scss/containers/app/pm/applications/application/ApplicationCtrls.scss';
 
@@ -24,7 +25,7 @@ class ApplicationCtrls extends Component {
         }
 
         if (status === 'online') {
-            stopApplication && stopApplication(data.pm_id);
+            stopApplication && stopApplication(data.pm_id, data.name);
         } else {
             startApplication && startApplication(data.name);
         }
@@ -39,7 +40,7 @@ class ApplicationCtrls extends Component {
             return;
         }
 
-        restartApplication && restartApplication(data.pm_id);
+        restartApplication && restartApplication(data.pm_id, data.name);
 
     };
 
@@ -51,14 +52,14 @@ class ApplicationCtrls extends Component {
             return;
         }
 
-        deleteApplication && deleteApplication(data.pm_id);
+        deleteApplication && deleteApplication(data.pm_id, data.name);
 
     };
 
     render() {
 
-        const {actionType, status} = this.props,
-            isLoading = data.pm_id in actionType;
+        const {actionType, data, status} = this.props,
+            isLoading = data && actionType && data.name in actionType;
 
         return (
             <div className="application-ctrls">
@@ -83,6 +84,9 @@ class ApplicationCtrls extends Component {
                             disabled={isLoading}
                             onClick={this.stop}/>
 
+                <PageLoading className="application-loading"
+                             visible={isLoading}
+                             showStripes={false}/>
 
             </div>
         );
