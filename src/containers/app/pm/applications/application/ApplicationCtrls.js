@@ -57,25 +57,33 @@ class ApplicationCtrls extends Component {
 
     render() {
 
-        const {status} = this.props;
+        const {actionType, status} = this.props,
+            isLoading = data.pm_id in actionType;
 
         return (
             <div className="application-ctrls">
+
                 <FlatButton className="application-ctrl"
                             iconCls="icon-upload-to-cloud"
-                            tip="Upload"/>
+                            tip="Upload"
+                            disabled={isLoading}/>
                 <FlatButton className="application-ctrl"
                             iconCls={`icon-controller-${status === 'online' ? 'paus' : 'play'}`}
                             tip={status === 'online' ? 'Pause' : (status === 'offline' ? 'Start' : 'Continue')}
+                            disabled={isLoading}
                             onClick={this.startPause}/>
                 <FlatButton className="application-ctrl"
                             iconCls="icon-cw"
                             tip="Restart"
+                            disabled={isLoading}
                             onClick={this.restart}/>
                 <FlatButton className="application-ctrl"
                             iconCls="icon-controller-stop"
                             tip="Stop"
+                            disabled={isLoading}
                             onClick={this.stop}/>
+
+
             </div>
         );
     }
@@ -83,6 +91,7 @@ class ApplicationCtrls extends Component {
 
 ApplicationCtrls.propTypes = {
 
+    actionType: PropTypes.object,
     data: PropTypes.object,
     status: PropTypes.string,
 
@@ -93,7 +102,9 @@ ApplicationCtrls.propTypes = {
 
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({
+export default connect(state => ({
+    actionType: state.application.actionType
+}), dispatch => bindActionCreators({
     startApplication: actions.startApplication,
     stopApplication: actions.stopApplication,
     restartApplication: actions.restartApplication,
