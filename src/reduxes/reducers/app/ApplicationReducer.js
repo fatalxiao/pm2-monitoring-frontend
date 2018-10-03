@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+
 import * as actionTypes from 'reduxes/actionTypes';
 
 const initialState = {
@@ -11,8 +13,8 @@ function application(state = initialState, action) {
         || action.type === actionTypes.RESTART_APPLICATION_REQUEST
         || action.type === actionTypes.STOP_APPLICATION_REQUEST
         || action.type === actionTypes.RELOAD_APPLICATION_REQUEST) {
-        const actionType = state.actionType;
-        actionType[action.apiParams.applicationId] = action.type;
+        const actionType = cloneDeep(state.actionType);
+        actionType[action.apiParams.applicationName] = action.type;
         return {
             ...state,
             actionType
@@ -27,8 +29,8 @@ function application(state = initialState, action) {
         || action.type === actionTypes.RESTART_APPLICATION_FAILURE
         || action.type === actionTypes.STOP_APPLICATION_FAILURE
         || action.type === actionTypes.RELOAD_APPLICATION_FAILURE) {
-        const actionType = state.actionType;
-        delete actionType[action.apiParams.applicationId];
+        const actionType = cloneDeep(state.actionType);
+        delete actionType[action.apiParams.applicationName];
         return {
             ...state,
             actionType
