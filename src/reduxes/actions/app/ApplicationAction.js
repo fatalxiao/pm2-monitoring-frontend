@@ -27,7 +27,7 @@ export const startApplication = applicationName => dispatch => {
 
 };
 
-export const stopApplication = processId => dispatch => {
+export const stopApplication = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -42,7 +42,8 @@ export const stopApplication = processId => dispatch => {
             ],
             api: ProcessApi.stopApplication,
             params: {
-                processId
+                processId,
+                applicationName
             },
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
@@ -52,7 +53,7 @@ export const stopApplication = processId => dispatch => {
 
 };
 
-export const restartApplication = processId => dispatch => {
+export const restartApplication = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -67,7 +68,8 @@ export const restartApplication = processId => dispatch => {
             ],
             api: ProcessApi.restartApplication,
             params: {
-                processId
+                processId,
+                applicationName
             },
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
@@ -77,7 +79,7 @@ export const restartApplication = processId => dispatch => {
 
 };
 
-export const deleteApplication = processId => dispatch => {
+export const deleteApplication = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -92,7 +94,8 @@ export const deleteApplication = processId => dispatch => {
             ],
             api: ProcessApi.deleteApplication,
             params: {
-                processId
+                processId,
+                applicationName
             },
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
@@ -102,7 +105,7 @@ export const deleteApplication = processId => dispatch => {
 
 };
 
-export const reloadApplication = processId => dispatch => {
+export const reloadApplication = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -117,7 +120,8 @@ export const reloadApplication = processId => dispatch => {
             ],
             api: ProcessApi.reloadApplication,
             params: {
-                processId
+                processId,
+                applicationName
             },
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
