@@ -1,0 +1,34 @@
+@import '../../../common.scss';
+
+.pm {
+
+    .loading-wrapper {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: -9999999px;
+        top: 0;
+        background: $theme-bg;
+        z-index: $app-loading-z-index;
+        opacity: 0;
+        transition: opacity $theme-transition-duration*2 ease-in-out,
+        left 0s $theme-transition-duration*2;
+
+        .loading {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 120px;
+            height: 120px;
+            margin: auto;
+        }
+
+        &.activated {
+            left: 0;
+            opacity: 1;
+            transition: none;
+        }
+    }
+}

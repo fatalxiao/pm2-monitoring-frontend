@@ -8,7 +8,6 @@ import {Redirect} from 'react-router-dom';
 import * as actions from 'reduxes/actions';
 
 import PageLoading from 'alcedo-ui/PageLoading';
-import Nav from './nav/Nav';
 
 import Dom from 'vendors/Dom';
 
@@ -34,15 +33,13 @@ class App extends Component {
                 <PageLoading visible={componentLoading}
                              showStripes={false}/>
 
-                <Nav/>
-
                 <div className="app-content">
 
                     {renderRoutes(route.routes)}
 
                     {
                         location.pathname === '/app' ?
-                            <Redirect from="/app" to="/app/processes"/>
+                            <Redirect from="/app" to="/app/pm"/>
                             :
                             null
                     }

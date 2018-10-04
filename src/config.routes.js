@@ -8,8 +8,8 @@ export function configureRoutes(store) {
             path: '/app',
             component: ac(() => import('containers/app/App'), store),
             routes: [{
-                path: '/app/processes',
-                component: ac(() => import('containers/app/processes/Processes'), store)
+                path: '/app/pm',
+                component: ac(() => import('containers/app/pm/PM'), store)
             }]
         }]
     }];

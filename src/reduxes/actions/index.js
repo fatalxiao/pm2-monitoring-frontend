@@ -5,5 +5,5 @@ export * from './common/RouterAction';
 export * from './common/DeviceAction';
 export * from './common/LoadComponentAction';
 
-export * from './app/ProcessesAction';
-export * from './app/ProcessAction';
+export * from './app/ApplicationsAction';
+export * from './app/ApplicationAction';

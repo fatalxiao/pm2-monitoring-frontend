@@ -2,11 +2,13 @@
 
 $theme-color-transition-percent: 8%;
 
+$theme-bg: #f4f6f7;
 $theme-field: #555;
 $theme-nav: #fff;
 $theme-border: #e7e7e7;
 $theme-label: #999;
 $theme-field-error: #d81919;
+$theme-highlight: #488fdf;
 
 $theme-dark-grey: #f4f4f4;
 $theme-light-grey: #fafafa;
@@ -23,9 +25,11 @@ $theme-info-bg: #eaf8fe;
 $theme-info-border: #c6ebfb;
 $theme-warning-bg: #fff7e6;
 $theme-warning-border: #f7dfad;
+$theme-purple: #908bc3;
 
 // z-index
-$toast-z-index: 99;
+$app-loading-z-index: 99;
+$toast-z-index: 98;
 $dialog-z-index: 95;
 $menu-z-index: 94;
 $nav-z-index: 93;

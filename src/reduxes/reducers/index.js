@@ -6,7 +6,8 @@ import loadComponent from './common/LoadComponentReducer';
 import appToaster from './common/ToasterReducer';
 import appNotifier from './common/NotifierReducer';
 
-import processes from './app/ProcessesReducer';
+import applications from './app/ApplicationsReducer';
+import application from './app/ApplicationReducer';
 
 const rootReducer = combineReducers({
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     appToaster,
     appNotifier,
 
-    processes,
+    applications,
+    application,
 
     router: routerReducer
 

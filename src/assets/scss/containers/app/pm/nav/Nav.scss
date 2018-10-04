@@ -1,0 +1,12 @@
+@import '../../../../common';
+
+.nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 120px;
+    height: 100vh;
+    padding: 96px 32px 32px;
+    z-index: $nav-z-index;
+}

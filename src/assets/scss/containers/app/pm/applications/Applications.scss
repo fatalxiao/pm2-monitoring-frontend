@@ -1,0 +1,15 @@
+@import '../../../../common.scss';
+
+.applications {
+    padding: 0 24px;
+
+    .applications-title {
+        line-height: 32px;
+        margin: 0 0 32px;
+        font-weight: 400;
+    }
+
+    .applications-wrapper {
+        position: relative;
+    }
+}
