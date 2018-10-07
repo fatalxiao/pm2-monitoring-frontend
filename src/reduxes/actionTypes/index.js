@@ -6,4 +6,5 @@ export * from './common/DeviceActionType';
 export * from './common/LoadComponentActionType';
 
 export * from './app/ApplicationsActionType';
+export * from './app/CreateApplicationActionType';
 export * from './app/ApplicationActionType';
