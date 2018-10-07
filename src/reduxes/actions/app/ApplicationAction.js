@@ -19,6 +19,7 @@ export const startApplication = applicationName => dispatch => {
             params: {
                 applicationName
             },
+            successResMsgDisabled: true,
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
             }
@@ -45,6 +46,7 @@ export const stopApplication = (processId, applicationName) => dispatch => {
                 processId,
                 applicationName
             },
+            successResMsgDisabled: true,
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
             }
@@ -71,6 +73,7 @@ export const restartApplication = (processId, applicationName) => dispatch => {
                 processId,
                 applicationName
             },
+            successResMsgDisabled: true,
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
             }
@@ -97,6 +100,7 @@ export const deleteApplication = (processId, applicationName) => dispatch => {
                 processId,
                 applicationName
             },
+            successResMsgDisabled: true,
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
             }
@@ -123,6 +127,7 @@ export const reloadApplication = (processId, applicationName) => dispatch => {
                 processId,
                 applicationName
             },
+            successResMsgDisabled: true,
             successCallback() {
                 runGetApplicationsInterval()(dispatch);
             }
