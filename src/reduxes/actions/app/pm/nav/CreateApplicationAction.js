@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 import * as actionTypes from 'reduxes/actionTypes';
 import CreateApplicationApi from 'apis/app/pm/CreateApplicationApi';
 
@@ -19,11 +21,18 @@ export const updateCreateApplicationField = (prop, value) => dispatch => dispatc
     value
 });
 
-export const createApplication = callback => (dispatch, getState) => {
+export const validCreateApplicationForm = () => dispatch => dispatch({
+    type: actionTypes.VALID_CREATE_APPLICATION_FORM
+});
 
-    const form = getState().createApplication.form;
+export const createApplication = () => (dispatch, getState) => {
 
-    if (!form || !form.name) {
+    validCreateApplicationForm()(dispatch);
+
+    const createApplication = getState().createApplication,
+        {form, error} = createApplication;
+
+    if (!form || !isEmpty(error)) {
         return;
     }
 
@@ -36,9 +45,9 @@ export const createApplication = callback => (dispatch, getState) => {
             ],
             api: CreateApplicationApi.createApplication,
             params: form,
-            successResMsgDisabled: true,
-            successCallback(responseData) {
-                callback && callback(responseData);
+            resMsgDisabled: true,
+            successCallback() {
+                hideCreateApplication()(dispatch);
             }
         }
     });
