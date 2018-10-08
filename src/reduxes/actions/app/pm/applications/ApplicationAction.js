@@ -1,6 +1,32 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ProcessApi from 'apis/app/pm/ApplicationApi';
+import ApplicationApi from 'apis/app/pm/ApplicationApi';
 import {runGetApplicationsInterval} from './ApplicationsAction';
+
+export const uploadApplicationPackage = (applicationName, file) => dispatch => {
+
+    if (!applicationName || !file) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.UPLOAD_APPLICATION_PACKAGE_REQUEST,
+                actionTypes.UPLOAD_APPLICATION_PACKAGE_SUCCESS,
+                actionTypes.UPLOAD_APPLICATION_PACKAGE_FAILURE
+            ],
+            api: ApplicationApi.uploadApplicationPackage,
+            params: {
+                applicationName,
+                formData
+            }
+        }
+    });
+
+};
 
 export const startApplication = applicationName => dispatch => {
 
@@ -15,7 +41,7 @@ export const startApplication = applicationName => dispatch => {
                 actionTypes.START_APPLICATION_SUCCESS,
                 actionTypes.START_APPLICATION_FAILURE
             ],
-            api: ProcessApi.startApplication,
+            api: ApplicationApi.startApplication,
             params: {
                 applicationName
             },
@@ -41,7 +67,7 @@ export const stopApplication = (processId, applicationName) => dispatch => {
                 actionTypes.PAUSE_APPLICATION_SUCCESS,
                 actionTypes.PAUSE_APPLICATION_FAILURE
             ],
-            api: ProcessApi.stopApplication,
+            api: ApplicationApi.stopApplication,
             params: {
                 processId,
                 applicationName
@@ -68,7 +94,7 @@ export const restartApplication = (processId, applicationName) => dispatch => {
                 actionTypes.RESTART_APPLICATION_SUCCESS,
                 actionTypes.RESTART_APPLICATION_FAILURE
             ],
-            api: ProcessApi.restartApplication,
+            api: ApplicationApi.restartApplication,
             params: {
                 processId,
                 applicationName
@@ -95,7 +121,7 @@ export const deleteApplication = (processId, applicationName) => dispatch => {
                 actionTypes.STOP_APPLICATION_SUCCESS,
                 actionTypes.STOP_APPLICATION_FAILURE
             ],
-            api: ProcessApi.deleteApplication,
+            api: ApplicationApi.deleteApplication,
             params: {
                 processId,
                 applicationName
@@ -122,7 +148,7 @@ export const reloadApplication = (processId, applicationName) => dispatch => {
                 actionTypes.RELOAD_APPLICATION_SUCCESS,
                 actionTypes.RELOAD_APPLICATION_FAILURE
             ],
-            api: ProcessApi.reloadApplication,
+            api: ApplicationApi.reloadApplication,
             params: {
                 processId,
                 applicationName
