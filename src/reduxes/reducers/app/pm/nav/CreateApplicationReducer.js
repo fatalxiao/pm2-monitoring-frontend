@@ -1,6 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
+import isNumber from 'lodash/isNumber';
 
 import * as actionTypes from 'reduxes/actionTypes';
+import application from '../applications/ApplicationReducer';
 
 const DEFAULT_FORM = {
         name: '',
@@ -14,8 +16,44 @@ const DEFAULT_FORM = {
     initialState = {
         activated: false,
         form: cloneDeep(DEFAULT_FORM),
+        error: {},
         actionType: ''
     };
+
+function validField(prop, value) {
+    switch (prop) {
+        case 'name':
+            if (!value) {
+                return 'Application Name is required';
+            }
+            return;
+        case 'instances':
+            if (value !== '' && value !== 'max' && !isNumber(value)) {
+                return 'Instances must be a number or "max"';
+            }
+            return;
+        case 'port':
+            if (value !== '' && !isNumber(value)) {
+                return 'Port must be a number';
+            }
+            return;
+    }
+}
+
+function validForm(form) {
+
+    const error = {};
+
+    Object.keys(form).forEach(prop => {
+        const valid = validField(prop, form[prop]);
+        if (valid) {
+            error[prop] = valid;
+        }
+    });
+
+    return error;
+
+}
 
 function createApplication(state = initialState, action) {
     switch (action.type) {
@@ -47,9 +85,17 @@ function createApplication(state = initialState, action) {
 
             return {
                 ...state,
-                form
+                form,
+                error: validForm(form)
             };
 
+        }
+
+        case actionTypes.VALID_CREATE_APPLICATION_FORM: {
+            return {
+                ...state,
+                error: validForm(state.form)
+            };
         }
 
         // create application
@@ -68,6 +114,7 @@ function createApplication(state = initialState, action) {
         case actionTypes.CREATE_APPLICATION_FAILURE: {
             return {
                 ...state,
+                error: {...state.error, ...action.responseData},
                 actionType: actionTypes.CREATE_APPLICATION_FAILURE
             };
         }
