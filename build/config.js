@@ -8,7 +8,7 @@ module.exports = {
     productionGzipExtensions: ['js', 'css'],
 
     development: {
-        port: 4000,
+        port: 9617,
         srcRoot: path.resolve(__dirname, '../src'),
         index: path.resolve(__dirname, '../src/index.html'),
         assetsVirtualRoot: path.posix.join('/', 'static'),
@@ -19,7 +19,7 @@ module.exports = {
     },
 
     production: {
-        port: 4002,
+        port: 9618,
         index: path.resolve(__dirname, '../dist/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
         proxyTable: {
