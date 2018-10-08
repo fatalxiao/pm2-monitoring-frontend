@@ -7,6 +7,10 @@
     line-height: 40px;
     border-top: 1px solid $theme-border;
 
+    .upload-field {
+        @include invisible;
+    }
+
     & > .tip-provider {
         float: left;
         width: 25%;

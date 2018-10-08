@@ -13,8 +13,43 @@ import 'scss/containers/app/pm/applications/application/ApplicationCtrls.scss';
 class ApplicationCtrls extends Component {
 
     constructor(props) {
+
         super(props);
+
+        this.state = {
+            uploadFieldKey: 1
+        };
+
     }
+
+    prepareUpload = () => {
+
+        this.setState({
+            uploadFieldKey: ++this.state.uploadFieldKey
+        }, () => {
+
+            const uploadFieldEl = this.refs.uploadField;
+
+            if (!uploadFieldEl) {
+                return;
+            }
+
+            uploadFieldEl.click();
+
+        });
+
+    };
+
+    upload = e => {
+
+        if (!e || !e.target || !e.target.files || !e.target.files[0]) {
+            return;
+        }
+
+        const {data, uploadApplicationPackage} = this.props;
+        data && uploadApplicationPackage && uploadApplicationPackage(data.name, e.target.files[0]);
+
+    };
 
     startPause = () => {
 
@@ -59,15 +94,25 @@ class ApplicationCtrls extends Component {
     render() {
 
         const {actionType, data, status} = this.props,
+            {uploadFieldKey} = this.state,
             isLoading = data && actionType && data.name in actionType;
 
         return (
             <div className="application-ctrls">
 
+                <input ref="uploadField"
+                       key={uploadFieldKey}
+                       className="upload-field"
+                       name="file"
+                       type="file"
+                       accept="application/x-zip-compressed"
+                       onChange={this.upload}/>
+
                 <FlatButton className="application-ctrl"
                             iconCls="icon-upload-to-cloud"
                             tip="Upload"
-                            disabled={isLoading}/>
+                            disabled={isLoading}
+                            onClick={this.prepareUpload}/>
 
                 <FlatButton className="application-ctrl"
                             iconCls={`icon-controller-${status === 'online' ? 'paus' : 'play'}`}
@@ -100,6 +145,7 @@ ApplicationCtrls.propTypes = {
     data: PropTypes.object,
     status: PropTypes.string,
 
+    uploadApplicationPackage: PropTypes.func,
     startApplication: PropTypes.func,
     stopApplication: PropTypes.func,
     restartApplication: PropTypes.func,
@@ -110,6 +156,7 @@ ApplicationCtrls.propTypes = {
 export default connect(state => ({
     actionType: state.application.actionType
 }), dispatch => bindActionCreators({
+    uploadApplicationPackage: actions.uploadApplicationPackage,
     startApplication: actions.startApplication,
     stopApplication: actions.stopApplication,
     restartApplication: actions.restartApplication,
