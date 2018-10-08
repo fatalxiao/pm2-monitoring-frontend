@@ -4,7 +4,7 @@ import * as actionTypes from 'reduxes/actionTypes';
 
 const DEFAULT_FORM = {
         name: '',
-        desc: '',
+        description: '',
         instances: 1,
         script: '',
         port: '',
