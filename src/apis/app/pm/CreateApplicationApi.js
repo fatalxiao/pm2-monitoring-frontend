@@ -4,7 +4,7 @@ import config from '../../../config';
 export default {
 
     createApplication(options) {
-        Api.put({
+        Api.post({
             ...options,
             url: `${config.baseUrl}/application/create`
         });
