@@ -7,6 +7,7 @@ import appToaster from './common/ToasterReducer';
 import appNotifier from './common/NotifierReducer';
 
 import applications from './app/ApplicationsReducer';
+import createApplication from './app/CreateApplicationReducer';
 import application from './app/ApplicationReducer';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     appNotifier,
 
     applications,
+    createApplication,
     application,
 
     router: routerReducer
