@@ -19,9 +19,14 @@ class CreateForm extends Component {
         super(props);
     }
 
+    save = () => {
+        const {createApplication} = this.props;
+        createApplication && createApplication();
+    };
+
     render() {
 
-        const {activated, data, updateField, createApplication} = this.props,
+        const {activated, data, error, updateField} = this.props,
 
             className = classNames('create-form-wrapper', {
                 activated
@@ -34,69 +39,96 @@ class CreateForm extends Component {
 
                         <div className="form-title">Create Application</div>
 
-                        <TextField className="form-field"
-                                   label="Application Name"
-                                   isLabelAnimate={false}
-                                   placeholder="new-application"
-                                   clearButtonVisible={false}
-                                   required={true}
-                                   value={data.name}
-                                   onChange={v => updateField('name', v)}/>
+                        <div className="form-field-wrapper">
+                            <TextField className="form-field"
+                                       label="Application Name"
+                                       isLabelAnimate={false}
+                                       placeholder="new-application"
+                                       clearButtonVisible={false}
+                                       required={true}
+                                       value={data.name}
+                                       onChange={v => updateField('name', v)}/>
+                            <div className="form-field-error">{error.name || ''}</div>
+                        </div>
 
-                        <TextArea className="form-field"
-                                  label="Description"
-                                  isLabelAnimate={false}
-                                  clearButtonVisible={false}
-                                  autoHeight={true}
-                                  value={data.description}
-                                  onChange={v => updateField('description', v)}/>
+                        <div className="form-field-wrapper">
+                            <TextArea className="form-field"
+                                      label="Description"
+                                      isLabelAnimate={false}
+                                      clearButtonVisible={false}
+                                      autoHeight={true}
+                                      value={data.description}
+                                      onChange={v => updateField('description', v)}/>
+                            <div className="form-field-error">{error.description || ''}</div>
+                        </div>
 
                         <Accordion className="create-form-advance"
                                    title="Advance"
                                    collapsed={true}
                                    collapseIcon="icon-chevron-thin-down">
                             <div className="create-form-advance-content">
-                                <TextField className="form-field"
-                                           label="Instances"
-                                           isLabelAnimate={false}
-                                           placeholder="1"
-                                           clearButtonVisible={false}
-                                           value={data.instances}
-                                           onChange={v => updateField('instances', v)}/>
-                                <TextField className="form-field"
-                                           label="Script"
-                                           isLabelAnimate={false}
-                                           placeholder="server.js"
-                                           clearButtonVisible={false}
-                                           value={data.script}
-                                           onChange={v => updateField('script', v)}/>
-                                <TextField className="form-field"
-                                           label="Port"
-                                           isLabelAnimate={false}
-                                           placeholder="[config in Script]"
-                                           clearButtonVisible={false}
-                                           value={data.port}
-                                           onChange={v => updateField('port', v)}/>
-                                <TextField className="form-field"
-                                           label="Environment"
-                                           isLabelAnimate={false}
-                                           placeholder="development"
-                                           clearButtonVisible={false}
-                                           value={data.env}
-                                           onChange={v => updateField('env', v)}/>
-                                <TextField className="form-field"
-                                           label="Production Environment"
-                                           isLabelAnimate={false}
-                                           placeholder="production"
-                                           clearButtonVisible={false}
-                                           value={data.envProd}
-                                           onChange={v => updateField('envProd', v)}/>
+
+                                <div className="form-field-wrapper">
+                                    <TextField className="form-field"
+                                               label="Instances"
+                                               isLabelAnimate={false}
+                                               placeholder="1"
+                                               clearButtonVisible={false}
+                                               value={data.instances}
+                                               onChange={v => updateField('instances', v)}/>
+                                    <div className="form-field-error">{error.instances || ''}</div>
+                                </div>
+
+                                <div className="form-field-wrapper">
+                                    <TextField className="form-field"
+                                               label="Script"
+                                               isLabelAnimate={false}
+                                               placeholder="server.js"
+                                               clearButtonVisible={false}
+                                               value={data.script}
+                                               onChange={v => updateField('script', v)}/>
+                                    <div className="form-field-error">{error.script || ''}</div>
+                                </div>
+
+                                <div className="form-field-wrapper">
+                                    <TextField className="form-field"
+                                               label="Port"
+                                               isLabelAnimate={false}
+                                               placeholder="[config in Script]"
+                                               clearButtonVisible={false}
+                                               value={data.port}
+                                               onChange={v => updateField('port', v)}/>
+                                    <div className="form-field-error">{error.port || ''}</div>
+                                </div>
+
+                                <div className="form-field-wrapper">
+                                    <TextField className="form-field"
+                                               label="Environment"
+                                               isLabelAnimate={false}
+                                               placeholder="development"
+                                               clearButtonVisible={false}
+                                               value={data.env}
+                                               onChange={v => updateField('env', v)}/>
+                                    <div className="form-field-error">{error.env || ''}</div>
+                                </div>
+
+                                <div className="form-field-wrapper">
+                                    <TextField className="form-field"
+                                               label="Production Environment"
+                                               isLabelAnimate={false}
+                                               placeholder="production"
+                                               clearButtonVisible={false}
+                                               value={data.envProd}
+                                               onChange={v => updateField('envProd', v)}/>
+                                    <div className="form-field-error">{error.envProd || ''}</div>
+                                </div>
+
                             </div>
                         </Accordion>
 
                         <GhostButton className="save-button"
                                      value="Save"
-                                     onClick={() => createApplication()}/>
+                                     onClick={this.save}/>
 
                     </div>
                 </div>
@@ -109,6 +141,7 @@ CreateForm.propTypes = {
 
     activated: PropTypes.bool,
     data: PropTypes.object,
+    error: PropTypes.object,
 
     updateField: PropTypes.func,
     createApplication: PropTypes.func
@@ -116,7 +149,8 @@ CreateForm.propTypes = {
 };
 
 export default connect(state => ({
-    data: state.createApplication.form
+    data: state.createApplication.form,
+    error: state.createApplication.error
 }), dispatch => bindActionCreators({
     updateField: actions.updateCreateApplicationField,
     createApplication: actions.createApplication

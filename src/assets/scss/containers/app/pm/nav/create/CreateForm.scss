@@ -11,8 +11,8 @@
     transition: left 0s $theme-transition-duration, opacity $theme-transition-duration ease-in-out;
 
     .create-form-bg {
-        background-image: linear-gradient(90deg, transparentize(#fff, .96) 1%, transparent 10%),
-        linear-gradient(transparentize(#fff, .96) 1%, transparent 10%);
+        background-image: linear-gradient(90deg, transparentize(#fff, .98) 1%, transparent 10%),
+        linear-gradient(transparentize(#fff, .98) 1%, transparent 10%);
         background-size: 24px 24px;
 
         .create-form {
@@ -28,68 +28,77 @@
                 line-height: 56px;
             }
 
-            .form-field {
-                width: 100%;
-                border: none;
-                background: transparent;
-                margin-bottom: 24px;
+            .form-field-wrapper {
 
-                .material-provider-label {
-                    line-height: 24px;
-                    color: #fff;
-                    opacity: .66;
-                    transition: opacity $theme-transition-duration ease-in-out;
-                }
+                .form-field {
+                    width: 100%;
+                    border: none;
+                    background: transparent;
 
-                .material-provider-required-dot {
-                    background: $theme-warning;
-                }
-
-                .text-field,
-                .text-area {
-                    border-bottom-color: transparentize(#fff, .64);
-
-                    .text-field-input,
-                    .text-field-placeholder,
-                    .text-area-input {
-                        width: 100%;
-                        height: 100%;
-                        font-size: 24px;
-                        color: #fff;
-                    }
-
-                    .text-field-placeholder {
-                        color: transparentize(#fff, .64);
-                    }
-                }
-
-                .material-field-separator-hover {
-                    display: none;
-                }
-                .material-field-separator-focus {
-                    background: transparentize(#fff, .24);
-                }
-
-                &.material-text-field {
-                    height: 72px;
-
-                    .text-field {
-                        height: 48px;
-                    }
-                }
-
-                &.material-text-area {
-                    min-height: 72px;
-
-                    .text-area .text-area-input {
-                        height: 48px;
-                    }
-                }
-
-                &.focused {
                     .material-provider-label {
-                        opacity: 1;
+                        line-height: 24px;
+                        color: #fff;
+                        opacity: .66;
+                        transition: opacity $theme-transition-duration ease-in-out;
                     }
+
+                    .material-provider-required-dot {
+                        background: $theme-warning;
+                    }
+
+                    .text-field,
+                    .text-area {
+                        border-bottom-color: transparentize(#fff, .64);
+
+                        .text-field-input,
+                        .text-field-placeholder,
+                        .text-area-input {
+                            width: 100%;
+                            height: 100%;
+                            font-size: 24px;
+                            color: #fff;
+                        }
+
+                        .text-field-placeholder {
+                            color: transparentize(#fff, .64);
+                        }
+                    }
+
+                    .material-field-separator-hover {
+                        display: none;
+                    }
+                    .material-field-separator-focus {
+                        background: transparentize(#fff, .24);
+                    }
+
+                    &.material-text-field {
+                        height: 72px;
+
+                        .text-field {
+                            height: 48px;
+                        }
+                    }
+
+                    &.material-text-area {
+                        min-height: 72px;
+
+                        .text-area .text-area-input {
+                            height: 48px;
+                        }
+                    }
+
+                    &.focused {
+                        .material-provider-label {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .form-field-error {
+                    height: 36px;
+                    color: $theme-warning;
+                    padding: 0 8px;
+                    line-height: 24px;
                 }
             }
 
@@ -119,7 +128,7 @@
                     padding: 0;
 
                     .create-form-advance-content {
-                        padding: 24px 0;
+                        padding: 24px 0 0;
                     }
                 }
             }
