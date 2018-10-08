@@ -41,6 +41,10 @@
                     transition: opacity $theme-transition-duration ease-in-out;
                 }
 
+                .material-provider-required-dot {
+                    background: $theme-warning;
+                }
+
                 .text-field,
                 .text-area {
                     border-bottom-color: transparentize(#fff, .64);
