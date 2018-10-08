@@ -15,7 +15,7 @@ function ajax(method, {
     if (params) {
 
         if (isUpload) {
-            body = new FormData(formData);
+            body = formData;
         } else {
             xhr.setRequestHeader('Content-type', contentType || 'application/json');
             body = JSON.stringify(params);
