@@ -21,7 +21,7 @@ class CreateForm extends Component {
 
     render() {
 
-        const {avtivated, data, updateField} = this.props,
+        const {avtivated, data, updateField, createApplication} = this.props,
 
             className = classNames('create-form-wrapper', {
                 avtivated
@@ -95,7 +95,8 @@ class CreateForm extends Component {
                         </Accordion>
 
                         <GhostButton className="save-button"
-                                     value="Save"/>
+                                     value="Save"
+                                     onClick={createApplication}/>
 
                     </div>
                 </div>
@@ -109,12 +110,14 @@ CreateForm.propTypes = {
     avtivated: PropTypes.bool,
     data: PropTypes.object,
 
-    updateField: PropTypes.func
+    updateField: PropTypes.func,
+    createApplication: PropTypes.func
 
 };
 
 export default connect(state => ({
     data: state.createApplication.form
 }), dispatch => bindActionCreators({
-    updateField: actions.updateCreateApplicationField
+    updateField: actions.updateCreateApplicationField,
+    createApplication: actions.createApplication
 }, dispatch))(CreateForm);
