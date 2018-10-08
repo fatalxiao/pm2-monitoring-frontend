@@ -1,6 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ProcessApi from 'apis/app/pm/ApplicationApi';
-import {runGetApplicationsInterval} from './ApplicationsAction';
+import CreateApplicationApi from 'apis/app/pm/CreateApplicationApi';
 
 export const initCreateApplicationForm = () => dispatch => dispatch({
     type: actionTypes.INIT_CREATE_APPLICATION_FORM
@@ -12,9 +11,11 @@ export const updateCreateApplicationField = (prop, value) => dispatch => dispatc
     value
 });
 
-export const createApplication = applicationName => dispatch => {
+export const createApplication = callback => (dispatch, getState) => {
 
-    if (!applicationName) {
+    const form = getState().createApplication.form;
+
+    if (!form || !form.name) {
         return;
     }
 
@@ -25,13 +26,11 @@ export const createApplication = applicationName => dispatch => {
                 actionTypes.CREATE_APPLICATION_SUCCESS,
                 actionTypes.CREATE_APPLICATION_FAILURE
             ],
-            api: ProcessApi.startApplication,
-            params: {
-                applicationName
-            },
+            api: CreateApplicationApi.createApplication,
+            params: form,
             successResMsgDisabled: true,
-            successCallback() {
-                runGetApplicationsInterval()(dispatch);
+            successCallback(responseData) {
+                callback && callback(responseData);
             }
         }
     });
