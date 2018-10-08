@@ -14,32 +14,25 @@ import 'scss/containers/app/pm/nav/create/CreateButton.scss';
 class CreateButton extends Component {
 
     constructor(props) {
-
         super(props);
-
-        this.state = {
-            avtivated: false
-        };
-
     }
 
     toggle = () => {
-        this.setState({
-            avtivated: !this.state.avtivated
-        }, () => {
-            if (this.state.avtivated) {
-                const {initCreateApplicationForm} = this.props;
-                initCreateApplicationForm && initCreateApplicationForm();
-            }
-        });
+        const {activated, showCreateApplication, hideCreateApplication, initCreateApplicationForm} = this.props;
+        if (activated) {
+            hideCreateApplication && hideCreateApplication();
+        } else {
+            showCreateApplication && showCreateApplication();
+            initCreateApplicationForm && initCreateApplicationForm();
+        }
     };
 
     render() {
 
-        const {avtivated} = this.state,
+        const {activated} = this.props,
 
             className = classNames('create-button-wrapper', {
-                avtivated
+                activated
             });
 
         return (
@@ -47,7 +40,7 @@ class CreateButton extends Component {
 
                 <div className="create-button-bg"></div>
 
-                <Form avtivated={avtivated}/>
+                <Form activated={activated}/>
 
                 <IconButton className="create-button"
                             iconCls="icon-plus"
@@ -59,9 +52,19 @@ class CreateButton extends Component {
 }
 
 CreateButton.propTypes = {
+
+    activated: PropTypes.bool,
+
+    showCreateApplication: PropTypes.func,
+    hideCreateApplication: PropTypes.func,
     initCreateApplicationForm: PropTypes.func
+
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({
+export default connect(state => ({
+    activated: state.createApplication.activated
+}), dispatch => bindActionCreators({
+    showCreateApplication: actions.showCreateApplication,
+    hideCreateApplication: actions.hideCreateApplication,
     initCreateApplicationForm: actions.initCreateApplicationForm
 }, dispatch))(CreateButton);
