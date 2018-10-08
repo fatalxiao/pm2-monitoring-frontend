@@ -12,12 +12,26 @@ const DEFAULT_FORM = {
         envProd: ''
     },
     initialState = {
+        activated: false,
         form: cloneDeep(DEFAULT_FORM),
         actionType: ''
     };
 
 function createApplication(state = initialState, action) {
     switch (action.type) {
+
+        case actionTypes.SHOW_CREATE_APPLICATION: {
+            return {
+                ...state,
+                activated: true
+            };
+        }
+        case actionTypes.HIDE_CREATE_APPLICATION: {
+            return {
+                ...state,
+                activated: false
+            };
+        }
 
         case actionTypes.INIT_CREATE_APPLICATION_FORM: {
             return {
