@@ -68,20 +68,21 @@ class ApplicationCtrls extends Component {
                             iconCls="icon-upload-to-cloud"
                             tip="Upload"
                             disabled={isLoading}/>
+
                 <FlatButton className="application-ctrl"
                             iconCls={`icon-controller-${status === 'online' ? 'paus' : 'play'}`}
                             tip={status === 'online' ? 'Pause' : (status === 'offline' ? 'Start' : 'Continue')}
-                            disabled={isLoading}
+                            disabled={!data.isReady || isLoading}
                             onClick={this.startPause}/>
                 <FlatButton className="application-ctrl"
                             iconCls="icon-cw"
                             tip="Restart"
-                            disabled={isLoading}
+                            disabled={!data.isReady || isLoading}
                             onClick={this.restart}/>
                 <FlatButton className="application-ctrl"
                             iconCls="icon-controller-stop"
                             tip="Stop"
-                            disabled={isLoading}
+                            disabled={!data.isReady || isLoading}
                             onClick={this.stop}/>
 
                 <PageLoading className="application-loading"

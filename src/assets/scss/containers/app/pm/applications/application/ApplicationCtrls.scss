@@ -29,6 +29,12 @@
                 &:hover .button-icon {
                     color: $theme-highlight;
                 }
+
+                &[disabled] {
+                    .button-icon {
+                        color: $theme-border;
+                    }
+                }
             }
         }
     }
