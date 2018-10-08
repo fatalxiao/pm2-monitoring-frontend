@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import connect from 'react-redux/es/connect/connect';
+import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
+
+import * as actions from 'reduxes/actions';
 
 import IconButton from 'alcedo-ui/IconButton';
 import Form from './CreateForm';
@@ -21,6 +26,11 @@ class CreateButton extends Component {
     toggle = () => {
         this.setState({
             avtivated: !this.state.avtivated
+        }, () => {
+            if (this.state.avtivated) {
+                const {initCreateApplicationForm} = this.props;
+                initCreateApplicationForm && initCreateApplicationForm();
+            }
         });
     };
 
@@ -48,4 +58,10 @@ class CreateButton extends Component {
     }
 }
 
-export default CreateButton;
+CreateButton.propTypes = {
+    initCreateApplicationForm: PropTypes.func
+};
+
+export default connect(state => ({}), dispatch => bindActionCreators({
+    initCreateApplicationForm: actions.initCreateApplicationForm
+}, dispatch))(CreateButton);
