@@ -2,7 +2,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import isNumber from 'lodash/isNumber';
 
 import * as actionTypes from 'reduxes/actionTypes';
-import application from '../applications/ApplicationReducer';
 
 const DEFAULT_FORM = {
         name: '',
@@ -74,7 +73,8 @@ function createApplication(state = initialState, action) {
         case actionTypes.INIT_CREATE_APPLICATION_FORM: {
             return {
                 ...state,
-                form: cloneDeep(DEFAULT_FORM)
+                form: cloneDeep(DEFAULT_FORM),
+                error: {}
             };
         }
 
