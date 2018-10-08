@@ -9,15 +9,13 @@ function ajax(method, {
 
     xhr.open(method, url, true);
 
-    // xhr.setRequestHeader('Cache-Control', 'no-cache, must-revalidate');
-    // xhr.setRequestHeader('expires', 'Thu, 01 Jan 1970 00:00:01 GMT');
     xhr.setRequestHeader('If-Modified-Since', '0');
 
     let body;
     if (params) {
 
         if (isUpload) {
-            body = new FormData(formData);
+            body = formData;
         } else {
             xhr.setRequestHeader('Content-type', contentType || 'application/json');
             body = JSON.stringify(params);

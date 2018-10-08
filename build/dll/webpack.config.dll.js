@@ -14,10 +14,10 @@ module.exports = {
 
     entry: {
         'polyfill': ['@babel/polyfill'],
-        'moment': ['moment', 'twix'],
+        'moment': ['moment'],
         'react': ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-config', 'react-router-dom',
             'react-router-redux', 'redux', 'redux-thunk', 'react-transition-group'],
-        'tools': ['classnames', 'dom-helpers', 'dompurify', 'history', 'js-cookie', 'md5', 'path-to-regexp', 'urijs']
+        'tools': ['classnames', 'history', 'js-cookie']
     },
 
     output: {

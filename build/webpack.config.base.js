@@ -89,9 +89,6 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: cssLoaderConfig
-        }, {
-            test: /\.md/,
-            use: 'happypack/loader?id=md'
         }]
     },
 
@@ -100,18 +97,6 @@ module.exports = {
             id: 'js',
             loaders: [{
                 loader: 'babel-loader?cacheDirectory=true'
-            }],
-            threads: 4,
-            verbose: false
-        }),
-        new HappyPack({
-            id: 'md',
-            loaders: [{
-                loader: 'js-markdown-loader',
-                options: {
-                    fullInfo: true,
-                    dialect: 'DERBY'
-                }
             }],
             threads: 4,
             verbose: false
