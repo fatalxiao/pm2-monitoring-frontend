@@ -1,4 +1,4 @@
-import * as actionTypes from 'reduxes/actionTypes/index';
+import * as actionTypes from 'reduxes/actionTypes';
 import ApplicationsApi from 'apis/app/pm/ApplicationsApi';
 
 export const getApplications = () => dispatch => {
