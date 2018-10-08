@@ -21,7 +21,7 @@ class CreateForm extends Component {
 
     render() {
 
-        const {avtivated} = this.props,
+        const {avtivated, data, updateField} = this.props,
 
             className = classNames('create-form-wrapper', {
                 avtivated
@@ -39,13 +39,17 @@ class CreateForm extends Component {
                                    isLabelAnimate={false}
                                    placeholder="new-application"
                                    clearButtonVisible={false}
-                                   required={true}/>
+                                   required={true}
+                                   value={data.name}
+                                   onChange={v => updateField('name', v)}/>
 
                         <TextArea className="form-field"
                                   label="Description"
                                   isLabelAnimate={false}
                                   clearButtonVisible={false}
-                                  autoHeight={true}/>
+                                  autoHeight={true}
+                                  value={data.desc}
+                                  onChange={v => updateField('desc', v)}/>
 
                         <Accordion className="create-form-advance"
                                    title="Advance"
@@ -53,25 +57,40 @@ class CreateForm extends Component {
                                    collapseIcon="icon-chevron-thin-down">
                             <div className="create-form-advance-content">
                                 <TextField className="form-field"
+                                           label="Instances"
+                                           isLabelAnimate={false}
+                                           placeholder="1"
+                                           clearButtonVisible={false}
+                                           value={data.instances}
+                                           onChange={v => updateField('instances', v)}/>
+                                <TextField className="form-field"
                                            label="Script"
                                            isLabelAnimate={false}
                                            placeholder="server.js"
-                                           clearButtonVisible={false}/>
+                                           clearButtonVisible={false}
+                                           value={data.script}
+                                           onChange={v => updateField('script', v)}/>
                                 <TextField className="form-field"
                                            label="Port"
                                            isLabelAnimate={false}
                                            placeholder="[config in Script]"
-                                           clearButtonVisible={false}/>
+                                           clearButtonVisible={false}
+                                           value={data.port}
+                                           onChange={v => updateField('port', v)}/>
                                 <TextField className="form-field"
                                            label="Environment"
                                            isLabelAnimate={false}
                                            placeholder="development"
-                                           clearButtonVisible={false}/>
+                                           clearButtonVisible={false}
+                                           value={data.env}
+                                           onChange={v => updateField('env', v)}/>
                                 <TextField className="form-field"
                                            label="Production Environment"
                                            isLabelAnimate={false}
                                            placeholder="production"
-                                           clearButtonVisible={false}/>
+                                           clearButtonVisible={false}
+                                           value={data.envProd}
+                                           onChange={v => updateField('envProd', v)}/>
                             </div>
                         </Accordion>
 
@@ -86,7 +105,16 @@ class CreateForm extends Component {
 }
 
 CreateForm.propTypes = {
-    avtivated: PropTypes.bool
+
+    avtivated: PropTypes.bool,
+    data: PropTypes.object,
+
+    updateField: PropTypes.func
+
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(CreateForm);
+export default connect(state => ({
+    data: state.createApplication.form
+}), dispatch => bindActionCreators({
+    updateField: actions.updateCreateApplicationField
+}, dispatch))(CreateForm);
