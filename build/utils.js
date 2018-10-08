@@ -4,8 +4,8 @@ const fs = require('fs'),
 
     config = require('./config.js');
 
-function assetsPath(p, env = 'production') {
-    return path.posix.join(config[env].assetsDirectory, p);
+function assetsPath(p) {
+    return path.posix.join(config.assetsDirectory, p);
 };
 
 function assetsSubPath(p) {
