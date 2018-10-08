@@ -5,11 +5,11 @@ import * as actionTypes from 'reduxes/actionTypes';
 const DEFAULT_FORM = {
         name: '',
         desc: '',
+        instances: 1,
         script: '',
         port: '',
         env: '',
-        envProd: '',
-        instances: 1
+        envProd: ''
     },
     initialState = {
         form: cloneDeep(DEFAULT_FORM),
