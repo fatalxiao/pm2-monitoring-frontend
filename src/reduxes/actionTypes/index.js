@@ -5,5 +5,8 @@ export * from './common/CommonActionType';
 export * from './common/DeviceActionType';
 export * from './common/LoadComponentActionType';
 
-export * from './app/ApplicationsActionType';
-export * from './app/ApplicationActionType';
+export * from './app/pm/nav/NavActionType';
+export * from './app/pm/nav/CreateApplicationActionType';
+
+export * from './app/pm/applications/ApplicationsActionType';
+export * from './app/pm/applications/ApplicationActionType';

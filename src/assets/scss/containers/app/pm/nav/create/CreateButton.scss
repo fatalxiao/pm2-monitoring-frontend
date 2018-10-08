@@ -1,4 +1,4 @@
-@import '../../../../../common';
+@import '../../../../../common.scss';
 
 .create-button-wrapper {
     position: relative;
@@ -27,12 +27,12 @@
         z-index: 1;
     }
 
-    &.avtivated {
+    &.activated {
 
         .create-button-bg {
             cursor: default;
             transform: scale3d(100, 100, 100);
-            transition: transform $theme-transition-duration*2 ease-in;
+            transition: transform $theme-transition-duration ease-in;
             animation: none;
         }
 
