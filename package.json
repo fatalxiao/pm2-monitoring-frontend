@@ -2,7 +2,7 @@
     "name": "pm2-monitoring-frontend",
     "author": "liangxiaojun",
     "version": "1.0.0",
-    "description": "PM2 Monitoring Front-end Project.",
+    "description": "PM2 Monitoring Front-end Project",
     "main": "./src/index.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development node build/dev/server.js",
@@ -19,10 +19,10 @@
         "url": "https://github.com/fatalxiao/pm2-monitoring-frontend"
     },
     "keywords": [
-        "dural-puncture-epidural",
-        "dpe",
+        "pm2",
+        "monitoring",
         "react",
-        "ui"
+        "alcedo-ui"
     ],
     "license": "MIT",
     "bugs": {
