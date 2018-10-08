@@ -3,7 +3,13 @@ import cloneDeep from 'lodash/cloneDeep';
 import * as actionTypes from 'reduxes/actionTypes';
 
 const DEFAULT_FORM = {
-        name: ''
+        name: '',
+        desc: '',
+        script: '',
+        port: '',
+        env: '',
+        envProd: '',
+        instances: 1
     },
     initialState = {
         form: cloneDeep(DEFAULT_FORM),
