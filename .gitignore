@@ -16,5 +16,5 @@ package-lock.json
 
 # Dist directories
 /dist
-/dpe-frontend
-/dpe-frontend.zip
+/pm2-monitoring-frontend
+/pm2-monitoring-frontend.zip
