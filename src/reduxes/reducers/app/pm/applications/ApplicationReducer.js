@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
 
-import * as actionTypes from 'reduxes/actionTypes/index';
+import * as actionTypes from 'reduxes/actionTypes';
 
 const initialState = {
     actionType: {}
