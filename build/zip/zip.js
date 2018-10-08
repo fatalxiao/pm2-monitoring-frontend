@@ -6,7 +6,7 @@ const fs = require('fs'),
     config = require('../config.js'),
     {fsExistsSync, copyRecursionSync, rmRecursionSync} = require('../utils.js'),
 
-    name = 'dpe-frontend',
+    name = 'pm2-monitoring-frontend',
     path = `./${name}`,
     distPath = `${path}/dist`,
     zipPath = `./${name}.zip`;
