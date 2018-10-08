@@ -21,10 +21,10 @@ class CreateForm extends Component {
 
     render() {
 
-        const {avtivated, data, updateField, createApplication} = this.props,
+        const {activated, data, updateField, createApplication} = this.props,
 
             className = classNames('create-form-wrapper', {
-                avtivated
+                activated
             });
 
         return (
@@ -96,7 +96,7 @@ class CreateForm extends Component {
 
                         <GhostButton className="save-button"
                                      value="Save"
-                                     onClick={createApplication}/>
+                                     onClick={() => createApplication()}/>
 
                     </div>
                 </div>
@@ -107,7 +107,7 @@ class CreateForm extends Component {
 
 CreateForm.propTypes = {
 
-    avtivated: PropTypes.bool,
+    activated: PropTypes.bool,
     data: PropTypes.object,
 
     updateField: PropTypes.func,
