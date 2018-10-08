@@ -48,8 +48,8 @@ class CreateForm extends Component {
                                   isLabelAnimate={false}
                                   clearButtonVisible={false}
                                   autoHeight={true}
-                                  value={data.desc}
-                                  onChange={v => updateField('desc', v)}/>
+                                  value={data.description}
+                                  onChange={v => updateField('description', v)}/>
 
                         <Accordion className="create-form-advance"
                                    title="Advance"
