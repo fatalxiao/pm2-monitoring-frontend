@@ -1,4 +1,4 @@
-import * as actionTypes from 'reduxes/actionTypes';
+import * as actionTypes from 'reduxes/actionTypes/index';
 import ProcessApi from 'apis/app/pm/ApplicationApi';
 import {runGetApplicationsInterval} from './ApplicationsAction';
 

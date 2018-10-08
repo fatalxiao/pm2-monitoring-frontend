@@ -1,4 +1,4 @@
-import * as actionTypes from 'reduxes/actionTypes';
+import * as actionTypes from 'reduxes/actionTypes/index';
 import CreateApplicationApi from 'apis/app/pm/CreateApplicationApi';
 
 export const initCreateApplicationForm = () => dispatch => dispatch({
