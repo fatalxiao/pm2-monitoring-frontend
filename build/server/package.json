@@ -1,8 +1,8 @@
 {
-    "name": "dpe-frontend",
+    "name": "pm2-monitoring-frontend",
     "author": "liangxiaojun",
-    "version": "2.32.5",
-    "description": "DPE ReactJs Front-end Project",
+    "version": "1.0.0",
+    "description": "PM2 Monitoring Front-end Project",
     "dependencies": {
         "compression": "^1.7.3",
         "connect-history-api-fallback": "^1.5.0",
