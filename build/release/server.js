@@ -4,11 +4,10 @@ const express = require('express'),
     history = require('connect-history-api-fallback'),
     compression = require('compression'),
 
-    config = require('../src/config.js'),
-    utils = require('./utils.js'),
+    config = require('./config.js'),
 
     app = express(),
-    port = config.serverPort,
+    port = process.env.port || config.serverPort,
     uri = 'http://localhost:' + port,
     proxyTable = config.proxyTable;
 
@@ -22,17 +21,6 @@ Object.keys(proxyTable).forEach(context => {
             changeOrigin: true
         };
     }
-
-    options.onProxyReq = (proxyReq, req, res) => {
-
-        const ip = utils.getClientIp(req);
-        ip && proxyReq.setHeader('ip', utils.ipParse(ip));
-
-        if (req.headers && !req.headers.token && req.query && req.query.token) {
-            proxyReq.setHeader('token', req.query.token);
-        }
-
-    };
 
     app.use(proxyMiddleware(options.filter || context, options));
 

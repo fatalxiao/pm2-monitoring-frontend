@@ -29,7 +29,7 @@ fs.mkdirSync(distPath);
 
 // copy files
 copyRecursionSync(config.assetsDirectory, distPath, ['node_modules', '.DS_Store']);
-copyRecursionSync('./build/server', path);
+copyRecursionSync('./build/release', path);
 
 // make archive
 const output = fs.createWriteStream(zipPath),
@@ -47,7 +47,7 @@ output.on('close', () => {
         hash = crypto.createHash('sha256');
 
     rs.on('data', hash.update.bind(hash));
-    rs.on('end', function () {
+    rs.on('end', () => {
         log.title('success', 'DONE', [
             'Build Zip complete',
             `Archive: ${archive.pointer()} total bytes`,
