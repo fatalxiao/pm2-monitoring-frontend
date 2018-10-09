@@ -112,17 +112,6 @@ class CreateForm extends Component {
                                     <div className="form-field-error">{error.env || ''}</div>
                                 </div>
 
-                                <div className="form-field-wrapper">
-                                    <TextField className="form-field"
-                                               label="Production Environment"
-                                               isLabelAnimate={false}
-                                               placeholder="production"
-                                               clearButtonVisible={false}
-                                               value={data.envProd}
-                                               onChange={v => updateField('envProd', v)}/>
-                                    <div className="form-field-error">{error.envProd || ''}</div>
-                                </div>
-
                             </div>
                         </Accordion>
 
