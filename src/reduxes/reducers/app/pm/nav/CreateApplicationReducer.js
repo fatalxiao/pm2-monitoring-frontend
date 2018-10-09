@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash/cloneDeep';
-import isNumber from 'lodash/isNumber';
 
 import * as actionTypes from 'reduxes/actionTypes';
 
@@ -9,8 +8,7 @@ const DEFAULT_FORM = {
         instances: 1,
         script: '',
         port: '',
-        env: '',
-        envProd: ''
+        env: ''
     },
     initialState = {
         activated: false,
@@ -27,12 +25,12 @@ function validField(prop, value) {
             }
             return;
         case 'instances':
-            if (value !== '' && value !== 'max' && !isNumber(value)) {
+            if (value !== '' && value !== 'max' && isNaN(value)) {
                 return 'Instances must be a number or "max"';
             }
             return;
         case 'port':
-            if (value !== '' && !isNumber(value)) {
+            if (value !== '' && isNaN(value)) {
                 return 'Port must be a number';
             }
             return;
