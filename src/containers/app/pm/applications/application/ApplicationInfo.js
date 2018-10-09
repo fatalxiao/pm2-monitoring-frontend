@@ -22,11 +22,16 @@ class ApplicationInfo extends Component {
             <div className="application-info">
 
                 <div className="application-header">
-                    <div className="application-name">{data.name}</div>
+                    <div className="application-name"
+                         title={data.name}>
+                        {data.name}
+                    </div>
                     <div className="application-status">{startCase(status)}</div>
                 </div>
 
-                <div className="application-desc">{data.description}</div>
+                <div className="application-desc">
+                    {data.description}
+                </div>
 
                 <ApplicationMonit data={data}
                                   status={status}/>
