@@ -105,7 +105,7 @@ class CreateForm extends Component {
                                     <TextField className="form-field"
                                                label="Environment"
                                                isLabelAnimate={false}
-                                               placeholder="development"
+                                               placeholder="production"
                                                clearButtonVisible={false}
                                                value={data.env}
                                                onChange={v => updateField('env', v)}/>
