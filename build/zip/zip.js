@@ -29,7 +29,7 @@ fs.mkdirSync(distPath);
 
 // copy files
 copyRecursionSync(config.assetsDirectory, distPath, ['node_modules', '.DS_Store']);
-copyRecursionSync('./build/server', path);
+copyRecursionSync('./build/release', path);
 
 // make archive
 const output = fs.createWriteStream(zipPath),
