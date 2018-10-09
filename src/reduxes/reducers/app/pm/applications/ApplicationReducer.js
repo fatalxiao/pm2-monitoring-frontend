@@ -8,7 +8,8 @@ const initialState = {
 
 function application(state = initialState, action) {
 
-    if (action.type === actionTypes.START_APPLICATION_REQUEST
+    if (action.type === actionTypes.UPLOAD_APPLICATION_PACKAGE_REQUEST
+        || action.type === actionTypes.START_APPLICATION_REQUEST
         || action.type === actionTypes.PAUSE_APPLICATION_REQUEST
         || action.type === actionTypes.RESTART_APPLICATION_REQUEST
         || action.type === actionTypes.STOP_APPLICATION_REQUEST
@@ -19,11 +20,13 @@ function application(state = initialState, action) {
             ...state,
             actionType
         };
-    } else if (action.type === actionTypes.START_APPLICATION_SUCCESS
+    } else if (action.type === actionTypes.UPLOAD_APPLICATION_PACKAGE_SUCCESS
+        || action.type === actionTypes.START_APPLICATION_SUCCESS
         || action.type === actionTypes.PAUSE_APPLICATION_SUCCESS
         || action.type === actionTypes.RESTART_APPLICATION_SUCCESS
         || action.type === actionTypes.STOP_APPLICATION_SUCCESS
         || action.type === actionTypes.RELOAD_APPLICATION_SUCCESS
+        || action.type === actionTypes.UPLOAD_APPLICATION_PACKAGE_FAILURE
         || action.type === actionTypes.START_APPLICATION_FAILURE
         || action.type === actionTypes.PAUSE_APPLICATION_FAILURE
         || action.type === actionTypes.RESTART_APPLICATION_FAILURE
