@@ -10,18 +10,24 @@
 
         .application-name {
             float: left;
+            max-width: calc(100% - 80px);
             line-height: 32px;
             font-size: 18px;
             color: $theme-field;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .application-status {
             float: right;
+            width: 48px;
             height: 24px;
             line-height: 24px;
             margin: 4px 0;
             padding: 0 16px;
             border-radius: 12px;
+            text-align: center;
         }
     }
 
