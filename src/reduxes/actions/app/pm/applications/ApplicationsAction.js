@@ -5,7 +5,21 @@ import config from 'src/config';
 let process = config.refreshInterval,
     getApplicationsIntervalId = null;
 
+function init(dispatch) {
+
+    if (getApplicationsIntervalId) {
+        clearTimeout(getApplicationsIntervalId);
+    }
+
+    process = config.refreshInterval;
+    updateRequestApplicationsProgress(process)(dispatch);
+
+}
+
 export const getApplications = () => dispatch => {
+
+    init(dispatch);
+
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
@@ -21,6 +35,7 @@ export const getApplications = () => dispatch => {
             }
         }
     });
+
 };
 
 export const updateRequestApplicationsProgress = progress => dispatch => dispatch({
@@ -31,16 +46,7 @@ export const updateRequestApplicationsProgress = progress => dispatch => dispatc
 export const runGetApplicationsInterval = (interval = config.refreshInterval * 1000) => dispatch => {
 
     if (process <= 0) {
-
-        if (getApplicationsIntervalId) {
-            clearTimeout(getApplicationsIntervalId);
-        }
-
-        process = config.refreshInterval;
-        updateRequestApplicationsProgress(process)(dispatch);
-
         getApplications()(dispatch);
-
     } else {
 
         process--;
