@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import CreateButton from './create/CreateButton';
+import Refresh from './refresh/Refresh';
 
 import 'scss/containers/app/pm/nav/Nav.scss';
 
@@ -16,11 +17,10 @@ class Nav extends Component {
         return (
             <div className="nav">
                 <CreateButton/>
+                <Refresh/>
             </div>
         );
     }
 }
-
-Nav.propTypes = {};
 
 export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(Nav);
