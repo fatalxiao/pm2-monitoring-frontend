@@ -1,0 +1,15 @@
+@import '../../../../../common.scss';
+
+.refresh {
+
+    .refresh-progress,
+    .refresh-loading {
+        opacity: 0;
+        transition: opacity $theme-transition-duration ease-in-out;
+
+        &.activated {
+            opacity: 1;
+        }
+    }
+
+}
