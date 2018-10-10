@@ -1,5 +1,9 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ApplicationsApi from 'apis/app/pm/ApplicationsApi';
+import config from 'src/config';
+
+let process = config.refreshInterval,
+    getApplicationsIntervalId = null;
 
 export const getApplications = () => dispatch => {
     return dispatch({
@@ -11,22 +15,41 @@ export const getApplications = () => dispatch => {
             ],
             api: ApplicationsApi.getApplications,
             isWebSocket: true,
-            resMsgDisabled: true
+            resMsgDisabled: true,
+            successCallback() {
+                runGetApplicationsInterval()(dispatch);
+            }
         }
     });
 };
 
-let getApplicationsIntervalId = null;
-export const runGetApplicationsInterval = (interval = 5000) => dispatch => {
+export const updateRequestApplicationsProgress = progress => dispatch => dispatch({
+    type: actionTypes.UPDATE_REQUEST_APPLICATIONS_PROGRESS,
+    progress
+});
 
-    if (getApplicationsIntervalId) {
-        clearTimeout(getApplicationsIntervalId);
+export const runGetApplicationsInterval = (interval = config.refreshInterval * 1000) => dispatch => {
+
+    if (process <= 0) {
+
+        if (getApplicationsIntervalId) {
+            clearTimeout(getApplicationsIntervalId);
+        }
+
+        process = config.refreshInterval;
+        updateRequestApplicationsProgress(process)(dispatch);
+
+        getApplications()(dispatch);
+
+    } else {
+
+        process--;
+        updateRequestApplicationsProgress(process)(dispatch);
+
+        getApplicationsIntervalId = setTimeout(() => {
+            runGetApplicationsInterval(interval)(dispatch);
+        }, 1000);
+
     }
-
-    getApplications()(dispatch);
-
-    getApplicationsIntervalId = setTimeout(() => {
-        runGetApplicationsInterval(interval)(dispatch);
-    }, interval);
 
 };
