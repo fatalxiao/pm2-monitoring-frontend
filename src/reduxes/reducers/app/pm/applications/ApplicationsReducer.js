@@ -3,6 +3,7 @@ import * as actionTypes from 'reduxes/actionTypes';
 const initialState = {
     init: true,
     data: null,
+    progress: 0,
     actionType: ''
 };
 
@@ -28,6 +29,13 @@ function applications(state = initialState, action) {
             return {
                 ...state,
                 actionType: actionTypes.GET_APPLICATIONS_FAILURE
+            };
+        }
+
+        case actionTypes.UPDATE_REQUEST_APPLICATIONS_PROGRESS: {
+            return {
+                ...state,
+                progress: action.progress
             };
         }
 
