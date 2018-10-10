@@ -22,7 +22,7 @@ class Refresh extends Component {
 
     render() {
 
-        const {actionType, progress} = this.props,
+        const {actionType, progress, getApplications} = this.props,
 
             progressClassName = classNames('refresh-progress', {
                 activated: actionType !== actionTypes.GET_APPLICATIONS_REQUEST
@@ -32,9 +32,14 @@ class Refresh extends Component {
             });
 
         return (
-            <div className="refresh">
-                <Progress className={progressClassName}>
-                    {progress + 1}
+            <div className="refresh"
+                 onClick={getApplications}>
+                <Progress className={progressClassName}
+                          r={16}
+                          width={1}
+                          rgba="#488fdf"
+                          percent={(config.refreshInterval - progress) / config.refreshInterval * 100}>
+                    <span className="refresh-progress-text">{progress + 1}</span>
                 </Progress>
                 <Loading className={loadingClassName}/>
             </div>
@@ -44,11 +49,17 @@ class Refresh extends Component {
 }
 
 Refresh.propTypes = {
+
     actionType: PropTypes.string,
-    progress: PropTypes.number
+    progress: PropTypes.number,
+
+    getApplications: PropTypes.func
+
 };
 
 export default connect(state => ({
     actionType: state.applications.actionType,
     progress: state.applications.progress
-}), dispatch => bindActionCreators({}, dispatch))(Refresh);
+}), dispatch => bindActionCreators({
+    getApplications: actions.getApplications
+}, dispatch))(Refresh);

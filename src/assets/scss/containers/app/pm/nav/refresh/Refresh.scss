@@ -1,6 +1,8 @@
 @import '../../../../../common.scss';
 
 .refresh {
+    margin: 12px;
+    cursor: pointer;
 
     .refresh-progress,
     .refresh-loading {
@@ -12,4 +14,7 @@
         }
     }
 
+    .refresh-progress-text {
+        color: $theme-label;
+    }
 }
