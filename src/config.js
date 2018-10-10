@@ -6,6 +6,6 @@ export default {
      * Api base url prefix
      */
     baseUrl: '/pm',
-    baseWsUrl: 'ws://localhost:9616/pm'
+    wsPrefix: 'ws://localhost:9617/ws'
 
 };
