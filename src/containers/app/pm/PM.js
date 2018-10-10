@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
-import * as actionTypes from 'reduxes/actionTypes';
 
 import CircularLoading from 'alcedo-ui/CircularLoading';
 import Nav from './nav/Nav';
@@ -20,19 +19,16 @@ class PM extends Component {
     }
 
     componentDidMount() {
-        const {runGetApplicationsInterval} = this.props;
-        runGetApplicationsInterval && runGetApplicationsInterval();
+        const {getApplications} = this.props;
+        getApplications && getApplications();
     }
 
     render() {
 
-        const {init, getApplicationsActionType} = this.props,
+        const {init} = this.props,
 
             loadWrapperClassName = classNames('loading-wrapper', {
-                activated: init && (
-                    getApplicationsActionType === actionTypes.GET_APPLICATIONS_REQUEST
-                    || getApplicationsActionType === actionTypes.GET_APPLICATIONS_FAILURE
-                )
+                activated: init
             }),
 
             loadClassName = classNames('loading');
@@ -54,13 +50,11 @@ class PM extends Component {
 
 PM.propTypes = {
     init: PropTypes.bool,
-    getApplicationsActionType: PropTypes.string,
-    runGetApplicationsInterval: PropTypes.func
+    getApplications: PropTypes.func
 };
 
 export default connect(state => ({
-    init: state.applications.init,
-    getApplicationsActionType: state.applications.actionType
+    init: state.applications.init
 }), dispatch => bindActionCreators({
-    runGetApplicationsInterval: actions.runGetApplicationsInterval
+    getApplications: actions.getApplications
 }, dispatch))(PM);
