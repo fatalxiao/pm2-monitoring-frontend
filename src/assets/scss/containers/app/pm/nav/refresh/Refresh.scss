@@ -4,8 +4,7 @@
     margin: 12px;
     cursor: pointer;
 
-    .refresh-progress,
-    .refresh-loading {
+    .refresh-progress {
         opacity: 0;
         transition: opacity $theme-transition-duration ease-in-out;
 

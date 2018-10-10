@@ -8,7 +8,6 @@ import * as actions from 'reduxes/actions';
 import * as actionTypes from 'reduxes/actionTypes';
 
 import Progress from 'alcedo-ui/CircularProgress';
-import Loading from 'alcedo-ui/CircularLoading';
 
 import config from 'src/config';
 
@@ -26,9 +25,6 @@ class Refresh extends Component {
 
             progressClassName = classNames('refresh-progress', {
                 activated: actionType !== actionTypes.GET_APPLICATIONS_REQUEST
-            }),
-            loadingClassName = classNames('refresh-loading', {
-                activated: actionType === actionTypes.GET_APPLICATIONS_REQUEST
             });
 
         return (
@@ -41,7 +37,6 @@ class Refresh extends Component {
                           percent={(config.refreshInterval - progress) / config.refreshInterval * 100}>
                     <span className="refresh-progress-text">{progress + 1}</span>
                 </Progress>
-                <Loading className={loadingClassName}/>
             </div>
         );
 
