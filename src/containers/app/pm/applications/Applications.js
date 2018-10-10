@@ -6,8 +6,6 @@ import debounce from 'lodash/debounce';
 import eventsOn from 'dom-helpers/events/on';
 import eventsOff from 'dom-helpers/events/off';
 
-import * as actions from 'reduxes/actions';
-
 import Application from './application/Application';
 
 import 'scss/containers/app/pm/applications/Applications.scss';
@@ -117,12 +115,9 @@ class Applications extends Component {
 }
 
 Applications.propTypes = {
-    data: PropTypes.array,
-    runGetApplicationsInterval: PropTypes.func
+    data: PropTypes.array
 };
 
 export default connect(state => ({
     data: state.applications.data
-}), dispatch => bindActionCreators({
-    runGetApplicationsInterval: actions.runGetApplicationsInterval
-}, dispatch))(Applications);
+}), dispatch => bindActionCreators({}, dispatch))(Applications);
