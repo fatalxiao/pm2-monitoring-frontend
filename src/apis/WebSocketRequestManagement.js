@@ -1,10 +1,12 @@
+import config from 'src/config';
+
 const requests = {};
 
 function add(url, initCallback) {
 
     return new Promise((resolve, reject) => {
 
-        const ws = requests[url] = new WebSocket(url);
+        const ws = requests[url] = new WebSocket(`${config.wsPrefix}${url}`);
 
         ws.onopen = () => {
             resolve(ws);
