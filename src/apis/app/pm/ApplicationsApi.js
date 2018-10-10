@@ -6,7 +6,7 @@ export default {
     getApplications(options) {
         WebSocketApi.request({
             ...options,
-            url: `${config.baseWsUrl}/applications`
+            url: `${config.baseUrl}/applications`
         });
     }
 
