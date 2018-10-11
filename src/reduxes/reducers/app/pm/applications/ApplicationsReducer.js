@@ -7,6 +7,38 @@ const initialState = {
     actionType: ''
 };
 
+function recordMonit(oldData, data) {
+
+    if (!oldData || !data) {
+        return;
+    }
+
+    for (let app of data) {
+
+        if (!app) {
+            continue;
+        }
+
+        let monitRecord;
+
+        const index = oldData.findIndex(item => item && item.name === app.name);
+        if (index === -1) {
+            monitRecord = [];
+        } else {
+            monitRecord = oldData[index].monitRecord || [];
+        }
+
+        monitRecord.unshift(app.monit);
+        if (monitRecord.length > 100) {
+            monitRecord.length = 100;
+        }
+
+        app.monitRecord = monitRecord;
+
+    }
+
+}
+
 function applications(state = initialState, action) {
     switch (action.type) {
 
@@ -18,12 +50,19 @@ function applications(state = initialState, action) {
             };
         }
         case actionTypes.GET_APPLICATIONS_SUCCESS: {
+
+            const oldData = state.data,
+                data = action.responseData;
+
+            recordMonit(oldData, data);
+
             return {
                 ...state,
                 init: false,
-                data: action.responseData,
+                data,
                 actionType: actionTypes.GET_APPLICATIONS_SUCCESS
             };
+
         }
         case actionTypes.GET_APPLICATIONS_FAILURE: {
             return {
