@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 import Pop from 'alcedo-ui/_PositionPop';
 import Loading from 'alcedo-ui/CircularLoading';
 import IconButton from 'alcedo-ui/IconButton';
+import Tab from 'alcedo-ui/Tab';
+import OverView from './ApplicationOverView';
 import Form from '../common/ApplicationForm';
 
 import 'scss/containers/app/pm/applicationDetail/ApplicationDetail.scss';
@@ -29,12 +31,29 @@ class ApplicationDetail extends Component {
                     !application ?
                         <Loading/>
                         :
-                        <Form data={application}
-                              updateField={() => {
-                              }}/>
+                        <Fragment>
+
+                            <div className="application-detail-title">
+                                {application.name}
+                            </div>
+
+                            <Tab className="application-detail-tab"
+                                 tabs={[{
+                                     value: 'Overview',
+                                     renderer: <OverView data={application}/>
+                                 }, {
+                                     value: 'Detail',
+                                     renderer: <Form data={application}
+                                                     updateField={() => {
+                                                     }}/>
+                                 }]}
+                                 isTabFullWidth={false}/>
+
+                            <IconButton className="icon-chevron-thin-left back-icon"/>
+
+                        </Fragment>
                 }
 
-                <IconButton className="icon-chevron-thin-left back-icon"/>
 
             </Pop>
         );

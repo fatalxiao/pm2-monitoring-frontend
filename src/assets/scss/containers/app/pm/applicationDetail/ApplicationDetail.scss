@@ -4,20 +4,48 @@
     left: 144px !important;
     top: 32px !important;
     width: 560px;
-    padding: 32px;
+    padding: 32px 0 32px 72px;
     background: $theme-field-bg;
     border: 1px solid $theme-border;
 
-    .application-name {
-        margin: 0;
+    .application-detail-title {
+        font-size: 20px;
         line-height: 32px;
+        margin-bottom: 32px;
+    }
 
-        .back-icon {
-            float: left;
-            width: 32px;
-            height: 32px;
-            font-size: 32px;
-            margin-right: 24px;
+    .tab.application-detail-tab {
+
+        .tabs .tab-button {
+            background: transparent;
+            font-size: 20px;
+            padding: 0 16px;
+            color: $theme-label;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &.activated {
+                color: $theme-field;
+            }
         }
+
+        .tab-content {
+            padding: 24px 0;
+        }
+
+        .application-form {
+            padding-right: 72px;
+        }
+    }
+
+    .back-icon {
+        position: absolute;
+        left: 20px;
+        top: 32px;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
     }
 }
