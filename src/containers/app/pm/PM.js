@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {renderRoutes} from 'react-router-config';
+import {Redirect} from 'react-router-dom';
 import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
 import CircularLoading from 'alcedo-ui/CircularLoading';
 import Nav from './nav/Nav';
-import Applications from './applications/Applications';
 
 import 'scss/containers/app/pm/PM.scss';
 
@@ -38,13 +38,19 @@ class PM extends Component {
             <div className="pm">
 
                 <Nav/>
-                <Applications/>
+
+                {renderRoutes(route.routes)}
 
                 <div className={loadWrapperClassName}>
                     <CircularLoading className={loadClassName}/>
                 </div>
 
-                {renderRoutes(route.routes)}
+                {
+                    location.pathname === '/app/pm' ?
+                        <Redirect from="/app/pm" to="/app/pm/applications"/>
+                        :
+                        null
+                }
 
             </div>
         );
