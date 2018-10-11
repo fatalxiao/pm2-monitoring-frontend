@@ -8,8 +8,19 @@ export const showCreateApplication = () => dispatch => dispatch({
     type: actionTypes.SHOW_CREATE_APPLICATION
 });
 
-export const hideCreateApplication = () => dispatch => dispatch({
-    type: actionTypes.HIDE_CREATE_APPLICATION
+export const hideCreateApplication = () => dispatch => {
+    dispatch({
+        type: actionTypes.HIDE_CREATE_APPLICATION
+    });
+    collpaseCreateApplicationAdvance()(dispatch);
+};
+
+export const collpaseCreateApplicationAdvance = () => dispatch => dispatch({
+    type: actionTypes.COLLPASE_CREATE_APPLICATION_ADVANCE
+});
+
+export const expandCreateApplicationAdvance = () => dispatch => dispatch({
+    type: actionTypes.EXPAND_CREATE_APPLICATION_ADVANCE
 });
 
 export const initCreateApplicationForm = () => dispatch => dispatch({
