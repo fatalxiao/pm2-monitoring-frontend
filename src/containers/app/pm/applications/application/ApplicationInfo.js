@@ -29,10 +29,6 @@ class ApplicationInfo extends Component {
                     <div className="application-status">{startCase(status)}</div>
                 </div>
 
-                <div className="application-desc">
-                    {data.description}
-                </div>
-
                 <ApplicationMonit data={data}
                                   status={status}/>
 

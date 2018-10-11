@@ -4,39 +4,31 @@
     background: #fafcfd;
 
     .application-header {
-        @include float-fix;
-        height: 32px;
+        position: relative;
+        height: 69px;
         padding: 8px 16px 0;
 
         .application-name {
-            float: left;
-            max-width: calc(100% - 80px);
-            line-height: 32px;
+            line-height: 48px;
             font-size: 18px;
             color: $theme-field;
+            text-align: center;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
         }
 
         .application-status {
-            float: right;
-            width: 80px;
+            position: absolute;
+            left: 50%;
+            bottom: -12px;
             height: 24px;
             line-height: 24px;
-            margin: 4px 0;
+            padding: 0 24px;
             border-radius: 12px;
             text-align: center;
+            z-index: 1;
+            transform: translateX(-50%);
         }
-    }
-
-    .application-desc {
-        height: 37px;
-        line-height: 24px;
-        padding: 0 24px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: $theme-label;
     }
 }
