@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {renderRoutes} from 'react-router-config';
 import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
@@ -25,7 +26,7 @@ class PM extends Component {
 
     render() {
 
-        const {init} = this.props,
+        const {route, init} = this.props,
 
             loadWrapperClassName = classNames('loading-wrapper', {
                 activated: init
@@ -42,6 +43,8 @@ class PM extends Component {
                 <div className={loadWrapperClassName}>
                     <CircularLoading className={loadClassName}/>
                 </div>
+
+                {renderRoutes(route.routes)}
 
             </div>
         );
