@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import startCase from 'lodash/startCase';
 
-import ApplicationMonit from './ApplicationMonit';
+import Monit from './ApplicationMonit';
+import Status from '../../common/ApplicationStatus';
 
 import 'scss/containers/app/pm/applications/application/ApplicationInfo.scss';
 
@@ -26,11 +26,15 @@ class ApplicationInfo extends Component {
                          title={data.name}>
                         {data.name}
                     </div>
-                    <div className="application-status">{startCase(status)}</div>
+                    <Status value={status}/>
                 </div>
 
-                <ApplicationMonit data={data}
-                                  status={status}/>
+                <div className="application-desc">
+                    {data.description}
+                </div>
+
+                <Monit data={data}
+                       status={status}/>
 
             </div>
         );
