@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import * as actions from 'reduxes/actions';
+
 import Loading from 'alcedo-ui/CircularLoading';
 import IconButton from 'alcedo-ui/IconButton';
 import Tab from 'alcedo-ui/Tab';
@@ -19,12 +21,11 @@ class ApplicationDetail extends Component {
 
     render() {
 
-        const {data, match} = this.props,
+        const {data, match, routerPush} = this.props,
             application = data && data.find(item => item && item.name === match.params.name);
 
         return (
             <div className="application-detail">
-
                 {
                     !application ?
                         <Loading/>
@@ -47,12 +48,11 @@ class ApplicationDetail extends Component {
                                  }]}
                                  isTabFullWidth={false}/>
 
-                            <IconButton className="icon-chevron-thin-left back-icon"/>
+                            <IconButton className="icon-chevron-thin-left back-icon"
+                                        onClick={() => routerPush('/app/pm/applications')}/>
 
                         </Fragment>
                 }
-
-
             </div>
         );
 
@@ -60,9 +60,15 @@ class ApplicationDetail extends Component {
 }
 
 ApplicationDetail.propTypes = {
-    data: PropTypes.array
+
+    data: PropTypes.array,
+
+    routerPush: PropTypes.func
+
 };
 
 export default connect(state => ({
     data: state.applications.data
-}), dispatch => bindActionCreators({}, dispatch))(ApplicationDetail);
+}), dispatch => bindActionCreators({
+    routerPush: actions.routerPush
+}, dispatch))(ApplicationDetail);
