@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import Pop from 'alcedo-ui/_PositionPop';
 import Loading from 'alcedo-ui/CircularLoading';
+import IconButton from 'alcedo-ui/IconButton';
 
 import 'scss/containers/app/pm/applicationDetail/ApplicationDetail.scss';
 
@@ -30,6 +31,7 @@ class ApplicationDetail extends Component {
                         <Fragment>
 
                             <h1 className="application-name">
+                                <IconButton className="icon-chevron-thin-left back-icon"/>
                                 {application.name}
                             </h1>
 

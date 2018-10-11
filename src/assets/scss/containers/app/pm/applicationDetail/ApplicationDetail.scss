@@ -2,13 +2,22 @@
 
 .application-detail {
     left: 144px !important;
-    top: 96px !important;
+    top: 32px !important;
     width: 560px;
     padding: 32px;
     background: $theme-field-bg;
     border: 1px solid $theme-border;
 
     .application-name {
+        margin: 0;
+        line-height: 32px;
 
+        .back-icon {
+            float: left;
+            width: 32px;
+            height: 32px;
+            font-size: 32px;
+            margin-right: 24px;
+        }
     }
 }
