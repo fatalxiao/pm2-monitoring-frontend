@@ -14,6 +14,7 @@ const DEFAULT_FORM = {
         activated: false,
         form: cloneDeep(DEFAULT_FORM),
         error: {},
+        advanceCollapsed: true,
         actionType: ''
     };
 
@@ -65,6 +66,19 @@ function createApplication(state = initialState, action) {
             return {
                 ...state,
                 activated: false
+            };
+        }
+
+        case actionTypes.COLLPASE_CREATE_APPLICATION_ADVANCE: {
+            return {
+                ...state,
+                advanceCollapsed: true
+            };
+        }
+        case actionTypes.EXPAND_CREATE_APPLICATION_ADVANCE: {
+            return {
+                ...state,
+                advanceCollapsed: false
             };
         }
 
