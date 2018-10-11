@@ -33,7 +33,7 @@ class ApplicationForm extends Component {
                                required={true}
                                value={data.name}
                                onChange={v => updateField('name', v)}/>
-                    <div className="form-field-error">{error.name || ''}</div>
+                    <div className="form-field-error">{error && error.name || ''}</div>
                 </div>
 
                 <div className="form-field-wrapper">
@@ -44,7 +44,7 @@ class ApplicationForm extends Component {
                               autoHeight={true}
                               value={data.description}
                               onChange={v => updateField('description', v)}/>
-                    <div className="form-field-error">{error.description || ''}</div>
+                    <div className="form-field-error">{error && error.description || ''}</div>
                 </div>
 
                 <Accordion className="create-form-advance"
@@ -61,7 +61,7 @@ class ApplicationForm extends Component {
                                        clearButtonVisible={false}
                                        value={data.instances}
                                        onChange={v => updateField('instances', v)}/>
-                            <div className="form-field-error">{error.instances || ''}</div>
+                            <div className="form-field-error">{error && error.instances || ''}</div>
                         </div>
 
                         <div className="form-field-wrapper">
@@ -72,7 +72,7 @@ class ApplicationForm extends Component {
                                        clearButtonVisible={false}
                                        value={data.script}
                                        onChange={v => updateField('script', v)}/>
-                            <div className="form-field-error">{error.script || ''}</div>
+                            <div className="form-field-error">{error && error.script || ''}</div>
                         </div>
 
                         <div className="form-field-wrapper">
@@ -83,7 +83,7 @@ class ApplicationForm extends Component {
                                        clearButtonVisible={false}
                                        value={data.port}
                                        onChange={v => updateField('port', v)}/>
-                            <div className="form-field-error">{error.port || ''}</div>
+                            <div className="form-field-error">{error && error.port || ''}</div>
                         </div>
 
                         <div className="form-field-wrapper">
@@ -94,7 +94,7 @@ class ApplicationForm extends Component {
                                        clearButtonVisible={false}
                                        value={data.env}
                                        onChange={v => updateField('env', v)}/>
-                            <div className="form-field-error">{error.env || ''}</div>
+                            <div className="form-field-error">{error && error.env || ''}</div>
                         </div>
 
                     </div>
