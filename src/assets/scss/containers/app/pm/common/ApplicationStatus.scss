@@ -1,9 +1,30 @@
 @import '../../../../common.scss';
 
 .application-status {
+    display: inline-block;
     height: 24px;
     line-height: 24px;
     padding: 0 24px;
     border-radius: 12px;
     text-align: center;
+
+    &.online {
+        color: #fff;
+        background: $theme-success;
+    }
+
+    &.stopped {
+        color: #fff;
+        background: $theme-warning;
+    }
+
+    &.errored {
+        color: #fff;
+        background: $theme-error;
+    }
+
+    &.offline {
+        color: #fff;
+        background: $theme-border;
+    }
 }

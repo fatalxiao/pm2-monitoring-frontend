@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import startCase from 'lodash/startCase';
 
 import 'scss/containers/app/pm/common/ApplicationStatus.scss';
@@ -12,10 +13,13 @@ class ApplicationStatus extends Component {
 
     render() {
 
-        const {value} = this.props;
+        const {value} = this.props,
+            className = classNames('application-status', value);
 
         return (
-            <div className="application-status">{startCase(value)}</div>
+            <div className={className}>
+                {startCase(value)}
+            </div>
         );
 
     }
