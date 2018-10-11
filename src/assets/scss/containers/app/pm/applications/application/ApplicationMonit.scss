@@ -7,6 +7,7 @@
     font-size: 12px;
     padding: 8px 0;
     color: $theme-label;
+    background: $theme-field-bg;
 
     .application-monit-cpu,
     .application-monit-memory {
@@ -46,7 +47,7 @@
         &::after {
             content: "";
             position: absolute;
-            top: 18%;
+            top: 25%;
             right: 0;
             display: block;
             width: 1px;
@@ -63,8 +64,8 @@
         content: "";
         position: absolute;
         top: 0;
-        left: 16px;
-        width: calc(100% - 32px);
+        left: 0;
+        width: 100%;
         height: 1px;
         background: $theme-border;
     }
