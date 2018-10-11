@@ -24,7 +24,10 @@ class CreateForm extends Component {
 
     render() {
 
-        const {activated, data, error, updateField} = this.props,
+        const {
+                activated, data, error, advanceCollapsed,
+                updateField, collpaseCreateApplicationAdvance, expandCreateApplicationAdvance
+            } = this.props,
 
             className = classNames('create-form-wrapper', {
                 activated
@@ -39,7 +42,11 @@ class CreateForm extends Component {
 
                         <Form data={data}
                               error={error}
-                              updateField={updateField}/>
+                              advanced={true}
+                              advanceCollapsed={advanceCollapsed}
+                              updateField={updateField}
+                              onAdvanceCollpase={collpaseCreateApplicationAdvance}
+                              onAdvanceExpand={expandCreateApplicationAdvance}/>
 
                         <GhostButton className="save-button"
                                      value="Save"
@@ -57,16 +64,22 @@ CreateForm.propTypes = {
     activated: PropTypes.bool,
     data: PropTypes.object,
     error: PropTypes.object,
+    advanceCollapsed: PropTypes.bool,
 
     updateField: PropTypes.func,
+    collpaseCreateApplicationAdvance: PropTypes.func,
+    expandCreateApplicationAdvance: PropTypes.func,
     createApplication: PropTypes.func
 
 };
 
 export default connect(state => ({
     data: state.createApplication.form,
-    error: state.createApplication.error
+    error: state.createApplication.error,
+    advanceCollapsed: state.createApplication.advanceCollapsed
 }), dispatch => bindActionCreators({
     updateField: actions.updateCreateApplicationField,
+    collpaseCreateApplicationAdvance: actions.collpaseCreateApplicationAdvance,
+    expandCreateApplicationAdvance: actions.expandCreateApplicationAdvance,
     createApplication: actions.createApplication
 }, dispatch))(CreateForm);
