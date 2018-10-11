@@ -1,5 +1,14 @@
 @import '../../../../common.scss';
 
 .application-detail {
+    left: 144px !important;
+    top: 96px !important;
+    width: 560px;
+    padding: 32px;
+    background: $theme-field-bg;
+    border: 1px solid $theme-border;
 
+    .application-name {
+
+    }
 }
