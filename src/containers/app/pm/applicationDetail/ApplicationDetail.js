@@ -29,7 +29,9 @@ class ApplicationDetail extends Component {
                     !application ?
                         <Loading/>
                         :
-                        <Form data={application}/>
+                        <Form data={application}
+                              updateField={() => {
+                              }}/>
                 }
 
                 <IconButton className="icon-chevron-thin-left back-icon"/>
