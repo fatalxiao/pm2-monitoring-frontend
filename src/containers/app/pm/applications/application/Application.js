@@ -25,7 +25,7 @@ class Application extends Component {
             return;
         }
 
-        routerPush(`/app/pm/${data.name}`);
+        routerPush(`/app/pm/application/${data.name}`);
 
     };
 
