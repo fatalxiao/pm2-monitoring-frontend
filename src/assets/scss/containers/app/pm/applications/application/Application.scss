@@ -14,34 +14,6 @@
     transition-duration: $theme-transition-duration;
     transition-timing-function: ease-in-out;
 
-    &.online {
-        .application-status {
-            color: #fff;
-            background: $theme-success;
-        }
-    }
-
-    &.stopped {
-        .application-status {
-            color: #fff;
-            background: $theme-warning;
-        }
-    }
-
-    &.errored {
-        .application-status {
-            color: #fff;
-            background: $theme-error;
-        }
-    }
-
-    &.offline {
-        .application-status {
-            color: #fff;
-            background: $theme-border;
-        }
-    }
-
     &:hover {
         box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px,
         transparentize($theme-shadow, .98) 0px 15px 20px;
