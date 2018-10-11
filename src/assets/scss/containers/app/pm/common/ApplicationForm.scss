@@ -1,0 +1,109 @@
+@import '../../../../common.scss';
+
+.application-form {
+
+    .form-field-wrapper {
+
+        .form-field {
+            width: 100%;
+            border: none;
+            background: transparent;
+
+            .material-provider-label {
+                line-height: 24px;
+                color: #fff;
+                opacity: .66;
+                transition: opacity $theme-transition-duration ease-in-out;
+            }
+
+            .material-provider-required-dot {
+                background: $theme-warning;
+            }
+
+            .text-field,
+            .text-area {
+                border-bottom-color: transparentize(#fff, .64);
+
+                .text-field-input,
+                .text-field-placeholder,
+                .text-area-input {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 24px;
+                    color: #fff;
+                }
+
+                .text-field-placeholder {
+                    color: transparentize(#fff, .64);
+                }
+            }
+
+            .material-field-separator-hover {
+                display: none;
+            }
+            .material-field-separator-focus {
+                background: transparentize(#fff, .24);
+            }
+
+            &.material-text-field {
+                height: 72px;
+
+                .text-field {
+                    height: 48px;
+                }
+            }
+
+            &.material-text-area {
+                min-height: 72px;
+
+                .text-area .text-area-input {
+                    height: 48px;
+                }
+            }
+
+            &.focused {
+                .material-provider-label {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .form-field-error {
+            height: 36px;
+            color: $theme-warning;
+            padding: 0 8px;
+            line-height: 24px;
+        }
+    }
+
+    .create-form-advance {
+        .accordion-title,
+        .accordion-content {
+            background: transparent;
+            border: none;
+        }
+
+        .accordion-title {
+            display: block;
+            width: auto;
+            padding: 0 24px;
+            font-size: 20px;
+            margin: 0 auto;
+            color: #fff;
+
+            .button-icon {
+                float: none;
+                display: inline-block;
+                margin: 0 0 0 8px;
+            }
+        }
+
+        .accordion-content {
+            padding: 0;
+
+            .create-form-advance-content {
+                padding: 24px 0 0;
+            }
+        }
+    }
+}
