@@ -2,4 +2,14 @@
 
 .application-overview {
     padding-right: 72px;
+
+    .overview-item {
+        width: 50%;
+        height: 80px;
+
+        .overview-item-title {
+            line-height: 32px;
+            font-size: 16px;
+        }
+    }
 }

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import Status from '../common/ApplicationStatus';
+
 import 'scss/containers/app/pm/applicationDetail/ApplicationOverView.scss';
 
 class ApplicationOverView extends Component {
@@ -17,6 +19,11 @@ class ApplicationOverView extends Component {
 
         return (
             <div className="application-overview">
+
+                <div className="overview-item status">
+                    <div className="overview-item-title">Status</div>
+                    <Status value={data.status}/>
+                </div>
 
             </div>
         );
