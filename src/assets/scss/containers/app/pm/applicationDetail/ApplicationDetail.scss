@@ -1,9 +1,8 @@
 @import '../../../../common.scss';
 
 .application-detail {
-    left: 144px !important;
-    top: 32px !important;
-    width: 560px;
+    position: relative;
+    width: 480px;
     padding: 32px 0 32px 72px;
     background: $theme-field-bg;
     border: 1px solid $theme-border;

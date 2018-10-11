@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import Pop from 'alcedo-ui/_PositionPop';
 import Loading from 'alcedo-ui/CircularLoading';
 import IconButton from 'alcedo-ui/IconButton';
 import Tab from 'alcedo-ui/Tab';
@@ -24,8 +23,7 @@ class ApplicationDetail extends Component {
             application = data && data.find(item => item && item.name === match.params.name);
 
         return (
-            <Pop className="application-detail"
-                 visible={true}>
+            <div className="application-detail">
 
                 {
                     !application ?
@@ -55,7 +53,7 @@ class ApplicationDetail extends Component {
                 }
 
 
-            </Pop>
+            </div>
         );
 
     }
