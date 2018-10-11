@@ -9,7 +9,11 @@ export function configureRoutes(store) {
             component: ac(() => import('containers/app/App'), store),
             routes: [{
                 path: '/app/pm',
-                component: ac(() => import('containers/app/pm/PM'), store)
+                component: ac(() => import('containers/app/pm/PM'), store),
+                routes: [{
+                    path: '/app/pm/:name',
+                    component: ac(() => import('containers/app/pm/applicationDetail/ApplicationDetail'), store)
+                }]
             }]
         }]
     }];
