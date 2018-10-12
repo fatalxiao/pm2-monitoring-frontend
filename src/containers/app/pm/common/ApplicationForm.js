@@ -16,7 +16,7 @@ class ApplicationForm extends Component {
     render() {
 
         const {
-            data, error, advanceCollapsed, advanced,
+            data, error, advanceCollapsed, advanced, isEdit,
             updateField, onAdvanceCollpase, onAdvanceExpand
         } = this.props;
 
@@ -26,17 +26,22 @@ class ApplicationForm extends Component {
 
         const fields = (
                 <Fragment>
-                    <div className="form-field-wrapper">
-                        <TextField className="form-field"
-                                   label="Application Name"
-                                   isLabelAnimate={false}
-                                   placeholder="new-application"
-                                   clearButtonVisible={false}
-                                   required={true}
-                                   value={data.name}
-                                   onChange={v => updateField('name', v)}/>
-                        <div className="form-field-error">{error && error.name || ''}</div>
-                    </div>
+                    {
+                        isEdit ?
+                            null
+                            :
+                            <div className="form-field-wrapper">
+                                <TextField className="form-field"
+                                           label="Application Name"
+                                           isLabelAnimate={false}
+                                           placeholder="new-application"
+                                           clearButtonVisible={false}
+                                           required={true}
+                                           value={data.name}
+                                           onChange={v => updateField('name', v)}/>
+                                <div className="form-field-error">{error && error.name || ''}</div>
+                            </div>
+                    }
                     <div className="form-field-wrapper">
                         <TextArea className="form-field"
                                   label="Description"
@@ -130,6 +135,7 @@ ApplicationForm.propTypes = {
 
     advanceCollapsed: PropTypes.bool,
     advanced: PropTypes.bool,
+    isEdit: PropTypes.bool,
 
     updateField: PropTypes.func,
     onAdvanceCollpase: PropTypes.func,
@@ -139,7 +145,8 @@ ApplicationForm.propTypes = {
 
 ApplicationForm.defaultProps = {
     advanceCollapsed: true,
-    advanced: false
+    advanced: false,
+    isEdit: true
 };
 
 export default ApplicationForm;
