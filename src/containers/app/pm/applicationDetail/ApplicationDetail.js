@@ -48,8 +48,11 @@ class ApplicationDetail extends Component {
                                  }]}
                                  isTabFullWidth={false}/>
 
-                            <IconButton className="icon-chevron-thin-left back-icon"
-                                        onClick={() => routerPush('/app/pm/applications')}/>
+                            <IconButton className="back-icon"
+                                        iconCls="icon-chevron-thin-left"
+                                        onClick={() => routerPush('/app/pm/applications')}>
+                                <i className="icon-minus extra-icon"></i>
+                            </IconButton>
 
                         </Fragment>
                 }

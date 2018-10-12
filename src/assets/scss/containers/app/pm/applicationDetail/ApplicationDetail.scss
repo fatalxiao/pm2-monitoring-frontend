@@ -3,9 +3,11 @@
 .application-detail {
     position: relative;
     width: 480px;
+    height: 640px;
     padding: 32px 0 32px 72px;
     background: $theme-field-bg;
     border: 1px solid $theme-border;
+    border-radius: $theme-border-radius;
 
     .application-detail-title {
         font-size: 20px;
@@ -31,8 +33,12 @@
             }
         }
 
-        .tab-content {
-            padding: 24px 0;
+        .tab-content-wrapper {
+            background: transparent;
+
+            .tab-content {
+                padding: 24px 0;
+            }
         }
 
         .application-form {
@@ -47,5 +53,16 @@
         width: 32px;
         height: 32px;
         font-size: 20px;
+
+        .button-icon-left {
+            position: relative;
+            left: -3px;
+        }
+
+        .extra-icon {
+            position: absolute;
+            left: 7px;
+            transform: scale(1.2, 0.8);
+        }
     }
 }
