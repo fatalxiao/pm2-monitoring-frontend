@@ -3,20 +3,52 @@
 .application-overview {
 
     .overview-item {
-        padding: 8px 72px 32px 0;
-        border-bottom: 1px solid $theme-border;
+        @include float-fix;
+        position: relative;
+        padding: 32px 72px 32px 0;
+        border-top: 1px solid $theme-dark-grey;
 
-        .overview-item-title {
-            line-height: 64px;
-            font-size: 16px;
+        .overview-item-left {
+            float: left;
+            width: 200px;
+
+            .overview-item-title {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+
+            .overview-item-content {
+                font-size: 32px;
+                color: $theme-label;
+
+                .monit-unit {
+                    position: absolute;
+                    font-size: 12px;
+                    line-height: 24px;
+                    margin-left: 8px;
+                    color: $theme-label;
+                }
+
+                &.activated {
+                    &.cpu {
+                        color: $theme-info;
+                    }
+
+                    &.memory {
+                        color: $theme-purple;
+                    }
+                }
+            }
+        }
+
+        .overview-item-chart {
+            float: left;
+            width: 208px;
         }
 
         &:first-child {
             padding-top: 0;
-        }
-
-        &:last-child {
-            border-bottom: none;
+            border-top: none;
         }
     }
 }
