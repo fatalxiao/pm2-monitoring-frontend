@@ -38,7 +38,7 @@ class ApplicationOverView extends Component {
                 ]
             };
 
-            if (item[type] !== null) {
+            if (item.status === 'online' && item[type] !== null) {
                 result.value.push(Calculation.format(type, item[type]));
             }
 
