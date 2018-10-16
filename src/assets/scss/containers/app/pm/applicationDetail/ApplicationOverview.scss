@@ -3,7 +3,7 @@
 .application-overview {
 
     .overview-item {
-        padding: 8px 72px 24px 0;
+        padding: 8px 72px 32px 0;
         border-bottom: 1px solid $theme-border;
 
         .overview-item-title {
@@ -13,6 +13,10 @@
 
         &:first-child {
             padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: none;
         }
     }
 }
