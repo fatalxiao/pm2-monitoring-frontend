@@ -1,6 +1,6 @@
 import * as actionTypes from 'reduxes/actionTypes';
 
-const MAX_LENGTH = 120,
+const MAX_LENGTH = 12,
     initialState = {
         init: true,
         data: null,
@@ -10,7 +10,7 @@ const MAX_LENGTH = 120,
 
 function recordMonit(oldData, data) {
 
-    if (!oldData || !data) {
+    if (!data) {
         return;
     }
 
@@ -20,16 +20,19 @@ function recordMonit(oldData, data) {
             continue;
         }
 
-        let monitRecord;
+        let monitRecord = [];
 
-        const index = oldData.findIndex(item => item && item.name === app.name);
-        if (index === -1) {
-            monitRecord = [];
-        } else {
-            monitRecord = oldData[index].monitRecord || [];
+        if (oldData) {
+            const index = oldData.findIndex(item => item && item.name === app.name);
+            if (index !== -1) {
+                monitRecord = oldData[index].monitRecord || [];
+            }
         }
 
-        monitRecord.unshift(app.monit);
+        monitRecord.unshift({
+            ...app.monit,
+            time: +new Date()
+        });
         if (monitRecord.length > MAX_LENGTH) {
             monitRecord.length = MAX_LENGTH;
         }
