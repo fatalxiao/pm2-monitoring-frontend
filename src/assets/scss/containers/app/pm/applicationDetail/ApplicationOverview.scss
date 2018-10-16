@@ -1,12 +1,18 @@
 @import '../../../../common.scss';
 
 .application-overview {
-    padding-right: 72px;
 
     .overview-item {
+        padding: 8px 72px 24px 0;
+        border-bottom: 1px solid $theme-border;
+
         .overview-item-title {
             line-height: 64px;
             font-size: 16px;
+        }
+
+        &:first-child {
+            padding-top: 0;
         }
     }
 }
