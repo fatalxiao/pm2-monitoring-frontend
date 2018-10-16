@@ -22,7 +22,9 @@ class ApplicationCtrls extends Component {
 
     }
 
-    prepareUpload = () => {
+    prepareUpload = e => {
+
+        e && e.stopPropagation();
 
         this.setState({
             uploadFieldKey: ++this.state.uploadFieldKey
@@ -51,7 +53,9 @@ class ApplicationCtrls extends Component {
 
     };
 
-    startPause = () => {
+    startPause = e => {
+
+        e && e.stopPropagation();
 
         const {data, status, startApplication, stopApplication} = this.props;
 
@@ -67,7 +71,9 @@ class ApplicationCtrls extends Component {
 
     };
 
-    restart = () => {
+    restart = e => {
+
+        e && e.stopPropagation();
 
         const {data, restartApplication} = this.props;
 
@@ -79,7 +85,9 @@ class ApplicationCtrls extends Component {
 
     };
 
-    stop = () => {
+    stop = e => {
+
+        e && e.stopPropagation();
 
         const {data, deleteApplication} = this.props;
 
