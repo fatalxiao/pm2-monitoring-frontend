@@ -61,12 +61,14 @@ class ApplicationOverView extends Component {
 
                 <div className="overview-item cpu">
                     <div className="overview-item-title">CPU</div>
-                    <LineChart data={this.formatData('cpu')}/>
+                    <LineChart data={this.formatData('cpu')}
+                               color={['#2db7f5']}/>
                 </div>
 
                 <div className="overview-item memory">
                     <div className="overview-item-title">Memory</div>
-                    <LineChart data={this.formatData('memory')}/>
+                    <LineChart data={this.formatData('memory')}
+                               color={['#908bc3']}/>
                 </div>
 
             </div>
