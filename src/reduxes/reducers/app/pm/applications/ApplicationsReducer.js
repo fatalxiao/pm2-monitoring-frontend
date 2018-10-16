@@ -1,6 +1,6 @@
 import * as actionTypes from 'reduxes/actionTypes';
 
-const MAX_LENGTH = 12,
+const MAX_LENGTH = 120,
     initialState = {
         init: true,
         data: null,
@@ -29,12 +29,22 @@ function recordMonit(oldData, data) {
             }
         }
 
-        monitRecord.unshift({
+        while (monitRecord.length < MAX_LENGTH) {
+            const lastTime = (monitRecord[0] && monitRecord[0].time) || +new Date();
+            monitRecord.unshift({
+                time: lastTime - 5000,
+                cpu: null,
+                memory: null
+            });
+        }
+
+        monitRecord.push({
             ...app.monit,
             time: +new Date()
         });
-        if (monitRecord.length > MAX_LENGTH) {
-            monitRecord.length = MAX_LENGTH;
+
+        while (monitRecord.length > MAX_LENGTH) {
+            monitRecord.shift();
         }
 
         app.monitRecord = monitRecord;
