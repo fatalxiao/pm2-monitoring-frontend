@@ -18,7 +18,17 @@ function formatMemory(value) {
 
 }
 
+function format(key, value) {
+    switch (key) {
+        case 'cpu':
+            return formatCPU(value);
+        case 'memory':
+            return formatMemory(value);
+    }
+}
+
 export default {
     formatCPU,
-    formatMemory
+    formatMemory,
+    format
 };
