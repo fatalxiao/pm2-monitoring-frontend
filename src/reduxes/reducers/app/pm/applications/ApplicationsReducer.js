@@ -1,11 +1,12 @@
 import * as actionTypes from 'reduxes/actionTypes';
 
-const initialState = {
-    init: true,
-    data: null,
-    progress: 0,
-    actionType: ''
-};
+const MAX_LENGTH = 120,
+    initialState = {
+        init: true,
+        data: null,
+        progress: 0,
+        actionType: ''
+    };
 
 function recordMonit(oldData, data) {
 
@@ -29,8 +30,8 @@ function recordMonit(oldData, data) {
         }
 
         monitRecord.unshift(app.monit);
-        if (monitRecord.length > 100) {
-            monitRecord.length = 100;
+        if (monitRecord.length > MAX_LENGTH) {
+            monitRecord.length = MAX_LENGTH;
         }
 
         app.monitRecord = monitRecord;
