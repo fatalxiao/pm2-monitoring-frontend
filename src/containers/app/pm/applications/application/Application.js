@@ -32,8 +32,7 @@ class Application extends Component {
     render() {
 
         const {style, data} = this.props,
-            status = data.status || 'offline',
-            className = classNames('application', status);
+            className = classNames('application', data.status);
 
         return (
             <div className={className}
@@ -41,10 +40,10 @@ class Application extends Component {
                  onClick={this.goToDetail}>
 
                 <ApplicationInfo data={data}
-                                 status={status}/>
+                                 status={data.status}/>
 
                 <ApplicationCtrls data={data}
-                                  status={status}/>
+                                  status={data.status}/>
 
             </div>
         );
