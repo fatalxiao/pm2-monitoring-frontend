@@ -1,6 +1,6 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ApplicationApi from 'apis/app/pm/ApplicationApi';
-import {runGetApplicationsInterval} from './ApplicationsAction';
+import {getApplications} from './ApplicationsAction';
 
 export const uploadApplicationPackage = (applicationName, file) => dispatch => {
 
@@ -47,7 +47,7 @@ export const startApplication = applicationName => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
             }
         }
     });
@@ -74,7 +74,7 @@ export const stopApplication = (processId, applicationName) => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
             }
         }
     });
@@ -101,7 +101,7 @@ export const restartApplication = (processId, applicationName) => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
             }
         }
     });
@@ -128,7 +128,7 @@ export const deleteApplication = (processId, applicationName) => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
             }
         }
     });
@@ -155,7 +155,7 @@ export const reloadApplication = (processId, applicationName) => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
             }
         }
     });
