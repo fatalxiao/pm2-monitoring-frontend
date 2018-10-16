@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import echarts from 'echarts';
 import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
-
-import theme from 'statics/ChartTheme';
 
 class LineChart extends Component {
 
     constructor(props) {
 
         super(props);
-
-        echarts.registerTheme('dark', theme);
 
         this.DEFAULT_STYLE = {
             height: 100
@@ -65,16 +60,18 @@ class LineChart extends Component {
             series: [{
                 type: 'line',
                 showSymbol: false,
-                hoverAnimation: false
+                // hoverAnimation: false,
+                areaStyle: {}
             }]
         };
 
     }
 
     getOption = () => {
-        const {data} = this.props,
+        const {data, color} = this.props,
             config = cloneDeep(this.DEFAULT_CONFIG);
         config.series[0].data = data;
+        config.color = color;
         return config;
     };
 
@@ -89,8 +86,7 @@ class LineChart extends Component {
         return (
             <ReactEcharts className={chartClassName}
                           style={{...this.DEFAULT_STYLE, ...style}}
-                          option={this.getOption()}
-                          theme="dark"/>
+                          option={this.getOption()}/>
         );
 
     }
@@ -100,6 +96,7 @@ LineChart.propTypes = {
 
     className: PropTypes.string,
     style: PropTypes.object,
+    color: PropTypes.array,
 
     data: PropTypes.array
 
