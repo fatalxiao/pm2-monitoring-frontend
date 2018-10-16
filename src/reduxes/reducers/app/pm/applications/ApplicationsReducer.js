@@ -20,8 +20,8 @@ function recordMonit(oldData, data) {
             continue;
         }
 
+        // get last monit record data
         let monitRecord = [];
-
         if (oldData) {
             const index = oldData.findIndex(item => item && item.name === app.name);
             if (index !== -1) {
@@ -29,17 +29,20 @@ function recordMonit(oldData, data) {
             }
         }
 
+        // fill monit record data
         while (monitRecord.length < MAX_LENGTH) {
             const lastTime = (monitRecord[0] && monitRecord[0].time) || +new Date();
             monitRecord.unshift({
                 time: lastTime - 5000,
                 cpu: null,
-                memory: null
+                memory: null,
+                status: 'offline'
             });
         }
 
         monitRecord.push({
             ...app.monit,
+            status: app.status,
             time: +new Date()
         });
 
