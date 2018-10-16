@@ -11,7 +11,7 @@ class LineChart extends Component {
         super(props);
 
         this.DEFAULT_STYLE = {
-            height: 100
+            height: 80
         };
 
         this.DEFAULT_CONFIG = {
@@ -19,16 +19,22 @@ class LineChart extends Component {
                 show: false
             },
             grid: {
-                top: 8,
+                show: true,
+                top: 0,
                 left: 0,
                 right: 0,
-                bottom: 8,
-                containLabel: true
+                bottom: 0,
+                containLabel: true,
+                borderColor: '#e7e7e7'
             },
             xAxis: {
                 type: 'time',
+                interval: 150000,
                 splitLine: {
-                    show: false
+                    show: true,
+                    lineStyle: {
+                        color: '#f3f3f3'
+                    }
                 },
                 axisTick: {
                     show: false
@@ -37,23 +43,27 @@ class LineChart extends Component {
                     show: false
                 },
                 axisLine: {
-                    lineStyle: {
-                        color: '#e7e7e7'
-                    }
+                    show: false
                 }
             },
             yAxis: {
                 type: 'value',
                 min: 0,
                 max: 100,
-                splitNumber: 1,
+                interval: 25,
                 splitLine: {
-                    show: false
+                    show: true,
+                    lineStyle: {
+                        color: '#f3f3f3'
+                    }
                 },
                 axisLine: {
                     show: false
                 },
                 axisTick: {
+                    show: false
+                },
+                axisLabel: {
                     show: false
                 }
             },
