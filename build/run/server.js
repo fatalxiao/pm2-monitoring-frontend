@@ -22,6 +22,7 @@ Object.keys(proxyTable).forEach(context => {
         options = {
             target: options,
             changeOrigin: true,
+            ws: true,
             logLevel: 'error'
         };
     }

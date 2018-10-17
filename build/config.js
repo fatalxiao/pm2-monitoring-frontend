@@ -20,7 +20,7 @@ module.exports = {
     },
 
     production: {
-        port: 9618,
+        port: 9617,
         index: path.resolve(__dirname, '../dist/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
         proxyTable: {
