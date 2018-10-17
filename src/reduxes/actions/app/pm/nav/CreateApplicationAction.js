@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import * as actionTypes from 'reduxes/actionTypes';
 import CreateApplicationApi from 'apis/app/pm/CreateApplicationApi';
-import {runGetApplicationsInterval} from 'reduxes/actions/app/pm/applications/ApplicationsAction';
+import {getApplications} from 'reduxes/actions/app/pm/applications/ApplicationsAction';
 
 export const showCreateApplication = () => dispatch => dispatch({
     type: actionTypes.SHOW_CREATE_APPLICATION
@@ -61,7 +61,7 @@ export const createApplication = () => (dispatch, getState) => {
             params: form,
             resMsgDisabled: true,
             successCallback() {
-                runGetApplicationsInterval()(dispatch);
+                getApplications()(dispatch);
                 hideCreateApplication()(dispatch);
             }
         }
