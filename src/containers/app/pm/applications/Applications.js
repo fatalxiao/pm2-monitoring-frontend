@@ -6,7 +6,7 @@ import debounce from 'lodash/debounce';
 import eventsOn from 'dom-helpers/events/on';
 import eventsOff from 'dom-helpers/events/off';
 
-import Application from './application/Application';
+import Application from './application/ApplicationCard';
 
 import 'scss/containers/app/pm/applications/Applications.scss';
 
