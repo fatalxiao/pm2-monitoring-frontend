@@ -13,9 +13,9 @@ import OverView from './ApplicationOverView';
 import Form from '../common/ApplicationForm';
 import Ctrls from '../common/ApplicationCtrls';
 
-import 'scss/containers/app/pm/applicationDetail/ApplicationDetail.scss';
+import 'scss/containers/app/pm/application/Application.scss';
 
-class ApplicationDetail extends Component {
+class Application extends Component {
 
     constructor(props) {
 
@@ -40,7 +40,7 @@ class ApplicationDetail extends Component {
 
             application = data && data.find(item => item && item.name === match.params.name),
 
-            wrapperClassName = classNames('application-detail', {
+            wrapperClassName = classNames('application', {
                 init
             });
 
@@ -52,7 +52,7 @@ class ApplicationDetail extends Component {
                         :
                         <Fragment>
 
-                            <div className="application-detail-title">
+                            <div className="application-title">
                                 <div className="application-name"
                                      title={application.name}>
                                     {application.name}
@@ -60,7 +60,7 @@ class ApplicationDetail extends Component {
                                 <Ctrls data={application}/>
                             </div>
 
-                            <Tab className="application-detail-tab"
+                            <Tab className="application-tab"
                                  tabs={[{
                                      value: 'Overview',
                                      renderer: <OverView data={application}/>
@@ -86,7 +86,7 @@ class ApplicationDetail extends Component {
     }
 }
 
-ApplicationDetail.propTypes = {
+Application.propTypes = {
 
     data: PropTypes.array,
 
@@ -98,4 +98,4 @@ export default connect(state => ({
     data: state.applications.data
 }), dispatch => bindActionCreators({
     routerPush: actions.routerPush
-}, dispatch))(ApplicationDetail);
+}, dispatch))(Application);

@@ -1,6 +1,6 @@
 @import '../../../../common.scss';
 
-.application-detail {
+.application {
     position: relative;
     width: 480px;
     height: 0;
@@ -11,7 +11,7 @@
     overflow: hidden;
     transition: height $theme-transition-duration ease-in-out;
 
-    .application-detail-title {
+    .application-title {
         @include float-fix;
         font-size: 20px;
         line-height: 40px;
@@ -32,7 +32,7 @@
         }
     }
 
-    .tab.application-detail-tab {
+    .tab.application-tab {
 
         .tabs .tab-button {
             background: transparent;
