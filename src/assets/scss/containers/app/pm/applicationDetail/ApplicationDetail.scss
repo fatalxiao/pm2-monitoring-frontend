@@ -12,9 +12,24 @@
     transition: height $theme-transition-duration ease-in-out;
 
     .application-detail-title {
+        @include float-fix;
         font-size: 20px;
-        line-height: 32px;
-        margin-bottom: 32px;
+        line-height: 40px;
+        padding: 0 72px 32px 0;
+
+        .application-name {
+            float: left;
+            width: 248px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .application-ctrls {
+            position: static;
+            float: right;
+            width: 160px;
+        }
     }
 
     .tab.application-detail-tab {
@@ -52,8 +67,8 @@
         position: absolute;
         left: 20px;
         top: 32px;
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         font-size: 20px;
 
         .button-icon-left {
@@ -63,7 +78,7 @@
 
         .extra-icon {
             position: absolute;
-            left: 7px;
+            left: 10px;
             transform: scale(1.2, 0.8);
         }
     }

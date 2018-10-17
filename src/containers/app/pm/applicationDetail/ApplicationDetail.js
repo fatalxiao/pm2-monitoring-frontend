@@ -11,6 +11,7 @@ import IconButton from 'alcedo-ui/IconButton';
 import Tab from 'alcedo-ui/Tab';
 import OverView from './ApplicationOverView';
 import Form from '../common/ApplicationForm';
+import Ctrls from '../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/applicationDetail/ApplicationDetail.scss';
 
@@ -52,7 +53,8 @@ class ApplicationDetail extends Component {
                         <Fragment>
 
                             <div className="application-detail-title">
-                                {application.name}
+                                <div className="application-name">{application.name}</div>
+                                <Ctrls data={application}/>
                             </div>
 
                             <Tab className="application-detail-tab"
