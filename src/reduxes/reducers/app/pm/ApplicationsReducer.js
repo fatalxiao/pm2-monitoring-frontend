@@ -1,4 +1,4 @@
-import * as actionTypes from 'reduxes/actionTypes';
+import * as actionTypes from 'reduxes/actionTypes/index';
 
 const MAX_LENGTH = 120,
     initialState = {
