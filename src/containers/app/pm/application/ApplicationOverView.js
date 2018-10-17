@@ -9,7 +9,7 @@ import LineChart from '../common/LineChart';
 
 import Calculation from 'vendors/Calaulation';
 
-import 'scss/containers/app/pm/applicationDetail/ApplicationOverView.scss';
+import 'scss/containers/app/pm/application/ApplicationOverView.scss';
 
 class ApplicationOverView extends Component {
 
