@@ -43,8 +43,7 @@ class Application extends Component {
 
                 <ApplicationInfo data={data}/>
 
-                <ApplicationCtrls data={data}
-                                  status={data.status}/>
+                <ApplicationCtrls data={data}/>
 
             </div>
         );

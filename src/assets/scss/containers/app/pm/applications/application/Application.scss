@@ -16,6 +16,10 @@
     transform $theme-transition-duration ease-in-out,
     opacity $theme-transition-duration ease-in-out $theme-transition-duration;
 
+    .application-ctrls {
+        border-top: 1px solid $theme-border;
+    }
+
     &.visible {
         opacity: 1;
     }
