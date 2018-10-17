@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import cloneDeep from 'lodash/cloneDeep';
+import isEmpty from 'lodash/isEmpty';
 
 import * as actions from 'reduxes/actions';
 
@@ -38,6 +39,19 @@ class ApplicationConfig extends Component {
 
     };
 
+    update = () => {
+
+        const {data, updateApplication} = this.props,
+            {form, error} = this.state;
+
+        if (!isEmpty(error) || !updateApplication) {
+            return;
+        }
+
+        updateApplication(data.name, form);
+
+    };
+
     render() {
 
         const {form, error} = this.state;
@@ -51,7 +65,8 @@ class ApplicationConfig extends Component {
 
                 <Button className="update-button"
                         theme={Button.Theme.HIGHLIGHT}
-                        value="Update"/>
+                        value="Update"
+                        onClick={this.update}/>
 
             </div>
         );
@@ -60,7 +75,10 @@ class ApplicationConfig extends Component {
 }
 
 ApplicationConfig.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    updateApplication: PropTypes.func
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ApplicationConfig);
+export default connect(state => ({}), dispatch => bindActionCreators({
+    updateApplication: actions.updateApplication
+}, dispatch))(ApplicationConfig);
