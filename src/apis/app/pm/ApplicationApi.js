@@ -1,8 +1,22 @@
 import Api from '../../Api';
-import WebSocketApi from '../../WebSocketApi';
 import config from '../../../config';
 
 export default {
+
+    createApplication(options) {
+        Api.post({
+            ...options,
+            url: `${config.baseUrl}/application/create`
+        });
+    },
+
+    updateApplication(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/application/update/${options.params.applicationName}`,
+            params: options.params.form
+        });
+    },
 
     uploadApplicationPackage(options) {
 
