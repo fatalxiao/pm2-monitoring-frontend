@@ -15,11 +15,11 @@
         @include float-fix;
         font-size: 20px;
         line-height: 40px;
-        padding: 0 72px 32px 0;
+        padding: 0 16px 32px 0;
 
         .application-name {
             float: left;
-            width: 248px;
+            width: 304px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;

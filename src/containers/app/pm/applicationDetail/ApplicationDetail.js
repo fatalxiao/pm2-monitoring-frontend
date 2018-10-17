@@ -53,7 +53,10 @@ class ApplicationDetail extends Component {
                         <Fragment>
 
                             <div className="application-detail-title">
-                                <div className="application-name">{application.name}</div>
+                                <div className="application-name"
+                                     title={application.name}>
+                                    {application.name}
+                                </div>
                                 <Ctrls data={application}/>
                             </div>
 
