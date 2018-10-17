@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import * as actions from 'reduxes/actions';
 
 import ApplicationInfo from './ApplicationInfo';
-import ApplicationCtrls from './ApplicationCtrls';
+import ApplicationCtrls from '../../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/applications/application/Application.scss';
 
@@ -41,8 +41,7 @@ class Application extends Component {
                  style={style}
                  onClick={this.goToDetail}>
 
-                <ApplicationInfo data={data}
-                                 status={data.status}/>
+                <ApplicationInfo data={data}/>
 
                 <ApplicationCtrls data={data}
                                   status={data.status}/>
