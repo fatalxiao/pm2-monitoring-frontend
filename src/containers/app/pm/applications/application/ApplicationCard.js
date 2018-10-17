@@ -9,9 +9,9 @@ import * as actions from 'reduxes/actions';
 import ApplicationInfo from './ApplicationInfo';
 import ApplicationCtrls from '../../common/ApplicationCtrls';
 
-import 'scss/containers/app/pm/applications/application/Application.scss';
+import 'scss/containers/app/pm/applications/application/ApplicationCard.scss';
 
-class Application extends Component {
+class ApplicationCard extends Component {
 
     constructor(props) {
         super(props);
@@ -32,7 +32,7 @@ class Application extends Component {
     render() {
 
         const {style, data, visible} = this.props,
-            className = classNames('application', data.status, {
+            className = classNames('application-card', data.status, {
                 visible
             });
 
@@ -51,7 +51,7 @@ class Application extends Component {
     }
 }
 
-Application.propTypes = {
+ApplicationCard.propTypes = {
 
     style: PropTypes.object,
     data: PropTypes.object,
@@ -63,4 +63,4 @@ Application.propTypes = {
 
 export default connect(state => ({}), dispatch => bindActionCreators({
     routerPush: actions.routerPush
-}, dispatch))(Application);
+}, dispatch))(ApplicationCard);
