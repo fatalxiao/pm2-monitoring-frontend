@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
 
@@ -16,16 +17,34 @@ import 'scss/containers/app/pm/applicationDetail/ApplicationDetail.scss';
 class ApplicationDetail extends Component {
 
     constructor(props) {
+
         super(props);
+
+        this.state = {
+            init: false
+        };
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            init: true
+        });
     }
 
     render() {
 
         const {data, match, routerPush} = this.props,
-            application = data && data.find(item => item && item.name === match.params.name);
+            {init} = this.state,
+
+            application = data && data.find(item => item && item.name === match.params.name),
+
+            wrapperClassName = classNames('application-detail', {
+                init
+            });
 
         return (
-            <div className="application-detail">
+            <div className={wrapperClassName}>
                 {
                     !application ?
                         <Loading/>
