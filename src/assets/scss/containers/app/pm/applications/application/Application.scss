@@ -10,9 +10,15 @@
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    transition-property: width, box-shadow, opacity, transform;
-    transition-duration: $theme-transition-duration;
-    transition-timing-function: ease-in-out;
+    opacity: 0;
+    transition: width $theme-transition-duration ease-in-out,
+    box-shadow $theme-transition-duration ease-in-out,
+    transform $theme-transition-duration ease-in-out,
+    opacity $theme-transition-duration ease-in-out $theme-transition-duration;
+
+    &.visible {
+        opacity: 1;
+    }
 
     &:hover {
         box-shadow: transparentize($theme-shadow, .9) 0px 19px 60px,

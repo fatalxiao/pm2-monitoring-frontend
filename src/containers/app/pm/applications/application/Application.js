@@ -31,8 +31,10 @@ class Application extends Component {
 
     render() {
 
-        const {style, data} = this.props,
-            className = classNames('application', data.status);
+        const {style, data, visible} = this.props,
+            className = classNames('application', data.status, {
+                visible
+            });
 
         return (
             <div className={className}
@@ -55,6 +57,7 @@ Application.propTypes = {
 
     style: PropTypes.object,
     data: PropTypes.object,
+    visible: PropTypes.bool,
 
     routerPush: PropTypes.func
 
