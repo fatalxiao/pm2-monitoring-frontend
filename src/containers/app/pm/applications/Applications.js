@@ -101,6 +101,7 @@ class Applications extends Component {
                     {
                         data && data.map((item, index) => item ?
                             <Application key={index}
+                                         visible={applicationStyle && applicationStyle.length > 0}
                                          style={applicationStyle && applicationStyle[index]}
                                          data={item}/>
                             :
