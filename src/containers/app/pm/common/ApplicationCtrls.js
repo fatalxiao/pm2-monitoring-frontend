@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import * as actions from 'reduxes/actions';
+import * as actions from 'reduxes/actions/index';
 
 import FlatButton from 'alcedo-ui/FlatButton';
 import PageLoading from 'alcedo-ui/PageLoading';
 
-import 'scss/containers/app/pm/applications/application/ApplicationCtrls.scss';
+import 'scss/containers/app/pm/common/ApplicationCtrls.scss';
 
 class ApplicationCtrls extends Component {
 
@@ -101,9 +101,13 @@ class ApplicationCtrls extends Component {
 
     render() {
 
-        const {actionType, data, status} = this.props,
+        const {actionType, data} = this.props,
             {uploadFieldKey} = this.state,
             isLoading = data && actionType && data.name in actionType;
+
+        if (!data) {
+            return null;
+        }
 
         return (
             <div className="application-ctrls">
@@ -123,8 +127,9 @@ class ApplicationCtrls extends Component {
                             onClick={this.prepareUpload}/>
 
                 <FlatButton className="application-ctrl"
-                            iconCls={`icon-controller-${status === 'online' ? 'paus' : 'play'}`}
-                            tip={status === 'online' ? 'Pause' : (status === 'offline' ? 'Start' : 'Continue')}
+                            iconCls={`icon-controller-${data.status === 'online' ? 'paus' : 'play'}`}
+                            tip={data.status === 'online' ?
+                                'Pause' : (data.status === 'offline' ? 'Start' : 'Continue')}
                             disabled={!data.isReady || isLoading}
                             onClick={this.startPause}/>
                 <FlatButton className="application-ctrl"
@@ -144,6 +149,7 @@ class ApplicationCtrls extends Component {
 
             </div>
         );
+
     }
 }
 
@@ -151,7 +157,6 @@ ApplicationCtrls.propTypes = {
 
     actionType: PropTypes.object,
     data: PropTypes.object,
-    status: PropTypes.string,
 
     uploadApplicationPackage: PropTypes.func,
     startApplication: PropTypes.func,
