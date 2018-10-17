@@ -10,7 +10,7 @@ import Loading from 'alcedo-ui/CircularLoading';
 import IconButton from 'alcedo-ui/IconButton';
 import Tab from 'alcedo-ui/Tab';
 import OverView from './ApplicationOverView';
-import Form from '../common/ApplicationForm';
+import Config from './ApplicationConfig';
 import Ctrls from '../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/application/Application.scss';
@@ -65,10 +65,8 @@ class Application extends Component {
                                      value: 'Overview',
                                      renderer: <OverView data={application}/>
                                  }, {
-                                     value: 'Detail',
-                                     renderer: <Form data={application}
-                                                     updateField={() => {
-                                                     }}/>
+                                     value: 'Config',
+                                     renderer: <Config data={application}/>
                                  }]}
                                  isTabFullWidth={false}/>
 

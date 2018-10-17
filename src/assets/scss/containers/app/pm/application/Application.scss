@@ -33,6 +33,7 @@
     }
 
     .tab.application-tab {
+        height: 568px;
 
         .tabs .tab-button {
             background: transparent;
@@ -51,10 +52,17 @@
         }
 
         .tab-content-wrapper {
+            height: 527px;
             background: transparent;
 
+            .tab-content-scroller {
+                height: 100%;
+            }
+
             .tab-content {
+                height: 100%;
                 padding: 24px 0;
+                overflow-y: auto;
             }
         }
 
