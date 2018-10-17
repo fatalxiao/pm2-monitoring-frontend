@@ -57,13 +57,13 @@ class ApplicationCtrls extends Component {
 
         e && e.stopPropagation();
 
-        const {data, status, startApplication, stopApplication} = this.props;
+        const {data, startApplication, stopApplication} = this.props;
 
         if (!data) {
             return;
         }
 
-        if (status === 'online') {
+        if (data.status === 'online') {
             stopApplication && stopApplication(data.pm_id, data.name);
         } else {
             startApplication && startApplication(data.name);
