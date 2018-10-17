@@ -33,10 +33,6 @@ class ApplicationInfo extends Component {
                     <Status value={data.status}/>
                 </div>
 
-                <div className="application-desc">
-                    {data.description}
-                </div>
-
                 <Monit data={data}
                        status={data.status}/>
 
