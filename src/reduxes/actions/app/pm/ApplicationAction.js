@@ -2,6 +2,33 @@ import * as actionTypes from 'reduxes/actionTypes';
 import ApplicationApi from 'apis/app/pm/ApplicationApi';
 import {getApplications} from './ApplicationsAction';
 
+export const updateApplication = (applicationName, form) => dispatch => {
+
+    if (!applicationName || !form) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.UPDATE_APPLICATION_REQUEST,
+                actionTypes.UPDATE_APPLICATION_SUCCESS,
+                actionTypes.UPDATE_APPLICATION_FAILURE
+            ],
+            api: ApplicationApi.updateApplication,
+            params: {
+                applicationName,
+                form
+            },
+            resMsgDisabled: true,
+            successCallback() {
+                getApplications()(dispatch);
+            }
+        }
+    });
+
+};
+
 export const uploadApplicationPackage = (applicationName, file) => dispatch => {
 
     if (!applicationName || !file) {

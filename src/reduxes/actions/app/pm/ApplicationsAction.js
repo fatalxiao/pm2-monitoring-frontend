@@ -1,4 +1,4 @@
-import * as actionTypes from 'reduxes/actionTypes';
+import * as actionTypes from 'reduxes/actionTypes/index';
 import ApplicationsApi from 'apis/app/pm/ApplicationsApi';
 import config from 'src/config';
 

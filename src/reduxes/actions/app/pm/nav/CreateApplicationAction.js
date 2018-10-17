@@ -1,8 +1,9 @@
 import isEmpty from 'lodash/isEmpty';
 
 import * as actionTypes from 'reduxes/actionTypes';
-import CreateApplicationApi from 'apis/app/pm/CreateApplicationApi';
-import {getApplications} from 'reduxes/actions/app/pm/applications/ApplicationsAction';
+
+import ApplicationApi from 'apis/app/pm/ApplicationApi';
+import {getApplications} from '../ApplicationsAction';
 
 export const showCreateApplication = () => dispatch => dispatch({
     type: actionTypes.SHOW_CREATE_APPLICATION
@@ -57,7 +58,7 @@ export const createApplication = () => (dispatch, getState) => {
                 actionTypes.CREATE_APPLICATION_SUCCESS,
                 actionTypes.CREATE_APPLICATION_FAILURE
             ],
-            api: CreateApplicationApi.createApplication,
+            api: ApplicationApi.createApplication,
             params: form,
             resMsgDisabled: true,
             successCallback() {
