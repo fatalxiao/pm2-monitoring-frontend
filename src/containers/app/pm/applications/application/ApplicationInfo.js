@@ -16,7 +16,11 @@ class ApplicationInfo extends Component {
 
     render() {
 
-        const {data, status} = this.props;
+        const {data} = this.props;
+
+        if (!data) {
+            return null;
+        }
 
         return (
             <div className="application-info">
@@ -26,7 +30,7 @@ class ApplicationInfo extends Component {
                          title={data.name}>
                         {data.name}
                     </div>
-                    <Status value={status}/>
+                    <Status value={data.status}/>
                 </div>
 
                 <div className="application-desc">
@@ -34,16 +38,16 @@ class ApplicationInfo extends Component {
                 </div>
 
                 <Monit data={data}
-                       status={status}/>
+                       status={data.status}/>
 
             </div>
         );
+
     }
 }
 
 ApplicationInfo.propTypes = {
-    data: PropTypes.object,
-    status: PropTypes.string
+    data: PropTypes.object
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ApplicationInfo);
