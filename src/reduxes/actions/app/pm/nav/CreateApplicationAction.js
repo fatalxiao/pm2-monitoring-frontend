@@ -9,10 +9,12 @@ export const showCreateApplication = () => dispatch => dispatch({
 });
 
 export const hideCreateApplication = () => dispatch => {
+    setTimeout(() => {
+        collpaseCreateApplicationAdvance()(dispatch);
+    }, 250);
     dispatch({
         type: actionTypes.HIDE_CREATE_APPLICATION
     });
-    collpaseCreateApplicationAdvance()(dispatch);
 };
 
 export const collpaseCreateApplicationAdvance = () => dispatch => dispatch({
