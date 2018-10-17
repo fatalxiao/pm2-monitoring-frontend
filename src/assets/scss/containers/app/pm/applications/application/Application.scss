@@ -18,6 +18,10 @@
 
     .application-ctrls {
         border-top: 1px solid $theme-border;
+
+        .application-ctrl {
+            border-radius: 0 !important;
+        }
     }
 
     &.visible {
