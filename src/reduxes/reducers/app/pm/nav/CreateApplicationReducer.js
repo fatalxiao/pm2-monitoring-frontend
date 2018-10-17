@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
-
 import * as actionTypes from 'reduxes/actionTypes';
+import Valid from 'vendors/Valid';
 
 const DEFAULT_FORM = {
         name: '',
@@ -17,41 +17,6 @@ const DEFAULT_FORM = {
         advanceCollapsed: true,
         actionType: ''
     };
-
-function validField(prop, value) {
-    switch (prop) {
-        case 'name':
-            if (!value) {
-                return 'Application Name is required';
-            }
-            return;
-        case 'instances':
-            if (value !== '' && value !== 'max' && isNaN(value)) {
-                return 'Instances must be a number or "max"';
-            }
-            return;
-        case 'port':
-            if (value !== '' && isNaN(value)) {
-                return 'Port must be a number';
-            }
-            return;
-    }
-}
-
-function validForm(form) {
-
-    const error = {};
-
-    Object.keys(form).forEach(prop => {
-        const valid = validField(prop, form[prop]);
-        if (valid) {
-            error[prop] = valid;
-        }
-    });
-
-    return error;
-
-}
 
 function createApplication(state = initialState, action) {
     switch (action.type) {
@@ -98,7 +63,7 @@ function createApplication(state = initialState, action) {
             return {
                 ...state,
                 form,
-                error: validForm(form)
+                error: Valid.validApplicationForm(form)
             };
 
         }
@@ -106,7 +71,7 @@ function createApplication(state = initialState, action) {
         case actionTypes.VALID_CREATE_APPLICATION_FORM: {
             return {
                 ...state,
-                error: validForm(state.form)
+                error: Valid.validApplicationForm(state.form)
             };
         }
 
