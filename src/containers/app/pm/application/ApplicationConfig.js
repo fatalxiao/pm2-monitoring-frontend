@@ -9,6 +9,8 @@ import * as actions from 'reduxes/actions';
 import Form from '../common/ApplicationForm';
 import Button from 'alcedo-ui/RaisedButton';
 
+import Valid from 'vendors/Valid';
+
 import 'scss/containers/app/pm/application/ApplicationConfig.scss';
 
 class ApplicationConfig extends Component {
@@ -18,24 +20,38 @@ class ApplicationConfig extends Component {
         super(props);
 
         this.state = {
-            formData: cloneDeep(props.data)
+            form: cloneDeep(props.data),
+            error: {}
         };
 
     }
 
+    updateField = (prop, value) => {
+
+        const form = cloneDeep(this.state.form);
+        form[prop] = value;
+
+        this.setState({
+            form,
+            error: Valid.validApplicationForm(form)
+        });
+
+    };
+
     render() {
 
-        const {formData} = this.state;
+        const {form, error} = this.state;
 
         return (
             <div className="application-config">
 
-                <Form data={formData}
-                      updateField={() => {
+                <Form data={form}
+                      error={error}
+                      updateField={this.updateField}/>
 
-                      }}/>
-
-                <Button value="Save"/>
+                <Button className="update-button"
+                        theme={Button.Theme.HIGHLIGHT}
+                        value="Update"/>
 
             </div>
         );
