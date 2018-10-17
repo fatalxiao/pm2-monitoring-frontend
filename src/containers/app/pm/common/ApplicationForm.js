@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import TextField from 'alcedo-ui/MaterialTextField';
 import TextArea from 'alcedo-ui/MaterialTextArea';
@@ -12,6 +13,16 @@ class ApplicationForm extends Component {
     constructor(props) {
         super(props);
     }
+
+    getFieldClassName = field => {
+
+        const {error} = this.props;
+
+        return classNames('form-field', {
+            error: error && error[field]
+        });
+
+    };
 
     render() {
 
@@ -31,7 +42,7 @@ class ApplicationForm extends Component {
                             null
                             :
                             <div className="form-field-wrapper">
-                                <TextField className="form-field"
+                                <TextField className={this.getFieldClassName('name')}
                                            label="Application Name"
                                            isLabelAnimate={false}
                                            placeholder="new-application"
@@ -43,7 +54,7 @@ class ApplicationForm extends Component {
                             </div>
                     }
                     <div className="form-field-wrapper">
-                        <TextArea className="form-field"
+                        <TextArea className={this.getFieldClassName('description')}
                                   label="Description"
                                   isLabelAnimate={false}
                                   clearButtonVisible={false}
@@ -57,7 +68,7 @@ class ApplicationForm extends Component {
             advancedFields = (
                 <Fragment>
                     <div className="form-field-wrapper">
-                        <TextField className="form-field"
+                        <TextField className={this.getFieldClassName('instances')}
                                    label="Instances"
                                    isLabelAnimate={false}
                                    placeholder="1"
@@ -67,7 +78,7 @@ class ApplicationForm extends Component {
                         <div className="form-field-error">{error && error.instances || ''}</div>
                     </div>
                     <div className="form-field-wrapper">
-                        <TextField className="form-field"
+                        <TextField className={this.getFieldClassName('script')}
                                    label="Script"
                                    isLabelAnimate={false}
                                    placeholder="server.js"
@@ -77,7 +88,7 @@ class ApplicationForm extends Component {
                         <div className="form-field-error">{error && error.script || ''}</div>
                     </div>
                     <div className="form-field-wrapper">
-                        <TextField className="form-field"
+                        <TextField className={this.getFieldClassName('port')}
                                    label="Port"
                                    isLabelAnimate={false}
                                    placeholder="[config in Script]"
@@ -87,7 +98,7 @@ class ApplicationForm extends Component {
                         <div className="form-field-error">{error && error.port || ''}</div>
                     </div>
                     <div className="form-field-wrapper">
-                        <TextField className="form-field"
+                        <TextField className={this.getFieldClassName('env')}
                                    label="Environment"
                                    isLabelAnimate={false}
                                    placeholder="production"

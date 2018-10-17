@@ -45,6 +45,21 @@
                     opacity: 1;
                 }
             }
+
+            &.error {
+                .material-provider-label {
+                    color: $theme-error;
+                    opacity: 1;
+                }
+
+                .material-provider-field {
+                    border-bottom-color: $theme-error;
+                }
+
+                .material-field-separator-focus {
+                    background-color: $theme-error;
+                }
+            }
         }
 
         .form-field-error {
