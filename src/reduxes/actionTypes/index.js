@@ -8,5 +8,5 @@ export * from './common/LoadComponentActionType';
 export * from './app/pm/nav/NavActionType';
 export * from './app/pm/nav/CreateApplicationActionType';
 
-export * from './app/pm/applications/ApplicationsActionType';
-export * from './app/pm/applications/ApplicationActionType';
+export * from './app/pm/ApplicationsActionType';
+export * from './app/pm/ApplicationActionType';
