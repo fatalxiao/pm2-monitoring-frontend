@@ -19,24 +19,11 @@ export default {
     },
 
     uploadApplicationPackage(options) {
-
-        // const reader = new FileReader();
-        // reader.readAsArrayBuffer(options.params.file);
-        // reader.onload = e => {
-        //     WebSocketApi.request({
-        //         ...options,
-        //         url: `${baseWsUrl}/application/upload/${options.params.processName}`,
-        //         message: e.target.result,
-        //         autoClose: true
-        //     });
-        // };
-
         Api.postForm({
             ...options,
             url: `${config.baseUrl}/application/upload/${options.params.applicationName}`,
             formData: options.params.formData
         });
-
     },
 
     startApplication(options) {
