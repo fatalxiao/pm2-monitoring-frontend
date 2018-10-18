@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
 
 import * as actions from 'reduxes/actions';
 
@@ -21,11 +22,30 @@ class ApplicationConfig extends Component {
         super(props);
 
         this.state = {
-            form: cloneDeep(props.data),
+            form: this.getForm(),
             error: {}
         };
 
     }
+
+    isFormNoChange = () => {
+        return isEqual(this.getForm(), this.state.form);
+    };
+
+    getForm = (data = this.props.data) => {
+
+        const form = cloneDeep(data),
+            {description, instances, script, port, env} = form;
+
+        return {
+            description,
+            instances,
+            script,
+            port,
+            env
+        };
+
+    };
 
     updateField = (prop, value) => {
 
@@ -44,7 +64,7 @@ class ApplicationConfig extends Component {
         const {data, updateApplication} = this.props,
             {form, error} = this.state;
 
-        if (!isEmpty(error) || !updateApplication) {
+        if (!isEmpty(error) || !updateApplication || this.isFormNoChange()) {
             return;
         }
 
