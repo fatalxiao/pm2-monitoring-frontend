@@ -1,14 +1,29 @@
 @import '../../../../common.scss';
 
 .application-config {
+    @include float-fix;
 
     .application-form {
         padding-right: 72px;
     }
 
-    .update-button {
+    .action {
         float: right;
-        margin-right: 72px;
-        font-size: 18px;
+        display: inline-block;
+
+        .restart-tip {
+            color: $theme-warning;
+            margin-right: 16px;
+
+            .restart-anchor {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+
+        .update-button {
+            margin-right: 72px;
+            font-size: 18px;
+        }
     }
 }

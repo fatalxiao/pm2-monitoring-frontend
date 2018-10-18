@@ -83,10 +83,19 @@ class ApplicationConfig extends Component {
                       error={error}
                       updateField={this.updateField}/>
 
-                <Button className="update-button"
-                        theme={Button.Theme.HIGHLIGHT}
-                        value="Update"
-                        onClick={this.update}/>
+                <div className="action">
+                    <span className="restart-tip">
+                        <span className="restart-anchor"
+                              onClick="">
+                            Restart
+                        </span>
+                        {' to apply new config'}
+                    </span>
+                    <Button className="update-button"
+                            theme={Button.Theme.HIGHLIGHT}
+                            value="Update"
+                            onClick={this.update}/>
+                </div>
 
             </div>
         );
