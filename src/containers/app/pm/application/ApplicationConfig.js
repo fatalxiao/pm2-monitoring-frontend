@@ -74,7 +74,8 @@ class ApplicationConfig extends Component {
 
     render() {
 
-        const {form, error} = this.state;
+        const {data} = this.props,
+            {form, error} = this.state;
 
         return (
             <div className="application-config">
@@ -84,13 +85,18 @@ class ApplicationConfig extends Component {
                       updateField={this.updateField}/>
 
                 <div className="action">
-                    <span className="restart-tip">
-                        <span className="restart-anchor"
-                              onClick="">
-                            Restart
-                        </span>
-                        {' to apply new config'}
-                    </span>
+                    {
+                        data && data.lastUpdateTime > data.lastStartTime ?
+                            <span className="restart-tip">
+                                <span className="restart-anchor"
+                                      onClick="">
+                                    Restart
+                                </span>
+                                {' to apply new config'}
+                            </span>
+                            :
+                            null
+                    }
                     <Button className="update-button"
                             theme={Button.Theme.HIGHLIGHT}
                             value="Update"
