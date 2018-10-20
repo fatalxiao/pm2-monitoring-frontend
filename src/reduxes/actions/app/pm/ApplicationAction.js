@@ -20,7 +20,6 @@ export const updateApplication = (applicationName, form) => dispatch => {
                 applicationName,
                 form
             },
-            resMsgDisabled: true,
             successCallback() {
                 getApplications()(dispatch);
             }
