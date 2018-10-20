@@ -72,6 +72,18 @@ class ApplicationConfig extends Component {
 
     };
 
+    restart = () => {
+
+        const {data, restartApplication} = this.props;
+
+        if (!data) {
+            return;
+        }
+
+        restartApplication && restartApplication(data.pm_id, data.name);
+
+    };
+
     render() {
 
         const {data} = this.props,
@@ -86,10 +98,10 @@ class ApplicationConfig extends Component {
 
                 <div className="action">
                     {
-                        data && data.lastUpdateTime > data.lastStartTime ?
+                        data && data.status !== 'offline' && data.lastUpdateTime > data.lastStartTime ?
                             <span className="restart-tip">
                                 <span className="restart-anchor"
-                                      onClick="">
+                                      onClick={this.restart}>
                                     Restart
                                 </span>
                                 {' to apply new config'}
@@ -111,9 +123,11 @@ class ApplicationConfig extends Component {
 
 ApplicationConfig.propTypes = {
     data: PropTypes.object,
-    updateApplication: PropTypes.func
+    updateApplication: PropTypes.func,
+    restartApplication: PropTypes.func
 };
 
 export default connect(state => ({}), dispatch => bindActionCreators({
-    updateApplication: actions.updateApplication
+    updateApplication: actions.updateApplication,
+    restartApplication: actions.restartApplication
 }, dispatch))(ApplicationConfig);
