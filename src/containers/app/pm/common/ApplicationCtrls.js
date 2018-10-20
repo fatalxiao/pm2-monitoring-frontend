@@ -22,9 +22,13 @@ class ApplicationCtrls extends Component {
 
     }
 
+    stopPropagation = e => {
+        e && e.stopPropagation();
+    };
+
     prepareUpload = e => {
 
-        e && e.stopPropagation();
+        this.stopPropagation(e);
 
         this.setState({
             uploadFieldKey: ++this.state.uploadFieldKey
@@ -55,7 +59,7 @@ class ApplicationCtrls extends Component {
 
     startPause = e => {
 
-        e && e.stopPropagation();
+        this.stopPropagation(e);
 
         const {data, startApplication, stopApplication} = this.props;
 
@@ -73,7 +77,7 @@ class ApplicationCtrls extends Component {
 
     restart = e => {
 
-        e && e.stopPropagation();
+        this.stopPropagation(e);
 
         const {data, restartApplication} = this.props;
 
@@ -87,7 +91,7 @@ class ApplicationCtrls extends Component {
 
     stop = e => {
 
-        e && e.stopPropagation();
+        this.stopPropagation(e);
 
         const {data, deleteApplication} = this.props;
 
@@ -118,6 +122,7 @@ class ApplicationCtrls extends Component {
                        name="file"
                        type="file"
                        accept="application/x-zip-compressed"
+                       onClick={this.stopPropagation}
                        onChange={this.upload}/>
 
                 <FlatButton className="application-ctrl"
