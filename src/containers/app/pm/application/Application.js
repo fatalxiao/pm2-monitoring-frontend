@@ -22,21 +22,30 @@ class Application extends Component {
         super(props);
 
         this.state = {
-            init: false
+            init: false,
+            activatedIndex: 0
         };
 
     }
 
+    tabIndexChangeHandler = activatedIndex => {
+        this.setState({
+            activatedIndex
+        });
+    };
+
     componentDidMount() {
         this.setState({
             init: true
+        }, () => {
+
         });
     }
 
     render() {
 
         const {data, match, routerPush} = this.props,
-            {init} = this.state,
+            {init, activatedIndex} = this.state,
 
             application = data && data.find(item => item && item.name === match.params.name),
 
@@ -68,7 +77,9 @@ class Application extends Component {
                                      value: 'Config',
                                      renderer: <Config data={application}/>
                                  }]}
-                                 isTabFullWidth={false}/>
+                                 activatedIndex={activatedIndex}
+                                 isTabFullWidth={false}
+                                 onIndexChange={this.tabIndexChangeHandler}/>
 
                             <IconButton className="back-icon"
                                         iconCls="icon-chevron-thin-left"
