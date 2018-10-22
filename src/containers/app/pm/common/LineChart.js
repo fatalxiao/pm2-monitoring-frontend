@@ -31,7 +31,7 @@ class LineChart extends Component {
                 type: 'time',
                 interval: 150000,
                 splitLine: {
-                    show: true,
+                    show: false,
                     lineStyle: {
                         color: '#f3f3f3'
                     }
@@ -52,7 +52,7 @@ class LineChart extends Component {
                 max: 100,
                 interval: 25,
                 splitLine: {
-                    show: true,
+                    show: false,
                     lineStyle: {
                         color: '#f3f3f3'
                     }
