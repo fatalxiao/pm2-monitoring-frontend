@@ -51,7 +51,8 @@
         "react-router-redux": "^5.0.0-alpha.6",
         "react-transition-group": "^2.5.0",
         "redux": "^4.0.1",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
+        "urijs": "^1.19.1"
     },
     "devDependencies": {
         "@babel/core": "^7.1.2",
