@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
+import URI from 'urijs';
 
 import * as actions from 'reduxes/actions';
 
@@ -31,14 +32,21 @@ class Application extends Component {
     tabIndexChangeHandler = activatedIndex => {
         this.setState({
             activatedIndex
+        }, () => {
+            const {routerPush} = this.props;
+            switch (activatedIndex) {
+                case 0:
+                    return routerPush('#overview');
+                case 1:
+                    return routerPush('#config');
+            }
         });
     };
 
     componentDidMount() {
         this.setState({
-            init: true
-        }, () => {
-
+            init: true,
+            activatedIndex: new URI(location).fragment() === 'config' ? 1 : 0
         });
     }
 
