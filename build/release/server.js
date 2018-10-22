@@ -18,6 +18,7 @@ Object.keys(proxyTable).forEach(context => {
     if (typeof options === 'string') {
         options = {
             target: options,
+            ws: true,
             changeOrigin: true
         };
     }
