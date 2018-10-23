@@ -6,7 +6,7 @@ function add(url, initCallback) {
 
     return new Promise((resolve, reject) => {
 
-        const ws = requests[url] = new WebSocket(`${config.wsPrefix}${url}`);
+        const ws = requests[url] = new WebSocket(`ws://${location.host}${config.wsPrefix}${url}`);
 
         ws.onopen = () => {
             resolve(ws);
