@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import * as actions from 'reduxes/actions';
 
+import TextField from 'components/FormTextField';
 import Button from 'alcedo-ui/RaisedButton';
 
 import 'scss/containers/app/pm/application/ApplicationSetting.scss';
@@ -12,23 +13,43 @@ import 'scss/containers/app/pm/application/ApplicationSetting.scss';
 class ApplicationSetting extends Component {
 
     constructor(props) {
+
         super(props);
+
+        this.state = {
+            name: props.data.name
+        };
+
     }
 
-    update = () => {
-
+    updateField = name => {
+        this.setState({
+            name
+        });
     };
 
     render() {
 
-        const {data} = this.props;
+        const {data} = this.props,
+            {name} = this.state;
 
         return (
             <div className="application-setting">
 
-                <Button className="update-button"
-                        theme={Button.Theme.HIGHLIGHT}
-                        value="Update"
+                <TextField label="Application Name"
+                           isLabelAnimate={false}
+                           placeholder="new-application"
+                           clearButtonVisible={false}
+                           value={name}
+                           onChange={this.updateField}/>
+
+                <div className="label">
+                    Rename action will affect Application Root Directory Name.
+                </div>
+
+                <Button className="rename-button"
+                        theme={Button.Theme.WARNING}
+                        value="Rename"
                         onClick={this.update}/>
 
             </div>
