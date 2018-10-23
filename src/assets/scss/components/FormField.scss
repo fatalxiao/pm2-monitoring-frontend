@@ -57,3 +57,10 @@
         }
     }
 }
+
+.form-field-error {
+    height: 36px;
+    color: $theme-error;
+    padding: 0 8px;
+    line-height: 24px;
+}
