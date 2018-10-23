@@ -12,6 +12,7 @@ import IconButton from 'alcedo-ui/IconButton';
 import Tab from 'alcedo-ui/Tab';
 import OverView from './ApplicationOverView';
 import Config from './ApplicationConfig';
+import Setting from './ApplicationSetting';
 import Ctrls from '../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/application/Application.scss';
@@ -39,14 +40,27 @@ class Application extends Component {
                     return routerPush('#overview');
                 case 1:
                     return routerPush('#config');
+                case 2:
+                    return routerPush('#setting');
             }
         });
+    };
+
+    getTabIndex = () => {
+        switch (new URI(location).fragment()) {
+            case 'setting':
+                return 2;
+            case 'config':
+                return 1;
+            default:
+                return 0;
+        }
     };
 
     componentDidMount() {
         this.setState({
             init: true,
-            activatedIndex: new URI(location).fragment() === 'config' ? 1 : 0
+            activatedIndex: this.getTabIndex()
         });
     }
 
@@ -84,6 +98,9 @@ class Application extends Component {
                                  }, {
                                      value: 'Config',
                                      renderer: <Config data={application}/>
+                                 }, {
+                                     value: 'Setting',
+                                     renderer: <Setting data={application}/>
                                  }]}
                                  activatedIndex={activatedIndex}
                                  isTabFullWidth={false}
