@@ -2,8 +2,8 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TextField from 'alcedo-ui/MaterialTextField';
-import TextArea from 'alcedo-ui/MaterialTextArea';
+import TextField from 'components/FormTextField';
+import TextArea from 'components/FormTextArea';
 import Accordion from 'alcedo-ui/Accordion';
 
 import 'scss/containers/app/pm/common/ApplicationForm.scss';
