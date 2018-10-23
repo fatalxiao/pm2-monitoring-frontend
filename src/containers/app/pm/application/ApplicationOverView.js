@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
 import Status from '../common/ApplicationStatus';
-import LineChart from '../common/LineChart';
+import LineChart from '../../../../components/LineChart';
 
 import Calculation from 'vendors/Calaulation';
 
@@ -32,7 +32,7 @@ class ApplicationOverView extends Component {
             }
 
             const result = {
-                name: '' + item.time,
+                name: item.time,
                 value: [
                     item.time
                 ]
@@ -85,7 +85,14 @@ class ApplicationOverView extends Component {
                     </div>
                     <LineChart className="overview-item-chart"
                                data={this.formatData('cpu')}
-                               color={['#2db7f5']}/>
+                               color={['#2db7f5']}
+                               unit="%"
+                               config={{
+                                   yAxis: {
+                                       min: 0,
+                                       max: 100
+                                   }
+                               }}/>
                 </div>
 
                 <div className="overview-item memory">
@@ -103,7 +110,13 @@ class ApplicationOverView extends Component {
                     </div>
                     <LineChart className="overview-item-chart"
                                data={this.formatData('memory')}
-                               color={['#908bc3']}/>
+                               color={['#908bc3']}
+                               unit="MB"
+                               config={{
+                                   yAxis: {
+                                       min: 0
+                                   }
+                               }}/>
                 </div>
 
             </div>
