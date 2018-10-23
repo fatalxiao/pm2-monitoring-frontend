@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import TextField from 'alcedo-ui/MaterialTextField';
+import PaperInfo from './PaperInfo';
 
 import 'scss/components/FormField.scss';
 
@@ -16,7 +17,7 @@ class FormTextField extends Component {
 
         const {
 
-                className, error,
+                className, error, isErrorPlaceholder,
 
                 ...restProps
 
@@ -30,9 +31,12 @@ class FormTextField extends Component {
             <Fragment>
                 <TextField className={fieldClassName}
                            {...restProps}/>
-                <div className="form-field-error">
-                    {error || ''}
-                </div>
+                <PaperInfo className="form-field-error"
+                           visible={!!error}
+                           type={PaperInfo.Type.ERROR}
+                           isPlaceholder={isErrorPlaceholder}>
+                    {error}
+                </PaperInfo>
             </Fragment>
         );
 
@@ -41,7 +45,12 @@ class FormTextField extends Component {
 
 FormTextField.propTypes = {
     className: PropTypes.string,
-    error: PropTypes.string
+    error: PropTypes.string,
+    isErrorPlaceholder: PropTypes.bool
+};
+
+FormTextField.defaultProps = {
+    isErrorPlaceholder: true
 };
 
 export default FormTextField;
