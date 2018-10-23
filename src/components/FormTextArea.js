@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -16,7 +16,7 @@ class FormTextArea extends Component {
 
         const {
 
-                className,
+                className, error,
 
                 ...restProps
 
@@ -27,15 +27,21 @@ class FormTextArea extends Component {
             });
 
         return (
-            <TextArea className={fieldClassName}
-                      {...restProps}/>
+            <Fragment>
+                <TextArea className={fieldClassName}
+                          {...restProps}/>
+                <div className="form-field-error">
+                    {error || ''}
+                </div>
+            </Fragment>
         );
 
     }
 }
 
 FormTextArea.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    error: PropTypes.string
 };
 
 export default FormTextArea;
