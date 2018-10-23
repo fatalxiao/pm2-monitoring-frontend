@@ -70,6 +70,8 @@
 
                 .form-field-error {
                     color: $theme-warning;
+                    background: transparent;
+                    border: none;
                 }
 
                 .create-form-advance {
