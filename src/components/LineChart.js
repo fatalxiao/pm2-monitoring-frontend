@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
+import cloneDeep from 'lodash/cloneDeep';
+import merge from 'lodash/merge';
+import moment from 'moment';
+
+import 'scss/components/LineChart.scss';
 
 class LineChart extends Component {
 
@@ -14,7 +18,13 @@ class LineChart extends Component {
             height: 80
         };
 
-        this.DEFAULT_CONFIG = {
+    }
+
+    getDefaultConfig = (data = this.props.data) => {
+
+        const {unit} = this.props;
+
+        return {
             title: {
                 show: false
             },
@@ -48,9 +58,6 @@ class LineChart extends Component {
             },
             yAxis: {
                 type: 'value',
-                min: 0,
-                max: 100,
-                interval: 25,
                 splitLine: {
                     show: false,
                     lineStyle: {
@@ -67,6 +74,27 @@ class LineChart extends Component {
                     show: false
                 }
             },
+            tooltip: {
+                trigger: 'axis',
+                formatter(params) {
+
+                    const title = moment(params[0].name).format('HH:mm:ss'),
+                        value = params[0].value[1];
+
+                    return '<div>'
+                        + '<div style="text-align: center;font-size: 12px;opacity: .5;">'
+                        + `${title}`
+                        + '</div>'
+                        + '<div style="text-align: center;">'
+                        + `${value ? `${value} ${unit}` : ''}`
+                        + '</div>'
+                        + '</div>';
+
+                },
+                axisPointer: {
+                    animation: false
+                }
+            },
             series: [{
                 type: 'line',
                 showSymbol: false,
@@ -74,15 +102,14 @@ class LineChart extends Component {
                 areaStyle: {}
             }]
         };
-
-    }
+    };
 
     getOption = () => {
-        const {data, color} = this.props,
-            config = cloneDeep(this.DEFAULT_CONFIG);
-        config.series[0].data = data;
-        config.color = color;
-        return config;
+        const {data, color, config} = this.props,
+            result = merge(this.getDefaultConfig(), config);
+        result.series[0].data = data;
+        result.color = color;
+        return result;
     };
 
     render() {
@@ -108,7 +135,9 @@ LineChart.propTypes = {
     style: PropTypes.object,
     color: PropTypes.array,
 
-    data: PropTypes.array
+    data: PropTypes.array,
+    unit: PropTypes.string,
+    config: PropTypes.object
 
 };
 
