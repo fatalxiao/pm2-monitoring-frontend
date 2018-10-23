@@ -23,7 +23,12 @@ function getElCenterPoint(el) {
 
 }
 
+function enumerateValue(enumerate) {
+    return Object.keys(enumerate).map(key => enumerate[key]);
+}
+
 export default {
     getDiag,
-    getElCenterPoint
+    getElCenterPoint,
+    enumerateValue
 };
