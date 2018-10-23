@@ -41,72 +41,60 @@ class ApplicationForm extends Component {
                         isEdit ?
                             null
                             :
-                            <div className="form-field-wrapper">
-                                <TextField className={this.getFieldClassName('name')}
-                                           label="Application Name"
-                                           isLabelAnimate={false}
-                                           placeholder="new-application"
-                                           clearButtonVisible={false}
-                                           required={true}
-                                           value={data.name}
-                                           onChange={v => updateField('name', v)}/>
-                                <div className="form-field-error">{error && error.name || ''}</div>
-                            </div>
+                            <TextField className={this.getFieldClassName('name')}
+                                       label="Application Name"
+                                       isLabelAnimate={false}
+                                       placeholder="new-application"
+                                       clearButtonVisible={false}
+                                       required={true}
+                                       value={data.name}
+                                       error={error.name}
+                                       onChange={v => updateField('name', v)}/>
                     }
-                    <div className="form-field-wrapper">
-                        <TextArea className={this.getFieldClassName('description')}
-                                  label="Description"
-                                  isLabelAnimate={false}
-                                  clearButtonVisible={false}
-                                  autoHeight={true}
-                                  value={data.description}
-                                  onChange={v => updateField('description', v)}/>
-                        <div className="form-field-error">{error && error.description || ''}</div>
-                    </div>
+                    <TextArea className={this.getFieldClassName('description')}
+                              label="Description"
+                              isLabelAnimate={false}
+                              clearButtonVisible={false}
+                              autoHeight={true}
+                              value={data.description}
+                              error={error.description}
+                              onChange={v => updateField('description', v)}/>
                 </Fragment>
             ),
             advancedFields = (
                 <Fragment>
-                    <div className="form-field-wrapper">
-                        <TextField className={this.getFieldClassName('instances')}
-                                   label="Instances"
-                                   isLabelAnimate={false}
-                                   placeholder="1"
-                                   clearButtonVisible={false}
-                                   value={data.instances}
-                                   onChange={v => updateField('instances', v)}/>
-                        <div className="form-field-error">{error && error.instances || ''}</div>
-                    </div>
-                    <div className="form-field-wrapper">
-                        <TextField className={this.getFieldClassName('script')}
-                                   label="Script"
-                                   isLabelAnimate={false}
-                                   placeholder="server.js"
-                                   clearButtonVisible={false}
-                                   value={data.script}
-                                   onChange={v => updateField('script', v)}/>
-                        <div className="form-field-error">{error && error.script || ''}</div>
-                    </div>
-                    <div className="form-field-wrapper">
-                        <TextField className={this.getFieldClassName('port')}
-                                   label="Port"
-                                   isLabelAnimate={false}
-                                   placeholder="[config in Script]"
-                                   clearButtonVisible={false}
-                                   value={data.port}
-                                   onChange={v => updateField('port', v)}/>
-                        <div className="form-field-error">{error && error.port || ''}</div>
-                    </div>
-                    <div className="form-field-wrapper">
-                        <TextField className={this.getFieldClassName('env')}
-                                   label="Environment"
-                                   isLabelAnimate={false}
-                                   placeholder="production"
-                                   clearButtonVisible={false}
-                                   value={data.env}
-                                   onChange={v => updateField('env', v)}/>
-                        <div className="form-field-error">{error && error.env || ''}</div>
-                    </div>
+                    <TextField className={this.getFieldClassName('instances')}
+                               label="Instances"
+                               isLabelAnimate={false}
+                               placeholder="1"
+                               clearButtonVisible={false}
+                               value={data.instances}
+                               error={error.instances}
+                               onChange={v => updateField('instances', v)}/>
+                    <TextField className={this.getFieldClassName('script')}
+                               label="Script"
+                               isLabelAnimate={false}
+                               placeholder="server.js"
+                               clearButtonVisible={false}
+                               value={data.script}
+                               error={error.script}
+                               onChange={v => updateField('script', v)}/>
+                    <TextField className={this.getFieldClassName('port')}
+                               label="Port"
+                               isLabelAnimate={false}
+                               placeholder="[config in Script]"
+                               clearButtonVisible={false}
+                               value={data.port}
+                               error={error.port}
+                               onChange={v => updateField('port', v)}/>
+                    <TextField className={this.getFieldClassName('env')}
+                               label="Environment"
+                               isLabelAnimate={false}
+                               placeholder="production"
+                               clearButtonVisible={false}
+                               value={data.env}
+                               error={error.env}
+                               onChange={v => updateField('env', v)}/>
                 </Fragment>
             );
 
