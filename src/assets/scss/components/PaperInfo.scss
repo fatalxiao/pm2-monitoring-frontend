@@ -1,0 +1,65 @@
+@import '../common.scss';
+
+@mixin paper-info-theme($bg-color, $border-color, $icon-color) {
+    background-color: $bg-color;
+    border-color: $border-color;
+
+    .paper-icon {
+        color: $icon-color;
+    }
+}
+
+.paper-info {
+    display: inline-block;
+    width: auto;
+    padding: 8px 12px 8px 0;
+    font-size: 12px;
+    border-radius: $theme-border-radius;
+    border-width: 1px;
+    border-style: solid;
+
+    &.isAnimate {
+        transition: opacity 0s;
+        opacity: 0;
+
+        &.entered {
+            opacity: 1;
+            transition: opacity $theme-transition-duration ease-in-out;
+        }
+    }
+
+    &.unPlaceholder {
+        position: absolute;
+        left: -99999px;
+
+        &.entered {
+            position: static;
+            left: 0;
+        }
+
+        &.isAnimate {
+            transition: opacity 0s, left 0s $theme-transition-duration;
+
+            &.entered {
+                transition: opacity $theme-transition-duration ease-in-out, left 0s;
+            }
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+
+    &.theme-info {
+        @include paper-info-theme(#edf9ff, #cdedfc, $theme-info);
+    }
+    &.theme-success {
+        @include paper-info-theme(#f5fbf2, #e3f6db, $theme-success);
+    }
+    &.theme-warning {
+        @include paper-info-theme(#fff8e9, #f9e3b6, $theme-warning);
+    }
+    &.theme-error {
+        @include paper-info-theme(#fff0e9, #fcd9c7, $theme-error);
+    }
+}
