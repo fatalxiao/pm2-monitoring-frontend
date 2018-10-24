@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from 'reduxes/actions';
 
 import TextField from 'components/FormTextField';
-import Button from 'alcedo-ui/RaisedButton';
+import RaisedButton from 'alcedo-ui/RaisedButton';
 
 import Valid from 'vendors/Valid';
 
@@ -86,11 +86,11 @@ class ApplicationSetting extends Component {
                                onChange={this.updateField}/>
 
                     <div className="float-fix">
-                        <Button className="rename-button"
-                                theme={Button.Theme.WARNING}
-                                value="Rename"
-                                disabled={isLoading}
-                                onClick={this.rename}/>
+                        <RaisedButton className="rename-button"
+                                      theme={RaisedButton.Theme.WARNING}
+                                      value="Rename"
+                                      disabled={application.name === name || isLoading}
+                                      onClick={this.rename}/>
                     </div>
 
                 </div>
