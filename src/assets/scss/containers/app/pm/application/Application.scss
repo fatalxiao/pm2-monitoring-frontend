@@ -3,7 +3,7 @@
 .application {
     position: relative;
     box-sizing: border-box;
-    width: 554px;
+    width: 634px;
     min-height: 720px;
     padding: 32px 0 32px 72px;
     background: $theme-field-bg;
@@ -19,7 +19,7 @@
 
         .application-name {
             float: left;
-            width: 288px;
+            width: 368px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
