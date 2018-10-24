@@ -187,3 +187,26 @@ export const reloadApplication = (processId, applicationName) => dispatch => {
     });
 
 };
+
+export const checkApplicationNameExist = applicationName => dispatch => {
+
+    if (!applicationName) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.CHECK_APPLICATION_NAME_EXIST_REQUEST,
+                actionTypes.CHECK_APPLICATION_NAME_EXIST_SUCCESS,
+                actionTypes.CHECK_APPLICATION_NAME_EXIST_FAILURE
+            ],
+            api: ApplicationApi.checkApplicationNameExist,
+            params: {
+                applicationName
+            },
+            successResMsgDisabled: true
+        }
+    });
+
+};
