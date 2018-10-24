@@ -28,13 +28,19 @@ class ApplicationConfig extends Component {
 
     }
 
+    getApplication = () => {
+        const {match, applications} = this.props;
+        return applications && applications.find(item => item && item.name === match.params.name);
+    };
+
     isFormNoChange = () => {
         return isEqual(this.getForm(), this.state.form);
     };
 
-    getForm = (data = this.props.data) => {
+    getForm = () => {
 
-        const form = cloneDeep(data),
+        const application = this.getApplication(),
+            form = cloneDeep(application || {}),
             {description, instances, script, port, env} = form;
 
         return {
@@ -61,33 +67,39 @@ class ApplicationConfig extends Component {
 
     update = () => {
 
-        const {data, updateApplication} = this.props,
-            {form, error} = this.state;
+        const {updateApplication} = this.props,
+            {form, error} = this.state,
+            application = this.getApplication();
 
-        if (!isEmpty(error) || !updateApplication || this.isFormNoChange()) {
+        if (!application || !isEmpty(error) || !updateApplication || this.isFormNoChange()) {
             return;
         }
 
-        updateApplication(data.name, form);
+        updateApplication(application.name, form);
 
     };
 
     restart = () => {
 
-        const {data, restartApplication} = this.props;
+        const {restartApplication} = this.props,
+            application = this.getApplication();
 
-        if (!data) {
+        if (!application) {
             return;
         }
 
-        restartApplication && restartApplication(data.pm_id, data.name);
+        restartApplication && restartApplication(application.pm_id, application.name);
 
     };
 
     render() {
 
-        const {data} = this.props,
-            {form, error} = this.state;
+        const {form, error} = this.state,
+            application = this.getApplication();
+
+        if (!application) {
+            return null;
+        }
 
         return (
             <div className="application-config">
@@ -98,7 +110,8 @@ class ApplicationConfig extends Component {
 
                 <div className="action">
                     {
-                        data && data.status !== 'offline' && data.lastUpdateTime > data.lastStartTime ?
+                        application && application.status !== 'offline'
+                        && application.lastUpdateTime > application.lastStartTime ?
                             <span className="restart-tip">
                                 <span className="restart-anchor"
                                       onClick={this.restart}>
@@ -122,12 +135,14 @@ class ApplicationConfig extends Component {
 }
 
 ApplicationConfig.propTypes = {
-    data: PropTypes.object,
+    applications: PropTypes.array,
     updateApplication: PropTypes.func,
     restartApplication: PropTypes.func
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({
+export default connect(state => ({
+    applications: state.applications.data
+}), dispatch => bindActionCreators({
     updateApplication: actions.updateApplication,
     restartApplication: actions.restartApplication
 }, dispatch))(ApplicationConfig);
