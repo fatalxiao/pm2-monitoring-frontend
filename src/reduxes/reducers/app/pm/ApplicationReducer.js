@@ -67,6 +67,7 @@ function application(state = initialState, action) {
             actionType,
             error
         };
+
     }
 
     return state;
