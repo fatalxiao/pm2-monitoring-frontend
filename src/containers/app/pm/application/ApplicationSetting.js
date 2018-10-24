@@ -47,25 +47,29 @@ class ApplicationSetting extends Component {
             <div className="application-setting">
 
                 <div className="title">Reset Application Name</div>
-                <div className="label">
-                    Rename action will affect <span>Application Root Directory Name</span>.
-                    If you use other continuous integration tools (like jenkins),
-                    you should make sure your new config is right.
-                    Wrong Directory will be ignored.
+                <div className="warning-block">
+
+                    <div className="label">
+                        Rename action will affect <span>Application Root Directory Name</span> changed.
+                        If you use other continuous integration tools (like jenkins),
+                        you should make sure your new config is right.
+                        Wrong directory will be ignored.
+                    </div>
+
+                    <TextField label="Application Name"
+                               isLabelAnimate={false}
+                               placeholder="new-application"
+                               clearButtonVisible={false}
+                               value={name}
+                               isErrorPlaceholder={false}
+                               onChange={this.updateField}/>
+
+                    <Button className="rename-button"
+                            theme={Button.Theme.WARNING}
+                            value="Rename"
+                            onClick={this.update}/>
+
                 </div>
-
-                <TextField label="Application Name"
-                           isLabelAnimate={false}
-                           placeholder="new-application"
-                           clearButtonVisible={false}
-                           value={name}
-                           isErrorPlaceholder={false}
-                           onChange={this.updateField}/>
-
-                <Button className="rename-button"
-                        theme={Button.Theme.WARNING}
-                        value="Rename"
-                        onClick={this.update}/>
 
             </div>
         );
