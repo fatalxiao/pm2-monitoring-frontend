@@ -212,9 +212,9 @@ export const checkApplicationNameExist = applicationName => dispatch => {
 
 };
 
-export const renameApplication = (originName, name) => dispatch => {
+export const renameApplication = (applicationName, name) => dispatch => {
 
-    if (!originName || !name) {
+    if (!applicationName || !name) {
         return;
     }
 
@@ -227,7 +227,7 @@ export const renameApplication = (originName, name) => dispatch => {
             ],
             api: ApplicationApi.renameApplication,
             params: {
-                originName,
+                applicationName,
                 name
             },
             successResMsgDisabled: true,
