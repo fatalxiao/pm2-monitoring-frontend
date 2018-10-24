@@ -1,6 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 import ApplicationApi from 'apis/app/pm/ApplicationApi';
 import {getApplications} from './ApplicationsAction';
+import {routerPush} from 'reduxes/actions/common/RouterAction';
 
 export const updateApplication = (applicationName, form) => dispatch => {
 
@@ -206,6 +207,33 @@ export const checkApplicationNameExist = applicationName => dispatch => {
                 applicationName
             },
             successResMsgDisabled: true
+        }
+    });
+
+};
+
+export const renameApplication = (originName, name) => dispatch => {
+
+    if (!originName || !name) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.RENAME_APPLICATION_REQUEST,
+                actionTypes.RENAME_APPLICATION_SUCCESS,
+                actionTypes.RENAME_APPLICATION_FAILURE
+            ],
+            api: ApplicationApi.renameApplication,
+            params: {
+                originName,
+                name
+            },
+            successResMsgDisabled: true,
+            successCallback() {
+                routerPush(`/app/pm/application/${name}/setting`)(dispatch);
+            }
         }
     });
 
