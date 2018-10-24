@@ -75,10 +75,10 @@ export default {
 
     },
 
-    resetApplicationName(options) {
+    renameApplication(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/rename/${options.params.applicationName}`
+            url: `${config.baseUrl}/application/rename/${options.params.originName}`
         });
     }
 
