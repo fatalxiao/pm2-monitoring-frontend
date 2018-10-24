@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {NavLink} from 'react-router-dom';
-import classNames from 'classnames';
 import {renderRoutes} from 'react-router-config';
 
 import * as actions from 'reduxes/actions';
@@ -20,34 +19,25 @@ import 'scss/containers/app/pm/application/Application.scss';
 class Application extends Component {
 
     constructor(props) {
-
         super(props);
-
-        this.state = {
-            init: false
-        };
-
     }
 
-    componentDidMount() {
-        this.setState({
-            init: true
-        });
-    }
+    getApplication = () => {
+        const {match, applications} = this.props;
+        return applications && applications.find(item => item && item.name === match.params.name);
+    };
 
     render() {
 
-        const {route, applications, match, routerPush} = this.props,
-            {init} = this.state,
+        const {route, routerPush} = this.props,
+            application = this.getApplication();
 
-            application = applications && applications.find(item => item && item.name === match.params.name),
-
-            wrapperClassName = classNames('application', {
-                init
-            });
+        if (!application) {
+            return null;
+        }
 
         return (
-            <div className={wrapperClassName}>
+            <div className="application">
                 {
                     !application ?
                         <Loading/>
