@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
 import classNames from 'classnames';
-import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import moment from 'moment';
 
@@ -20,7 +19,7 @@ class LineChart extends Component {
 
     }
 
-    getDefaultConfig = (data = this.props.data) => {
+    getDefaultConfig = () => {
 
         const {unit} = this.props;
 
