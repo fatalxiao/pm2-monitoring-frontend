@@ -16,11 +16,17 @@ class ApplicationSetting extends Component {
 
         super(props);
 
+        const application = this.getApplication();
         this.state = {
-            name: props.data.name
+            name: application ? application.name : ''
         };
 
     }
+
+    getApplication = () => {
+        const {match, applications} = this.props;
+        return applications && applications.find(item => item && item.name === match.params.name);
+    };
 
     updateField = name => {
         this.setState({
@@ -30,8 +36,12 @@ class ApplicationSetting extends Component {
 
     render() {
 
-        const {data} = this.props,
-            {name} = this.state;
+        const {name} = this.state,
+            application = this.getApplication();
+
+        if (!application) {
+            return null;
+        }
 
         return (
             <div className="application-setting">
@@ -63,10 +73,12 @@ class ApplicationSetting extends Component {
 }
 
 ApplicationSetting.propTypes = {
-    data: PropTypes.object,
+    applications: PropTypes.array,
     restartApplication: PropTypes.func
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({
+export default connect(state => ({
+    applications: state.applications.data
+}), dispatch => bindActionCreators({
     restartApplication: actions.restartApplication
 }, dispatch))(ApplicationSetting);
