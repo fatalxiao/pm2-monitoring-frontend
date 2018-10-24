@@ -50,7 +50,7 @@ class ApplicationSetting extends Component {
                 <div className="warning-block">
 
                     <div className="label">
-                        Rename action will affect <span>Application Root Directory Name</span> changed.
+                        Rename action will also change <span>Application Root Directory Name</span>.
                         If you use other continuous integration tools (like jenkins),
                         you should make sure your new config is right.
                         Wrong directory will be ignored.
