@@ -17,10 +17,14 @@ class ApplicationOverView extends Component {
         super(props);
     }
 
+    getApplication = () => {
+        const {match, applications} = this.props;
+        return applications && applications.find(item => item && item.name === match.params.name);
+    };
+
     formatData = type => {
 
-        const {match, applications} = this.props,
-            application = applications && applications.find(item => item && item.name === match.params.name);
+        const application = this.getApplication();
 
         if (!application || !application.monitRecord) {
             return [];
@@ -51,10 +55,13 @@ class ApplicationOverView extends Component {
 
     render() {
 
-        const {match, applications} = this.props,
+        const application = this.getApplication();
 
-            application = applications && applications.find(item => item && item.name === match.params.name),
-            activated = application && application.status === 'online',
+        if (!application) {
+            return null;
+        }
+
+        const activated = application.status === 'online',
 
             cpuClassName = classNames('overview-item-content', 'cpu', {
                 activated
