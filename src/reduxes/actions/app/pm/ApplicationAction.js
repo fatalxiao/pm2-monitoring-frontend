@@ -232,6 +232,7 @@ export const renameApplication = (originName, name) => dispatch => {
             },
             successResMsgDisabled: true,
             successCallback() {
+                getApplications()(dispatch);
                 routerPush(`/app/pm/application/${name}/setting`)(dispatch);
             }
         }
