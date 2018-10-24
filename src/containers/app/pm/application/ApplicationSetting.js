@@ -34,6 +34,20 @@ class ApplicationSetting extends Component {
         });
     };
 
+    rename = () => {
+
+        const {renameApplication} = this.props,
+            application = this.getApplication(),
+            {name} = this.state;
+
+        if (!application || !application.name || !name || !renameApplication) {
+            return;
+        }
+
+        renameApplication(application.name, name);
+
+    };
+
     render() {
 
         const {name} = this.state,
@@ -67,7 +81,7 @@ class ApplicationSetting extends Component {
                     <Button className="rename-button"
                             theme={Button.Theme.WARNING}
                             value="Rename"
-                            onClick={this.update}/>
+                            onClick={this.rename}/>
 
                 </div>
 
@@ -79,11 +93,13 @@ class ApplicationSetting extends Component {
 
 ApplicationSetting.propTypes = {
     applications: PropTypes.array,
-    restartApplication: PropTypes.func
+    restartApplication: PropTypes.func,
+    renameApplication: PropTypes.func
 };
 
 export default connect(state => ({
     applications: state.applications.data
 }), dispatch => bindActionCreators({
-    restartApplication: actions.restartApplication
+    restartApplication: actions.restartApplication,
+    renameApplication: actions.renameApplication
 }, dispatch))(ApplicationSetting);
