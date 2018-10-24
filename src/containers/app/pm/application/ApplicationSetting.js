@@ -46,6 +46,14 @@ class ApplicationSetting extends Component {
         return (
             <div className="application-setting">
 
+                <div className="title">Reset Application Name</div>
+                <div className="label">
+                    Rename action will affect <span>Application Root Directory Name</span>.
+                    If you use other continuous integration tools (like jenkins),
+                    you should make sure your new config is right.
+                    Wrong Directory will be ignored.
+                </div>
+
                 <TextField label="Application Name"
                            isLabelAnimate={false}
                            placeholder="new-application"
@@ -53,13 +61,6 @@ class ApplicationSetting extends Component {
                            value={name}
                            isErrorPlaceholder={false}
                            onChange={this.updateField}/>
-
-                <div className="label">
-                    Rename action will affect <span>Application Root Directory Name</span>.
-                    If you use other continuous integration tools (like jenkins),
-                    you should make sure your new config is right.
-                    Wrong Directory Name will be ignored.
-                </div>
 
                 <Button className="rename-button"
                         theme={Button.Theme.WARNING}

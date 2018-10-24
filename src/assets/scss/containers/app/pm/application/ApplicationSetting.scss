@@ -4,20 +4,27 @@
     @include float-fix;
     padding-right: 72px;
 
+    .title {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
     .label {
         color: $theme-label;
         font-size: 12px;
-        padding: 16px 0;
+        margin-bottom: 16px;
         line-height: 16px;
 
         & > span {
-            color: $theme-highlight;
+            color: $theme-warning;
         }
     }
 
     .rename-button {
         width: auto;
         font-size: 16px;
+        float: right;
+        margin-top: 16px;
     }
 
 }
