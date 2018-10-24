@@ -73,6 +73,13 @@ export default {
             url: `${config.baseUrl}/application/exist/${options.params.applicationName}`
         });
 
+    },
+
+    resetApplicationName(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/application/rename/${options.params.applicationName}`
+        });
     }
 
 };
