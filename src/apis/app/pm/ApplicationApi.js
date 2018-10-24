@@ -1,5 +1,6 @@
 import Api from '../../Api';
 import config from '../../../config';
+import RequestManagement from 'apis/RequestManagement';
 
 export default {
 
@@ -59,6 +60,19 @@ export default {
             ...options,
             url: `${config.baseUrl}/application/reload/${options.params.processId}`
         });
+    },
+
+    checkApplicationNameExist(options) {
+
+        const name = 'application/checkApplicationNameExist';
+        RequestManagement.cancelByName(name);
+
+        Api.get({
+            ...options,
+            name,
+            url: `${config.baseUrl}/application/exist/${options.params.applicationName}`
+        });
+
     }
 
 };
