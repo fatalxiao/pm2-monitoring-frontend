@@ -25,7 +25,7 @@ class ApplicationCard extends Component {
             return;
         }
 
-        routerPush(`/app/pm/application/${data.name}`);
+        routerPush(`/app/pm/application/${data.name}/overview`);
 
     };
 
