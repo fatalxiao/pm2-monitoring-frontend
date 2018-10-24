@@ -8,6 +8,8 @@ import * as actions from 'reduxes/actions';
 import TextField from 'components/FormTextField';
 import Button from 'alcedo-ui/RaisedButton';
 
+import Valid from 'vendors/Valid';
+
 import 'scss/containers/app/pm/application/ApplicationSetting.scss';
 
 class ApplicationSetting extends Component {
@@ -18,7 +20,8 @@ class ApplicationSetting extends Component {
 
         const application = this.getApplication();
         this.state = {
-            name: application ? application.name : ''
+            name: application ? application.name : '',
+            error: null
         };
 
     }
@@ -30,7 +33,8 @@ class ApplicationSetting extends Component {
 
     updateField = name => {
         this.setState({
-            name
+            name,
+            error: Valid.validApplicationField('name', name)
         });
     };
 
@@ -50,8 +54,10 @@ class ApplicationSetting extends Component {
 
     render() {
 
-        const {name} = this.state,
-            application = this.getApplication();
+        const {actionType} = this.props,
+            {name, error} = this.state,
+            application = this.getApplication(),
+            isLoading = application && actionType && application.name in actionType;
 
         if (!application) {
             return null;
@@ -75,13 +81,17 @@ class ApplicationSetting extends Component {
                                placeholder="new-application"
                                clearButtonVisible={false}
                                value={name}
+                               error={error}
                                isErrorPlaceholder={false}
                                onChange={this.updateField}/>
 
-                    <Button className="rename-button"
-                            theme={Button.Theme.WARNING}
-                            value="Rename"
-                            onClick={this.rename}/>
+                    <div className="float-fix">
+                        <Button className="rename-button"
+                                theme={Button.Theme.WARNING}
+                                value="Rename"
+                                disabled={isLoading}
+                                onClick={this.rename}/>
+                    </div>
 
                 </div>
 
@@ -93,12 +103,14 @@ class ApplicationSetting extends Component {
 
 ApplicationSetting.propTypes = {
     applications: PropTypes.array,
+    actionType: PropTypes.object,
     restartApplication: PropTypes.func,
     renameApplication: PropTypes.func
 };
 
 export default connect(state => ({
-    applications: state.applications.data
+    applications: state.applications.data,
+    actionType: state.application.actionType
 }), dispatch => bindActionCreators({
     restartApplication: actions.restartApplication,
     renameApplication: actions.renameApplication
