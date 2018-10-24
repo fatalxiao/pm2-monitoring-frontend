@@ -4,6 +4,7 @@
     position: relative;
     box-sizing: border-box;
     width: 554px;
+    min-height: 600px;
     padding: 32px 0 32px 72px;
     background: $theme-field-bg;
     border: 1px solid $theme-border;
@@ -33,35 +34,39 @@
         }
     }
 
-    .tab.application-tab {
+    //.tab.application-tab {
+    //
+    //    .tabs .tab-button {
+    //        background: transparent;
+    //        font-size: 20px;
+    //        padding: 0 16px;
+    //        color: $theme-label;
+    //        margin: 0;
+    //
+    //        &:first-child {
+    //            padding-left: 0;
+    //        }
+    //
+    //        &.activated {
+    //            color: $theme-field;
+    //        }
+    //    }
+    //
+    //    .tab-content-wrapper {
+    //        background: transparent;
+    //
+    //        .tab-content {
+    //            padding: 24px 0;
+    //        }
+    //    }
+    //
+    //    .application-form {
+    //        padding-right: 72px;
+    //    }
+    //}
 
-        .tabs .tab-button {
-            background: transparent;
-            font-size: 20px;
-            padding: 0 16px;
-            color: $theme-label;
-            margin: 0;
-
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &.activated {
-                color: $theme-field;
-            }
-        }
-
-        .tab-content-wrapper {
-            background: transparent;
-
-            .tab-content {
-                padding: 24px 0;
-            }
-        }
-
-        .application-form {
-            padding-right: 72px;
-        }
+    .tabs {
+        
     }
 
     .back-icon {

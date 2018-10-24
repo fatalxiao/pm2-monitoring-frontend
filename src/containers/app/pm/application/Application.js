@@ -2,18 +2,18 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {NavLink} from 'react-router-dom';
 import classNames from 'classnames';
-import URI from 'urijs';
+import {renderRoutes} from 'react-router-config';
 
 import * as actions from 'reduxes/actions';
 
 import Loading from 'alcedo-ui/CircularLoading';
 import IconButton from 'alcedo-ui/IconButton';
-import Tab from 'alcedo-ui/Tab';
-import OverView from './ApplicationOverView';
-import Config from './ApplicationConfig';
-import Setting from './ApplicationSetting';
+import AnchorButton from 'alcedo-ui/AnchorButton';
 import Ctrls from '../common/ApplicationCtrls';
+
+import ApplicationTabs from 'statics/ApplicationTabs';
 
 import 'scss/containers/app/pm/application/Application.scss';
 
@@ -24,52 +24,23 @@ class Application extends Component {
         super(props);
 
         this.state = {
-            init: false,
-            activatedIndex: 0
+            init: false
         };
 
     }
 
-    tabIndexChangeHandler = activatedIndex => {
-        this.setState({
-            activatedIndex
-        }, () => {
-            const {routerPush} = this.props;
-            switch (activatedIndex) {
-                case 0:
-                    return routerPush('#overview');
-                case 1:
-                    return routerPush('#config');
-                case 2:
-                    return routerPush('#setting');
-            }
-        });
-    };
-
-    getTabIndex = () => {
-        switch (new URI(location).fragment()) {
-            case 'setting':
-                return 2;
-            case 'config':
-                return 1;
-            default:
-                return 0;
-        }
-    };
-
     componentDidMount() {
         this.setState({
-            init: true,
-            activatedIndex: this.getTabIndex()
+            init: true
         });
     }
 
     render() {
 
-        const {data, match, routerPush} = this.props,
-            {init, activatedIndex} = this.state,
+        const {route, applications, match, routerPush} = this.props,
+            {init} = this.state,
 
-            application = data && data.find(item => item && item.name === match.params.name),
+            application = applications && applications.find(item => item && item.name === match.params.name),
 
             wrapperClassName = classNames('application', {
                 init
@@ -91,25 +62,23 @@ class Application extends Component {
                                 <Ctrls data={application}/>
                             </div>
 
-                            <Tab className="application-tab"
-                                 tabs={[{
-                                     value: 'Overview',
-                                     renderer: <OverView data={application}/>
-                                 }, {
-                                     value: 'Config',
-                                     renderer: <Config data={application}/>
-                                 }, {
-                                     value: 'Setting',
-                                     renderer: <Setting data={application}/>
-                                 }]}
-                                 activatedIndex={activatedIndex}
-                                 isTabFullWidth={false}
-                                 onIndexChange={this.tabIndexChangeHandler}/>
+                            <div className="tabs">
+                                {
+                                    ApplicationTabs && ApplicationTabs.map(item =>
+                                        <NavLink key={item.title}
+                                                 to={item.getRoute(application.name)}>
+                                            <AnchorButton value={item.title}/>
+                                        </NavLink>
+                                    )
+                                }
+                            </div>
 
-                            <IconButton className="back-icon"
-                                        iconCls="icon-chevron-thin-left"
+                            {renderRoutes(route.routes)}
+
+                            <IconButton className='back-icon'
+                                        iconCls='icon-chevron-thin-left'
                                         onClick={() => routerPush('/app/pm/applications')}>
-                                <i className="icon-minus extra-icon"></i>
+                                <i className='icon-minus extra-icon'></i>
                             </IconButton>
 
                         </Fragment>
@@ -121,15 +90,12 @@ class Application extends Component {
 }
 
 Application.propTypes = {
-
-    data: PropTypes.array,
-
+    applications: PropTypes.array,
     routerPush: PropTypes.func
-
 };
 
 export default connect(state => ({
-    data: state.applications.data
+    applications: state.applications.data
 }), dispatch => bindActionCreators({
     routerPush: actions.routerPush
 }, dispatch))(Application);
