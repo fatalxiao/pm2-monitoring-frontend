@@ -8,6 +8,11 @@
         color: $theme-label;
         font-size: 12px;
         padding: 16px 0;
+        line-height: 16px;
+
+        & > span {
+            color: $theme-highlight;
+        }
     }
 
     .rename-button {

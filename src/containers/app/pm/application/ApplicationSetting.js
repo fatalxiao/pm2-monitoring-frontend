@@ -41,10 +41,14 @@ class ApplicationSetting extends Component {
                            placeholder="new-application"
                            clearButtonVisible={false}
                            value={name}
+                           isErrorPlaceholder={false}
                            onChange={this.updateField}/>
 
                 <div className="label">
-                    Rename action will affect Application Root Directory Name.
+                    Rename action will affect <span>Application Root Directory Name</span>.
+                    If you use other continuous integration tools (like jenkins),
+                    you should make sure your new config is right.
+                    Wrong Directory Name will be ignored.
                 </div>
 
                 <Button className="rename-button"
