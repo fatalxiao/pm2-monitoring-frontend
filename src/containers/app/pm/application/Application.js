@@ -62,12 +62,14 @@ class Application extends Component {
                                 <Ctrls data={application}/>
                             </div>
 
-                            <div className="tabs">
+                            <div className="application-tabs">
                                 {
                                     ApplicationTabs && ApplicationTabs.map(item =>
                                         <NavLink key={item.title}
+                                                 className="application-tab-wrapper"
                                                  to={item.getRoute(application.name)}>
-                                            <AnchorButton value={item.title}/>
+                                            <AnchorButton className="application-tab"
+                                                          value={item.title}/>
                                         </NavLink>
                                     )
                                 }
