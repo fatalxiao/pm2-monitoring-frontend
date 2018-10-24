@@ -19,13 +19,14 @@ class ApplicationOverView extends Component {
 
     formatData = type => {
 
-        const {data} = this.props;
+        const {match, applications} = this.props,
+            application = applications && applications.find(item => item && item.name === match.params.name);
 
-        if (!data || !data.monitRecord) {
+        if (!application || !application.monitRecord) {
             return [];
         }
 
-        return data.monitRecord.map(item => {
+        return application.monitRecord.map(item => {
 
             if (!item) {
                 return item;
@@ -50,8 +51,10 @@ class ApplicationOverView extends Component {
 
     render() {
 
-        const {data} = this.props,
-            activated = data && data.status === 'online',
+        const {match, applications} = this.props,
+
+            application = applications && applications.find(item => item && item.name === match.params.name),
+            activated = application && application.status === 'online',
 
             cpuClassName = classNames('overview-item-content', 'cpu', {
                 activated
@@ -66,7 +69,7 @@ class ApplicationOverView extends Component {
                 <div className="overview-item status">
                     <div className="overview-item-left">
                         <div className="overview-item-title">Status</div>
-                        <Status value={data.status}/>
+                        <Status value={application.status}/>
                     </div>
                 </div>
 
@@ -75,8 +78,8 @@ class ApplicationOverView extends Component {
                         <div className="overview-item-title">CPU</div>
                         <div className={cpuClassName}>
                             {
-                                activated && data.monit ?
-                                    Calculation.formatCPU(data.monit.cpu)
+                                activated && application.monit ?
+                                    Calculation.formatCPU(application.monit.cpu)
                                     :
                                     '--'
                             }
@@ -100,8 +103,8 @@ class ApplicationOverView extends Component {
                         <div className="overview-item-title">Memory</div>
                         <div className={memoryClassName}>
                             {
-                                activated && data.monit ?
-                                    Calculation.formatMemory(data.monit.memory)
+                                activated && application.monit ?
+                                    Calculation.formatMemory(application.monit.memory)
                                     :
                                     '--'
                             }
@@ -126,7 +129,9 @@ class ApplicationOverView extends Component {
 }
 
 ApplicationOverView.propTypes = {
-    data: PropTypes.object
+    applications: PropTypes.array
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({}, dispatch))(ApplicationOverView);
+export default connect(state => ({
+    applications: state.applications.data
+}), dispatch => bindActionCreators({}, dispatch))(ApplicationOverView);
