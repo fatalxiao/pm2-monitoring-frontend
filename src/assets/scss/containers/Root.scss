@@ -28,6 +28,21 @@
     }
 }
 
+.toast {
+    width: auto !important;
+    height: auto !important;
+    padding: 12px 24px;
+
+    .toast-icon {
+        display: none;
+    }
+
+    .base-button-value {
+        font-size: 18px;
+        line-height: 16px;
+    }
+}
+
 .notification {
     padding: 16px 16px 45px 16px;
 
