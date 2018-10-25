@@ -29,9 +29,11 @@
 }
 
 .toast {
-    width: auto !important;
-    height: auto !important;
+    width: 100px !important;
+    height: 43px !important;
     padding: 12px 24px;
+    border: none;
+    text-align: center;
 
     .toast-icon {
         display: none;
