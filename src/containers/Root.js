@@ -38,7 +38,8 @@ class Root extends Component {
                          onToastPop={clearToaste}/>
 
                 <Notifier notifications={notifiers}
-                          position={Notifier.Position.TOP_RIGHT}
+                          position={Notifier.Position.BOTTOM_RIGHT}
+                          duration={6000}
                           onNotificationPop={clearNotifier}/>
 
                 {renderRoutes(route.routes)}
