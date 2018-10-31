@@ -55,7 +55,7 @@ export const uploadApplicationPackage = (applicationName, file) => dispatch => {
 
 };
 
-export const startApplication = applicationName => dispatch => {
+export const startApplicationProcess = applicationName => dispatch => {
 
     if (!applicationName) {
         return;
@@ -68,7 +68,7 @@ export const startApplication = applicationName => dispatch => {
                 actionTypes.START_APPLICATION_SUCCESS,
                 actionTypes.START_APPLICATION_FAILURE
             ],
-            api: ApplicationApi.startApplication,
+            api: ApplicationApi.startApplicationProcess,
             params: {
                 applicationName
             },
@@ -81,7 +81,7 @@ export const startApplication = applicationName => dispatch => {
 
 };
 
-export const stopApplication = (processId, applicationName) => dispatch => {
+export const stopApplicationProcess = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -94,7 +94,7 @@ export const stopApplication = (processId, applicationName) => dispatch => {
                 actionTypes.PAUSE_APPLICATION_SUCCESS,
                 actionTypes.PAUSE_APPLICATION_FAILURE
             ],
-            api: ApplicationApi.stopApplication,
+            api: ApplicationApi.stopApplicationProcess,
             params: {
                 processId,
                 applicationName
@@ -108,7 +108,7 @@ export const stopApplication = (processId, applicationName) => dispatch => {
 
 };
 
-export const restartApplication = (processId, applicationName) => dispatch => {
+export const restartApplicationProcess = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -121,7 +121,7 @@ export const restartApplication = (processId, applicationName) => dispatch => {
                 actionTypes.RESTART_APPLICATION_SUCCESS,
                 actionTypes.RESTART_APPLICATION_FAILURE
             ],
-            api: ApplicationApi.restartApplication,
+            api: ApplicationApi.restartApplicationProcess,
             params: {
                 processId,
                 applicationName
@@ -135,7 +135,7 @@ export const restartApplication = (processId, applicationName) => dispatch => {
 
 };
 
-export const deleteApplication = (processId, applicationName) => dispatch => {
+export const deleteApplicationProcess = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -148,7 +148,7 @@ export const deleteApplication = (processId, applicationName) => dispatch => {
                 actionTypes.STOP_APPLICATION_SUCCESS,
                 actionTypes.STOP_APPLICATION_FAILURE
             ],
-            api: ApplicationApi.deleteApplication,
+            api: ApplicationApi.deleteApplicationProcess,
             params: {
                 processId,
                 applicationName
@@ -162,7 +162,7 @@ export const deleteApplication = (processId, applicationName) => dispatch => {
 
 };
 
-export const reloadApplication = (processId, applicationName) => dispatch => {
+export const reloadApplicationProcess = (processId, applicationName) => dispatch => {
 
     if (processId == undefined) {
         return;
@@ -175,7 +175,7 @@ export const reloadApplication = (processId, applicationName) => dispatch => {
                 actionTypes.RELOAD_APPLICATION_SUCCESS,
                 actionTypes.RELOAD_APPLICATION_FAILURE
             ],
-            api: ApplicationApi.reloadApplication,
+            api: ApplicationApi.reloadApplicationProcess,
             params: {
                 processId,
                 applicationName
@@ -234,6 +234,34 @@ export const renameApplication = (applicationName, name) => dispatch => {
             successCallback() {
                 getApplications()(dispatch);
                 routerPush(`/app/pm/application/${name}/setting`)(dispatch);
+            }
+        }
+    });
+
+};
+
+export const deleteApplication = applicationName => dispatch => {
+
+    if (!applicationName) {
+        return;
+    }
+
+    return dispatch({
+        [actionTypes.CALL_API]: {
+            types: [
+                actionTypes.DELETE_APPLICATION_REQUEST,
+                actionTypes.DELETE_APPLICATION_SUCCESS,
+                actionTypes.DELETE_APPLICATION_FAILURE
+            ],
+            api: ApplicationApi.deleteApplication,
+            params: {
+                applicationName,
+                name
+            },
+            successResMsgDisabled: true,
+            successCallback() {
+                getApplications()(dispatch);
+                routerPush(`/app/pm/applications`)(dispatch);
             }
         }
     });
