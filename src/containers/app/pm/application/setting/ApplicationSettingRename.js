@@ -94,13 +94,11 @@ class ApplicationSettingRename extends Component {
 ApplicationSettingRename.propTypes = {
     application: PropTypes.object,
     actionType: PropTypes.object,
-    restartApplication: PropTypes.func,
     renameApplication: PropTypes.func
 };
 
 export default connect(state => ({
     actionType: state.application.actionType
 }), dispatch => bindActionCreators({
-    restartApplication: actions.restartApplication,
     renameApplication: actions.renameApplication
 }, dispatch))(ApplicationSettingRename);
