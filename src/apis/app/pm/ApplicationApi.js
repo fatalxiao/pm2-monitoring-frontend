@@ -27,35 +27,35 @@ export default {
         });
     },
 
-    startApplication(options) {
+    startApplicationProcess(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/start/${options.params.applicationName}`
         });
     },
 
-    stopApplication(options) {
+    stopApplicationProcess(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/stop/${options.params.processId}`
         });
     },
 
-    restartApplication(options) {
+    restartApplicationProcess(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/restart/${options.params.processId}`
         });
     },
 
-    deleteApplication(options) {
+    deleteApplicationProcess(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/delete/${options.params.processId}`
         });
     },
 
-    reloadApplication(options) {
+    reloadApplicationProcess(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/reload/${options.params.processId}`
@@ -76,6 +76,13 @@ export default {
     },
 
     renameApplication(options) {
+        Api.put({
+            ...options,
+            url: `${config.baseUrl}/application/rename/${options.params.applicationName}`
+        });
+    },
+
+    deleteApplication(options) {
         Api.put({
             ...options,
             url: `${config.baseUrl}/application/rename/${options.params.applicationName}`
