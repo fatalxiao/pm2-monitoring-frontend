@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -54,7 +54,7 @@ class ApplicationSettingRename extends Component {
         }
 
         return (
-            <Fragment>
+            <div className="application-setting-rename">
 
                 <div className="title">Reset Application Name</div>
                 <div className="warning-block">
@@ -85,7 +85,7 @@ class ApplicationSettingRename extends Component {
 
                 </div>
 
-            </Fragment>
+            </div>
         );
 
     }
