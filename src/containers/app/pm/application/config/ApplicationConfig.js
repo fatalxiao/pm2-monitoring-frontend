@@ -6,9 +6,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 
-import * as actions from 'reduxes/actions';
+import * as actions from 'reduxes/actions/index';
 
-import Form from '../common/ApplicationForm';
+import Form from '../../common/ApplicationForm';
 import Button from 'alcedo-ui/RaisedButton';
 
 import Valid from 'vendors/Valid';

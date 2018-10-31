@@ -18,13 +18,13 @@ export function configureRoutes(store) {
                     component: ac(() => import('containers/app/pm/application/Application'), store),
                     routes: [{
                         path: '/app/pm/application/:name/overview',
-                        component: ac(() => import('containers/app/pm/application/ApplicationOverView'), store)
+                        component: ac(() => import('containers/app/pm/application/overview/ApplicationOverView'), store)
                     }, {
                         path: '/app/pm/application/:name/config',
-                        component: ac(() => import('containers/app/pm/application/ApplicationConfig'), store)
+                        component: ac(() => import('containers/app/pm/application/config/ApplicationConfig'), store)
                     }, {
                         path: '/app/pm/application/:name/setting',
-                        component: ac(() => import('containers/app/pm/application/ApplicationSetting'), store)
+                        component: ac(() => import('containers/app/pm/application/setting/ApplicationSetting'), store)
                     }]
                 }]
             }]

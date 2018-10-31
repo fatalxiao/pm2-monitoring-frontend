@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
-import Status from '../common/ApplicationStatus';
-import LineChart from '../../../../components/LineChart';
+import Status from '../../common/ApplicationStatus';
+import LineChart from '../../../../../components/LineChart';
 
 import Calculation from 'vendors/Calaulation';
 
-import 'scss/containers/app/pm/application/ApplicationOverView.scss';
+import 'scss/containers/app/pm/application/ApplicationOverview.scss';
 
 class ApplicationOverView extends Component {
 
