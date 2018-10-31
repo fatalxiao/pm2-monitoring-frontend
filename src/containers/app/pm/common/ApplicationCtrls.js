@@ -61,16 +61,16 @@ class ApplicationCtrls extends Component {
 
         this.stopPropagation(e);
 
-        const {data, startApplication, stopApplication} = this.props;
+        const {data, startApplicationProcess, stopApplicationProcess} = this.props;
 
         if (!data) {
             return;
         }
 
         if (data.status === 'online') {
-            stopApplication && stopApplication(data.pm_id, data.name);
+            stopApplicationProcess && stopApplicationProcess(data.pm_id, data.name);
         } else {
-            startApplication && startApplication(data.name);
+            startApplicationProcess && startApplicationProcess(data.name);
         }
 
     };
@@ -79,13 +79,13 @@ class ApplicationCtrls extends Component {
 
         this.stopPropagation(e);
 
-        const {data, restartApplication} = this.props;
+        const {data, restartApplicationProcess} = this.props;
 
         if (!data) {
             return;
         }
 
-        restartApplication && restartApplication(data.pm_id, data.name);
+        restartApplicationProcess && restartApplicationProcess(data.pm_id, data.name);
 
     };
 
@@ -93,13 +93,13 @@ class ApplicationCtrls extends Component {
 
         this.stopPropagation(e);
 
-        const {data, deleteApplication} = this.props;
+        const {data, deleteApplicationProcess} = this.props;
 
         if (!data) {
             return;
         }
 
-        deleteApplication && deleteApplication(data.pm_id, data.name);
+        deleteApplicationProcess && deleteApplicationProcess(data.pm_id, data.name);
 
     };
 
@@ -164,10 +164,10 @@ ApplicationCtrls.propTypes = {
     data: PropTypes.object,
 
     uploadApplicationPackage: PropTypes.func,
-    startApplication: PropTypes.func,
-    stopApplication: PropTypes.func,
-    restartApplication: PropTypes.func,
-    deleteApplication: PropTypes.func
+    startApplicationProcess: PropTypes.func,
+    stopApplicationProcess: PropTypes.func,
+    restartApplicationProcess: PropTypes.func,
+    deleteApplicationProcess: PropTypes.func
 
 };
 
@@ -175,8 +175,8 @@ export default connect(state => ({
     actionType: state.application.actionType
 }), dispatch => bindActionCreators({
     uploadApplicationPackage: actions.uploadApplicationPackage,
-    startApplication: actions.startApplication,
-    stopApplication: actions.stopApplication,
-    restartApplication: actions.restartApplication,
-    deleteApplication: actions.deleteApplication
+    startApplicationProcess: actions.startApplicationProcess,
+    stopApplicationProcess: actions.stopApplicationProcess,
+    restartApplicationProcess: actions.restartApplicationProcess,
+    deleteApplicationProcess: actions.deleteApplicationProcess
 }, dispatch))(ApplicationCtrls);
