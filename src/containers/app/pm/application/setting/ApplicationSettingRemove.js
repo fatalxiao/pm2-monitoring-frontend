@@ -13,7 +13,7 @@ class ApplicationSettingRemove extends Component {
         super(props);
     }
 
-    remove = () => {
+    del = () => {
 
         const {application, renameApplication} = this.props;
 
@@ -37,7 +37,7 @@ class ApplicationSettingRemove extends Component {
         return (
             <div className="application-setting-remove">
 
-                <div className="title">Remove Application</div>
+                <div className="title">Delete the Application</div>
                 <div className="danger-block">
 
                     <div className="label">
@@ -47,8 +47,8 @@ class ApplicationSettingRemove extends Component {
                     <div className="float-fix">
                         <RaisedButton className="rename-button"
                                       theme={RaisedButton.Theme.ERROR}
-                                      value="Remove"
-                                      onClick={this.remove}/>
+                                      value="Delete"
+                                      onClick={this.del}/>
                     </div>
 
                 </div>
