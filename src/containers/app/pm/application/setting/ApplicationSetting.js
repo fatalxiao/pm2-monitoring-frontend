@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import Rename from './ApplicationSettingRename';
+import Remove from './ApplicationSettingRemove';
 
 import 'scss/containers/app/pm/application/setting/ApplicationSetting.scss';
-import PropTypes from 'prop-types';
 
 class ApplicationSetting extends Component {
 
@@ -25,6 +26,7 @@ class ApplicationSetting extends Component {
         return (
             <div className="application-setting">
                 <Rename application={application}/>
+                <Remove application={application}/>
             </div>
         );
     }
