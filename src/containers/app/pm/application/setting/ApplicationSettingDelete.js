@@ -7,7 +7,7 @@ import * as actions from 'reduxes/actions/index';
 
 import RaisedButton from 'alcedo-ui/RaisedButton';
 
-class ApplicationSettingRemove extends Component {
+class ApplicationSettingDelete extends Component {
 
     constructor(props) {
         super(props);
@@ -59,16 +59,14 @@ class ApplicationSettingRemove extends Component {
     }
 }
 
-ApplicationSettingRemove.propTypes = {
+ApplicationSettingDelete.propTypes = {
     application: PropTypes.object,
     actionType: PropTypes.object,
-    restartApplication: PropTypes.func,
     renameApplication: PropTypes.func
 };
 
 export default connect(state => ({
     actionType: state.application.actionType
 }), dispatch => bindActionCreators({
-    restartApplication: actions.restartApplication,
     renameApplication: actions.renameApplication
-}, dispatch))(ApplicationSettingRemove);
+}, dispatch))(ApplicationSettingDelete);
