@@ -13,7 +13,7 @@ import Button from 'alcedo-ui/RaisedButton';
 
 import Valid from 'vendors/Valid';
 
-import 'scss/containers/app/pm/application/ApplicationConfig.scss';
+import 'scss/containers/app/pm/application/config/ApplicationConfig.scss';
 
 class ApplicationConfig extends Component {
 

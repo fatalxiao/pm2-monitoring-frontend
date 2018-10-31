@@ -10,7 +10,7 @@ import RaisedButton from 'alcedo-ui/RaisedButton';
 
 import Valid from 'vendors/Valid';
 
-import 'scss/containers/app/pm/application/ApplicationSetting.scss';
+import 'scss/containers/app/pm/application/setting/ApplicationSetting.scss';
 
 class ApplicationSetting extends Component {
 
