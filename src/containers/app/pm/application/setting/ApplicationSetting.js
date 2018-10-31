@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import Rename from './ApplicationSettingRename';
-import Remove from './ApplicationSettingRemove';
+import Remove from './ApplicationSettingDelete';
 
 import 'scss/containers/app/pm/application/setting/ApplicationSetting.scss';
 
