@@ -81,14 +81,14 @@ class ApplicationConfig extends Component {
 
     restart = () => {
 
-        const {restartApplication} = this.props,
+        const {restartApplicationProcess} = this.props,
             application = this.getApplication();
 
         if (!application) {
             return;
         }
 
-        restartApplication && restartApplication(application.pm_id, application.name);
+        restartApplicationProcess && restartApplicationProcess(application.pm_id, application.name);
 
     };
 
@@ -137,12 +137,12 @@ class ApplicationConfig extends Component {
 ApplicationConfig.propTypes = {
     applications: PropTypes.array,
     updateApplication: PropTypes.func,
-    restartApplication: PropTypes.func
+    restartApplicationProcess: PropTypes.func
 };
 
 export default connect(state => ({
     applications: state.applications.data
 }), dispatch => bindActionCreators({
     updateApplication: actions.updateApplication,
-    restartApplication: actions.restartApplication
+    restartApplicationProcess: actions.restartApplicationProcess
 }, dispatch))(ApplicationConfig);
