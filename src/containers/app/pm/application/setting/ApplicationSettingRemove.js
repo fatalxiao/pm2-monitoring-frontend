@@ -5,35 +5,17 @@ import {bindActionCreators} from 'redux';
 
 import * as actions from 'reduxes/actions/index';
 
-import TextField from 'components/FormTextField';
 import RaisedButton from 'alcedo-ui/RaisedButton';
-
-import Valid from 'vendors/Valid';
 
 class ApplicationSettingRemove extends Component {
 
     constructor(props) {
-
         super(props);
-
-        this.state = {
-            name: props.application ? props.application.name : '',
-            error: null
-        };
-
     }
 
-    updateField = name => {
-        this.setState({
-            name,
-            error: Valid.validApplicationField('name', name)
-        });
-    };
+    remove = () => {
 
-    rename = () => {
-
-        const {application, renameApplication} = this.props,
-            {name} = this.state;
+        const {application, renameApplication} = this.props;
 
         if (!application || !application.name || !name || !renameApplication) {
             return;
@@ -46,7 +28,6 @@ class ApplicationSettingRemove extends Component {
     render() {
 
         const {application, actionType} = this.props,
-            {name, error} = this.state,
             isLoading = application && actionType && application.name in actionType;
 
         if (!application) {
@@ -57,30 +38,17 @@ class ApplicationSettingRemove extends Component {
             <div className="application-setting-remove">
 
                 <div className="title">Remove Application</div>
-                <div className="warning-block">
+                <div className="danger-block">
 
                     <div className="label">
-                        Rename action will also change <span>Application Root Directory Name</span>.
-                        If you use other continuous integration tools (like jenkins),
-                        you should make sure your new config is right.
-                        Wrong directory will be ignored.
+                        Once you delete the application, there is no going back. Please be certain.
                     </div>
-
-                    <TextField label="Application Name"
-                               isLabelAnimate={false}
-                               placeholder="new-application"
-                               clearButtonVisible={false}
-                               value={name}
-                               error={error}
-                               isErrorPlaceholder={false}
-                               onChange={this.updateField}/>
 
                     <div className="float-fix">
                         <RaisedButton className="rename-button"
-                                      theme={RaisedButton.Theme.WARNING}
-                                      value="Rename"
-                                      disabled={application.name === name || isLoading}
-                                      onClick={this.rename}/>
+                                      theme={RaisedButton.Theme.ERROR}
+                                      value="Remove"
+                                      onClick={this.remove}/>
                     </div>
 
                 </div>

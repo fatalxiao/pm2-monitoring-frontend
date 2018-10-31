@@ -1,23 +1,36 @@
-@import '../../../../../common';
+@import '../../../../../common.scss';
 
 .application-setting {
     @include float-fix;
     padding-right: 72px;
+
+    .application-setting-remove {
+        margin-top: 32px;
+    }
 
     .title {
         font-size: 18px;
         margin-bottom: 8px;
     }
 
-    .warning-block {
+    .warning-block,
+    .danger-block {
         @include float-fix;
         padding: 16px;
-        border: 1px solid $theme-warning;
+        border-width: 1px;
+        border-style: solid;
         border-radius: $theme-border-radius;
     }
 
+    .warning-block {
+        border-color: $theme-warning;
+    }
+
+    .danger-block {
+        border-color: $theme-error;
+    }
+
     .label {
-        color: $theme-label;
         font-size: 12px;
         margin-bottom: 16px;
         line-height: 16px;
