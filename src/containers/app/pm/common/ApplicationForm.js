@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -36,7 +36,7 @@ class ApplicationForm extends Component {
         }
 
         const fields = (
-                <Fragment>
+                <>
                     {
                         isEdit ?
                             null
@@ -59,10 +59,10 @@ class ApplicationForm extends Component {
                               value={data.description}
                               error={error.description}
                               onChange={v => updateField('description', v)}/>
-                </Fragment>
+                </>
             ),
             advancedFields = (
-                <Fragment>
+                <>
                     <TextField className={this.getFieldClassName('instances')}
                                label="Instances"
                                isLabelAnimate={false}
@@ -95,14 +95,14 @@ class ApplicationForm extends Component {
                                value={data.env}
                                error={error.env}
                                onChange={v => updateField('env', v)}/>
-                </Fragment>
+                </>
             );
 
         return (
             <div className="application-form">
                 {
                     advanced ?
-                        <Fragment>
+                        <>
                             {fields}
                             <Accordion className="create-form-advance"
                                        title="Advance"
@@ -114,12 +114,12 @@ class ApplicationForm extends Component {
                                     {advancedFields}
                                 </div>
                             </Accordion>
-                        </Fragment>
+                        </>
                         :
-                        <Fragment>
+                        <>
                             {fields}
                             {advancedFields}
-                        </Fragment>
+                        </>
                 }
             </div>
         );
