@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -28,7 +28,7 @@ class FormTextField extends Component {
             });
 
         return (
-            <Fragment>
+            <>
                 <TextField className={fieldClassName}
                            {...restProps}/>
                 <PaperInfo className="form-field-error"
@@ -37,7 +37,7 @@ class FormTextField extends Component {
                            isPlaceholder={isErrorPlaceholder}>
                     {error}
                 </PaperInfo>
-            </Fragment>
+            </>
         );
 
     }
