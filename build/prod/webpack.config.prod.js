@@ -34,16 +34,25 @@ module.exports = merge(baseWebpackConfig, {
         },
         splitChunks: {
             cacheGroups: {
+                lodash: {
+                    name: 'lodash',
+                    test: /[\\/]node_modules[\\/]lodash[\\/]/,
+                    chunks: 'all'
+                },
+                'alcedo-ui': {
+                    name: 'alcedo-ui',
+                    test: /[\\/]node_modules[\\/]alcedo-ui[\\/]/,
+                    chunks: 'all'
+                },
                 commons: {
-                    test: /[\\/]node_modules[\\/]/,
                     name: 'commons',
+                    test: /[\\/]node_modules[\\/](?!lodash|alcedo-ui)[\\/]/,
                     chunks: 'all'
                 },
                 styles: {
                     name: 'styles',
                     test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true
+                    chunks: 'all'
                 }
             }
         },
