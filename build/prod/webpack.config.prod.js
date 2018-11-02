@@ -68,23 +68,23 @@ module.exports = merge(baseWebpackConfig, {
 
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(utils.assetsVendorsAbsolutePath('dllPolyfill-manifest.json', env))
+            manifest: require(utils.assetsVendorsAbsolutePath('polyfill-manifest.json', env))
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(utils.assetsVendorsAbsolutePath('dllMoment-manifest.json', env))
+            manifest: require(utils.assetsVendorsAbsolutePath('moment-manifest.json', env))
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(utils.assetsVendorsAbsolutePath('dllReact-manifest.json', env))
+            manifest: require(utils.assetsVendorsAbsolutePath('react-manifest.json', env))
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(utils.assetsVendorsAbsolutePath('dllChart-manifest.json', env))
+            manifest: require(utils.assetsVendorsAbsolutePath('chart-manifest.json', env))
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require(utils.assetsVendorsAbsolutePath('dllTools-manifest.json', env))
+            manifest: require(utils.assetsVendorsAbsolutePath('tools-manifest.json', env))
         }),
 
         new MiniCssExtractPlugin({
@@ -106,11 +106,11 @@ module.exports = merge(baseWebpackConfig, {
 
         new HtmlIncludeAssetsPlugin({
             assets: [
-                vendorsAssets['dllPolyfill'].js,
-                vendorsAssets['dllMoment'].js,
-                vendorsAssets['dllReact'].js,
-                vendorsAssets['dllChart'].js,
-                vendorsAssets['dllTools'].js
+                vendorsAssets['polyfill'].js,
+                vendorsAssets['moment'].js,
+                vendorsAssets['react'].js,
+                vendorsAssets['chart'].js,
+                vendorsAssets['tools'].js
             ],
             append: false
         }),
