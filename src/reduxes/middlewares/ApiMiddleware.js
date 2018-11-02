@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import RequestManagement from 'apis/RequestManagement';
+import RequestManagement from 'reduxes/apis/RequestManagement';
 import {addSuccessResMsg, addFailureResMsg} from 'reduxes/actions/common/ResMsgAction';
 
 const ERROR_MSG = 'Server or Network failure. Please try again later or contact administrator.';

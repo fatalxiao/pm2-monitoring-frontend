@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes/index';
-import ApplicationsApi from 'apis/app/pm/ApplicationsApi';
+import ApplicationsApi from 'reduxes/apis/app/pm/ApplicationsApi';
 import config from 'src/config';
 
 let process = config.refreshInterval,

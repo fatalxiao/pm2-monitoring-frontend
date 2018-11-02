@@ -1,5 +1,5 @@
 import config from 'src/config';
-import WebSocketApi from 'apis/WebSocketApi';
+import WebSocketApi from 'reduxes/apis/WebSocketApi';
 
 export default {
 

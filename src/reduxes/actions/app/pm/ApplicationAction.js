@@ -1,5 +1,5 @@
 import * as actionTypes from 'reduxes/actionTypes';
-import ApplicationApi from 'apis/app/pm/ApplicationApi';
+import ApplicationApi from 'reduxes/apis/app/pm/ApplicationApi';
 import {getApplications} from './ApplicationsAction';
 import {routerPush} from 'reduxes/actions/common/RouterAction';
 

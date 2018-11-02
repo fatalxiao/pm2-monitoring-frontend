@@ -1,6 +1,6 @@
 import Api from '../../Api';
-import config from '../../../config';
-import RequestManagement from 'apis/RequestManagement';
+import config from '../../../../config';
+import RequestManagement from 'reduxes/apis/RequestManagement';
 
 export default {
 
