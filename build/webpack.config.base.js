@@ -37,9 +37,9 @@ module.exports = {
     },
 
     output: {
+        publicPath: config.assetsPublicPath,
         path: config.production.assetsRoot,
-        filename: '[name].js',
-        publicPath: config.assetsPublicPath
+        filename: '[name].js'
     },
 
     resolve: {
