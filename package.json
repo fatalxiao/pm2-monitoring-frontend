@@ -35,9 +35,7 @@
         "echarts": "^4.2.0-rc.2",
         "echarts-for-react": "^2.0.15-beta.0",
         "history": "^4.7.2",
-        "js-cookie": "^2.2.0",
         "lodash": "^4.17.11",
-        "md5": "^2.2.1",
         "moment": "^2.22.2",
         "prop-types": "^15.6.2",
         "react": "16.6.0",
@@ -50,8 +48,7 @@
         "react-router-redux": "^5.0.0-alpha.6",
         "react-transition-group": "^2.5.0",
         "redux": "^4.0.1",
-        "redux-thunk": "^2.3.0",
-        "urijs": "^1.19.1"
+        "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
         "@babel/core": "^7.1.2",
