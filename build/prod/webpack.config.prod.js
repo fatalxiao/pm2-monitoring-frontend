@@ -3,10 +3,11 @@ const path = require('path'),
     merge = require('webpack-merge'),
     CopyPlugin = require('copy-webpack-plugin'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
     HtmlPlugin = require('html-webpack-plugin'),
     HtmlIncludeAssetsPlugin = require('html-webpack-include-assets-plugin'),
     CompressionPlugin = require('compression-webpack-plugin'),
-    // BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+    BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
 
     config = require('../config.js'),
     baseWebpackConfig = require('../webpack.config.base.js'),
@@ -37,9 +38,18 @@ module.exports = merge(baseWebpackConfig, {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'commons',
                     chunks: 'all'
+                },
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true
                 }
             }
-        }
+        },
+        minimizer: [
+            new OptimizeCSSAssetsPlugin({})
+        ]
     },
 
     plugins: [
@@ -107,9 +117,9 @@ module.exports = merge(baseWebpackConfig, {
             algorithm: 'gzip',
             threshold: 1,
             minRatio: 0.8
-        })
+        }),
 
-        // new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin()
 
     ]
 
