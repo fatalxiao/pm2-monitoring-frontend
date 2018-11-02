@@ -37,22 +37,34 @@ module.exports = merge(baseWebpackConfig, {
                 lodash: {
                     name: 'lodash',
                     test: /[\\/]node_modules[\\/]lodash[\\/]/,
-                    chunks: 'all'
+                    chunks: 'all',
+                    priority: 2,
+                    reuseExistingChunk: true
                 },
-                'alcedo-ui': {
-                    name: 'alcedo-ui',
+                alcedoUI: {
+                    name: 'alcedoUI',
                     test: /[\\/]node_modules[\\/]alcedo-ui[\\/]/,
-                    chunks: 'all'
+                    chunks: 'all',
+                    priority: 1,
+                    reuseExistingChunk: true
                 },
                 commons: {
                     name: 'commons',
-                    test: /[\\/]node_modules[\\/](?!lodash|alcedo-ui)[\\/]/,
-                    chunks: 'all'
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    reuseExistingChunk: true
+                },
+                reduxes: {
+                    name: 'reduxes',
+                    test: /[\\/]src[\\/]reduxes[\\/]/,
+                    chunks: 'all',
+                    reuseExistingChunk: true
                 },
                 styles: {
                     name: 'styles',
                     test: /\.css$/,
-                    chunks: 'all'
+                    chunks: 'all',
+                    reuseExistingChunk: true
                 }
             }
         },
