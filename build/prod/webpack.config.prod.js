@@ -80,6 +80,10 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
+            manifest: require(utils.assetsVendorsAbsolutePath('dllChart-manifest.json', env))
+        }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
             manifest: require(utils.assetsVendorsAbsolutePath('dllTools-manifest.json', env))
         }),
 
@@ -105,6 +109,7 @@ module.exports = merge(baseWebpackConfig, {
                 vendorsAssets['dllPolyfill'].js,
                 vendorsAssets['dllMoment'].js,
                 vendorsAssets['dllReact'].js,
+                vendorsAssets['dllChart'].js,
                 vendorsAssets['dllTools'].js
             ],
             append: false
