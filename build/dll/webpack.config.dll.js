@@ -17,6 +17,7 @@ module.exports = {
         'dllMoment': ['moment'],
         'dllReact': ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-config', 'react-router-dom',
             'react-router-redux', 'redux', 'redux-thunk', 'react-transition-group'],
+        'dllChart': ['echarts', 'echarts-for-react'],
         'dllTools': ['lodash', 'classnames', 'history', 'dom-helpers']
     },
 
