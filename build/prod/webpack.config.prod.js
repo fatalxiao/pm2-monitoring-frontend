@@ -112,9 +112,9 @@ module.exports = merge(baseWebpackConfig, {
             algorithm: 'gzip',
             threshold: 1,
             minRatio: 0.8
-        }),
+        })
 
-        new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
 
     ]
 
