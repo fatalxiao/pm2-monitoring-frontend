@@ -7,7 +7,7 @@ const path = require('path'),
     HtmlPlugin = require('html-webpack-plugin'),
     HtmlIncludeAssetsPlugin = require('html-webpack-include-assets-plugin'),
     CompressionPlugin = require('compression-webpack-plugin'),
-    // BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+    BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
 
     config = require('../config.js'),
     baseWebpackConfig = require('../webpack.config.base.js'),
@@ -122,9 +122,9 @@ module.exports = merge(baseWebpackConfig, {
             algorithm: 'gzip',
             threshold: 1,
             minRatio: 0.8
-        })
+        }),
 
-        // new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin()
 
     ]
 
