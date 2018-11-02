@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -42,7 +42,7 @@ class Application extends Component {
                     !application ?
                         <Loading/>
                         :
-                        <>
+                        <Fragment>
 
                             <div className="application-title">
                                 <div className="application-name"
@@ -73,7 +73,7 @@ class Application extends Component {
                                 <i className='icon-minus extra-icon'></i>
                             </IconButton>
 
-                        </>
+                        </Fragment>
                 }
             </div>
         );
