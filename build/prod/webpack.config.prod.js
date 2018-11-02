@@ -27,13 +27,13 @@ module.exports = merge(baseWebpackConfig, {
 
     optimization: {
         runtimeChunk: {
-            name: 'manifest'
+            name: 'runtime'
         },
         splitChunks: {
             cacheGroups: {
                 commons: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
+                    name: 'commons',
                     chunks: 'all'
                 }
             }
