@@ -3,28 +3,44 @@ import ac from 'components/AsyncComponent';
 export function configureRoutes(store) {
     return [{
         path: '/',
-        component: ac(() => import('containers/Root'), store),
+        component: ac(() => import(
+            /* webpackChunkName: "Root" */
+            'containers/Root'), store),
         routes: [{
             path: '/app',
-            component: ac(() => import('containers/app/App'), store),
+            component: ac(() => import(
+                /* webpackChunkName: "App" */
+                'containers/app/App'), store),
             routes: [{
                 path: '/app/pm',
-                component: ac(() => import('containers/app/pm/PM'), store),
+                component: ac(() => import(
+                    /* webpackChunkName: "PM" */
+                    'containers/app/pm/PM'), store),
                 routes: [{
                     path: '/app/pm/applications',
-                    component: ac(() => import('containers/app/pm/applications/Applications'), store)
+                    component: ac(() => import(
+                        /* webpackChunkName: "Applications" */
+                        'containers/app/pm/applications/Applications'), store)
                 }, {
                     path: '/app/pm/application/:name',
-                    component: ac(() => import('containers/app/pm/application/Application'), store),
+                    component: ac(() => import(
+                        /* webpackChunkName: "Application" */
+                        'containers/app/pm/application/Application'), store),
                     routes: [{
                         path: '/app/pm/application/:name/overview',
-                        component: ac(() => import('containers/app/pm/application/overview/ApplicationOverView'), store)
+                        component: ac(() => import(
+                            /* webpackChunkName: "ApplicationOverView" */
+                            'containers/app/pm/application/overview/ApplicationOverView'), store)
                     }, {
                         path: '/app/pm/application/:name/config',
-                        component: ac(() => import('containers/app/pm/application/config/ApplicationConfig'), store)
+                        component: ac(() => import(
+                            /* webpackChunkName: "ApplicationConfig" */
+                            'containers/app/pm/application/config/ApplicationConfig'), store)
                     }, {
                         path: '/app/pm/application/:name/setting',
-                        component: ac(() => import('containers/app/pm/application/setting/ApplicationSetting'), store)
+                        component: ac(() => import(
+                            /* webpackChunkName: "ApplicationSetting" */
+                            'containers/app/pm/application/setting/ApplicationSetting'), store)
                     }]
                 }]
             }]
