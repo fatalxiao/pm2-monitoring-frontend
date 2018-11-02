@@ -47,7 +47,6 @@ module.exports = {
         alias: {
 
             'src': resolve('src'),
-            'apis': resolve('src/apis'),
             'assets': resolve('src/assets'),
             'scss': resolve('src/assets/scss'),
             'images': resolve('src/assets/images'),
@@ -57,6 +56,7 @@ module.exports = {
             'components': resolve('src/components'),
             'customized': resolve('src/customized'),
             'reduxes': resolve('src/reduxes'),
+            'apis': resolve('src/reduxes/apis'),
             'statics': resolve('src/statics'),
             'vendors': resolve('src/vendors'),
 
