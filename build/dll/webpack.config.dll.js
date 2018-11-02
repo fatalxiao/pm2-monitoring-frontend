@@ -17,7 +17,8 @@ module.exports = {
         'moment': ['moment'],
         'react': ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-config', 'react-router-dom',
             'react-router-redux', 'redux', 'redux-thunk', 'react-transition-group'],
-        'tools': ['classnames', 'history', 'js-cookie']
+        'tools': ['lodash', 'classnames', 'history', 'dom-helpers'],
+        'chart': ['echarts', 'echarts-for-react']
     },
 
     output: {
