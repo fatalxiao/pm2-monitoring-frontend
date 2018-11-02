@@ -13,12 +13,12 @@ module.exports = {
     mode: 'production',
 
     entry: {
-        'dllPolyfill': ['@babel/polyfill'],
-        'dllMoment': ['moment'],
-        'dllReact': ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-config', 'react-router-dom',
+        'polyfill': ['@babel/polyfill'],
+        'moment': ['moment'],
+        'react': ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-config', 'react-router-dom',
             'react-router-redux', 'redux', 'redux-thunk', 'react-transition-group'],
-        'dllChart': ['echarts', 'echarts-for-react'],
-        'dllTools': ['classnames', 'history', 'dom-helpers']
+        'chart': ['echarts', 'echarts-for-react'],
+        'tools': ['classnames', 'history', 'dom-helpers']
     },
 
     output: {
