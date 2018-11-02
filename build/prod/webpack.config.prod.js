@@ -70,6 +70,10 @@ module.exports = merge(baseWebpackConfig, {
             context: __dirname,
             manifest: require(utils.assetsVendorsAbsolutePath('tools-manifest.json', env))
         }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require(utils.assetsVendorsAbsolutePath('chart-manifest.json', env))
+        }),
 
         new HtmlPlugin({
             filename: config[env].index,
@@ -88,7 +92,8 @@ module.exports = merge(baseWebpackConfig, {
                 vendorsAssets['polyfill'].js,
                 vendorsAssets['moment'].js,
                 vendorsAssets['react'].js,
-                vendorsAssets['tools'].js
+                vendorsAssets['tools'].js,
+                vendorsAssets['chart'].js
             ],
             append: false
         }),
