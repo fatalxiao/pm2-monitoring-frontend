@@ -2,7 +2,6 @@ const path = require('path'),
     webpack = require('webpack'),
     merge = require('webpack-merge'),
     CopyPlugin = require('copy-webpack-plugin'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
     OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
     HtmlPlugin = require('html-webpack-plugin'),
     HtmlIncludeAssetsPlugin = require('html-webpack-include-assets-plugin'),
@@ -34,30 +33,32 @@ module.exports = merge(baseWebpackConfig, {
         },
         splitChunks: {
             cacheGroups: {
+                componentsStyles: {
+                    name: 'componentsStyles',
+                    test: /[\\/]scss[\\/]index\.scss/,
+                    chunks: 'all',
+                    priority: 4,
+                    reuseExistingChunk: true
+                },
                 lodash: {
                     name: 'lodash',
-                    test: /[\\/]node_modules[\\/]lodash[\\/]/,
+                    test: /[\\/]lodash[\\/]/,
                     chunks: 'all',
-                    priority: 2,
+                    priority: 3,
                     reuseExistingChunk: true
                 },
                 alcedoUI: {
                     name: 'alcedoUI',
-                    test: /[\\/]node_modules[\\/]alcedo-ui[\\/]/,
+                    test: /[\\/]alcedo-ui[\\/]/,
                     chunks: 'all',
-                    priority: 1,
-                    reuseExistingChunk: true
-                },
-                commons: {
-                    name: 'commons',
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
+                    priority: 2,
                     reuseExistingChunk: true
                 },
                 reduxes: {
                     name: 'reduxes',
-                    test: /[\\/]src[\\/]reduxes[\\/]/,
+                    test: /[\\/]reduxes[\\/]/,
                     chunks: 'all',
+                    priority: 1,
                     reuseExistingChunk: true
                 },
                 styles: {
@@ -106,11 +107,6 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require(utils.assetsVendorsAbsolutePath('tools-manifest.json', env))
-        }),
-
-        new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
-            chunkFilename: utils.assetsSubPath('style/[id].[contenthash].css')
         }),
 
         new HtmlPlugin({
