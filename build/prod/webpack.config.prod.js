@@ -2,7 +2,6 @@ const path = require('path'),
     webpack = require('webpack'),
     merge = require('webpack-merge'),
     CopyPlugin = require('copy-webpack-plugin'),
-    OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
     HtmlPlugin = require('html-webpack-plugin'),
     HtmlIncludeAssetsPlugin = require('html-webpack-include-assets-plugin'),
     CompressionPlugin = require('compression-webpack-plugin'),
@@ -33,45 +32,13 @@ module.exports = merge(baseWebpackConfig, {
         },
         splitChunks: {
             cacheGroups: {
-                componentsStyles: {
-                    name: 'componentsStyles',
-                    test: /[\\/]scss[\\/]index\.scss/,
-                    chunks: 'all',
-                    priority: 4,
-                    reuseExistingChunk: true
-                },
-                lodash: {
-                    name: 'lodash',
-                    test: /[\\/]lodash[\\/]/,
-                    chunks: 'all',
-                    priority: 3,
-                    reuseExistingChunk: true
-                },
-                alcedoUI: {
-                    name: 'alcedoUI',
-                    test: /[\\/]alcedo-ui[\\/]/,
-                    chunks: 'all',
-                    priority: 2,
-                    reuseExistingChunk: true
-                },
-                reduxes: {
-                    name: 'reduxes',
-                    test: /[\\/]reduxes[\\/]/,
-                    chunks: 'all',
-                    priority: 1,
-                    reuseExistingChunk: true
-                },
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    reuseExistingChunk: true
+                nodeModules: {
+                    name: 'nodeModules',
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all'
                 }
             }
-        },
-        minimizer: [
-            new OptimizeCSSAssetsPlugin({})
-        ]
+        }
     },
 
     plugins: [
