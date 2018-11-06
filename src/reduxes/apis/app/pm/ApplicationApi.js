@@ -83,9 +83,9 @@ export default {
     },
 
     deleteApplication(options) {
-        Api.put({
+        Api.delete({
             ...options,
-            url: `${config.baseUrl}/application/rename/${options.params.applicationName}`
+            url: `${config.baseUrl}/application/delete/${options.params.applicationName}`
         });
     }
 
