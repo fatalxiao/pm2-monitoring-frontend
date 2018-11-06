@@ -64,9 +64,9 @@ export const startApplicationProcess = applicationName => dispatch => {
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
-                actionTypes.START_APPLICATION_REQUEST,
-                actionTypes.START_APPLICATION_SUCCESS,
-                actionTypes.START_APPLICATION_FAILURE
+                actionTypes.START_APPLICATION_PROCESS_REQUEST,
+                actionTypes.START_APPLICATION_PROCESS_SUCCESS,
+                actionTypes.START_APPLICATION_PROCESS_FAILURE
             ],
             api: ApplicationApi.startApplicationProcess,
             params: {
@@ -90,9 +90,9 @@ export const stopApplicationProcess = (processId, applicationName) => dispatch =
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
-                actionTypes.PAUSE_APPLICATION_REQUEST,
-                actionTypes.PAUSE_APPLICATION_SUCCESS,
-                actionTypes.PAUSE_APPLICATION_FAILURE
+                actionTypes.STOP_APPLICATION_PROCESS_REQUEST,
+                actionTypes.STOP_APPLICATION_PROCESS_SUCCESS,
+                actionTypes.STOP_APPLICATION_PROCESS_FAILURE
             ],
             api: ApplicationApi.stopApplicationProcess,
             params: {
@@ -117,9 +117,9 @@ export const restartApplicationProcess = (processId, applicationName) => dispatc
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
-                actionTypes.RESTART_APPLICATION_REQUEST,
-                actionTypes.RESTART_APPLICATION_SUCCESS,
-                actionTypes.RESTART_APPLICATION_FAILURE
+                actionTypes.RESTART_APPLICATION_PROCESS_REQUEST,
+                actionTypes.RESTART_APPLICATION_PROCESS_SUCCESS,
+                actionTypes.RESTART_APPLICATION_PROCESS_FAILURE
             ],
             api: ApplicationApi.restartApplicationProcess,
             params: {
@@ -144,9 +144,9 @@ export const deleteApplicationProcess = (processId, applicationName) => dispatch
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
-                actionTypes.STOP_APPLICATION_REQUEST,
-                actionTypes.STOP_APPLICATION_SUCCESS,
-                actionTypes.STOP_APPLICATION_FAILURE
+                actionTypes.DELETE_APPLICATION_PROCESS_REQUEST,
+                actionTypes.DELETE_APPLICATION_PROCESS_SUCCESS,
+                actionTypes.DELETE_APPLICATION_PROCESS_FAILURE
             ],
             api: ApplicationApi.deleteApplicationProcess,
             params: {
@@ -171,9 +171,9 @@ export const reloadApplicationProcess = (processId, applicationName) => dispatch
     return dispatch({
         [actionTypes.CALL_API]: {
             types: [
-                actionTypes.RELOAD_APPLICATION_REQUEST,
-                actionTypes.RELOAD_APPLICATION_SUCCESS,
-                actionTypes.RELOAD_APPLICATION_FAILURE
+                actionTypes.RELOAD_APPLICATION_PROCESS_REQUEST,
+                actionTypes.RELOAD_APPLICATION_PROCESS_SUCCESS,
+                actionTypes.RELOAD_APPLICATION_PROCESS_FAILURE
             ],
             api: ApplicationApi.reloadApplicationProcess,
             params: {
