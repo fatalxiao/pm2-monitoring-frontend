@@ -16,7 +16,8 @@ function application(state = initialState, action) {
         || action.type === actionTypes.RESTART_APPLICATION_PROCESS_REQUEST
         || action.type === actionTypes.DELETE_APPLICATION_PROCESS_REQUEST
         || action.type === actionTypes.RELOAD_APPLICATION_PROCESS_REQUEST
-        || action.type === actionTypes.RENAME_APPLICATION_REQUEST) {
+        || action.type === actionTypes.RENAME_APPLICATION_REQUEST
+        || action.type === actionTypes.DELETE_APPLICATION_REQUEST) {
 
         const actionType = cloneDeep(state.actionType),
             error = cloneDeep(state.error);
@@ -37,7 +38,8 @@ function application(state = initialState, action) {
         || action.type === actionTypes.RESTART_APPLICATION_PROCESS_SUCCESS
         || action.type === actionTypes.DELETE_APPLICATION_PROCESS_SUCCESS
         || action.type === actionTypes.RELOAD_APPLICATION_PROCESS_SUCCESS
-        || action.type === actionTypes.RENAME_APPLICATION_SUCCESS) {
+        || action.type === actionTypes.RENAME_APPLICATION_SUCCESS
+        || action.type === actionTypes.DELETE_APPLICATION_SUCCESS) {
 
         const actionType = cloneDeep(state.actionType);
         delete actionType[action.apiParams.applicationName];
@@ -54,7 +56,8 @@ function application(state = initialState, action) {
         || action.type === actionTypes.RESTART_APPLICATION_PROCESS_FAILURE
         || action.type === actionTypes.DELETE_APPLICATION_PROCESS_FAILURE
         || action.type === actionTypes.RELOAD_APPLICATION_PROCESS_FAILURE
-        || action.type === actionTypes.RENAME_APPLICATION_FAILURE) {
+        || action.type === actionTypes.RENAME_APPLICATION_FAILURE
+        || action.type === actionTypes.DELETE_APPLICATION_FAILURE) {
 
         const actionType = cloneDeep(state.actionType),
             error = cloneDeep(state.error);
