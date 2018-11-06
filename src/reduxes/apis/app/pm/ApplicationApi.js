@@ -30,35 +30,35 @@ export default {
     startApplicationProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/start/${options.params.applicationName}`
+            url: `${config.baseUrl}/application/process/start/${options.params.applicationName}`
         });
     },
 
     stopApplicationProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/stop/${options.params.processId}`
+            url: `${config.baseUrl}/application/process/stop/${options.params.processId}`
         });
     },
 
     restartApplicationProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/restart/${options.params.processId}`
+            url: `${config.baseUrl}/application/process/restart/${options.params.processId}`
         });
     },
 
     deleteApplicationProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/delete/${options.params.processId}`
+            url: `${config.baseUrl}/application/process/delete/${options.params.processId}`
         });
     },
 
     reloadApplicationProcess(options) {
         Api.put({
             ...options,
-            url: `${config.baseUrl}/application/reload/${options.params.processId}`
+            url: `${config.baseUrl}/application/process/reload/${options.params.processId}`
         });
     },
 
