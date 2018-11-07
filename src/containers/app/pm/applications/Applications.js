@@ -76,7 +76,8 @@ class Applications extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.data && this.props.data.length !== this.state.applicationStyle.length) {
+        if (this.props.data && this.props.data.length > 0
+            && this.props.data.length !== this.state.applicationStyle.length) {
             this.updateStyles();
         }
     }
