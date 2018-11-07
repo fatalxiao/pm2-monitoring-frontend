@@ -15,13 +15,13 @@ class ApplicationSettingDelete extends Component {
 
     del = () => {
 
-        const {application, renameApplication} = this.props;
+        const {application, deleteApplication} = this.props;
 
-        if (!application || !application.name || !name || !renameApplication) {
+        if (!application || !application.name || !deleteApplication) {
             return;
         }
 
-        renameApplication(application.name, name);
+        deleteApplication(application.name);
 
     };
 
@@ -48,6 +48,7 @@ class ApplicationSettingDelete extends Component {
                         <RaisedButton className="rename-button"
                                       theme={RaisedButton.Theme.ERROR}
                                       value="Delete"
+                                      isLoading={isLoading}
                                       onClick={this.del}/>
                     </div>
 
@@ -62,11 +63,11 @@ class ApplicationSettingDelete extends Component {
 ApplicationSettingDelete.propTypes = {
     application: PropTypes.object,
     actionType: PropTypes.object,
-    renameApplication: PropTypes.func
+    deleteApplication: PropTypes.func
 };
 
 export default connect(state => ({
     actionType: state.application.actionType
 }), dispatch => bindActionCreators({
-    renameApplication: actions.renameApplication
+    deleteApplication: actions.deleteApplication
 }, dispatch))(ApplicationSettingDelete);
