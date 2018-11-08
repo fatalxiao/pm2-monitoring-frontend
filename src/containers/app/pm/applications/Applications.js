@@ -30,7 +30,8 @@ class Applications extends Component {
 
                 <ResponsiveGridLayout className="applications-wrapper"
                                       breakpoints={{lg: 1200, md: 960, sm: 720, xs: 480, xxs: 0}}
-                                      cols={{lg: 6, md: 4, sm: 3, xs: 2, xxs: 1}}>
+                                      cols={{lg: 6, md: 4, sm: 3, xs: 2, xxs: 1}}
+                                      rowHeight={200}>
                     {
                         data && data.map((item, index) => item ?
                             <Application key={index}
