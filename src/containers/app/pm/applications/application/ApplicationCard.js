@@ -31,10 +31,8 @@ class ApplicationCard extends Component {
 
     render() {
 
-        const {style, data, visible} = this.props,
-            className = classNames('application-card', data.status, {
-                visible
-            });
+        const {style, data} = this.props,
+            className = classNames('application-card', data.status);
 
         return (
             <div className={className}
@@ -55,7 +53,6 @@ ApplicationCard.propTypes = {
 
     style: PropTypes.object,
     data: PropTypes.object,
-    visible: PropTypes.bool,
 
     routerPush: PropTypes.func
 
