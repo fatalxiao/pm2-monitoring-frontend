@@ -1,20 +1,15 @@
 @import '../../../../../common.scss';
 
 .application-card {
-    position: absolute;
-    left: 0;
-    top: 0;
     box-sizing: border-box;
     background: $theme-field-bg;
     border: 1px solid $theme-border;
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    opacity: 0;
     transition: width $theme-transition-duration ease-in-out,
     box-shadow $theme-transition-duration ease-in-out,
-    transform $theme-transition-duration ease-in-out,
-    opacity $theme-transition-duration ease-in-out $theme-transition-duration;
+    transform $theme-transition-duration ease-in-out;
 
     .application-ctrls {
         border-top: 1px solid $theme-border;
@@ -22,10 +17,6 @@
         .application-ctrl {
             border-radius: 0 !important;
         }
-    }
-
-    &.visible {
-        opacity: 1;
     }
 
     &:hover {
