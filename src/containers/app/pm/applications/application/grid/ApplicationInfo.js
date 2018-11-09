@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import Monit from './ApplicationMonit';
-import Status from '../../common/ApplicationStatus';
+import Status from '../../../common/ApplicationStatus';
 
-import 'scss/containers/app/pm/applications/application/ApplicationInfo.scss';
+import 'scss/containers/app/pm/applications/application/grid/ApplicationInfo.scss';
 
 class ApplicationInfo extends Component {
 
