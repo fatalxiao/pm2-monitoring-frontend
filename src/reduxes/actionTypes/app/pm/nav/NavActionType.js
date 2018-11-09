@@ -1,1 +1,5 @@
+export const LAYOUT_GRID = 'LAYOUT_GRID';
+export const LAYOUT_TABLE = 'LAYOUT_TABLE';
 
+export const LAYOUT_GROUP = 'LAYOUT_GROUP';
+export const LAYOUT_UNGROUP = 'LAYOUT_UNGROUP';
