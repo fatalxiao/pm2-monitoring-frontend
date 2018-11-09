@@ -33,7 +33,7 @@ class LayoutButton extends Component {
         const {layoutType} = this.props;
 
         return (
-            <IconButton className="layout-button"
+            <IconButton className="nav-button layout-button"
                         iconCls={layoutType === actionTypes.LAYOUT_GRID ? 'fas fa-th-list' : 'fas fa-th'}
                         onClick={this.toggleLayout}/>
         );
