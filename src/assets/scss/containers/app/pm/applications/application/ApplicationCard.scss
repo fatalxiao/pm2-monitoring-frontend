@@ -7,9 +7,7 @@
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    transition: width $theme-transition-duration ease-in-out,
-    box-shadow $theme-transition-duration ease-in-out,
-    transform $theme-transition-duration ease-in-out;
+    transition: box-shadow $theme-transition-duration ease-in-out;
 
     .application-ctrls {
         border-top: 1px solid $theme-border;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -8,6 +8,7 @@ import * as actions from 'reduxes/actions';
 import * as actionTypes from 'reduxes/actionTypes';
 
 import ApplicationInfo from './grid/ApplicationInfo';
+import ApplicationCols from './table/ApplicationCols';
 import ApplicationCtrls from '../../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/applications/application/ApplicationCard.scss';
@@ -32,15 +33,22 @@ class ApplicationCard extends Component {
 
     render() {
 
-        const {style, data} = this.props,
-            className = classNames('application-card', data.status);
+        const {className, data, layoutType, ...restprops} = this.props,
+            cardClassName = classNames('application-card', data.status, {
+                [className]: className
+            });
 
         return (
-            <div className={className}
-                 style={style}
+            <div {...restprops}
+                 className={cardClassName}
                  onClick={this.goToDetail}>
 
-                <ApplicationInfo data={data}/>
+                {
+                    layoutType === actionTypes.LAYOUT_TABLE ?
+                        <ApplicationCols data={data}/>
+                        :
+                        <ApplicationInfo data={data}/>
+                }
 
                 <ApplicationCtrls data={data}/>
 
@@ -51,6 +59,9 @@ class ApplicationCard extends Component {
 }
 
 ApplicationCard.propTypes = {
+
+    className: PropTypes.string,
+    style: PropTypes.object,
 
     data: PropTypes.object,
     layoutType: PropTypes.string,
