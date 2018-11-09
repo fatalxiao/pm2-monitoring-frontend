@@ -1,7 +1,7 @@
 import * as actionTypes from 'reduxes/actionTypes';
 
 const initialState = {
-    layout: actionTypes.LAYOUT_GRID,
+    layoutType: actionTypes.LAYOUT_GRID,
     isLayoutGroup: false
 };
 
@@ -12,13 +12,13 @@ function nav(state = initialState, action) {
         case actionTypes.LAYOUT_GRID: {
             return {
                 ...state,
-                layout: actionTypes.LAYOUT_GRID
+                layoutType: actionTypes.LAYOUT_GRID
             };
         }
         case actionTypes.LAYOUT_TABLE: {
             return {
                 ...state,
-                layout: actionTypes.LAYOUT_TABLE
+                layoutType: actionTypes.LAYOUT_TABLE
             };
         }
 
