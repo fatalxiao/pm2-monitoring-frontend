@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import * as actions from 'reduxes/actions';
+import * as actionTypes from 'reduxes/actionTypes';
+
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import Application from './application/ApplicationCard';
 
@@ -33,13 +36,43 @@ class Applications extends Component {
     };
 
     getLayouts = () => {
-        return {
-            lg: this.getLayout(6),
-            md: this.getLayout(4),
-            sm: this.getLayout(3),
-            xs: this.getLayout(2),
-            xxs: this.getLayout(1)
-        };
+
+        const {layoutType} = this.props;
+
+        return layoutType === actionTypes.LAYOUT_TABLE ?
+            {
+                lg: this.getLayout(1),
+                md: this.getLayout(1),
+                sm: this.getLayout(1),
+                xs: this.getLayout(1),
+                xxs: this.getLayout(1)
+            }
+            :
+            {
+                lg: this.getLayout(6),
+                md: this.getLayout(4),
+                sm: this.getLayout(3),
+                xs: this.getLayout(2),
+                xxs: this.getLayout(1)
+            };
+
+    };
+
+    getLayoutConfig = () => {
+
+        const {layoutType} = this.props;
+
+        return layoutType === actionTypes.LAYOUT_TABLE ?
+            {
+                cols: {lg: 1, md: 1, sm: 1, xs: 1, xxs: 1},
+                rowHeight: 60
+            }
+            :
+            {
+                cols: {lg: 6, md: 4, sm: 3, xs: 2, xxs: 1},
+                rowHeight: 200
+            };
+
     };
 
     render() {
@@ -51,11 +84,10 @@ class Applications extends Component {
 
                 <h1 className="applications-title">Applications</h1>
 
-                <ResponsiveGridLayout className="applications-wrapper"
+                <ResponsiveGridLayout {...this.getLayoutConfig()}
                                       breakpoints={{lg: 1200, md: 960, sm: 720, xs: 480, xxs: 0}}
-                                      cols={{lg: 6, md: 4, sm: 3, xs: 2, xxs: 1}}
                                       layouts={this.getLayouts()}
-                                      rowHeight={200}
+                                      className="applications-wrapper"
                                       isResizable={false}>
                     {
                         data && data.map((item, index) => item ?
@@ -74,9 +106,11 @@ class Applications extends Component {
 }
 
 Applications.propTypes = {
+    layoutType: PropTypes.string,
     data: PropTypes.array
 };
 
 export default connect(state => ({
+    layoutType: state.nav.layoutType,
     data: state.applications.data
 }), dispatch => bindActionCreators({}, dispatch))(Applications);
