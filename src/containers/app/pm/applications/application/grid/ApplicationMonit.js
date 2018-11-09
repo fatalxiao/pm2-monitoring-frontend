@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Calculation from 'vendors/Calaulation';
 
-import 'scss/containers/app/pm/applications/application/ApplicationMonit.scss';
+import 'scss/containers/app/pm/applications/application/grid/ApplicationMonit.scss';
 
 class ApplicationMonit extends Component {
 
