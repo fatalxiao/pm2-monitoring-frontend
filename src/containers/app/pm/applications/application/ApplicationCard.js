@@ -5,8 +5,9 @@ import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
 import * as actions from 'reduxes/actions';
+import * as actionTypes from 'reduxes/actionTypes';
 
-import ApplicationInfo from './ApplicationInfo';
+import ApplicationInfo from './grid/ApplicationInfo';
 import ApplicationCtrls from '../../common/ApplicationCtrls';
 
 import 'scss/containers/app/pm/applications/application/ApplicationCard.scss';
@@ -51,13 +52,15 @@ class ApplicationCard extends Component {
 
 ApplicationCard.propTypes = {
 
-    style: PropTypes.object,
     data: PropTypes.object,
+    layoutType: PropTypes.string,
 
     routerPush: PropTypes.func
 
 };
 
-export default connect(state => ({}), dispatch => bindActionCreators({
+export default connect(state => ({
+    layoutType: state.nav.layoutType
+}), dispatch => bindActionCreators({
     routerPush: actions.routerPush
 }, dispatch))(ApplicationCard);
