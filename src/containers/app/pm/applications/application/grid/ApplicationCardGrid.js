@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import ApplicationInfo from './grid/ApplicationInfo';
-import ApplicationCtrls from '../../common/ApplicationCtrls';
+import ApplicationInfo from './ApplicationInfo';
+import ApplicationCtrls from '../../../common/ApplicationCtrls';
 
 class ApplicationCardGrid extends Component {
 
