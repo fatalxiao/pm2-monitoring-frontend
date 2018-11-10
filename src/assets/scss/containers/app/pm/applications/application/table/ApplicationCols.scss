@@ -1,0 +1,13 @@
+@import '../../../../../../common.scss';
+
+.application-cols {
+    @include float-fix;
+
+    .application-name {
+        float: left;
+    }
+
+    .application-status {
+        float: left;
+    }
+}
