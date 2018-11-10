@@ -7,13 +7,21 @@
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    transition: box-shadow $theme-transition-duration ease-in-out;
+    transition-property: width, height, box-shadow, transform;
+    transition-duration: $theme-transition-duration;
+    transition-timing-function: ease-in-out;
 
     .application-ctrls {
         border-top: 1px solid $theme-border;
 
         .application-ctrl {
             border-radius: 0 !important;
+        }
+    }
+
+    &.layout-table {
+        .application-ctrls {
+            float: left;
         }
     }
 
