@@ -43,7 +43,6 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-
             'src': resolve('src'),
             'assets': resolve('src/assets'),
             'scss': resolve('src/assets/scss'),
@@ -56,11 +55,7 @@ module.exports = {
             'reduxes': resolve('src/reduxes'),
             'apis': resolve('src/reduxes/apis'),
             'statics': resolve('src/statics'),
-            'vendors': resolve('src/vendors'),
-
-            'feedManager': resolve('src/assets/scss/containers/app/modules/feedManager'),
-            'biddingBudget': resolve('src/assets/scss/containers/app/modules/biddingBudget')
-
+            'vendors': resolve('src/vendors')
         }
     },
 
